@@ -1,0 +1,446 @@
+.nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    max-width: 1160px;
+    margin: auto auto;
+    z-index: 1000;
+}
+
+.nav .nav-btn {
+    display: inline-block;
+    padding: 15px;
+    background-color: white;
+    opacity: 0.5;
+    font-size: 24px;
+}
+
+.nav .nav-btn:hover {
+    cursor: pointer;
+}
+
+.nav .nav-action {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.nav .dropdown {
+    position: absolute;
+    width: 600px;
+    background-color: white;
+    opacity: 0.9;
+    color: @gray;
+    .translate(0,50px);
+    .transition(transform ease-out 0.3s);
+    visibility: hidden;
+}
+.nav .dropdown.animated {
+    .translate(0,0);
+    visibility: visible;
+}
+.nav .dropdown-cover {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: fade(white, 10%);
+}
+
+.dropdown .dropdown-section {
+    position: relative;
+    padding: 15px;
+    z-index: 10;
+    float: left;
+    width: 50%;
+    .box-sizing(border-box);
+}
+
+.dropdown .dropdown-title {
+    position: relative;
+    margin-bottom: 15px;
+    padding-bottom: 8px;
+    font-size: 24px;
+    color: @gray-base;
+    // border-bottom:  4px solid @gray-base;
+}
+
+.dropdown .dropdown-title::before {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 50px;
+    border-bottom: 4px solid @gray-base;
+}
+
+.info-list {
+    margin-bottom: 25px;
+}
+
+.info-list .info-item {
+    display: block;
+    padding: 8px 0;
+}
+
+.search-input {
+    position: relative;
+    display: block;
+    margin: 50px auto;
+    padding: 15px 200px 15px 35px;
+    border: 1px solid #a0a0a0;
+    color: #a0a0a0;
+}
+
+.search-input i {
+    position: absolute;
+    left: 10px;
+    top: 18px;
+}
+
+.search-input input {
+    -webkit-appearance: none;
+    border: none;
+    outline: none;
+}
+
+.search-input input:focus {
+    outline: 0;
+}
+
+.search-input button {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    padding: 0 35px;
+    background-color: #a0a0a0;
+    color: white;
+    border-radius: 0;
+}
+
+.search-input .zipcode {
+    position: absolute;
+    right: 120px;
+    width: 100px;
+    top: 0;
+    padding: 15px;
+    border-left: 1px dashed #a0a0a0;
+}
+
+.feature-section .feature-item {
+    position: relative;
+    width: 50%;
+    height: 683px;
+    overflow: hidden;
+    float: left;
+    .transition(width 0.5s);
+}
+
+.feature-section .feature-item img {
+    min-height: 100%;
+    min-width: 100%;
+}
+
+.feature-section.hover-left .feature-left {
+    width: 55%;
+}
+
+.feature-section.hover-left .feature-left img {
+    .scale(1.2);
+}
+
+.feature-section.hover-left .feature-right {
+    width: 45%;
+}
+
+.feature-section.hover-left .feature-right::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: fade(black, 50%);
+    z-index: 1;
+    background-image: url("../images/mark_s.png");
+    background-repeat: repeat;
+}
+.feature-section.active-left .feature-left {
+    width: 100%;
+}
+
+.feature-section.active-left .feature-left img {
+    .scale(1.2);
+}
+
+.feature-section.active-left .feature-right {
+    width: 0;
+}
+.feature-section.hover-right .feature-right {
+    width: 55%;
+}
+
+.feature-section.hover-right .feature-right img {
+    .scale(1.2);
+}
+
+.feature-section.hover-right .feature-left {
+    width: 45%;
+}
+
+.feature-section.hover-right .feature-left::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: fade(black, 50%);
+    z-index: 1;
+    background-image: url("../images/mark_s.png");
+    background-repeat: repeat;
+}
+.feature-section.active-right .feature-right {
+    width: 100%;
+}
+
+.feature-section.active-right .feature-right img {
+    .scale(1.2);
+}
+
+.feature-section.active-right .feature-left {
+    width: 0;
+}
+.feature-item .sub-feature {
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: fade(black, 50%);
+    .scale(0);
+    .transform-origin(0% 100%);
+    .transition(transform ease-out 0.3s);
+    .backface-visibility(hidden);
+    background-image: url("../images/mark_s.png");
+    background-repeat: repeat;
+}
+.feature-item.feature-right .sub-feature {
+    .transform-origin(100% 100%);
+}
+.feature-item.active .sub-feature {
+    .scale(1);
+}
+.feature-item .sub-feature .close {
+    position: absolute;
+    padding: 15px;
+    right: 0;
+    top: 0;
+    font-size: 26px;
+    color: white;
+}
+.circle {
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -75px;
+    margin-top: -75px;
+    height: 150px;
+    width: 150px;
+    border-radius: 150px;
+    background-color: fade(white, 50%);
+    .transition(transform ease-out 1s);
+}
+.feature-item.active .sub-feature-1 {
+    .transform(rotate(270deg) translate(200px,0));
+}
+.feature-item.active .sub-feature-2 {
+    .transform(rotate(342deg) translate(200px,0));
+}
+.feature-item.active .sub-feature-3 {
+    .transform(rotate(414deg) translate(200px,0));
+}
+.feature-item.active .sub-feature-4 {
+    .transform(rotate(486deg) translate(200px,0));
+}
+.feature-item.active .sub-feature-5 {
+    .transform(rotate(558deg) translate(200px,0));
+}
+// downlaod
+
+.download-section span {
+    display: inline-block;
+    width: 45%;
+    padding: 15px;
+    color: white;
+    font-size: 30px;
+    i {
+        margin-right: 15px;
+    }
+    &.android {
+        float: left;
+        background-color: @brand-success;
+    }
+    &.iphone {
+        float: right;
+        background-color: @brand-primary;
+    }
+}
+// category
+.category-section {
+    height: 420px;
+    overflow: hidden;
+}
+
+.category-section img {
+    width: 100%;
+    min-height: 100%;
+}
+
+.category-section .category-large {
+    position: relative;
+    width: 40%;
+    height: 420px;
+    float: left;
+    overflow: hidden;
+    border: 1px solid #a0a0a0;
+    .box-sizing(border-box);
+}
+
+.category-section .category-small {
+    position: relative;
+    width: 20%;
+    height: 210px;
+    float: left;
+    overflow: hidden;
+    border: 1px solid #a0a0a0;
+    .box-sizing(border-box);
+}
+
+.category-section .category-small {
+    border-left: 0;
+}
+
+.category-section .category-small:nth-child(n+5) {
+    border-top: 0;
+}
+
+.category-section .category-caption {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    top: 0;
+    right: 0;
+    padding: 15px;
+    overflow: hidden;
+    background-color: fade(white, 30%);
+    color: white;
+    text-align: center;
+    background-image: url("../images/mark_s.png");
+    background-repeat: repeat;
+    .scaleY(0);
+    .backface-visibility(hidden);
+    .transform-origin(50% 100%);
+    .transition(transform ease-out 0.3s)
+}
+.category-section .category-caption.hover {
+    .scaleY(1);
+}
+.category-section .category-caption.large h3 {
+    margin-top: 120px;
+}
+
+.category-section .category-caption h3 {
+    margin-top: 40px;
+}
+
+.category-section .category-caption span {
+    // display: block;
+    line-height: 20px;
+    height: 60px;
+    overflow: hidden;
+}
+
+// footer
+.footer {
+    font-weight: 100;
+    padding: 10px;
+    margin-top: 50px;
+    line-height: 26px;
+    background-color: #292929;
+    color: white;
+}
+
+.footer .footer-left {
+    float: left;
+    width: 70%;
+}
+
+.footer .footer-right {
+    float: left;
+    width: 30%;
+}
+
+.footer .links {
+    margin-bottom: 80px;
+}
+
+.footer .links .links-item {
+    display: inline-block;
+    padding: 15px 15px 15px 0;
+}
+
+.footer .about {
+    padding: 15px 0;
+}
+
+.footer a {
+    color: white;
+}
+
+.footer .copyright {
+    color: @gray;
+}
+
+.or {
+    display: block;
+    text-align: center;
+    position: relative;
+    margin: 15px auto;
+}
+
+.or::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 10px;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background-color: #a0a0a0;
+}
+
+.or::after {
+    content: "OR";
+    display: block;
+    position: absolute;
+    width: 50px;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto auto;
+    background-color: white;
+}
+
+.info-text {
+    position: relative;
+    top: -7px;
+    left: 15px;
+}

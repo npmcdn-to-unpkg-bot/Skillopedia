@@ -145,7 +145,7 @@ gulp.task('images', function() {
 ==================================*/
 
 gulp.task('fonts', function() {
-    return gulp.src(config.vendor.fonts)
+    return gulp.src('src/fonts/**/*')
         .pipe(gulp.dest(path.join(config.dest, 'fonts')));
 });
 
@@ -164,6 +164,11 @@ gulp.task('templates', function() {
     var inject = [];
     gulp.src(['src/templates/**/*.html'])
         .pipe(gulp.dest(config.dest + "/templates"));
+});
+gulp.task('lib', function() {
+    var inject = [];
+    gulp.src(['src/lib/**/*'])
+        .pipe(gulp.dest(config.dest + "/lib"));
 });
 /*======================================================================
 =            Compile, minify, mobilize less                            =
@@ -241,6 +246,7 @@ gulp.task('watch', function() {
     gulp.watch(['./src/less/**/*'], ['less']);
     gulp.watch(['./src/js/**/*'], ['js']);
     gulp.watch(['./src/templates/**/*'], ['templates']);
+    gulp.watch(['./src/lib/**/*'], ['lib']);
     gulp.watch(['./src/images/**/*'], ['images']);
 });
 
@@ -250,7 +256,7 @@ gulp.task('watch', function() {
 ======================================*/
 
 gulp.task('build', function(done) {
-    var tasks = ['html', 'templates', 'fonts', 'images', 'less', 'js'];
+    var tasks = ['html', 'templates', 'lib', 'fonts', 'images', 'less', 'js'];
     seq('clean', tasks, done);
 });
 

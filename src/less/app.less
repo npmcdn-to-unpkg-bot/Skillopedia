@@ -1,5 +1,44 @@
-.a {
-	.b {
-		color:red;
-	}
+@import "variable.less";
+@import "common.less";
+@import "mixin/button.less";
+@import "mixin/opacity.less";
+@import "mixin/clearfix.less";
+@import "mixin/tab-focus.less";
+@import "mixin/vendor-prefixes.less";
+@import "button.less";
+@import "font.less";
+@import "index.less";
+body {
+	font-family: MyriadPro, "微软雅黑";
+}
+.wrap {
+	position: relative;
+	width: 100%;
+	max-width: 1160px;
+	margin: auto auto;
+}
+.section {
+    display: block;
+    margin:50px auto;
+    .clearfix();
+}
+.signin-btn {
+    display: inline-block;
+    vertical-align: middle;
+    padding: 8px 25px;
+    margin: 8px;
+    border: 1px solid white;
+    border-radius: 4px;
+    color: white;
+}
+
+.signup-btn {
+    display: inline-block;
+    vertical-align: middle;
+    padding: 8px 25px;
+    margin: 8px;
+    border: 1px solid @brand-primary;
+    border-radius: 4px;
+    color: @brand-primary;
+    background-color: @brand-info;
 }
