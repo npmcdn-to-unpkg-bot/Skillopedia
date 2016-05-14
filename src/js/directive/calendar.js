@@ -7,9 +7,10 @@ angular.module("Skillopedia").directive('calendar', function($filter) {
 			calendar: "=",
 		},
 		link: function(scope, element, attrs) {
+			scope.calendar = angular.extend({}, scope.calendar);
+			scope.calendar.day = $filter("date")(new Date());
 			var date = $(".calendar-day").pickadate();
 			var picker = date.pickadate('picker');
-			scope.calendar.day = $filter("date")(new Date());
 			picker.on({
 				set: function(thingSet) {
 					var select = picker.get();

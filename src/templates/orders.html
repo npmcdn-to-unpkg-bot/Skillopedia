@@ -1,11 +1,22 @@
 <!-- header -->
 <div ng-include="'templates/header.html'"></div>
 <div class="wrap">
-    <div class="section">
+    <div class="section account-section">
         <!-- sidebar -->
         <div ng-include="'templates/sidebar.html'" class="sidebar-wrap"></div>
         <div class="content-wrap">
-            account order
+        	<div class="tabs clearfix">
+                <a class="tab-item pull-left active">All</a>
+                <a class="tab-item pull-left">Unpay</a>
+                <a class="tab-item pull-left">Payed</a>
+                <a class="tab-item pull-left">Finish</a>
+            </div>
+            account orders
+            <a ng-href="#/order" class="btn">订单详情(order)</a>
+            <a ng-href="#/order_comment" class="btn">评价订单(comment)</a>
+            <a ng-href="#/order_refund" class="btn">退款申请(refund)</a>
+            <a ng-href="#/order_booking" class="btn">预约时间(booking)</a>
+            <a ng-href="#/order_finish" class="btn">完成订单(finish)</a>
         </div>
     </div>
 </div>

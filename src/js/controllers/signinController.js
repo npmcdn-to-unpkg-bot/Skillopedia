@@ -1,7 +1,7 @@
 // by dribehance <dribehance.kksdapp.com>
-angular.module("Skillopedia").controller("signinController", function($scope, errorServices, toastServices, localStorageService, config) {
-
+angular.module("Skillopedia").controller("signinController", function($scope, $route, $window, errorServices, toastServices, localStorageService, config) {
+	$scope.ajaxForm = function() {
+		$window.location.href = "#/account";
+		$.magnificPopup.close();
+	}
 });
-angular.module("Skillopedia").controller("signupController", function($scope, errorServices, toastServices, localStorageService, config) {
-
-})

@@ -1,5 +1,5 @@
 <!-- header -->
-<script src="lib/js/index.js"></script>
+<script src="lib/js/main.js"></script>
 <div ng-include="'templates/header.html'"></div>
 <div class="wrap">
     <div class="section detail-section">
@@ -112,9 +112,6 @@
             <div class="section sm">
             	<!-- <div ng-include="'templates/calendar.html'"></div> -->
                 <calendar calendar="calendar"></calendar>
-                <div ng-click="calendar.remove(select)" ng-repeat="select in calendar.selected">
-                    {{select.from.hour}} to {{select.to.hour}}
-                </div>
             </div>
             <div class="section sm map-section">
                 <div class="section-title">Teaching location</div>

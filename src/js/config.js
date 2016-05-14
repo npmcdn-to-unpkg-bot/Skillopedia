@@ -18,6 +18,7 @@ angular.module("Skillopedia").constant("config", {
 		"contact",
 		"coupons_expired",
 		"coupons",
+		"courses",
 		"create_course",
 		"create_step",
 		"detail",

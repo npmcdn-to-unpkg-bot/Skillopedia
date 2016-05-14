@@ -20,6 +20,26 @@ body {
     	padding-left: 15px;
     	border-left: 3px solid @brand-primary; 
     }
+    .section-header {
+    	position: relative;
+    	margin-bottom: 15px;
+    	padding-bottom: 15px;
+    	font-size: 20px;
+    	border-bottom: 3px solid #f1f1f1; 
+    	color: @brand-primary;
+    	&:before {
+    		content: "";
+    		position: absolute;
+    		bottom: -3px;
+    		left: 0;
+    		height: 3px;
+    		background-color: @brand-primary;
+    		width: 50px;
+    	}
+    }
+    .section-content {
+        line-height: 26px;
+    }
 }
 .section.sm {
 	margin: 25px auto;
@@ -50,4 +70,11 @@ body {
 }
 .text-center {
 	text-align: center;
+}
+.link() {
+	text-decoration: none;
+	color: inherit;
+}
+.fa.webfont {
+    margin-right: 8px;
 }

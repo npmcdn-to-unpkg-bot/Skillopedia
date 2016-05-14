@@ -1,11 +1,16 @@
 <!-- header -->
 <div ng-include="'templates/header.html'"></div>
 <div class="wrap">
-    <div class="section">
+    <div class="section account-section">
         <!-- sidebar -->
         <div ng-include="'templates/sidebar.html'" class="sidebar-wrap"></div>
         <div class="content-wrap">
+        	<div class="tabs clearfix">
+                <a class="tab-item pull-left active">Published</a>
+                <a class="tab-item pull-left">Draft</a>
+            </div>
             account steps management
+            <a ng-href="#/create_step" class="btn">发布经历</a>
         </div>
     </div>
 </div>

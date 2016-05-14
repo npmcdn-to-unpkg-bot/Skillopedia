@@ -1,11 +1,20 @@
 <!-- header -->
 <div ng-include="'templates/header.html'"></div>
 <div class="wrap">
-    <div class="section">
+    <div class="section account-section">
         <!-- sidebar -->
         <div ng-include="'templates/sidebar.html'" class="sidebar-wrap"></div>
         <div class="content-wrap">
-            account order manangement
+        	<div class="tabs clearfix">
+                <a class="tab-item pull-left" ng-href="#/coach">Courses</a>
+                <a class="tab-item pull-left active">Orders</a>
+                <a class="tab-item pull-left" ng-href="#/schedule">Schedule</a>
+            </div>
+            account orders manangement 
+            <a ng-href="#/order_management" class="btn">管理订单详情</a>
+            <a ng-href="#/order_cancel" class="btn">取消订单(cancel)</a>
+            <a ng-href="#/order_confirm" class="btn">确认订单(cofirm)</a>
+            <a ng-href="#/order_finish" class="btn">完成订单(finish)</a>
         </div>
     </div>
 </div>

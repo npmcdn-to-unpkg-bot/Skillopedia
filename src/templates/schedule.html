@@ -1,11 +1,19 @@
 <!-- header -->
 <div ng-include="'templates/header.html'"></div>
 <div class="wrap">
-    <div class="section">
+    <div class="section account-section">
         <!-- sidebar -->
         <div ng-include="'templates/sidebar.html'" class="sidebar-wrap"></div>
         <div class="content-wrap">
-            account coach schedule
+            <div class="tabs clearfix">
+                <a class="tab-item pull-left" ng-href="#/coach">Courses</a>
+                <a class="tab-item pull-left" ng-href="#/orders_management">Orders</a>
+                <a class="tab-item pull-left active">Schedule</a>
+            </div>
+            <calendar calendar="calendar"></calendar>
+            <div ng-click="calendar.remove(select)" ng-repeat="select in calendar.selected">
+                {{select.from.hour}} to {{select.to.hour}}
+            </div>
         </div>
     </div>
 </div>

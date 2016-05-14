@@ -1,39 +1,3 @@
-.dropdown .dropdown-section {
-    position: relative;
-    padding: 15px;
-    z-index: 10;
-    float: left;
-    width: 50%;
-    .box-sizing(border-box);
-}
-
-.dropdown .dropdown-title {
-    position: relative;
-    margin-bottom: 15px;
-    padding-bottom: 8px;
-    font-size: 24px;
-    color: @gray-base;
-    // border-bottom:  4px solid @gray-base;
-}
-
-.dropdown .dropdown-title::before {
-    content: "";
-    display: block;
-    position: absolute;
-    left: 0;
-    bottom: -5px;
-    width: 50px;
-    border-bottom: 4px solid @gray-base;
-}
-
-.info-list {
-    margin-bottom: 25px;
-}
-
-.info-list .info-item {
-    display: block;
-    padding: 8px 0;
-}
 
 .search-input {
     position: relative;
@@ -203,22 +167,44 @@
     width: 150px;
     border-radius: 150px;
     background-color: fade(white, 50%);
+    overflow: hidden;
     .transition(transform ease-out 1s);
+    .backface-visibility(hidden);
+}
+.feature-meta {
+    width: 100%;
+    height: 100%;
+    .backface-visibility(hidden);
 }
 .feature-item.active .sub-feature-1 {
     .transform(rotate(270deg) translate(200px,0));
 }
+.feature-item.active .sub-feature-1 .feature-meta {
+    .transform(rotate(-270deg) translate(0,0));
+}
 .feature-item.active .sub-feature-2 {
     .transform(rotate(342deg) translate(200px,0));
+}
+.feature-item.active .sub-feature-2 .feature-meta {
+    .transform(rotate(-342deg) translate(0,0));
 }
 .feature-item.active .sub-feature-3 {
     .transform(rotate(414deg) translate(200px,0));
 }
+.feature-item.active .sub-feature-3 .feature-meta {
+    .transform(rotate(-414deg) translate(0,0));
+}
 .feature-item.active .sub-feature-4 {
     .transform(rotate(486deg) translate(200px,0));
 }
+.feature-item.active .sub-feature-4 .feature-meta {
+    .transform(rotate(-486deg) translate(0,0));
+}
 .feature-item.active .sub-feature-5 {
     .transform(rotate(558deg) translate(200px,0));
+}
+.feature-item.active .sub-feature-5 .feature-meta {
+    .transform(rotate(-558deg) translate(0,0));
 }
 // downlaod
 

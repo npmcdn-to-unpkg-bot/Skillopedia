@@ -1,4 +1,4 @@
-<div class="signin-panel">
+<div class="signin-panel" ng-controller="signinController">
     <div class="signin-left">
         Use third party acount to log in
         <div class="section">
@@ -6,24 +6,26 @@
             <span class="full-width social-btn btn-twitter"><i class="fa fa-twitter" aria-hidden="true"></i>twitter</span>
         </div>
     </div>
-    <div class="signin-right" ng-if="sign ==1">
-        Already have an account ,log in
-        <div class="section">
-            <div class="input-group">
-                <input type="text" class="full-width form-control" placeholder="enter you email/account">
+    <div class="signin-right" ng-if="sign =='signin'">
+        <form ng-submit="ajaxForm()">
+            Already have an account ,log in
+            <div class="section">
+                <div class="input-group">
+                    <input type="text" class="full-width form-control" placeholder="enter you email/account">
+                </div>
+                <div class="input-group">
+                    <input type="password" class="full-width form-control " placeholder="enter your password">
+                </div>
+                <div class="input-group">
+                    <button type="submit" class="btn btn-primary btn-lg full-width">sign in</button>
+                </div>
             </div>
-            <div class="input-group">
-                <input type="password" class="full-width form-control " placeholder="enter your password">
+            <div class="text-center">
+                <span ng-click="forget()">forget password</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span ng-click="signup()">or you can signup</span>
             </div>
-            <div class="input-group">
-                <button type="submit" class="btn btn-primary btn-lg full-width">sign in</button>
-            </div>
-        </div>
-        <div class="text-center">
-            <span ng-click="forget()">forget password</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span ng-click="signup()">or you can signup</span>
-        </div>
+        </form>
     </div>
-    <div class="signin-right" ng-if="sign ==2">
+    <div class="signin-right" ng-if="sign =='signup'">
         Signup
         <div class="section">
             <div class="input-group">
@@ -43,7 +45,7 @@
             <span ng-click="signin()">signin</span>
         </div>
     </div>
-    <div class="signin-right" ng-if="sign ==3">
+    <div class="signin-right" ng-if="sign =='forget'">
         Forget
         <div class="section">
             <div class="input-group">

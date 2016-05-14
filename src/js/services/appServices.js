@@ -23,11 +23,34 @@
  			$rootScope.back();
  		});
  	}
+ 	var popup_signin = function() {
+ 		$.magnificPopup.open({
+ 			items: {
+ 				src: '#signin-popup'
+ 			},
+ 			type: 'inline'
+ 		}, 0);
+ 	}
  	return {
  		init: function() {
  			$rootScope.$on("$routeChangeStart", routeChangeStart);
  			$rootScope.$on("$routeChangeSuccess", routeChangeSuccess);
  			$rootScope.$on("$routeChangeError", routeChangeError);
+ 			$rootScope.signin = function() {
+ 				$rootScope.sign = "signin";
+ 				popup_signin();
+ 			}
+ 			$rootScope.signup = function() {
+ 				$rootScope.sign = "signup";
+ 				popup_signin();
+ 			}
+ 			$rootScope.forget = function() {
+ 				$rootScope.sign = "forget";
+ 				popup_signin();
+ 			}
+ 			$rootScope.go = function(path) {
+ 				$location.path(path);
+ 			}
  		}
  	}
  });
