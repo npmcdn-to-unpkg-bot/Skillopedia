@@ -1,0 +1,60 @@
+<div class="signin-panel">
+    <div class="signin-left">
+        Use third party acount to log in
+        <div class="section">
+            <span class="full-width social-btn btn-facebook"><i class="fa fa-facebook" aria-hidden="true"></i>facebook</span>
+            <span class="full-width social-btn btn-twitter"><i class="fa fa-twitter" aria-hidden="true"></i>twitter</span>
+        </div>
+    </div>
+    <div class="signin-right" ng-if="sign ==1">
+        Already have an account ,log in
+        <div class="section">
+            <div class="input-group">
+                <input type="text" class="full-width form-control" placeholder="enter you email/account">
+            </div>
+            <div class="input-group">
+                <input type="password" class="full-width form-control " placeholder="enter your password">
+            </div>
+            <div class="input-group">
+                <button type="submit" class="btn btn-primary btn-lg full-width">sign in</button>
+            </div>
+        </div>
+        <div class="text-center">
+            <span ng-click="forget()">forget password</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span ng-click="signup()">or you can signup</span>
+        </div>
+    </div>
+    <div class="signin-right" ng-if="sign ==2">
+        Signup
+        <div class="section">
+            <div class="input-group">
+                <input type="text" class="full-width form-control" placeholder="fullname">
+            </div>
+            <div class="input-group">
+                <input type="text" class="full-width form-control " placeholder="enter your email/account">
+            </div>
+            <div class="input-group">
+                <input type="password" class="full-width form-control " placeholder="enter your password">
+            </div>
+            <div class="input-group">
+                <button type="submit" class="btn btn-primary btn-lg full-width">sign up</button>
+            </div>
+        </div>
+        <div class="text-center">
+            <span ng-click="signin()">signin</span>
+        </div>
+    </div>
+    <div class="signin-right" ng-if="sign ==3">
+        Forget
+        <div class="section">
+            <div class="input-group">
+                <input type="text" class="full-width form-control" placeholder="fullname">
+            </div>
+            <div class="input-group">
+                <button type="submit" class="btn btn-primary btn-lg full-width">send to find password</button>
+            </div>
+        </div>
+        <div class="text-center">
+            <span ng-click="signin()">signin</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span ng-click="signup()">signup</span>
+        </div>
+    </div>
+</div>

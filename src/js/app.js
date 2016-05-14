@@ -7,17 +7,19 @@ angular.module("Skillopedia", [
 		// "flow",
 		// "timer"
 	])
-	.config(function($routeProvider, $httpProvider, $locationProvider, localStorageServiceProvider) {
-		$routeProvider
-			.when("/index", {
-				templateUrl: "templates/home.html",
-				reloadOnSearch: false,
-				controller: indexController
-			})
-			.otherwise({
-				redirectTo: "/index"
+	.config(function($routeProvider, $httpProvider, $locationProvider, localStorageServiceProvider, config) {
+		angular.forEach(config.interceptor, function(path) {
+			var controllername = path.replace(/_[a-z]/g, function(letter) {
+				return letter.split("_")[1].toUpperCase();
 			});
-		// $locationProvider.html5Mode(true);
+			controllername = controllername + "Controller";
+			$routeProvider.when("/" + path, {
+				templateUrl: "templates/" + path + ".html",
+				reloadOnSearch: false,
+				controller: controllername
+			})
+		})
+		$routeProvider.otherwise("/index");
 		$httpProvider.defaults.useXDomain = true;
 		$httpProvider.defaults.withCredentials = true;
 		delete $httpProvider.defaults.headers.common["X-Requested-With"];

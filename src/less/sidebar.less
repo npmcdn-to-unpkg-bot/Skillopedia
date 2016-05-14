@@ -1,0 +1,45 @@
+.account-section {
+	position: relative;
+	padding-left: 300px;
+	min-height: 870px;
+	.sidebar-wrap {
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 300px;
+	}
+	.content-wrap {
+		padding-left: 15px;
+	}
+}
+.sidebar {
+	padding-top: 1px;
+	padding-bottom: 50px;
+	background-color: #f3e7d9;
+	.sidebar-avatar {
+		display: block;
+		text-align: center;
+		padding:15px;
+		width: 70%;
+		border-radius: 15px;
+		border: 3px solid @brand-primary;
+		margin: auto auto;
+	}
+	.sidebar-list {
+		background-color: fade(white, 37%);
+	}
+	.sidebar-item-header,.sidebar-item {
+		display: block;
+		padding:16px;
+		color: #494949;
+		border-bottom: 1px solid white;
+	}
+	.sidebar-item.sub-item {
+		padding-left: 30px;
+		background-color: fade(white, 30%);
+	}
+	.sidebar-item.active {
+		border-left: 2px solid @brand-primary;
+		color: @brand-primary;
+	}
+}

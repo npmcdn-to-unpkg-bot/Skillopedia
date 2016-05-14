@@ -1,0 +1,29 @@
+<div class="calendar">
+    <div class="calendar-day" ng-click="pickadate($event)">
+        <i class="fa fa-calendar pull-left" aria-hidden="true"></i>
+        {{calendar.day}}
+        <i class="fa fa-angle-right pull-right" aria-hidden="true"></i>
+    </div>
+    <div class="calendar-times">
+        <div class="calendar-time state_{{time.state}}" ng-repeat="time in calendar.times track by $index" ng-click="select(time,$index)">
+            <span class="hour">{{time.hour}}</span>
+            <span class="plan">{{time.plan}}</span>
+            <i class="fa fa-check-square-o hide" aria-hidden="true"></i>
+        </div>
+    </div>
+</div>
+
+<!-- <div class="calendar" ng-controller="calendarController">
+    <div class="calendar-day">
+    <i class="fa fa-calendar pull-left" aria-hidden="true"></i>
+        2015-06-03
+        <i class="fa fa-angle-right pull-right" aria-hidden="true"></i>
+    </div>
+    <div class="calendar-times">
+        <div class="calendar-time state_{{time.state}}" ng-repeat="time in times track by $index" ng-click="select_time(time,$index)">
+            <span class="hour">08:00-08:30</span>
+            <span class="plan">free time</span>
+            <i class="fa fa-check-square-o hide" aria-hidden="true"></i>
+        </div>
+    </div>
+</div> -->

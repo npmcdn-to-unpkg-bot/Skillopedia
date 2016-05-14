@@ -1,5 +1,32 @@
+body {
+	font-family: MyriadPro, "微软雅黑";
+}
+.wrap {
+	position: relative;
+	width: 100%;
+	max-width: 1160px;
+	// min-width: 960px;
+	padding:15px;
+	margin: auto auto;
+	.box-sizing(border-box);
+}
+.section {
+    display: block;
+    margin:50px auto;
+    .clearfix();
+    .section-title {
+    	margin-bottom: 15px;
+    	font-size: 20px;
+    	padding-left: 15px;
+    	border-left: 3px solid @brand-primary; 
+    }
+}
+.section.sm {
+	margin: 25px auto;
+}
 .full-width {
     width: 100%;
+    .box-sizing(border-box)
 }
 .clearfix {
 	.clearfix();
