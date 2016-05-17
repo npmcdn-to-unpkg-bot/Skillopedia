@@ -1,4 +1,6 @@
 <!-- header -->
+<link href="lib/css/account.css" rel="stylesheet"> 
+<link href="lib/css/media.css" rel="stylesheet" />
 <div ng-include="'templates/header.html'"></div>
 <div class="wrap">
     <div class="section account-section">
@@ -11,12 +13,40 @@
                 <a class="tab-item pull-left">Payed</a>
                 <a class="tab-item pull-left">Finish</a>
             </div>
-            account orders
-            <a ng-href="#/order" class="btn">订单详情(order)</a>
+            
+            <!-- <a ng-href="#/order" class="btn">订单详情(order)</a>
             <a ng-href="#/order_comment" class="btn">评价订单(comment)</a>
             <a ng-href="#/order_refund" class="btn">退款申请(refund)</a>
             <a ng-href="#/order_booking" class="btn">预约时间(booking)</a>
-            <a ng-href="#/order_finish" class="btn">完成订单(finish)</a>
+            <a ng-href="#/order_finish" class="btn">完成订单(finish)</a> -->
+
+
+            <a class="items">
+                <div class="items-img">
+                     <img src="images/avatar.png" class="full-width">
+                </div>
+                <div class="items-info">
+                    <P>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem laudantium reiciendis, eos blanditiis. Beatae praesentium sint recusandae quam blanditiis molestias eligendi quidem dolores delectus non odio, amet reiciendis similique nihil.</P>
+                    <div class="star">
+                        <i class="fa fa-star active" aria-hidden="true"></i>
+                        <i class="fa fa-star active" aria-hidden="true"></i>
+                        <i class="fa fa-star active" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                    </div>
+                    <div class="items-meta">
+                        <span><i class="fa fa-bars" aria-hidden="true">football</i></span>
+                        <span><i class="fa fa-user" aria-hidden="true"></i>by dribehace</span>
+                        <span><i class="fa fa-map-marker" aria-hidden="true"></i>newyowk</span>
+                    </div>
+                    <div class="items-btn">
+                        <div class="items-delbtn">del</div>
+                        <div class="items-paybtn">pay</div>
+                    </div>
+                    <div class="rmb">¥100</div>
+                </div>
+
+            </a>
         </div>
     </div>
 </div>
