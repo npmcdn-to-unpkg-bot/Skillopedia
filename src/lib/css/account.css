@@ -175,6 +175,7 @@ ol,ul,a{ list-style: none; text-decoration: none;color:#5E5E5E;}*/
 .items .items-info{
 	padding: 0 15px;
 	font-size: 18px;
+
 }
 .items .items-info p{
 	margin-top:0 ;
@@ -184,7 +185,6 @@ ol,ul,a{ list-style: none; text-decoration: none;color:#5E5E5E;}*/
 	overflow: hidden;
 	
 }
-
 .items .items-info em{display:inline-block;color: #A2A2A2;text-align: left;}
 .items-info em strong{display: inline-block;color: #F83937;margin-left: 40px;}
 
@@ -485,7 +485,7 @@ ol,ul,a{ list-style: none; text-decoration: none;color:#5E5E5E;}*/
 .drawback .p2{float: left;font-size: ;text-align: right;width: 45%;height: 16px;overflow: hidden;}
 .drawback .p5{width: 55%;text-align: right;float: right;height: 16px;overflow: hidden;}
 
-.lab{padding: 10px 20px;float: left;margin: 34px 0 0 5px;display: block;color: #A1A1A1;}
+.lab{padding: 10px 20px;float: left;margin: 30px 0 0 5px;display: block;color: #A1A1A1;}
 .tips{display: block;margin-top: 30px;}
 .tips span{color: #A7A7A7;padding: 5px;font-size: 1.2em; }
 .tips p{font-size: 1em;color: #B4B4B4;padding-left: 5px;}
@@ -494,7 +494,7 @@ ol,ul,a{ list-style: none; text-decoration: none;color:#5E5E5E;}*/
 .scolo{color: #00E770;}
 .secolo{color: #F43B3B;}
 
-
+/****************新建课程*******************/
 
 
 
