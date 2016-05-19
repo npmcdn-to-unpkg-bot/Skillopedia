@@ -149,12 +149,13 @@
 	vertical-align: middle;
 	display: inline-block;
 }
-.create-remove,.create-update,.create-addressremove,.couse-next{
+.course-remove,.course-update,.course-comfirm,.course-save,.course-edit,.course-addressremove,.couse-next{
 	padding: 10px 20px;
 	vertical-align: middle;
 	display: inline-block;
+	border-radius: 3px;
 }
-.couse-next{
+.course-next{
 	padding: 10px 100px;
 	vertical-align: middle;
 	display: inline-block;
@@ -188,17 +189,19 @@
 }
 
 /****创建课程按钮*****/
-.create-update{
+.course-update,.course-comfirm{
 	border: 1px solid #00E566;
 	color: #fff;
 	background-color:#00E566 ;
+	box-sizing: border-box;
+
 }
-.create-remove{
+.course-remove,.course-edit,.course-save{
 	border: 1px solid #EF2F26;
 	color: #fff;
 	background-color: #EF2F26;
 }
-.create-addressremove{
+.course-addressremove{
 	position: absolute;
 	right: 0;
 	top: -2px;
@@ -207,7 +210,7 @@
 	background-color: #EF2F26;
 }
 
-.couse-next{
+.course-next{
 	border: 1px solid #77F0B2;
 	color: #fff;
 	background-color: #77F0B2;
@@ -231,7 +234,7 @@
 
 
 .rmb{position:absolute;right:70px;top:55px;color: #FFB148;font-size: 1em;}
-
+.u-rmb{position:absolute;right:70px;top:55px;color: #FFB148;font-size: 1em;}
 
 
 /*订单详情按钮*/
@@ -294,7 +297,7 @@
 .amount-box{width: 100%;padding: 0;float: left; }
 .check{margin-right: 5px;position: relative;color: #A7A6A4;float: left;display: inline-block;}
 .check input{display: inline-block;}
-.check span{position: absolute;top: 2px;left: 25px;}
+.check span{position: absolute;top: 0;left: 25px;}
 
 .amount{color: #A7A6A4;float: right;text-align:left;padding-right: 20px;}
 .amount input{border: none;outline: none;width: 10px;}
@@ -384,13 +387,16 @@
 
 /****************新建课程*******************/
 
-.creasecoursewrap{max-width:800px;padding-left:10px;float: left;}
-.creasecoursewrap span{display: block;padding: 30px 0;}
+.crease_coursewrap{max-width:800px;padding-left:10px;float: left;}
+.step{display: block;}
+.step span{display: block;padding: 30px 0;}
 .direction-arrow img{width: 100%;height: 60px;margin:30px 0 ;}
-.creasecoursewrap input{width: 98.6%;height: 35px;outline: none;padding-left: 5px;}
-.creasecoursewrap textarea{width: 97.2%;padding: 10px 10px;outline: none;border-color: #CCCCCC;}
-.input-select {
-	-webkit-appearance: none;
+.step .course-top {width: 99%;height: 35px;outline: none;border: 1px solid #CCCCCC;padding:10px 0  0 5px;}
+.step .course-top input{width: 99%;outline: none;border: none;}
+.step .z-margin{margin-top: 30px;}
+.step textarea{width: 97.2%;padding: 10px 10px;outline: none;border-color: #CCCCCC;}
+.input-select{
+	
 	width: 46%;
 	position: relative;
     height: 40px;
@@ -406,15 +412,11 @@
 	outline: none;
 	width: 100%;
     height: 100%;
-    color: #5D5D5D;
+    color: #CECECE;
     line-height: 100%;
-
+    background-color: white;
 }
 
- select option{
-	width: 100%;
-    height: 100%;
-}
 
 .input-select .fa {
 	position: absolute;
@@ -422,12 +424,9 @@
 	top: 12px;
 	color: #5D5D5D;
 }
-
-
-
-.certification-itemwrap{}
-.certification-item{display: block;width: 245px;margin: 0 32px 15px 0;}
-.certification-item:nth-child(3n+0){
+.course-itemwrap{}
+.course-item{display: block;width: 245px;margin: 0 32px 20px 0;}
+.course-item:nth-child(3n+0){
 	margin-right: 0px;
 }
 .imgwrap{
@@ -443,22 +442,143 @@
 }
 .imgwrap img{max-width: 100%;}
 
-.create-input{
-	position: relative;
+.step .course-input{
+	width: 97%;
+	height: 35px;
+	border: 1px solid #CCCCCC;
+	padding:10px 0  0 5px;
 	display: block;
 	margin: 0 0 15px;
-	border: 1px;
-	width: 96%;
+	
 }
-.create-input input
+.course-input input
 {
-	width: 100%;
-	color: #CCCCCC;
+	outline: none;
+	border: none;
 }
 .open-img{width: 100px;height: 100px;border: 1px solid #eee}
 
-.remove-input{position: relative;border: 1px solid #CCCCCC;}
-.remove-input input{border: none;}
+.remove-input{position: relative;border: 1px solid #CCCCCC;height: 28px;padding: 10px 0 0 5px;}
+.remove-input input{border: none;outline: none;width: 100%;}
 .nextbtn-addr{margin: 50px 0;text-align: center;}
 
 /****************新建课程第二步*******************/
+.session_length{
+	-webkit-appearance: none;
+	width: 98.5%;
+	position: relative;
+    height: 40px;
+    border: solid 1px #CCCCCC;
+    display: inline-block;
+    padding-left: 10px;
+
+}
+.session_length select{
+	-webkit-appearance: none;
+	border: none;
+	outline: none;
+	width: 100%;
+    height: 100%;
+    color: #CECECE;
+    line-height: 100%;
+    background-color: white;
+
+}
+.session_length .fa {
+	position: absolute;
+	right: 10px;
+	top: 12px;
+	color: #5D5D5D;
+}
+
+.m-session{
+    width: 46%;
+    
+}
+.m-session .u-input{
+	width: 98%;
+	height: 30px;
+	padding: 10px 0 0 5px;
+	border: 1px solid #ccc;
+
+
+}
+
+.u-input input{
+	outline: none;
+	border: none;
+	color: #ccc;
+}
+/*********************选择框***************u-/
+.m-check .u-check{
+    margin-right: 110px;
+   
+    float: left;
+    display:inline-block;
+}
+.m-check {
+	display: block;
+	margin:0 0 30px 0;
+}
+/*.m-check {display: inline-block;margin-right: 120px;}*/
+.step .course-tips{display: block;margin-top: 30px;color: #B7B7B7;}
+
+/****************保存地址*******************/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

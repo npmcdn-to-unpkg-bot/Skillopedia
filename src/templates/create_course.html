@@ -4,131 +4,282 @@
 <div ng-include="'templates/header_1.html'"></div>
 <div class="wrap">
     <div class="section">
-		<div class="creasecoursewrap">
-			<div class="direction-arrow">
-				<img src=""/>
+		<div class="crease_coursewrap">
+			<!-- 新建课程第1步 -->
+			<div class="step">
+				<div class="direction-arrow">
+					<img src=""/>
+				</div>
+			
+				<span>Course Title</span>
+				<div class="course-top">
+					<input type="text" name="" id="" value="" />
+				</div>
+				<span>Category</span>
+				<!-- 下拉框 -->
+				<div class="clearfix">
+					<div class="input-select pull-left">
+				        <select name="">
+				        	<option value="">Sports</option>
+				        </select>
+				        <i class="fa fa-caret-down" aria-hidden="true"></i>
+				    </div>
+					<div class="input-select pull-right">
+				        <select name="">
+				        	<option value="">Football</option>
+				        </select>
+				        <i class="fa fa-caret-down" aria-hidden="true"></i>
+				    </div>
+
+				</div>
+				
+
+				<span>Certification</span>
+
+				<div class="course-itemwrap clearfix">
+					<div class="course-item pull-left">
+						<div class="imgwrap">
+							<img src="images/about_bg.png" class="full-width"/>
+						</div>
+						<div class="course-input"> 
+							<input type="text" name="" id="" value="" placeholder="Certification Name"/>
+						</div>
+						<div class="course-input"> 
+							<input type="text" name="" id="" value="" placeholder="Effective Time Certification" />
+						</div>
+						<div class="course-input"> 
+							<input type="text" name="" id="" value="" placeholder="Institue" />
+						</div>
+						
+						<div class="course-remove">remove</div>
+						<div class="course-update pull-right">update</div>
+					</div>
+					<div class="course-item pull-left">
+						<div class="imgwrap">
+							<img src="images/about_bg.png" class="full-width"/>
+						</div>
+						<div class="course-input"> 
+							<input type="text" name="" id="" value="" placeholder="Certification Name"/>
+						</div>
+						<div class="course-input"> 
+							<input type="text" name="" id="" value="" placeholder="Effective Time Certification" />
+						</div>
+						<div class="course-input"> 
+							<input type="text" name="" id="" value="" placeholder="Institue" />
+						</div>
+						
+						<div class="course-remove">remove</div>
+						<div class="course-update pull-right">update</div>
+					</div>
+					<div class="course-item pull-left">
+						<div class="imgwrap">
+							<img src="images/about_bg.png" class="full-width"/>
+						</div>
+						<div class="course-input"> 
+							<input type="text" name="" id="" value="" placeholder="Certification Name"/>
+						</div>
+						<div class="course-input"> 
+							<input type="text" name="" id="" value="" placeholder="Effective Time Certification" />
+						</div>
+						<div class="course-input"> 
+							<input type="text" name="" id="" value="" placeholder="Institue" />
+						</div>
+						
+						<div class="course-remove">remove</div>
+						<div class="course-update pull-right">update</div>
+					</div>
+					<div class="course-item pull-left">
+						<div class="imgwrap">
+							<img src="images/about_bg.png" class="full-width"/>
+						</div>
+						<div class="course-input"> 
+							<input type="text" name="" id="" value="" placeholder="Certification Name"/>
+						</div>
+						<div class="course-input"> 
+							<input type="text" name="" id="" value="" placeholder="Effective Time Certification" />
+						</div>
+						<div class="course-input"> 
+							<input type="text" name="" id="" value="" placeholder="Institue" />
+						</div>
+						
+						<div class="course-remove">remove</div>
+						<div class="course-update pull-right">update</div>
+					</div>
+
+					<div class="course-item pull-left">
+						<div class="imgwrap"><img src="images/about_bg.png"></div>
+						
+					</div>	
+				</div>
+
+				<span class="clearfix">Overview</span>
+				<textarea name="" rows="10%" cols=""></textarea>
+			    <span>cover</span>
+			    
+			    <div class="open-img">
+			    	<a href="">
+				    	
+				    </a>
+			    </div>
+			    
+			    <span>video<div class="pull-right"><i class="fa fa-plus-circle" aria-hidden="true" style="font-size: 26px;color: #00E370;"></i></div></span>
+			    <div class="remove-input">
+			    	<input type="text" name="" id="" value="" placeholder="http://www.youtube.com" />
+			    	<a href=""><div class="course-addressremove">remove</div></a>
+			    </div>
+			    
+		    	<div class="nextbtn-addr">
+			    	<div class="course-next">Next</div>
+			    </div>
+			</div>
+
+			<!-- 新建课程第2步 -->
+			<div class="step">
+				<!-- 步骤框 -->
+				<div class="direction-arrow">
+					<img src=""/>
+				</div>
+
+				<span>Session Length</span>
+
+				<!-- 下拉框 -->
+				<div class="clearfix">
+					<div class="session_length">
+				        <select name="">
+				        	<option value="">60min</option>
+				        </select>
+				        <i class="fa fa-caret-down" aria-hidden="true"></i>
+				    </div>
+				</div>
+                <!-- session -->
+                <div class="clearfix">
+                	<div class="m-session pull-left">
+						<span>Session Rate($)</span>
+						<div class="u-input"> 
+							<input type="text" name="" id="" value="" placeholder="26"/>
+						</div>
+					</div>
+					<div class="m-session pull-right">
+						<span>Teaching age</span>
+						<div class="u-input"> 
+							<input type="text" name="" id="" value="" placeholder="age 5 and up"/>
+						</div>
+					</div>
+                </div>
+				<span>Discount</span>
+				<div class="m-check clearfix"> 
+					<div class="u-check">
+						<input type="checkbox" name="">&nbsp&nbsp&nbsp&nbspYes,i am willing to travel to session
+					</div>
+					<div class="u-check">
+						<input type="checkbox" name="">&nbsp&nbsp&nbsp&nbspNoop,i am not willing to travel session
+					</div>
+				</div>
+				<div class="course-itemwrap clearfix">
+			        <div class="course-item pull-left">
+						<div class="imgwrap">
+							<img src="images/about_bg.png" class="full-width"/>
+						</div>
+						<div class="course-edit">edit</div>
+					</div>
+					<div class="course-item pull-left">
+						<div class="imgwrap">
+							<img src="images/about_bg.png" class="full-width"/>
+						</div>
+						
+						<div class="course-input"> 
+							<input type="text" name="" id="" value="" placeholder="One-time Prchse Money"/>
+						</div>
+						<div class="course-input"> 
+							<input type="text" name="" id="" value="" placeholder="Discount Price"/>
+						</div>
+						<div class="course-comfirm">comfirm</div>
+						
+					</div>
+					<div class="course-item pull-left">
+						<div class="imgwrap">
+							<img src="images/about_bg.png" class="full-width"/>
+						</div>
+						<div class="course-input"> 
+							<input type="text" name="" id="" value="" placeholder="One-time Prchse Money"/>
+						</div>
+						<div class="course-input"> 
+							<input type="text" name="" id="" value="" placeholder="Discount Price"/>
+						</div>
+						<div class="course-comfirm">comfirm</div>
+					</div>
+				</div>
+				<div class="nextbtn-addr">
+			    	<div class="course-next">Next</div>
+			    </div>
 			</div>
 		
-			<span>Course Title</span>
-			<input type="text" name="" id="" value="" />
-			<span>Category</span>
-			<!-- 下拉框 -->
-			<div class="clearfix">
-				<div class="input-select pull-left">
-			        <select name="">
-			        	<option value="">Sports</option>
-			        </select>
-			        <i class="fa fa-caret-down" aria-hidden="true"></i>
-			    </div>
-				<div class="input-select pull-right">
-			        <select name="">
-			        	<option value="">Football</option>
-			        </select>
-			        <i class="fa fa-caret-down" aria-hidden="true"></i>
-			    </div>
-
-			</div>
+            <!-- 新建课程第3步 -->
+            <div class="step">
+            	
+        		<div class="direction-arrow">
+					<img src=""/>
+				</div>
 			
-
-			<span>Certification</span>
-
-			<div class="certification-itemwrap clearfix">
-				<div class="certification-item pull-left">
-					<div class="imgwrap">
-						<img src="images/about_bg.png" class="full-width"/>
+				<span>Course Title</span>
+            	<div class="m-check clearfix"> 
+					<div class="u-check">
+						<input type="checkbox" name="">&nbsp&nbsp&nbsp&nbspYes,i am willing to travel to session
 					</div>
-					<div class="create-input"> 
-						<input type="text" name="" id="" value="" placeholder="Certification Name"/>
+					<div class="u-check">
+						<input type="checkbox" name="">&nbsp&nbsp&nbsp&nbspNoop,i am not willing to travel session
 					</div>
-					<div class="create-input"> 
-						<input type="text" name="" id="" value="" placeholder="Effective Time Certification" />
-					</div>
-					<div class="create-input"> 
-						<input type="text" name="" id="" value="" placeholder="Institue" />
-					</div>
-					
-					<div class="create-remove">remove</div>
-					<div class="create-update pull-right">update</div>
-				</div>
-				<div class="certification-item pull-left">
-					<div class="imgwrap">
-						<img src="images/about_bg.png" class="full-width"/>
-					</div>
-					<div class="create-input"> 
-						<input type="text" name="" id="" value="" placeholder="Certification Name"/>
-					</div>
-					<div class="create-input"> 
-						<input type="text" name="" id="" value="" placeholder="Effective Time Certification" />
-					</div>
-					<div class="create-input"> 
-						<input type="text" name="" id="" value="" placeholder="Institue" />
-					</div>
-					
-					<div class="create-remove">remove</div>
-					<div class="create-update pull-right">update</div>
-				</div>
-				<div class="certification-item pull-left">
-					<div class="imgwrap">
-						<img src="images/about_bg.png" class="full-width"/>
-					</div>
-					<div class="create-input"> 
-						<input type="text" name="" id="" value="" placeholder="Certification Name"/>
-					</div>
-					<div class="create-input"> 
-						<input type="text" name="" id="" value="" placeholder="Effective Time Certification" />
-					</div>
-					<div class="create-input"> 
-						<input type="text" name="" id="" value="" placeholder="Institue" />
-					</div>
-					
-					<div class="create-remove">remove</div>
-					<div class="create-update pull-right">update</div>
 				</div>
 
-				<div class="certification-item pull-left">
-					<div class="imgwrap">
-						<img src="images/about_bg.png" class="full-width"/>
+				<!-- session -->
+                <div class="clearfix">
+                	<div class="m-session pull-left">
+						<span>Session Rate($)</span>
+						<div class="u-input"> 
+							<input type="text" name="" id="" value="" placeholder="26"/>
+						</div>
 					</div>
-					<div class="create-input"> 
-						<input type="text" name="" id="" value="" placeholder="Certification Name"/>
+					<div class="m-session pull-right">
+						<span>Teaching age</span>
+						<div class="u-input"> 
+							<input type="text" name="" id="" value="" placeholder="age 5 and up"/>
+						</div>
 					</div>
-					<div class="create-input"> 
-						<input type="text" name="" id="" value="" placeholder="Effective Time Certification" />
+                </div>
+                <span>Location</span>
+                <div class="course-top">
+					<input type="text" name="" id="" value="" placeholder="Street Address e.g 123 Main St"/>
+				</div>
+				<div class="course-top z-margin">
+					<input type="text" name="" id="" value="" placeholder="APt,Suite,Bldg.e.g Apt #7"/>
+				</div>
+				<div class="clearfix">
+					<div class="m-session z-margin pull-left">
+						<div class="u-input"> 
+							<input type="text" name="" id="" value="" placeholder="City.e.g.San Francisco"/>
+						</div>
 					</div>
-					<div class="create-input"> 
-						<input type="text" name="" id="" value="" placeholder="Institue" />
+					<div class="m-session z-margin pull-right">
+						<div class="u-input"> 
+							<input type="text" name="" id="" value="" placeholder="State e.. CA"/>
+						</div>
 					</div>
-					
-					<div class="create-remove">remove</div>
-					<div class="create-update pull-right">update</div>
+					<div class="m-session pull-left z-margin">
+						<div class="u-input"> 
+							<input type="text" name="" id="" value="" placeholder="Zip code e.g. 94103"/>
+						</div>
+					</div>
+				</div>
+				<div class="clearfix">
+					<div class="course-save z-margin pull-left">Save</div>
 				</div>
 
-				<div class="certification-item pull-left">
-					<div class="imgwrap"><img src="images/about_bg.png"></div>
-					
-				</div>	
-			</div>
-
-			<span class="clearfix">Overview</span>
-			<textarea name="" rows="10%" cols=""></textarea>
-		    <span>cover</span>
-		    
-		    <div class="open-img">
-		    	<a href="">
-			    	
-			    </a>
-		    </div>
-		    
-		    <span>video<div class="pull-right"><i class="fa fa-plus-circle" aria-hidden="true" style="font-size: 26px;color: #00E370;"></i></div></span>
-		    <div class="remove-input">
-		    	<input type="text" name="" id="" value="" placeholder="http://www.youtube.com" />
-		    	<a href=""><div class="create-addressremove">remove</div></a>
-		    </div>
-		    <a ng-href="#/create_course2">
-		    	<div class="nextbtn-addr">
-			    	<div class="couse-next">Next</div>
+				<div class="course-tips">
+					travel to session if you choose yes,means you are agree with travel terms.
 			    </div>
-		    </a>
+
+		
+            </div>
 		</div>
     </div>
 </div>
