@@ -23,4 +23,11 @@ angular.module("Skillopedia").controller("listController", function($scope, erro
 	$scope.remove = function(condition) {
 		$scope.input[condition] = "";
 	}
+	$scope.sidebar = {
+		title: "recommand"
+	}
+	$scope.change_sidebar = function(title) {
+		$scope.sidebar.title = title;
+	}
+
 })

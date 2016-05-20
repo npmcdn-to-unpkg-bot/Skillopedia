@@ -103,14 +103,14 @@
             </form>
             <div class="category-tab">
             	<div class="tab-header clearfix">
-            		<span class="active">catgegory</span>
-            		<span>Popular</span>
+            		<span ng-class="{'active':sidebar.title=='recommand'}" ng-click="change_sidebar('recommand')">Recommand</span>
+            		<span ng-class="{'active':sidebar.title=='hot'}" ng-click="change_sidebar('hot')">Hot</span>
             	</div>
             	<div class="tab-content">
             		<div class="tab-content-item">
                         <img src="images/cinelli-front.jpeg" alt="">
                         <div class="caption">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis sunt dicta eos quisquam ratione fugit voluptates assumenda asperiores iste accusamus, dolores molestias maxime omnis dignissimos reprehenderit nostrum! Aspernatur, perspiciatis eaque.
+                            
                         </div>
                     </div>
                     <div class="tab-content-item">
