@@ -6,36 +6,19 @@
             <div class="conditions">
                 <div class="condition-1">
                     <span><b>Category:</b></span>
-                    <span class="condition">football</span>
-                    <span class="condition active">football</span>
-                    <span class="condition">football</span>
-                    <span class="condition">football</span>
-                    <span class="condition">football</span>
-                    <span class="condition">football</span>
-                    <span class="condition">football</span>
-                    <span class="condition">football</span>
-                    <span class="condition">football</span>
-                    <span class="condition">football</span>
-                    <span class="condition">football</span>
-                    <span class="condition">football</span>
-                    <span class="condition">football</span>
+                    <label class="condition" ng-class="{'active':input.category == category}" ng-repeat="category in input.categorys"><input type="radio" class="hide" ng-model="input.category" value="{{category}}" name="category">{{category}}</label>
                 </div>
                 <div class="condition-2">
                     <span><b>Distance:</b></span>
-                    <span class="condition">0-500mile</span>
-                    <span class="condition active">500-1000mile</span>
-                    <span class="condition">1000-1500mile</span>
+                    <label class="condition" ng-class="{'active':input.distance == distance}" ng-repeat="distance in input.distances"><input type="radio" class="hide" ng-model="input.distance" value="{{distance}}" name="distance">{{distance}}</label>
                 </div>
                 <div class="condition-3">
                     <span><b>Priority:</b></span>
-                    <span class="condition">price</span>
-                    <span class="condition active">review</span>
-                    <span class="condition">distance</span>
-                    <span class="condition">hot</span>
+                    <label class="condition" ng-class="{'active':input.priority == priority}" ng-repeat="priority in input.priorities"><input type="radio" class="hide" ng-model="input.priority" value="{{priority}}" name="priority">{{priority}}</label>
                 </div>
-                <span class="condition select">football <i class="fa fa-times-circle" aria-hidden="true"></i></span>
-                <span class="condition select">0-500mile <i class="fa fa-times-circle" aria-hidden="true"></i></span>
-                <span class="condition select">review <i class="fa fa-times-circle" aria-hidden="true"></i></span>
+                <span class="condition select" ng-if="input.category" ng-click="remove('category')">{{input.category}} <i class="fa fa-times-circle" aria-hidden="true"></i></span>
+                <span class="condition select" ng-if="input.distance" ng-click="remove('distance')">{{input.distance}} <i class="fa fa-times-circle" aria-hidden="true"></i></span>
+                <span class="condition select" ng-if="input.priority" ng-click="remove('priority')">{{input.priority}} <i class="fa fa-times-circle" aria-hidden="true"></i></span>
             </div>
             
             <a class="coach-item" ng-href="#/detail">
