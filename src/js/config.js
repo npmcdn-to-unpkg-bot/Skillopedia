@@ -1,6 +1,6 @@
 angular.module("Skillopedia").constant("config", {
-	url: "http://",
-	imageUrl: "http://",
+	url: "http://47.88.79.54/",
+	imageUrl: "http://47.88.79.54/files/image?name=",
 	request: {
 		"SUCCESS": "200",
 		"TOKEN_INVALID": "405"

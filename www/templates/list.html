@@ -6,36 +6,19 @@
             <div class="conditions">
                 <div class="condition-1">
                     <span><b>Category:</b></span>
-                    <span class="condition">football</span>
-                    <span class="condition active">football</span>
-                    <span class="condition">football</span>
-                    <span class="condition">football</span>
-                    <span class="condition">football</span>
-                    <span class="condition">football</span>
-                    <span class="condition">football</span>
-                    <span class="condition">football</span>
-                    <span class="condition">football</span>
-                    <span class="condition">football</span>
-                    <span class="condition">football</span>
-                    <span class="condition">football</span>
-                    <span class="condition">football</span>
+                    <label class="condition" ng-class="{'active':input.category == category}" ng-repeat="category in input.categorys"><input type="radio" class="hide" ng-model="input.category" value="{{category}}" name="category">{{category}}</label>
                 </div>
                 <div class="condition-2">
                     <span><b>Distance:</b></span>
-                    <span class="condition">0-500mile</span>
-                    <span class="condition active">500-1000mile</span>
-                    <span class="condition">1000-1500mile</span>
+                    <label class="condition" ng-class="{'active':input.distance == distance}" ng-repeat="distance in input.distances"><input type="radio" class="hide" ng-model="input.distance" value="{{distance}}" name="distance">{{distance}}</label>
                 </div>
                 <div class="condition-3">
                     <span><b>Priority:</b></span>
-                    <span class="condition">price</span>
-                    <span class="condition active">review</span>
-                    <span class="condition">distance</span>
-                    <span class="condition">hot</span>
+                    <label class="condition" ng-class="{'active':input.priority == priority}" ng-repeat="priority in input.priorities"><input type="radio" class="hide" ng-model="input.priority" value="{{priority}}" name="priority">{{priority}}</label>
                 </div>
-                <span class="condition select">football <i class="fa fa-times-circle" aria-hidden="true"></i></span>
-                <span class="condition select">0-500mile <i class="fa fa-times-circle" aria-hidden="true"></i></span>
-                <span class="condition select">review <i class="fa fa-times-circle" aria-hidden="true"></i></span>
+                <span class="condition select" ng-if="input.category" ng-click="remove('category')">{{input.category}} <i class="fa fa-times-circle" aria-hidden="true"></i></span>
+                <span class="condition select" ng-if="input.distance" ng-click="remove('distance')">{{input.distance}} <i class="fa fa-times-circle" aria-hidden="true"></i></span>
+                <span class="condition select" ng-if="input.priority" ng-click="remove('priority')">{{input.priority}} <i class="fa fa-times-circle" aria-hidden="true"></i></span>
             </div>
             
             <a class="coach-item" ng-href="#/detail">
@@ -105,29 +88,32 @@
             
         </div>
         <div class="col-xs-3">
-            <form class="search-form">
+            <form class="search-form" name="searchForm" ng-submit="ajaxForm()" ng-controller="searchController">
                 <!-- <p>Search on Skillopedia</p> -->
                 <div class="skill-input addon">
                     <i class="fa fa-search" aria-hidden="true"></i>
-                    <input type="text" class="full-width" placeholder="find your private coach or lesson">
+                    <input type="text" class="full-width" ng-model="input.keyword" required placeholder="find your private coach or lesson">
                 </div>
                 <div class="skill-input addon-btn">
                 	<span class="zipcode">
-			            <input type="text" class="full-width" placeholder="zipcode">
+			            <input type="text" class="full-width" ng-model="input.zipcode" required placeholder="zipcode">
+                        <div class="zipcode-suggestion" ng-if="input.zipcode && input.suggestions.length>0">
+                            <span class="suggestion-item" ng-repeat="suggestion in input.suggestions | filter:input.zipcode" ng-click="select(suggestion)">{{suggestion}}</span>
+                        </div>
 			        </span>
                 </div>
-                <button class="skill-btn full-width">Search</button>
+                <button class="btn btn-primary btn-lg full-width" ng-disabled="searchForm.$invalid">Search</button>
             </form>
             <div class="category-tab">
             	<div class="tab-header clearfix">
-            		<span class="active">catgegory</span>
-            		<span>Popular</span>
+            		<span ng-class="{'active':sidebar.title=='recommand'}" ng-click="change_sidebar('recommand')">Recommand</span>
+            		<span ng-class="{'active':sidebar.title=='hot'}" ng-click="change_sidebar('hot')">Hot</span>
             	</div>
             	<div class="tab-content">
             		<div class="tab-content-item">
                         <img src="images/cinelli-front.jpeg" alt="">
                         <div class="caption">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis sunt dicta eos quisquam ratione fugit voluptates assumenda asperiores iste accusamus, dolores molestias maxime omnis dignissimos reprehenderit nostrum! Aspernatur, perspiciatis eaque.
+                            
                         </div>
                     </div>
                     <div class="tab-content-item">

@@ -10,9 +10,20 @@
                 <a class="tab-item pull-left" ng-href="#/orders_management">Orders</a>
                 <a class="tab-item pull-left active">Schedule</a>
             </div>
-            <calendar calendar="calendar"></calendar>
-            <div ng-click="calendar.remove(select)" ng-repeat="select in calendar.selected">
-                {{select.from.hour}} to {{select.to.hour}}
+            <div class="calendar-wrap">
+                <calendar calendar="calendar" class="calendar-left"></calendar>
+                <div class="calendar-right">
+                    <div class="calenader-result">
+                        <p class="text-center">schedule</p>
+                        <div class="result-item" ng-click="calendar.remove(select)" ng-repeat="select in calendar.selected">
+                            {{select.from.hour}} to {{select.to.hour}}
+                            <i class="pull-right fa fa-times"></i>
+                        </div>
+                        <div class="result-item" ng-if="calendar.selected.length==0">
+                            no schedule
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
