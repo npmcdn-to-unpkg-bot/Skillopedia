@@ -68,14 +68,17 @@
 </div>
 <!-- search -->
 <div class="wrap">
-    <div class="search-input">
+    <form class="search-input" ng-submit="ajaxForm()" name="searchForm" ng-controller="searchController">
         <i class="fa fa-search" aria-hidden="true"></i>
-        <input type="text" class="full-width" placeholder="find your private coach or lesson">
+        <input type="text" class="full-width" ng-model="input.keyword" required placeholder="find your private coach or lesson">
         <span class="zipcode">
-            <input type="text" class="full-width" placeholder="zipcode">
+            <input type="text" class="full-width" ng-model="input.zipcode" required placeholder="zipcode">
+            <div class="zipcode-suggestion" ng-if="input.zipcode && input.suggestions.length>0">
+                <span class="suggestion-item" ng-repeat="suggestion in input.suggestions | filter:input.zipcode" ng-click="select(suggestion)">{{suggestion}}</span>
+            </div>
         </span>
-        <button class="btn">Search</button>
-    </div>
+        <button class="btn" type="submit" ng-disabled="searchForm.$invalid">Search</button>
+    </form>
 </div>
 <!-- feature section -->
 <div class="wrap">

@@ -88,18 +88,21 @@
             
         </div>
         <div class="col-xs-3">
-            <form class="search-form">
+            <form class="search-form" name="searchForm" ng-submit="ajaxForm()" ng-controller="searchController">
                 <!-- <p>Search on Skillopedia</p> -->
                 <div class="skill-input addon">
                     <i class="fa fa-search" aria-hidden="true"></i>
-                    <input type="text" class="full-width" placeholder="find your private coach or lesson">
+                    <input type="text" class="full-width" ng-model="input.keyword" required placeholder="find your private coach or lesson">
                 </div>
                 <div class="skill-input addon-btn">
                 	<span class="zipcode">
-			            <input type="text" class="full-width" placeholder="zipcode">
+			            <input type="text" class="full-width" ng-model="input.zipcode" required placeholder="zipcode">
+                        <div class="zipcode-suggestion" ng-if="input.zipcode && input.suggestions.length>0">
+                            <span class="suggestion-item" ng-repeat="suggestion in input.suggestions | filter:input.zipcode" ng-click="select(suggestion)">{{suggestion}}</span>
+                        </div>
 			        </span>
                 </div>
-                <button class="btn btn-primary btn-lg full-width">Search</button>
+                <button class="btn btn-primary btn-lg full-width" ng-disabled="searchForm.$invalid">Search</button>
             </form>
             <div class="category-tab">
             	<div class="tab-header clearfix">

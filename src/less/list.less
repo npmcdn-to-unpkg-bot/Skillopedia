@@ -15,6 +15,29 @@
         border-bottom: 4px solid @brand-primary;
     }
 }
+.zipcode-suggestion {
+    position: absolute;
+    left: -1px;
+    right: -1px;
+    top: 55px;
+    border:1px solid #a0a0a0;
+    z-index: 1;
+    .suggestion-item {
+        display: block;
+        padding:10px;
+        background-color: white;
+        border-bottom: 1px dashed #ccc;
+        // .transition(all ease-out 0.3s);
+    }
+    .suggestion-item:hover {
+        padding-left: 15px;
+        color: @brand-primary;
+        background-color: @brand-second;
+    }
+    .suggestion-item:last-child {
+        border-bottom: 0;
+    }
+}
 .skill-input {
     position: relative;
     display: block;
