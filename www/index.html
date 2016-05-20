@@ -42,7 +42,7 @@
         <div ng-include="'templates/signin.html'"></div>
     </div>
     <!-- toast -->
-    <div class="toast">
+    <div class="toast hide">
         <div class="loader loader-inner pacman">
             <div></div>
             <div></div>
@@ -51,7 +51,9 @@
         </div>
     </div>
     <!-- error msg-->
-    <div class="error-msg">{{error_msg}}</div>
+    <div class="error-msg hide">{{error_msg}}</div>
+    <!-- confirm -->
+    <confirm confirm="confirm" class="hide"></confirm>
     <script type="text/javascript">
     $(document).ready(function() {
         angular.bootstrap($("html"), ['Skillopedia']);

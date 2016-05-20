@@ -12,7 +12,6 @@ angular.module("Skillopedia").factory("toastServices", function() {
 		},
 		done: function() {
 			NProgress.done();
-
 		}
 	}
 });

@@ -1,12 +1,16 @@
-.toast {
+.overlay(@color: black) {
     position: fixed;
     left: 0;
     right: 0;
     top: 0;
     bottom: 0;
-    background-color: fade(black, 50%);
-    display: none;
+    background-color: fade(@color, 50%);
     z-index: 1000;
+}
+
+.toast {
+    .overlay(white);
+    display: none;
     .loader {
         position: absolute;
         top: 50%;
@@ -26,6 +30,42 @@
     background-color: fade(black, 50%);
     color: white;
 }
+
+.confirm-box {
+    .overlay(white);
+    .confirm-body {
+        position: absolute;
+        top: 5%;
+        left: 0;
+        right: 0;
+        width: 100%;
+        max-width: 380px;
+        margin: auto;
+        background-color: white;
+        border-radius: 6px;
+        overflow: hidden;
+        .box-shadow(0 1px 2px 0 rgba(0, 0, 0, 0.22));
+    }
+    .confirm-header {
+        padding: 20px 15px;
+        border-bottom: 1px dashed #a0a0a0;
+    }
+    .close {
+        color: #a0a0a0;
+        cursor: pointer;
+    }
+    .confirm-content {
+        padding: 20px 15px;
+        color:#555;
+    }
+    .confirm-footer {
+        padding: 10px 15px;
+        border-top: 1px dashed #a0a0a0;
+        text-align: right;
+        background-color: #f0f0f0;
+    }
+}
+
 #nprogress .bar {
     background: @brand-primary;
 }
