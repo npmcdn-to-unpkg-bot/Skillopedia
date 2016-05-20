@@ -114,13 +114,16 @@
 	font-size: 26px;
 	
 }
+.comments-itemwrap {
+	margin-top: 15px;
+}
 .comments-itemwrap .tip{
 	line-height: 22px;
 	color: #A9A9A9;
 	font-size: 18px;
 }
 
-.comments-itemwrap em{display: block;padding: 10px;text-align: right;color: #F1D0AE;font-size: 18px;}
+.comments-itemwrap em{display: block;padding: 10px;text-align: right;color: #F1D0AE;font-size: 18px;border-bottom: 1px solid #ccc;}
 .items ,.items-news .star
 {
 	color: #C1C1C1;
@@ -145,7 +148,6 @@
 	font-weight: 100;
 	overflow: hidden;
 	height: 14px;
-	
 }
 .items .items-meta span{margin-right: 15px;float:left;}
 .items .items-meta i{margin-right: 5px; }
@@ -428,7 +430,7 @@
 .drawback .p5{width: 55%;text-align: right;float: right;height: 16px;overflow: hidden;}
 
 .lab{padding: 10px 20px;float: left;margin: 30px 0 0 5px;display: block;color: #A1A1A1;}
-.tips{display: block;margin-top: 30px;}
+.tips{display: block;}
 .tips span{color: #A7A7A7;padding: 5px;font-size: 1.2em; }
 .tips p{font-size: 1em;color: #B4B4B4;padding-left: 5px;}
 
