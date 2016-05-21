@@ -1,4 +1,6 @@
 <!-- header -->
+<link href="lib/css/account.css" rel="stylesheet"> 
+<link href="lib/css/media.css" rel="stylesheet" />
 <div ng-include="'templates/header.html'"></div>
 <div class="wrap">
     <div class="section detail-section">
@@ -28,7 +30,7 @@
                     <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod libero impedit dolorum iure. Eos sint autem nostrum culpa quas eius, quidem animi laborum ratione cupiditate. Aspernatur minus vitae sint totam!</p>
                     <p>sdf</p>
                     <iframe src="https://maps.google.com/maps?q=Baker+Street,+London,+United+Kingdom&hl=en&t=v&hnear=221B+Baker+St,+London+NW1+6XE,+United+Kingdom&output=embed" class="map" height="300px" frameborder="0" allowfullscreen></iframe>
-                    <a class="text-success">Baker St Marylebone, London UK</a>
+                    <a class="text-success" ng-click="edit()">Baker St Marylebone, London UK</a>
                 </div>
             </div>
             <div class="section sm">
@@ -108,6 +110,10 @@
             </div>
         </div>
     </div>
+</div>
+<!-- signin -->
+<div id="location-popup" class="popup location-popup mfp-hide">
+    <div ng-include="'templates/location.html'"></div>
 </div>
 <!-- footer -->
 <div ng-include="'templates/footer.html'"></div>

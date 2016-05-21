@@ -211,11 +211,12 @@
 // downlaod
 
 .download-section span {
-    display: inline-block;
-    width: 45%;
+    float: left;
+    width:48%;
     padding: 15px;
     color: white;
     font-size: 30px;
+    .box-sizing(border-box);
     i {
         margin-right: 15px;
     }
@@ -225,6 +226,7 @@
     }
     &.iphone {
         float: right;
+        margin-left: 4%;
         background-color: @brand-primary;
     }
 }

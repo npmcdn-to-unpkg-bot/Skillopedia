@@ -40,4 +40,12 @@ angular.module("Skillopedia").controller("fillinorderController", function($scop
 		selected: "请选择",
 		all: ["buy $100 get $20 off", "buy $优惠券优惠券优惠券优惠券 get $30 off"],
 	}
+	$scope.edit = function() {
+		$.magnificPopup.open({
+			items: {
+				src: '#location-popup'
+			},
+			type: 'inline'
+		}, 0);
+	}
 })

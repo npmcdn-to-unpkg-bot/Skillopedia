@@ -1,69 +1,81 @@
 .popup {
-	position: relative;
-	width: 100%;
-	max-width: 768px;
-	margin:auto auto;
-	background-image: url("../images/popup.png");
-	background-size: cover;
-	color:@gray-light;
-	.clearfix();
+    position: relative;
+    width: 100%;
+    max-width: 768px;
+    margin: auto auto;
+    color: @gray-light;
+    .clearfix();
+    .box-sizing(border-box);
+    background-color: white;
+    &.signin-popup {
+        background-image: url("../images/popup.png");
+        background-size: cover;
+    }
+    &.location-popup {
+        padding: 30px;
+    }
 }
-.signin-panel {
-	&:before {
-		content: "";
-		position: absolute;
-		display: block;
-		left: 40%;
-		top:0;
-		bottom: 0;
-		border-right: 1px dashed @gray-light;
-	}
-	.signin-left {
-		float: left;
-		width: 40%;
-		padding:35px;
-		.box-sizing(border-box);
-	}
-	.signin-right {
-		float: left;
-		width: 60%;
-		padding:35px;
-		.box-sizing(border-box);
-	}
-}
-.input-group {
-	margin-bottom: 20px;
-}
-.form-control {
-	padding:10px 16px;
-	font-size: 18px;
-	color: #B9B9B9;
-	border: 1px solid #DEDEDE;
-	border-radius: 4px;
-	.box-shadow(none);
-	&:focus {
-		outline: 0;
-	}
-}
-.social-btn {
-	display: inline-block;
-	padding: 11px 16px;
-	margin-bottom: 20px;
-	font-size: 18px;
-	color: white;
-	border-radius: 4px;
-	text-align: center;
-}
-.btn-facebook {
 
-	background-color: #5577bf;
-	i {
-		margin-right: 15px;
-	}
+.signin-panel {
+    &:before {
+        content: "";
+        position: absolute;
+        display: block;
+        left: 40%;
+        top: 0;
+        bottom: 0;
+        border-right: 1px dashed @gray-light;
+    }
+    .signin-left {
+        float: left;
+        width: 40%;
+        padding: 35px;
+        .box-sizing(border-box);
+    }
+    .signin-right {
+        float: left;
+        width: 60%;
+        padding: 35px;
+        .box-sizing(border-box);
+    }
 }
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.form-control {
+    padding: 10px 16px;
+    font-size: 18px;
+    color: #B9B9B9;
+    border: 1px solid #DEDEDE;
+    border-radius: 4px;
+    .box-shadow(none);
+    &:focus {
+        outline: 0;
+    }
+}
+
+.social-btn {
+    display: inline-block;
+    padding: 11px 16px;
+    margin-bottom: 20px;
+    font-size: 18px;
+    color: white;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.btn-facebook {
+    background-color: #5577bf;
+    i {
+        margin-right: 15px;
+    }
+}
+
 .btn-twitter {
-	background-color: #2daae1;
-	i {
-		margin-right: 15px;
-	}
+    background-color: #2daae1;
+    i {
+        margin-right: 15px;
+    }
 }
