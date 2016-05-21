@@ -191,12 +191,12 @@ gulp.task('less', function() {
         .pipe(mobilizer('app.css', {
             'app.css': {
                 // hover: 'exclude',
-                screens: ['0px']
+                // screens: ['0px']
             },
-        // 'hover.css': {
-        //     hover: 'only',
-        //     screens: ['0px']
-        // }
+            // 'hover.css': {
+            //     hover: 'only',
+            //     screens: ['0px']
+            // }
         }))
         .pipe(cssmin())
         .pipe(rename({
