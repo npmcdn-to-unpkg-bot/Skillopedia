@@ -130,7 +130,6 @@
     height: 1px;
     background-color: #a0a0a0;
 }
-
 .or::after {
     content: "OR";
     display: block;
@@ -144,6 +143,9 @@
     background-color: white;
 }
 
+.or.bg-second::after {
+    background-color: @brand-second;
+}
 .info-text {
     position: relative;
     top: -7px;

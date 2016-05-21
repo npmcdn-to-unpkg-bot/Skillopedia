@@ -1,0 +1,10 @@
+<div class="dribehance-select">
+	<div class="select-option">
+		{{options.selected}}
+	</div>
+	<div class="dribehance-options hide">
+		<div class="dribehance-option" ng-repeat="op in options.all" ng-click="select(op,$event)" title="{{op}}">
+			{{op}}
+		</div>
+	</div>
+</div>

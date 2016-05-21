@@ -20,9 +20,48 @@
                     <div class="coach-meta"><span><i class="fa fa-bars" aria-hidden="true"></i>football</span><span><i class="fa fa-user" aria-hidden="true"></i>by dribehace</span><span><i class="fa fa-map-marker" aria-hidden="true"></i>newyowk</span></div>
                 </div>
             </div>
+            <div class="section sm">
+                <div class="section-title">
+                    Teaching Location
+                </div>
+                <div class="section-content">
+                    <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod libero impedit dolorum iure. Eos sint autem nostrum culpa quas eius, quidem animi laborum ratione cupiditate. Aspernatur minus vitae sint totam!</p>
+                    <p>sdf</p>
+                    <iframe src="https://maps.google.com/maps?q=Baker+Street,+London,+United+Kingdom&hl=en&t=v&hnear=221B+Baker+St,+London+NW1+6XE,+United+Kingdom&output=embed" class="map" height="300px" frameborder="0" allowfullscreen></iframe>
+                    <a class="text-success">Baker St Marylebone, London UK</a>
+                </div>
+            </div>
+            <div class="section sm">
+                <div class="section-title">
+                    Booking course time
+                </div>
+                <div class="calendar-wrap">
+                    <calendar calendar="calendar" class="calendar-left"></calendar>
+                    <div class="calendar-right">
+                        <div class="calenader-result">
+                            <p class="text-center">schedule</p>
+                            <div class="result-item" ng-click="calendar.remove(select)" ng-repeat="select in calendar.selected">
+                                {{select.from.hour}} to {{select.to.hour}}
+                                <i class="pull-right fa fa-times"></i>
+                            </div>
+                            <div class="result-item" ng-if="calendar.selected.length==0">
+                                no schedule
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="section sm">
+                <div class="section-title">
+                    Leaving message
+                </div>
+                <div class="input-group">
+                    <textarea name="" id="" cols="30" rows="10" class="form-control full-width" placeholder="leaving message"></textarea>
+                </div>
+            </div>
         </div>
         <div class="detail-right">
-        	<div class="settlement">
+            <div class="settlement">
                 <p class="price text-center">$100</p>
                 <p class="text-center">per session 60min</p>
                 <p class="clearfix settlement-action">
@@ -41,19 +80,31 @@
                     <span class="settlement-plus">+</span>
                     </span>
                 </p>
-                <p class="clearfix settlement-action">
-                    优惠券
-                    <span class="pull-right">
-                    <span class="settlement-minus">-</span>
-                    <span class="settlement-amount">5</span>
-                    <span class="settlement-plus">+</span>
+                <p class="clearfix">
+                    <span class="col-xs-4">
+                        优惠券
+                    </span>
+                    <span class="col-xs-8">
+                        <dribehance-select options="options"></dribehance-select>
                     </span>
                 </p>
                 <p class="text-center">
-                    <span class="btn btn-second"><i class="fa fa-heart-o" aria-hidden="true" style="margin-right: 8px"></i>like</span>
-                    <a class="btn btn-primary" ng-href="#/fillinorder">add to cart</a>
-                    <a class="btn btn-success" ng-href="#/fillinorder">pay now</a>
+                    <a class="btn btn-danger btn-md">add to cart</a>
+                    <span class="or bg-second">or</span>
+                    <a class="btn btn-primary btn-md" ng-href="#/fillinorder">pay with visa</a>
+                    <a class="btn btn-success btn-md" ng-href="#/fillinorder">pay with paypal</a>
                 </p>
+                <div class="settlement-discount">
+                    <p>
+                        <b>Discount</b>
+                        <div>buy $100 get $20 off</div>
+                        <div>buy $100 get $20 off</div>
+                    </p>
+                    <p>
+                        <b>Discount</b>
+                        <div>buy $100 get $20 off</div>
+                    </p>
+                </div>
             </div>
         </div>
     </div>
