@@ -43,8 +43,6 @@
 	text-decoration: none;
 	color: inherit;
 	margin-bottom: 15px;
-
-
 }
 
 
@@ -61,12 +59,16 @@
 }
 .items .items-img img{width: 80%;}
 .items .items-info{
-	padding: 0 15px;
+	
 	font-size: 18px;
 	transition(background ease-out 0.5s);
 	-moz-transition:background ease-out 0.5s; /* Firefox 4 */
 	-webkit-transition:background ease-out 0.5s; /* Safari and Chrome */
 	-o-transition:background ease-out 0.5s; /* Opera */
+}
+.item-info{
+	padding: 0 15px;
+	position: relative;
 }
 .items-info:hover{
 	background-color: #F1F1F1;
@@ -263,17 +265,24 @@
 	color: #fff;
 	background-color: #00E566;
 }
+
+/*撰写经历按钮*/
+.btn-publish{
+	padding: 14px 46px;
+}
+
 /**照片div**/
 
 .items .items-imgbox{
     position: absolute;
 	left: 0;
 	top: 0;
+	width: 110px;
+	height: 100px;
 	background-color:#F3E7D9 ;
 	box-sizing: border-box;
 	text-align: center;
-	width: 110px;
-	height: 100px;
+	
 }
 
 .items .items-imgbox img{height: 100px;}
@@ -361,13 +370,32 @@
 .amount label{margin-right: 20px;display: inline-block;}
 
 /****************************编辑************************************************/
-.edit{padding: 10px 0 0 10px;}
-.edit label{padding:20px 0 ;float: left;display: inline-block;}
-.edit input{border: 1px solid #DADADA;height:60px;width: 100%;line-height: 60px\9;text-indent: 20px;}
-.edit .ava label{width: 100%;}
-.edit img{float: left;}
+.title-input .images{
+	display: block;
+	width: 130px;
+	height: 130px;
 
-.edit .edit-btn{width: 20.9%;height: 50px;line-height: 50px;text-align: center;border: 1px solid #FCCE92;clear: both;margin: 80px 0 0 0;background-color: #F5E7D9;color:#FCCE92;font-size: 0.9em;}
+	overflow: hidden;
+}
+.title-input .namewrap
+{
+	width: 30%;
+}
+.account-btn a{
+	text-decoration: none;
+}
+.account-btn .btn-edit{
+	display: block;
+    padding: 10px 30px;
+    margin-top: 30px;
+    width: 8%;
+    border: 1px solid #FFBB59;
+    background-color: #F5E7D9;
+    border-radius: 4px;
+    color: #FFBB59;
+    text-align: center;
+
+}
 
 /******************订单详情**************************/
 .goods{width: 100%;color: #A6A19F;box-shadow:2px 2px 2px 2px #EDEDED;margin: 0;border: 1px solid #E9E9E9;}
@@ -430,7 +458,7 @@
 .drawback .p5{width: 55%;text-align: right;float: right;height: 16px;overflow: hidden;}
 
 .lab{padding: 10px 20px;float: left;margin: 30px 0 0 5px;display: block;color: #A1A1A1;}
-.tips{display: block;}
+.tips{display: block;margin-top: 30px;}
 .tips span{color: #A7A7A7;padding: 5px;font-size: 1.2em; }
 .tips p{font-size: 1em;color: #B4B4B4;padding-left: 5px;}
 
@@ -441,12 +469,17 @@
 /****************新建课程*******************/
 
 .crease_coursewrap{max-width:800px;padding-left:10px;}
-.step{display: block;}
-.step span{display: block;padding: 30px 0;}
+.step{display: block;overflow: hidden;}
+
 .direction-arrow img{width: 100%;height: 60px;margin:30px 0 ;}
 .step .z-margin{margin-top: 30px;}
 .step textarea{width: 97.2%;padding: 10px 10px;outline: none;border-color: #CCCCCC;}
-.step label{display: inline-block;padding: 10px 0;}
+.title-input {display: block;overflow: hidden;}
+.title-input label{display: inline-block;padding: 10px 0;}
+.title-input span{
+	display: block;padding: 30px 0;
+}
+
 .input-select{
 	position: relative;
 	width: 100%;
@@ -459,7 +492,7 @@
 
 }
 
-.c-width{width: 46%;}
+
 
 .input-select select{
 	-webkit-appearance: none;
@@ -479,9 +512,25 @@
 	top: 15px;
 	color: #5D5D5D;
 }
-.course-itemwrap{margin-right: -32px;}
-.course-item{display: block;width: 245px;margin: 0 32px 20px 0;}
+.title-input{
+	display: block;
+}
+.course-itemwrap{display: block;overflow: hidden;}
+.course-items{
+	display: block;
+	width: 33.33333333333333333%;
+	-webkit-box-sizing:border-box;
+    box-sizing:boder-box;
+}
+.course-item{
+	display: block;
+	margin-right:5px;
+	margin-bottom: 20px;
+	-webkit-box-sizing:border-box;
+    box-sizing:boder-box;
+}
 
+.course-item:nth-child(3n+0){margin-right: 0;}
 .imgwrap{
 	
 	width:100%;
@@ -490,10 +539,10 @@
 	margin-bottom: 15px;
 	display: block;
 	text-align: center;
-	
+	-webkit-box-sizing:border-box;
+    box-sizing:boder-box;
 	
 }
-.imgwrap img{max-width: 100%;}
 
 /*新建课程，教练认证输入框样式*/
 .course-input{
@@ -533,7 +582,6 @@
 
 }
 
-
 .course-select select{
 	-webkit-appearance: none;
 	border: none;
@@ -553,15 +601,24 @@
 }
 
 .m-session{
-    width: 46%;
-    
+    width: 45%;
+    -webkit-box-sizing:border-box;
+    box-sizing:boder-box;
 }
-.m-session .u-input{
+
+.u-input{
+	padding: 15px;
+	border: 1px solid #ccc;
+	-webkit-box-sizing:border-box;
+    box-sizing:boder-box;
+}
+.m-session.namewrap {
 	
 	padding: 15px;
 	border: 1px solid #ccc;
+	-webkit-box-sizing:border-box;
+    box-sizing:boder-box;
 }
-
 .u-input input{
 	outline: none;
 	border: none;
@@ -597,18 +654,18 @@
 }
 /*设置输入框宽度*/
 
-.a-width{width: 50%;}
+
 
 .authen-images{
-	width: 80%;
+	
 	display:block;
 	
 }
 
 .authen-images .images{
-	width: 300px;
-	height: 180px;
 	display: inline-block;
+	width: 40%;
+	height: 180px;
 	margin: 0 5px 5px 0;
 	overflow: hidden;
 	border: 1px solid #ccc;
@@ -620,8 +677,8 @@
 .authen-step label{
 	display: block;
 	color: #A4A4A4;
-	padding: 20px 30px;
-	width: 76%;
+	padding: 25px 15px;
+	
 	-webkit-box-sizing:border-box;
     box-sizing:boder-box;
 }
@@ -657,19 +714,24 @@
 	width: 100%;
 	height: 300px;
 	border: 1px solid #ccc;
+	box-sizing: border-box;
 }
 .writeImages{
 	display: block;
 	margin: 40px 0;
-	padding-left: 10px;
+	
 }
 .writeImages .images{
     width: 130px;
     height: 120px;
-    border: 1px solid #F29D38;
+    border: 1px solid #CCCCCC;
     position: relative;
 
 }
+.writeImages .active{
+	border: 1px solid #FFB13E;
+}
+
 .images .fa{
 	position: absolute;
 	top: -7px;
@@ -687,7 +749,6 @@
 	margin-bottom: 15px;
 	
 }
-.
 
 
 

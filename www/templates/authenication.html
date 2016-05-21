@@ -1,5 +1,7 @@
 <!-- header -->
 <div ng-include="'templates/header.html'"></div>
+<link href="lib/css/account.css" rel="stylesheet"> 
+<link href="lib/css/media.css" rel="stylesheet" />
 <div class="wrap">
     <div class="section account-section">
         <!-- sidebar -->
@@ -9,36 +11,56 @@
                 <a class="tab-item pull-left active">Authenication</a>
             </div>
             <div class="authen-step">
-                <span>Name</span>
-                <div class="course-input a-width">
-                    <input type="text" name="" id="" value="" />
+                <div class="title-input">
+                    <div class="m-session pull-left">
+                        <span>Name</span>
+                        <div class="course-input">
+                            <input type="text" name="" id="" value="" class="full-width"/>
+                        </div>
+                    </div>
+                    
+                    <div class="m-session pull-right">
+                        <span>Phone Number</span>
+                        <div class="course-input">
+                            <input type="text" name="" id="" value="" class="full-width"/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="title-input">
+                    <div class="m-session pull-left">
+                        <span>Gender</span>
+                        <div class="input-select">
+                            <select name="">
+                                <option value=""></option>
+                            </select>
+                            <i class="fa fa-caret-down" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                    <div class="m-session pull-right">
+                        <span>Date of Birth</span>
+                        <div class="input-select">
+                            <select name="">
+                                <option value=""></option>
+                            </select>
+                            <i class="fa fa-caret-down" aria-hidden="true"></i>
+                        </div>
+
+                    </div>
                 </div>
                 
-                <span>Gender</span>
-                <div class="input-select a-width">
-                    <select name="">
-                        <option value=""></option>
-                    </select>
-                    <i class="fa fa-caret-down" aria-hidden="true"></i>
+                <div class="title-input">
+                    <span>Government ID:</span>
+                    <div class="authen-images">
+                        <a class="images" href=""><img src="" class="full-width" alt=""></a>
+                        <a class="images" href=""><img src="" class="full-width" alt=""></a>
+                        <a class="images" href=""><img src="" class="full-width" alt=""></a>
+                        <a class="images" href=""><img src="" class="full-width" alt=""></a>
+                    </div>
+
                 </div>
-                <span>Date of Birth</span>
-                <div class="input-select a-width">
-                    <select name="">
-                        <option value=""></option>
-                    </select>
-                    <i class="fa fa-caret-down" aria-hidden="true"></i>
-                </div>
-                <span>Phone Number</span>
-                <div class="course-input a-width">
-                    <input type="text" name="" id="" value="" />
-                </div>
-                <span>Government ID:</span>
-                <div class="authen-images">
-                    <a class="images" href=""><img src="" class="full-width" alt=""></a>
-                    <a class="images" href=""><img src="" class="full-width" alt=""></a>
-                    <a class="images" href=""><img src="" class="full-width" alt=""></a>
-                    <a class="images" href=""><img src="" class="full-width" alt=""></a>
-                </div>
+                
+                
                 <label>
                     Take a photo or selct one to upload you official ID,such as Driver license
                     passport.this information will not share with others. You should take your
