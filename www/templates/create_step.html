@@ -1,4 +1,6 @@
 <!-- header -->
+<link href="lib/css/account.css" rel="stylesheet"> 
+<link href="lib/css/media.css" rel="stylesheet" />
 <div ng-include="'templates/header.html'"></div>
 <div class="wrap">
     <div class="section">
@@ -6,31 +8,45 @@
         	<div class="tabs clearfix">
         		<a class="tab-item pull-left active">Write</a>
         	</div>
-        	<span>Experience Title</span>
-        	<div class="course-input">
-				<input type="text" name="" id="" value="" class="full-width"/>
-			</div>
-			<span>Experience Content</span>
-			<div class="writeContent">
-				say something you feel, you learn
-			</div>
 
+        	<div class="title-input">
+        		<span>Experience Title</span>
+	        	<div class="course-input">
+					<input type="text" name="" id="" value="" class="full-width"/>
+				</div>
+        	</div>
+        	<div class="title-input"> 
+        		<span>Experience Content</span>
+        		<div class="writeContent">
+        			say something you feel, you learn
+        		</div>
+        	</div>
+			
 			<div class="writeImages">
-				<a class="images" href="" >
+				<a class="images active" href="" >
 					<img src="" class="full-width">
 					<i class="fa fa-times-circle-o" aria-hidden="true"></i>
 				</a>
 
-				<a class="images" href="" >
+				<a class="images active" href="" >
 					<img src="" class="full-width">
 					<i class="fa fa-times-circle-o" aria-hidden="true"></i>
+				</a>
+				<a class="images" href="" >
+					<img src="" class="full-width">
+					
 				</a>
 			</div>
-
-
+			<div class="create-step-btn">
+                 <div class="btn btn-lg btn-default">Save to draft</div>
+                 <div class="btn btn-publish btn-lg btn-primary">Publish</div>
+			</div>
         </div>
     </div>
 </div>
 <!-- footer -->
 <div ng-include="'templates/footer.html'"></div>
-			
+
+.upload-items
+	.upload-item width 100% min-width 800 width:50% float:left min-width 900 width 33.33%
+		.upload-content   
