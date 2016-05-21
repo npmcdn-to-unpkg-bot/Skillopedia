@@ -1,7 +1,7 @@
 // by dribehance <dribehance.kksdapp.com>
 angular.module("Skillopedia").controller("orderBookingController", function($scope, errorServices, toastServices, localStorageService, config) {
 	$scope.calendar = {
-		// mode: "edit",
+		mode: "edit",
 		times: [{
 			hour: "00:00-08:30",
 			plan: "free time",

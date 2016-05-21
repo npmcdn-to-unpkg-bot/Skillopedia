@@ -1,5 +1,5 @@
 <!-- header -->
-<link href="lib/css/account.css" rel="stylesheet"> 
+<link href="lib/css/account.css" rel="stylesheet">
 <link href="lib/css/media.css" rel="stylesheet" />
 <div ng-include="'templates/header.html'"></div>
 <div class="wrap">
@@ -7,11 +7,26 @@
         <!-- sidebar -->
         <div ng-include="'templates/sidebar.html'" class="sidebar-wrap"></div>
         <div class="content-wrap">
-        	<div class="tabs clearfix">
-        		<a class="tab-item pull-left" ng-href="#/courses">Courses</a>
-        		<a class="tab-item pull-left" ng-href="#/comments">Comments</a>
-        		<a class="tab-item pull-left active">Steps</a>
-        	</div>
+            <div class="tabs clearfix">
+                <a class="tab-item pull-left" ng-href="#/courses">Courses</a>
+                <a class="tab-item pull-left" ng-href="#/comments">Comments</a>
+                <a class="tab-item pull-left active">Steps</a>
+            </div>
+            <a class="coach-item">
+                <div class="coach-avatar">
+                    <img src="images/avatar.png" class="full-width" alt="">
+                </div>
+                <div class="coach-info">
+                    <div class="step-info">
+                        <span>Expreience Title </span>
+                        <label>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem laudantium reiciendis, eos blanditiis. Beatae praesentium sint recusandae quam blanditiis molestias eligendi quidem dolores delectus non odio, amet reiciendis similique nihil.</label>
+                        <em>
+                            Jun 12, 2015 
+                            <strong><i class="fa fa-pencil" aria-hidden="true"></i>Edit</strong>
+                        </em>
+                    </div>
+                </div>
+            </a>
         </div>
     </div>
 </div>

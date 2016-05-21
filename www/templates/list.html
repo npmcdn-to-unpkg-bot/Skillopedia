@@ -1,40 +1,48 @@
 <!-- header -->
 <div ng-include="'templates/header.html'"></div>
 <div class="wrap">
-    <div class="section">
-        <div class="col-xs-9">
+    <div class="section list-section">
+        <div class="list-left">
             <div class="conditions">
                 <div class="condition-1">
                     <span><b>Category:</b></span>
-                    <label class="condition" ng-class="{'active':input.category == category}" ng-repeat="category in input.categorys"><input type="radio" class="hide" ng-model="input.category" value="{{category}}" name="category">{{category}}</label>
+                    <label class="condition" ng-class="{'active':input.category == category}" ng-repeat="category in input.categorys">
+                        <input type="radio" class="hide" ng-model="input.category" value="{{category}}" name="category">{{category}}</label>
                 </div>
                 <div class="condition-2">
                     <span><b>Distance:</b></span>
-                    <label class="condition" ng-class="{'active':input.distance == distance}" ng-repeat="distance in input.distances"><input type="radio" class="hide" ng-model="input.distance" value="{{distance}}" name="distance">{{distance}}</label>
+                    <label class="condition" ng-class="{'active':input.distance == distance}" ng-repeat="distance in input.distances">
+                        <input type="radio" class="hide" ng-model="input.distance" value="{{distance}}" name="distance">{{distance}}</label>
                 </div>
                 <div class="condition-3">
                     <span><b>Priority:</b></span>
-                    <label class="condition" ng-class="{'active':input.priority == priority}" ng-repeat="priority in input.priorities"><input type="radio" class="hide" ng-model="input.priority" value="{{priority}}" name="priority">{{priority}}</label>
+                    <label class="condition" ng-class="{'active':input.priority == priority}" ng-repeat="priority in input.priorities">
+                        <input type="radio" class="hide" ng-model="input.priority" value="{{priority}}" name="priority">{{priority}}</label>
                 </div>
                 <span class="condition select" ng-if="input.category" ng-click="remove('category')">{{input.category}} <i class="fa fa-times-circle" aria-hidden="true"></i></span>
                 <span class="condition select" ng-if="input.distance" ng-click="remove('distance')">{{input.distance}} <i class="fa fa-times-circle" aria-hidden="true"></i></span>
                 <span class="condition select" ng-if="input.priority" ng-click="remove('priority')">{{input.priority}} <i class="fa fa-times-circle" aria-hidden="true"></i></span>
             </div>
-            
             <a class="coach-item hover" ng-href="#/detail">
                 <div class="coach-avatar">
                     <img src="images/avatar.png" class="full-width" alt="">
                 </div>
                 <div class="coach-info">
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem laudantium reiciendis, eos blanditiis. Beatae praesentium sint recusandae quam blanditiis molestias eligendi quidem dolores delectus non odio, amet reiciendis similique nihil.</p>
-                    <div class="star">
+                    <span class="pull-right text-primary text-big">$100</span>
+                    <div class="star text-ellipsis">
                         <i class="fa fa-star active" aria-hidden="true"></i>
                         <i class="fa fa-star active" aria-hidden="true"></i>
                         <i class="fa fa-star" aria-hidden="true"></i>
                         <i class="fa fa-star" aria-hidden="true"></i>
                         <i class="fa fa-star" aria-hidden="true"></i>
                     </div>
-                    <div class="coach-meta"><span><i class="fa fa-bars" aria-hidden="true"></i>football</span><span><i class="fa fa-user" aria-hidden="true"></i>by dribehace</span><span><i class="fa fa-map-marker" aria-hidden="true"></i>newyowk</span></div>
+                    <div class="coach-meta">
+                        <span><i class="fa fa-bars" aria-hidden="true"></i>football</span>
+                        <span><i class="fa fa-user" aria-hidden="true"></i>by dribehace</span>
+                        <span><i class="fa fa-map-marker" aria-hidden="true"></i>newyowk</span>
+                        <span class="text-success"><i class="fa fa-hand-paper-o" aria-hidden="true"></i>open map</span>
+                    </div>
                 </div>
             </a>
             <a class="coach-item hover" ng-href="#/detail">
@@ -43,14 +51,20 @@
                 </div>
                 <div class="coach-info">
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem laudantium reiciendis, eos blanditiis. Beatae praesentium sint recusandae quam blanditiis molestias eligendi quidem dolores delectus non odio, amet reiciendis similique nihil.</p>
-                    <div class="star">
+                    <span class="pull-right text-primary text-big">$100</span>
+                    <div class="star text-ellipsis">
                         <i class="fa fa-star active" aria-hidden="true"></i>
                         <i class="fa fa-star active" aria-hidden="true"></i>
                         <i class="fa fa-star" aria-hidden="true"></i>
                         <i class="fa fa-star" aria-hidden="true"></i>
                         <i class="fa fa-star" aria-hidden="true"></i>
                     </div>
-                    <div class="coach-meta"><span><i class="fa fa-bars" aria-hidden="true"></i>football</span><span><i class="fa fa-user" aria-hidden="true"></i>by dribehace</span><span><i class="fa fa-map-marker" aria-hidden="true"></i>newyowk</span></div>
+                    <div class="coach-meta">
+                        <span><i class="fa fa-bars" aria-hidden="true"></i>football</span>
+                        <span><i class="fa fa-user" aria-hidden="true"></i>by dribehace</span>
+                        <span><i class="fa fa-map-marker" aria-hidden="true"></i>newyowk</span>
+                        <span class="text-success"><i class="fa fa-hand-paper-o" aria-hidden="true"></i>open map</span>
+                    </div>
                 </div>
             </a>
             <a class="coach-item hover" ng-href="#/detail">
@@ -59,14 +73,20 @@
                 </div>
                 <div class="coach-info">
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem laudantium reiciendis, eos blanditiis. Beatae praesentium sint recusandae quam blanditiis molestias eligendi quidem dolores delectus non odio, amet reiciendis similique nihil.</p>
-                    <div class="star">
+                    <span class="pull-right text-primary text-big">$100</span>
+                    <div class="star text-ellipsis">
                         <i class="fa fa-star active" aria-hidden="true"></i>
                         <i class="fa fa-star active" aria-hidden="true"></i>
                         <i class="fa fa-star" aria-hidden="true"></i>
                         <i class="fa fa-star" aria-hidden="true"></i>
                         <i class="fa fa-star" aria-hidden="true"></i>
                     </div>
-                    <div class="coach-meta"><span><i class="fa fa-bars" aria-hidden="true"></i>football</span><span><i class="fa fa-user" aria-hidden="true"></i>by dribehace</span><span><i class="fa fa-map-marker" aria-hidden="true"></i>newyowk</span></div>
+                    <div class="coach-meta">
+                        <span><i class="fa fa-bars" aria-hidden="true"></i>football</span>
+                        <span><i class="fa fa-user" aria-hidden="true"></i>by dribehace</span>
+                        <span><i class="fa fa-map-marker" aria-hidden="true"></i>newyowk</span>
+                        <span class="text-success"><i class="fa fa-hand-paper-o" aria-hidden="true"></i>open map</span>
+                    </div>
                 </div>
             </a>
             <a class="coach-item hover" ng-href="#/detail">
@@ -75,19 +95,27 @@
                 </div>
                 <div class="coach-info">
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem laudantium reiciendis, eos blanditiis. Beatae praesentium sint recusandae quam blanditiis molestias eligendi quidem dolores delectus non odio, amet reiciendis similique nihil.</p>
-                    <div class="star">
+                    <span class="pull-right text-primary text-big">$100</span>
+                    <div class="star text-ellipsis">
                         <i class="fa fa-star active" aria-hidden="true"></i>
                         <i class="fa fa-star active" aria-hidden="true"></i>
                         <i class="fa fa-star" aria-hidden="true"></i>
                         <i class="fa fa-star" aria-hidden="true"></i>
                         <i class="fa fa-star" aria-hidden="true"></i>
                     </div>
-                    <div class="coach-meta"><span><i class="fa fa-bars" aria-hidden="true"></i>football</span><span><i class="fa fa-user" aria-hidden="true"></i>by dribehace</span><span><i class="fa fa-map-marker" aria-hidden="true"></i>newyowk</span></div>
+                    <div class="coach-meta">
+                        <span><i class="fa fa-bars" aria-hidden="true"></i>football</span>
+                        <span><i class="fa fa-user" aria-hidden="true"></i>by dribehace</span>
+                        <span><i class="fa fa-map-marker" aria-hidden="true"></i>newyowk</span>
+                        <span class="text-success"><i class="fa fa-hand-paper-o" aria-hidden="true"></i>open map</span>
+                    </div>
                 </div>
             </a>
-            
+            <div class="section text-center">
+                <span class="btn btn-default btn-lg">点击加载更多</span>
+            </div>
         </div>
-        <div class="col-xs-3">
+        <div class="list-right">
             <form class="search-form" name="searchForm" ng-submit="ajaxForm()" ng-controller="searchController">
                 <!-- <p>Search on Skillopedia</p> -->
                 <div class="skill-input addon">
@@ -95,37 +123,36 @@
                     <input type="text" class="full-width" ng-model="input.keyword" required placeholder="find your private coach or lesson">
                 </div>
                 <div class="skill-input addon-btn">
-                	<span class="zipcode">
-			            <input type="text" class="full-width" ng-model="input.zipcode" required placeholder="zipcode">
+                    <span class="zipcode">
+                        <input type="text" class="full-width" ng-model="input.zipcode" required placeholder="zipcode">
                         <div class="zipcode-suggestion" ng-if="input.zipcode && input.suggestions.length>0">
                             <span class="suggestion-item" ng-repeat="suggestion in input.suggestions | filter:input.zipcode" ng-click="select(suggestion)">{{suggestion}}</span>
-                        </div>
-			        </span>
                 </div>
-                <button class="btn btn-primary btn-lg full-width" ng-disabled="searchForm.$invalid">Search</button>
-            </form>
-            <div class="category-tab">
-            	<div class="tab-header clearfix">
-            		<span ng-class="{'active':sidebar.title=='recommand'}" ng-click="change_sidebar('recommand')">Recommand</span>
-            		<span ng-class="{'active':sidebar.title=='hot'}" ng-click="change_sidebar('hot')">Hot</span>
-            	</div>
-            	<div class="tab-content">
-            		<div class="tab-content-item">
-                        <img src="images/cinelli-front.jpeg" alt="">
-                        <div class="caption">
-                            
-                        </div>
+                </span>
+        </div>
+        <button class="btn btn-primary btn-lg full-width" ng-disabled="searchForm.$invalid">Search</button>
+        </form>
+        <div class="category-tab">
+            <div class="tab-header clearfix">
+                <span ng-class="{'active':sidebar.title=='recommand'}" ng-click="change_sidebar('recommand')">Recommand</span>
+                <span ng-class="{'active':sidebar.title=='hot'}" ng-click="change_sidebar('hot')">Hot</span>
+            </div>
+            <div class="tab-content">
+                <div class="tab-content-item">
+                    <img src="images/cinelli-front.jpeg" alt="">
+                    <div class="caption">
                     </div>
-                    <div class="tab-content-item">
-                        <img src="images/cinelli-front.jpeg" alt="">
-                        <div class="caption">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis sunt dicta eos quisquam ratione fugit voluptates assumenda asperiores iste accusamus, dolores molestias maxime omnis dignissimos reprehenderit nostrum! Aspernatur, perspiciatis eaque.
-                        </div>
+                </div>
+                <div class="tab-content-item">
+                    <img src="images/cinelli-front.jpeg" alt="">
+                    <div class="caption">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis sunt dicta eos quisquam ratione fugit voluptates assumenda asperiores iste accusamus, dolores molestias maxime omnis dignissimos reprehenderit nostrum! Aspernatur, perspiciatis eaque.
                     </div>
-            	</div>
+                </div>
             </div>
         </div>
     </div>
+</div>
 </div>
 <!-- footer -->
 <div ng-include="'templates/footer.html'"></div>

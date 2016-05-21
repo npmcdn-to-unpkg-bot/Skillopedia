@@ -24,7 +24,6 @@
     display: block;
     position: relative;
     padding-left: 110px;
-    padding-right: 15px;
     margin-bottom: 15px;
     overflow: hidden;
     color: #494949;
@@ -44,9 +43,11 @@
         }
     }
     .coach-info {
+        display: block;
         padding: 0px 15px;
         font-size: 18px;
         font-weight: 100;
+        .link();
         p {
             margin-top: 0;
             margin-bottom: 8px;
@@ -81,13 +82,31 @@
             background-color: #f1f1f1;
         }
     }
+    &.with-action-bar {
+        margin-bottom: 86px;
+        overflow: visible;
+        // height: 100px;
+        .coach-info p {
+            height: 52px;
+        }
+        .coach-info:hover {
+            background-color: white;
+        }
+        .action-bar {
+            position: absolute;
+            top:100%;
+            left: 0;
+            right: 0;
+            padding:16px 0;
+            border-bottom: 1px dashed #a0a0a0;
+        }
+    }
 }
 
 .conditions {
     padding: 15px;
-    background-color: #f1f1f1;
-    margin-right: 15px;
     margin-bottom: 15px;
+    background-color: #f1f1f1;
     .condition {
         display: inline-block;
         padding: 8px;
@@ -115,4 +134,9 @@
 }
 .contact-body {
     background-color: #f0eeee;
+}
+.btn-group {
+    .btn {
+        margin-left: 15px;
+    }
 }
