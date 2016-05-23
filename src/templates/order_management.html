@@ -14,7 +14,28 @@
             <div class="goods clearfix">
                 <ul>
                     <li class="active">
-                        user
+                        <div class="comments">
+                            <div class="comment-header">
+                                <div class="comment-avatar">
+                                    <img src="../images/head.png" class="full-width" alt="">
+                                </div>
+                                <div class="comment-meta">
+                                    <span class="comment-name">
+                                        dribehance
+                                    </span>
+                                    <div class="clearfix">
+                                        <span class="pull-left">
+                                            message:icanot to wait!
+                                        </span>
+                                        <span class="pull-right">
+                                            <a href="" class="btn btn-success font-white" ng-href="">LINK</a>
+
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
                     </li>
                     <li><a href="">Price:<em>$60</em></a></li>
                     <li><a href="">Additional partner(2):<em>$20</em></a></li>
@@ -22,7 +43,7 @@
                     <li><a href="">Amound:<em>5</em></a></li>
                     <li><a href="">Discount:<em>-$100</em></a></li>
                     <li><a href="">Total:<em>$300</em></a></li>
-                    </dl>
+                </ul>
             </div>
             <div class="tit">
                 Teaching location
@@ -53,8 +74,9 @@
             </div>
             <div class="section sm">
                 <div class="btn-group text-center clearfix">
-                    <span class="btn btn-success">pay now</span>
-                    <span class="btn btn-success">pay now</span>
+                    <a class="btn btn-danger" ng-href="#/order_cancel">CANCEL</a>
+                    <a class="btn btn-success" ng-href="#/order_confirm">CONFIRM</a>
+                    <a class="btn btn-success" ng-href="#/order_finish">FINISH</a>
                 </div>
             </div>
             <div class="tit clearfix">

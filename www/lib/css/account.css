@@ -398,10 +398,28 @@
 }
 
 /******************订单详情**************************/
-.goods{width: 100%;color: #A6A19F;box-shadow:2px 2px 2px 2px #EDEDED;margin: 0;border: 1px solid #E9E9E9;}
-.goods ul li{display: block;}
+.goods{
+	width: 100%;
+	
+	box-shadow:2px 2px 2px 2px #EDEDED;
+	margin: 0;
+	border: 1px solid #E9E9E9;
+}
+.goods .goods-header{
+	overflow: hidden;
+}
+.goods .goods-avatar{
+	float: left;
+	width: 50px;
+	margin-right: 10px;
+}
+.goods .font-white{
+	color: white;
+}
+
+.goods ul li{display: block;color: #A6A19F;}
 .goods .active{background-color:#F5E7D9;}
-.goods li span{display: block;font-size: 26px;}
+.goods li span{display: block;}
 .goods li p{width: 30%;display: inline-block;} 
 .goods li{padding: 15px 10px;border-bottom: 1px solid #EEEEEE;background-color: #FFFFFF;}
 .goods li a{color:#A6A19F;text-decoration: none;}
@@ -470,7 +488,7 @@
 }
 
 /****************退款 drawback*******************/
-.drawback{}
+
 .drawback ul{margin: 0;padding: 0;}
 .drawback .active{background-color: #F5E7D9;}
 .drawback li{padding:10px 20px;border-bottom: 1px solid #EEEEEE;list-style: none;}
@@ -560,18 +578,39 @@
     box-sizing:boder-box;
 }
 
-.course-item:nth-child(3n+0){margin-right: 0;}
+
 .imgwrap{
-	
+	display: block;
 	width:100%;
 	height: 150px;
 	border: solid 1px #CCCCCC;
 	margin-bottom: 15px;
-	display: block;
+	
 	text-align: center;
 	-webkit-box-sizing:border-box;
     box-sizing:boder-box;
 	
+}
+.course-item-header{
+	display: block;
+	width: 100%;
+	height: 120px;
+	padding: 30px 20px;
+	margin-bottom: 15px;
+	background-color: #F5E7D9;
+	border: 1px solid #FFBA56;
+	color: #FFBA56;
+	-webkit-box-sizing:border-box;
+    box-sizing:boder-box;
+}
+.course-item-header span{
+	display: block;
+	width: 158px;
+
+	padding: 3px;
+
+	white-space: nowrap;
+
 }
 
 /*新建课程，教练认证输入框样式*/

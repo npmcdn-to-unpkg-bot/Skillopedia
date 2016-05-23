@@ -29,5 +29,15 @@ angular.module("Skillopedia").controller("listController", function($scope, erro
 	$scope.change_sidebar = function(title) {
 		$scope.sidebar.title = title;
 	}
+	$scope.open_map = function(e) {
+		e.preventDefault();
+		e.stopPropagation();
+		$.magnificPopup.open({
+			items: {
+				src: "https://maps.google.com/maps?q=221B+Baker+Street,+London,+United+Kingdom&hl=en&t=v&hnear=221B+Baker+St,+London+NW1+6XE,+United+Kingdom"
+			},
+			type: "iframe"
+		});
+	}
 
 })
