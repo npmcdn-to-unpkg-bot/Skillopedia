@@ -8,7 +8,7 @@
 
 
 /*********************************************************************
- *                   commnet
+ *                   commnets
  * *********************************************************************/
 
 .main-comment{
@@ -430,16 +430,45 @@
 }
 
 
-/****************评价 judge*******************/
+/****************用户订单评价order-comment*******************/
 
-.judge{}
-.judge-start{width: 40%;margin: 20px 0 0 0 ;}
-.judge-start ul li{display: block;}
-.judge-start li{padding:20px 0 0 10px;}
-.judge-start li a{font-size: 1.175em;color: #A1A1A1;}
-.jug-title{padding: 20px 0;font-size: 1.275em;color: #A3A3A3;margin: 20px 0 0 0;}
-.judge textarea{border: solid 2px #EEEEEE;border-radius: 4px;width: 98%;padding: 20px 0 0 10px;}
-.comm-btn{width:20%;padding:10px ;text-align: center;font-size: 1em;color: #FFAC3E;background-color: #F5E7D9;margin: 30px 0 0 0;margin-bottom: 20%;}
+
+.comment-content .content-star span{
+	display: block;
+	padding: 10px 5px;
+	font-size: 18px;
+	color: #9C9C9C;
+}
+.comment-content .content-star
+{
+	display: block;
+	width: 50%;
+}
+.margin5{
+	margin-top: 4px;
+}
+
+.comment-content .content-write span{ 
+	display: block;
+	padding: 20px 5px;
+	color: #9C9C9C;
+	font-size: 18px;
+}
+.comment-content .content-write textarea{
+	width: 100%;
+	height: 300px;
+	padding: 20px;
+	border-color: #9C9C9C;
+	outline: none;
+	-webkit-box-sizing:border-box;
+    box-sizing:boder-box;
+}
+
+.comment-content .comment-btn{
+	display: block;
+	margin-top: 20px;
+}
+
 /****************退款 drawback*******************/
 .drawback{}
 .drawback ul{margin: 0;padding: 0;}
@@ -473,7 +502,8 @@
 
 .direction-arrow img{width: 100%;height: 60px;margin:30px 0 ;}
 .step .z-margin{margin-top: 30px;}
-.step textarea{width: 97.2%;padding: 10px 10px;outline: none;border-color: #CCCCCC;}
+.step textarea{padding: 10px 10px;outline: none;border-color: #CCCCCC;-webkit-box-sizing:border-box;
+    box-sizing:boder-box;}
 .title-input {display: block;overflow: hidden;}
 .title-input label{display: inline-block;padding: 10px 0;}
 .title-input span{
