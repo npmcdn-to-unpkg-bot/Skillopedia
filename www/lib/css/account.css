@@ -401,7 +401,7 @@
 .goods{
 	width: 100%;
 	
-	box-shadow:2px 2px 2px 2px #EDEDED;
+	box-shadow:0px 2px 2px 0 #EDEDED;
 	margin: 0;
 	border: 1px solid #E9E9E9;
 }
@@ -819,8 +819,10 @@
 	top: -7px;
 	right: -7px;
 	font-size: 18px;
-	color: #878787;
+	// color: #878787;
 	z-index:10;
+	border-radius: 100%;
+	-webkit-border-radius:100%;
 	background-color: white;
 
 }
