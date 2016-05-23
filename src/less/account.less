@@ -20,42 +20,38 @@
         }
     }
 }
+
 .coach-item {
     display: block;
     position: relative;
-    padding-left: 110px;
     margin-bottom: 15px;
     overflow: hidden;
     color: #494949;
     cursor: pointer;
     .link();
     .coach-avatar {
-        position: absolute;
-        left: 0;
-        top: 0px;
+        float: left;
         width: 110px;
         height: 100px;
-        padding: 15px;
+        margin-right: 15px;
         background-color: #f3e7d9;
         .box-sizing(border-box);
         text-align: center;
         img {
-            width: 80%;
+            width: 100%;
         }
     }
     .coach-info {
         display: block;
-        padding: 0px 15px;
         font-size: 18px;
         font-weight: 100;
         .link();
+        .transition(background ease-out 0.5s);
         p {
             margin-top: 0;
             margin-bottom: 8px;
             line-height: 26px;
-            overflow: hidden;
         }
-        .transition(background ease-out 0.5s);
     }
     .star {
         color: #c1c1c1;
@@ -95,11 +91,25 @@
         }
         .action-bar {
             position: absolute;
-            top:100%;
+            top: 100%;
             left: 0;
             right: 0;
-            padding:16px 0;
+            padding: 16px 0;
             border-bottom: 1px dashed #a0a0a0;
+        }
+    }
+    @media (min-width:748px) {
+        padding-left: 110px;
+        .coach-avatar {
+            position: absolute;
+            left: 0;
+            top: 0px;
+        }
+        .coach-info {
+            padding: 0px 15px;
+            p {
+                overflow: hidden;
+            }
         }
     }
 }
@@ -124,6 +134,7 @@
         }
     }
 }
+
 .about-poster {
     height: 200px;
     padding: 100px;
@@ -133,14 +144,17 @@
     background-size: 70%;
     background-color: #292929;
 }
+
 .contact-body {
     background-color: #f0eeee;
 }
+
 .btn-group {
     .btn {
         margin-left: 15px;
     }
 }
+
 .stepbystep {
     display: block;
     width: 500px;
