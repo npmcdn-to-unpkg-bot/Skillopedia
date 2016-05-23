@@ -345,7 +345,7 @@
 .coupon:after{position: absolute;content: '';width: 30px;height: 30px;border-radius: 60px;background-color: white;right: -15px;top: 110px;}
 
 /****COUPON TOP******/
-.coupon-top{text-align: center;padding: 10px 0 0 0;border-bottom: dashed 1px #D5C8BC;}
+.coupon-top{text-align: center;padding: 10px 0 0 0;border-bottom: dashed 1px #D5C8BC;position: relative;}
 .coupon-top h2{font-size: 1em;}
 .coupon-top p{color: #F9BE61; font-size: 1.25em;padding: 10px 20px 10px;}
 .coupon-top p strong{font-size: 1.8em;letter-spacing: 5px;padding: 0 5px;}
