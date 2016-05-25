@@ -83,16 +83,20 @@
 <!-- feature section -->
 <div class="wrap">
     <div class="section feature-section clearfix">
-        <div class="feature-item feature-left">
-            <img src="../images/surly.jpeg" class="hvr-grow" alt="">
+        <div class="feature-item feature-left" ng-click="open_left_feature($event)">
+            <img ng-src="{{staticImageUrl + sport.image_01}}" class="hvr-grow" err-src="../images/error.jpg" alt="">
+            <div class="feature-caption">
+                <h1>Sport</h1>
+                <span>{{sport.category_describe}}</span>
+            </div>
             <div class="sub-feature">
-                <span class="close_left close"><i class="fa fa-times" aria-hidden="true"></i></span>
-                <div class="sub-feature-1 circle">
-                    <a class="feature-meta" ng-href="#/list">
-                        <img src="../images/cinelli-front.jpeg" class="hvr-grow full-width">
+                <span class="close_left close" ng-click="close_left($event)"><i class="fa fa-times" aria-hidden="true"></i></span>
+                <div class="sub-feature-{{$index}} circle" ng-repeat="sport_second in sport_seconds track by $index">
+                    <a class="feature-meta" ng-href="#/list" title="">
+                        <img ng-src="{{staticImageUrl + sport_second.image_01}}" class="hvr-grow full-width" err-src="../images/error.jpg">
                     </a>
                 </div>
-                <div class="sub-feature-2 circle">
+                <!-- <div class="sub-feature-2 circle">
                     <a class="feature-meta" ng-href="#/list">
                         <img src="../images/people.jpeg" class="hvr-grow full-width">
                     </a>
@@ -111,19 +115,23 @@
                     <a class="feature-meta" ng-href="#/list">
                         <img src="../images/affinity.jpeg" class="hvr-grow full-width">
                     </a>
-                </div>
+                </div> -->
             </div>
         </div>
-        <div class="feature-item feature-right">
-            <img src="../images/cinelli-front.jpeg" class="hvr-grow">
+        <div class="feature-item feature-right" ng-click="open_right_feature($event)">
+            <img ng-src="{{staticImageUrl + arts.image_01}}" class="hvr-grow" err-src="../images/error.jpg" >
+            <div class="feature-caption">
+                <h1>Arts</h1>
+                <span>{{arts.category_describe}}</span>
+            </div>
             <div class="sub-feature">
-                <span class="close_right close"><i class="fa fa-times" aria-hidden="true"></i></span>
-                <div class="sub-feature-1 circle">
+                <span class="close_right close" ng-click="close_right($event)"><i class="fa fa-times" aria-hidden="true"></i></span>
+                <div class="sub-feature-{{$index}} circle" ng-repeat="art_second in art_seconds track by $index">
                     <a class="feature-meta" ng-href="#/list">
-                        <img src="../images/cinelli-front.jpeg" class="hvr-grow full-width">
+                        <img ng-src="{{staticImageUrl + art_second.image_01}}" class="hvr-grow full-width" err-src="../images/error.jpg">
                     </a>
                 </div>
-                <div class="sub-feature-2 circle">
+                <!-- <div class="sub-feature-2 circle">
                     <a class="feature-meta" ng-href="#/list">
                         <img src="../images/people.jpeg" class="hvr-grow full-width">
                     </a>
@@ -142,7 +150,7 @@
                     <a class="feature-meta" ng-href="#/list">
                         <img src="../images/affinity.jpeg" class="hvr-grow full-width">
                     </a>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>

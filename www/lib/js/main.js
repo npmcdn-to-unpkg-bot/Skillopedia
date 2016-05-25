@@ -44,10 +44,10 @@ $(document).ready(function() {
 	}, function() {
 		$(this).parent().removeClass("hover-left");
 	});
-	$(".feature-left").bind("click", open_left_feature);
-	$(".feature-right").bind("click", open_right_feature);
-	$(".close_left").bind("click", close_left);
-	$(".close_right").bind("click", close_right);
+	// $(".feature-left").bind("click", open_left_feature);
+	// $(".feature-right").bind("click", open_right_feature);
+	// $(".close_left").bind("click", close_left);
+	// $(".close_right").bind("click", close_right);
 	$(".feature-right").hover(function() {
 		$(this).parent().addClass("hover-right")
 	}, function() {

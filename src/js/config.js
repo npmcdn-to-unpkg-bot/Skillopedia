@@ -9,7 +9,8 @@ angular.module("Skillopedia").constant("config", {
 		"SUCCESS": 1
 	},
 	common_params: {
-		invoke: "h5"
+		invoke: "h5",
+		app_sign: "123456"
 	},
 	interceptor: [
 		"about",
