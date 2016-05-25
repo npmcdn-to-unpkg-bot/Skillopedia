@@ -1,6 +1,6 @@
  // by dribehance <dribehance.kksdapp.com>
  // EventHandle
- angular.module("Skillopedia").factory("appServices", function($rootScope, $window, $location, errorServices, toastServices) {
+ angular.module("Skillopedia").factory("appServices", function($rootScope, $window, $location, errorServices, toastServices, config) {
  	var routeChangeStart = function(e) {
  		// do something white routechangestart,eg:
  		// toastServices.show();
@@ -51,6 +51,7 @@
  			$rootScope.go = function(path) {
  				$location.path(path);
  			}
+ 			$rootScope.staticImageUrl = config.imageUrl;
  		}
  	}
  });

@@ -1,5 +1,5 @@
 angular.module("Skillopedia").constant("config", {
-	url: "http://47.88.79.54/",
+	url: "http://47.88.79.54",
 	imageUrl: "http://47.88.79.54/files/image?name=",
 	request: {
 		"SUCCESS": "200",
@@ -8,7 +8,9 @@ angular.module("Skillopedia").constant("config", {
 	response: {
 		"SUCCESS": 1
 	},
-	common_params: {},
+	common_params: {
+		invoke: "h5"
+	},
 	interceptor: [
 		"about",
 		"account",

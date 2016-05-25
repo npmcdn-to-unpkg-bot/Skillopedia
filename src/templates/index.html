@@ -57,9 +57,9 @@
 <!-- slider -->
 <div id="slides">
     <div class="slides-container">
-        <img src="images/surly.jpeg">
-        <img src="images/cinelli-front.jpeg">
-        <img src="images/affinity.jpeg">
+        <img ng-src="{{staticImageUrl + banner.big_cover}}" ng-repeat="banner in banners" err-src="">
+        <!-- <img src="images/cinelli-front.jpeg">
+        <img src="images/affinity.jpeg"> -->
     </div>
     <!-- <nav class="slides-navigation">
         <a href="#" class="next">Next</a>

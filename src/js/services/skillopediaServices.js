@@ -4,7 +4,7 @@ angular.module("Skillopedia").factory("skillopediaServices", function($http, con
 		query_banner: function(input) {
 			return $http({
 				// by dribehance <dribehance.kksdapp.com>
-				url: config.url + "interface",
+				url: config.url + "/app/IndexBannerManage/homeBanner",
 				method: "GET",
 				params: angular.extend({}, config.common_params, input)
 			}).then(function(data) {
