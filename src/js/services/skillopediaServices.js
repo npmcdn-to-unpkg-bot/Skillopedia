@@ -31,10 +31,20 @@ angular.module("Skillopedia").factory("skillopediaServices", function($http, con
 				return data.data;
 			});
 		},
+		query_all_second_category: function(input) {
+			return $http({
+				// by dribehance <dribehance.kksdapp.com>
+				url: config.url + "/app/CatetoryManage/categoryList",
+				method: "GET",
+				params: angular.extend({}, config.common_params, input)
+			}).then(function(data) {
+				return data.data;
+			});
+		},
 		query_recommand_category: function(input) {
 			return $http({
 				// by dribehance <dribehance.kksdapp.com>
-				url: config.url + "interface",
+				url: config.url + "/app/Home/hotRecommandList",
 				method: "GET",
 				params: angular.extend({}, config.common_params, input)
 			}).then(function(data) {

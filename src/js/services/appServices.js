@@ -48,6 +48,9 @@
  				$rootScope.sign = "forget";
  				popup_signin();
  			}
+ 			$rootScope.back = function() {
+ 				$window.history.back();
+ 			}
  			$rootScope.go = function(path) {
  				$location.path(path);
  			}

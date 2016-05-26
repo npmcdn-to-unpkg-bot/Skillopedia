@@ -92,30 +92,10 @@
             <div class="sub-feature">
                 <span class="close_left close" ng-click="close_left($event)"><i class="fa fa-times" aria-hidden="true"></i></span>
                 <div class="sub-feature-{{$index}} circle" ng-repeat="sport_second in sport_seconds track by $index">
-                    <a class="feature-meta" ng-href="#/list" title="">
+                    <a class="feature-meta" ng-href="#/list?category={{sport_second.category_02_name}}&category_id={{sport_second.category_02_id}}" title="{{sport_second.category_02_name}}">
                         <img ng-src="{{staticImageUrl + sport_second.image_01}}" class="hvr-grow full-width" err-src="../images/error.jpg">
                     </a>
                 </div>
-                <!-- <div class="sub-feature-2 circle">
-                    <a class="feature-meta" ng-href="#/list">
-                        <img src="../images/people.jpeg" class="hvr-grow full-width">
-                    </a>
-                </div>
-                <div class="sub-feature-3 circle">
-                    <a class="feature-meta" ng-href="#/list">
-                        <img src="../images/home-banner-01.jpg" class="hvr-grow full-width">
-                    </a>
-                </div>
-                <div class="sub-feature-4 circle">
-                    <a class="feature-meta" ng-href="#/list">
-                        <img src="../images/cinelli-front.jpeg" class="hvr-grow full-width">
-                    </a>
-                </div>
-                <div class="sub-feature-5 circle">
-                    <a class="feature-meta" ng-href="#/list">
-                        <img src="../images/affinity.jpeg" class="hvr-grow full-width">
-                    </a>
-                </div> -->
             </div>
         </div>
         <div class="feature-item feature-right" ng-click="open_right_feature($event)">
@@ -127,30 +107,10 @@
             <div class="sub-feature">
                 <span class="close_right close" ng-click="close_right($event)"><i class="fa fa-times" aria-hidden="true"></i></span>
                 <div class="sub-feature-{{$index}} circle" ng-repeat="art_second in art_seconds track by $index">
-                    <a class="feature-meta" ng-href="#/list">
+                    <a class="feature-meta" ng-href="#/list?category={{art_second.category_02_name}}&category_id={{art_second.category_02_id}}" title="{{art_second.category_02_name}}">
                         <img ng-src="{{staticImageUrl + art_second.image_01}}" class="hvr-grow full-width" err-src="../images/error.jpg">
                     </a>
                 </div>
-                <!-- <div class="sub-feature-2 circle">
-                    <a class="feature-meta" ng-href="#/list">
-                        <img src="../images/people.jpeg" class="hvr-grow full-width">
-                    </a>
-                </div>
-                <div class="sub-feature-3 circle">
-                    <a class="feature-meta" ng-href="#/list">
-                        <img src="../images/home-banner-01.jpg" class="hvr-grow full-width">
-                    </a>
-                </div>
-                <div class="sub-feature-4 circle">
-                    <a class="feature-meta" ng-href="#/list">
-                        <img src="../images/cinelli-front.jpeg" class="hvr-grow full-width">
-                    </a>
-                </div>
-                <div class="sub-feature-5 circle">
-                    <a class="feature-meta" ng-href="#/list">
-                        <img src="../images/affinity.jpeg" class="hvr-grow full-width">
-                    </a>
-                </div> -->
             </div>
         </div>
     </div>
@@ -163,108 +123,22 @@
 </div>
 <!-- category -->
 <div class="wrap">
-    <div class="section category-section">
+    <div class="section category-section" ng-repeat="hot in hots">
         <a class="category-large" ng-href="#/list">
-            <img src="images/affinity.jpeg" class="hvr-bounce-in" alt="">
+            <img ng-src="{{staticImageUrl+hot.big_image_01}}" class="hvr-bounce-in" alt="" err-src="../images/error.jpg">
             <div class="category-caption large">
-                <h3 class="text-ellipsis">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste quia mollitia necessitatibus enim neque modi error illo ratione ea excepturi, qui consequatur molestias, dolore optio corporis! Natus, provident cumque est!</h3>
-                <span class="block">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut error dicta perferendis voluptatem, minus! Doloremque at, accusantium dolores dolorem possimus maxime sunt odio ad, qui, similique, corporis officiis voluptates vel.</span>
+                <h3 class="text-ellipsis">{{hot.name}}</h3>
+                <span class="block">{{hot.sub_title}}</span>
             </div>
         </a>
-        <a class="category-small" ng-href="#/detail">
-            <img src="images/cinelli-front.jpeg" class="hvr-bounce-in" alt="">
+        <a class="category-small" ng-href="#/detail" ng-repeat="single in hot.Courses">
+            <img ng-src="{{staticImageUrl + single.big_coach_image}}" class="hvr-bounce-in" alt="" err-src="../images/error.jpg">
             <div class="category-caption">
-                <h3 class="text-ellipsis">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste quia mollitia necessitatibus enim neque modi error illo ratione ea excepturi, qui consequatur molestias, dolore optio corporis! Natus, provident cumque est!</h3>
-                <span class="block">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut error dicta perferendis voluptatem, minus! Doloremque at, accusantium dolores dolorem possimus maxime sunt odio ad, qui, similique, corporis officiis voluptates vel.</span>
+                <h3 class="text-ellipsis">{{single.title}}</h3>
+                <span class="block">{{single.coach_name}}</span>
             </div>
         </a>
-        <a class="category-small" ng-href="#/detail">
-            <img src="images/cinelli.jpeg" class="hvr-bounce-in" alt="">
-            <div class="category-caption">
-                <h3 class="text-ellipsis">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste quia mollitia necessitatibus enim neque modi error illo ratione ea excepturi, qui consequatur molestias, dolore optio corporis! Natus, provident cumque est!</h3>
-                <span class="block">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut error dicta perferendis voluptatem, minus! Doloremque at, accusantium dolores dolorem possimus maxime sunt odio ad, qui, similique, corporis officiis voluptates vel.</span>
-            </div>
-        </a>
-        <a class="category-small" ng-href="#/detail">
-            <img src="images/home-banner-01.jpg" class="hvr-bounce-in" alt="">
-            <div class="category-caption">
-                <h3 class="text-ellipsis">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste quia mollitia necessitatibus enim neque modi error illo ratione ea excepturi, qui consequatur molestias, dolore optio corporis! Natus, provident cumque est!</h3>
-                <span class="block">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut error dicta perferendis voluptatem, minus! Doloremque at, accusantium dolores dolorem possimus maxime sunt odio ad, qui, similique, corporis officiis voluptates vel.</span>
-            </div>
-        </a>
-        <a class="category-small" ng-href="#/detail">
-            <img src="images/people.jpeg" class="hvr-bounce-in" alt="">
-            <div class="category-caption">
-                <h3 class="text-ellipsis">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste quia mollitia necessitatibus enim neque modi error illo ratione ea excepturi, qui consequatur molestias, dolore optio corporis! Natus, provident cumque est!</h3>
-                <span class="block">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut error dicta perferendis voluptatem, minus! Doloremque at, accusantium dolores dolorem possimus maxime sunt odio ad, qui, similique, corporis officiis voluptates vel.</span>
-            </div>
-        </a>
-        <a class="category-small" ng-href="#/detail">
-            <img src="images/surly.jpeg" class="hvr-bounce-in" alt="">
-            <div class="category-caption">
-                <h3 class="text-ellipsis">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste quia mollitia necessitatibus enim neque modi error illo ratione ea excepturi, qui consequatur molestias, dolore optio corporis! Natus, provident cumque est!</h3>
-                <span class="block">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut error dicta perferendis voluptatem, minus! Doloremque at, accusantium dolores dolorem possimus maxime sunt odio ad, qui, similique, corporis officiis voluptates vel.</span>
-            </div>
-        </a>
-        <a class="category-small" ng-href="#/detail">
-            <img src="images/affinity.jpeg" class="hvr-bounce-in" alt="">
-            <div class="category-caption">
-                <h3 class="text-ellipsis">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste quia mollitia necessitatibus enim neque modi error illo ratione ea excepturi, qui consequatur molestias, dolore optio corporis! Natus, provident cumque est!</h3>
-                <span class="block">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut error dicta perferendis voluptatem, minus! Doloremque at, accusantium dolores dolorem possimus maxime sunt odio ad, qui, similique, corporis officiis voluptates vel.</span>
-            </div>
-        </a>
-    </div>
-    <div class="section category-section">
-        <a class="category-large" ng-href="#/list">
-            <img src="images/affinity.jpeg" class="hvr-bounce-in" alt="">
-            <div class="category-caption large">
-                <h3 class="text-ellipsis">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste quia mollitia necessitatibus enim neque modi error illo ratione ea excepturi, qui consequatur molestias, dolore optio corporis! Natus, provident cumque est!</h3>
-                <span class="block">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut error dicta perferendis voluptatem, minus! Doloremque at, accusantium dolores dolorem possimus maxime sunt odio ad, qui, similique, corporis officiis voluptates vel.</span>
-            </div>
-        </a>
-        <a class="category-small" ng-href="#/detail">
-            <img src="images/cinelli-front.jpeg" class="hvr-bounce-in" alt="">
-            <div class="category-caption">
-                <h3 class="text-ellipsis">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste quia mollitia necessitatibus enim neque modi error illo ratione ea excepturi, qui consequatur molestias, dolore optio corporis! Natus, provident cumque est!</h3>
-                <span class="block">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut error dicta perferendis voluptatem, minus! Doloremque at, accusantium dolores dolorem possimus maxime sunt odio ad, qui, similique, corporis officiis voluptates vel.</span>
-            </div>
-        </a>
-        <a class="category-small" ng-href="#/detail">
-            <img src="images/cinelli.jpeg" class="hvr-bounce-in" alt="">
-            <div class="category-caption">
-                <h3 class="text-ellipsis">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste quia mollitia necessitatibus enim neque modi error illo ratione ea excepturi, qui consequatur molestias, dolore optio corporis! Natus, provident cumque est!</h3>
-                <span class="block">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut error dicta perferendis voluptatem, minus! Doloremque at, accusantium dolores dolorem possimus maxime sunt odio ad, qui, similique, corporis officiis voluptates vel.</span>
-            </div>
-        </a>
-        <a class="category-small" ng-href="#/detail">
-            <img src="images/home-banner-01.jpg" class="hvr-bounce-in" alt="">
-            <div class="category-caption">
-                <h3 class="text-ellipsis">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste quia mollitia necessitatibus enim neque modi error illo ratione ea excepturi, qui consequatur molestias, dolore optio corporis! Natus, provident cumque est!</h3>
-                <span class="block">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut error dicta perferendis voluptatem, minus! Doloremque at, accusantium dolores dolorem possimus maxime sunt odio ad, qui, similique, corporis officiis voluptates vel.</span>
-            </div>
-        </a>
-        <a class="category-small" ng-href="#/detail">
-            <img src="images/people.jpeg" class="hvr-bounce-in" alt="">
-            <div class="category-caption">
-                <h3 class="text-ellipsis">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste quia mollitia necessitatibus enim neque modi error illo ratione ea excepturi, qui consequatur molestias, dolore optio corporis! Natus, provident cumque est!</h3>
-                <span class="block">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut error dicta perferendis voluptatem, minus! Doloremque at, accusantium dolores dolorem possimus maxime sunt odio ad, qui, similique, corporis officiis voluptates vel.</span>
-            </div>
-        </a>
-        <a class="category-small" ng-href="#/detail">
-            <img src="images/surly.jpeg" class="hvr-bounce-in" alt="">
-            <div class="category-caption">
-                <h3 class="text-ellipsis">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste quia mollitia necessitatibus enim neque modi error illo ratione ea excepturi, qui consequatur molestias, dolore optio corporis! Natus, provident cumque est!</h3>
-                <span class="block">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut error dicta perferendis voluptatem, minus! Doloremque at, accusantium dolores dolorem possimus maxime sunt odio ad, qui, similique, corporis officiis voluptates vel.</span>
-            </div>
-        </a>
-        <a class="category-small" ng-href="#/detail">
-            <img src="images/affinity.jpeg" class="hvr-bounce-in" alt="">
-            <div class="category-caption">
-                <h3 class="text-ellipsis">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste quia mollitia necessitatibus enim neque modi error illo ratione ea excepturi, qui consequatur molestias, dolore optio corporis! Natus, provident cumque est!</h3>
-                <span class="block">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut error dicta perferendis voluptatem, minus! Doloremque at, accusantium dolores dolorem possimus maxime sunt odio ad, qui, similique, corporis officiis voluptates vel.</span>
-            </div>
-        </a>
-    </div>
+    </div>  
 </div>
 <div ng-include="'templates/footer.html'"></div>
 <script type="text/javascript">

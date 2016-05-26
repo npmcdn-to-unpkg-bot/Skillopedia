@@ -53,18 +53,18 @@ $(document).ready(function() {
 	}, function() {
 		$(this).parent().removeClass("hover-right")
 	});
-	$(".category-large").hover(function() {
-		$(this).find("img").addClass("active");
-		$(this).find(".category-caption").addClass("hover");
-	}, function() {
-		$(this).find("img").removeClass("active");
-		$(this).find(".category-caption").removeClass("hover");
-	});
-	$(".category-small").hover(function() {
-		$(this).find(".category-caption").addClass("hover");
-	}, function() {
-		$(this).find(".category-caption").removeClass("hover");
-	});
+	// $(".category-large").hover(function() {
+	// 	$(this).find("img").addClass("active");
+	// 	$(this).find(".category-caption").addClass("hover");
+	// }, function() {
+	// 	$(this).find("img").removeClass("active");
+	// 	$(this).find(".category-caption").removeClass("hover");
+	// });
+	// $(".category-small").hover(function() {
+	// 	$(this).find(".category-caption").addClass("hover");
+	// }, function() {
+	// 	$(this).find(".category-caption").removeClass("hover");
+	// });
 	// $('#openpopup').magnificPopup({
 	// 	items: [{
 	// 		src: 'http://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Peter_%26_Paul_fortress_in_SPB_03.jpg/800px-Peter_%26_Paul_fortress_in_SPB_03.jpg',

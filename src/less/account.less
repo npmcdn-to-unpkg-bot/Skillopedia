@@ -30,6 +30,7 @@
     cursor: pointer;
     .link();
     .coach-avatar {
+        position: relative;
         float: left;
         width: 110px;
         height: 100px;
@@ -37,8 +38,22 @@
         background-color: #f3e7d9;
         .box-sizing(border-box);
         text-align: center;
+        border: 2px solid @brand-primary;
+        border-radius: 10px;
+        overflow: hidden;
         img {
             width: 100%;
+        }
+        .official-coach {
+            position: absolute;
+            bottom: 10px;
+            right: -1px;
+            background-image: url("../images/official.png");
+            background-repeat: no-repeat;
+            background-position: center center;
+            height: 20px;
+            width: 84px;
+            background-size: 100%;
         }
     }
     .coach-info {
@@ -130,6 +145,7 @@
         &.select {
             padding: 4px 10px;
             margin-top: 8px;
+            line-height: 17px;
             color: @brand-primary;
             border: 1px solid @brand-primary;
         }

@@ -61,4 +61,27 @@ angular.module("Skillopedia").controller("indexController", function($scope, $ti
 		close_right(e);
 	};
 	// hot
+	toastServices.show();
+	skillopediaServices.query_recommand_category().then(function(data) {
+		toastServices.hide()
+		if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
+			$scope.hots = data.Result.Catetorys;
+			$timeout(function() {
+				$(".category-large").hover(function() {
+					$(this).find("img").addClass("active");
+					$(this).find(".category-caption").addClass("hover");
+				}, function() {
+					$(this).find("img").removeClass("active");
+					$(this).find(".category-caption").removeClass("hover");
+				});
+				$(".category-small").hover(function() {
+					$(this).find(".category-caption").addClass("hover");
+				}, function() {
+					$(this).find(".category-caption").removeClass("hover");
+				});
+			}, 1000)
+		} else {
+			errorServices.autoHide(data.message);
+		}
+	})
 });
