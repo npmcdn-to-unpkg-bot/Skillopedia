@@ -9,8 +9,10 @@
 }
 
 .toast {
-    .overlay(white);
-    display: none;
+    .overlay(black);
+    visibility: hidden;
+    opacity: 0;
+    z-index: 2000;
     .loader {
         position: absolute;
         top: 50%;
@@ -18,15 +20,19 @@
         margin-left: -25px;
         margin-top: -25px;
     }
+    &.active {
+        opacity: 1;
+        visibility: visible;
+    }
+    .transition(opacity 0.5s);
 }
-
 .error-msg {
     position: fixed;
     right: 50px;
     bottom: 50px;
     padding: 15px;
     width: 200px;
-    z-index: 1000;
+    z-index: 2000;
     background-color: fade(black, 50%);
     color: white;
 }

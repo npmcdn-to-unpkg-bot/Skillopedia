@@ -1,5 +1,5 @@
 // by dribehance <dribehance.kksdapp.com>
-angular.module("Skillopedia").controller("listController", function($scope, $rootScope, $routeParams, skillopediaServices, coursesServices, errorServices, toastServices, localStorageService, config) {
+angular.module("Skillopedia").controller("listController", function($scope, $rootScope, $routeParams, $location, skillopediaServices, coursesServices, errorServices, toastServices, localStorageService, config) {
 	$scope.input = {
 		distances: [
 			"500-1000mile",
@@ -9,7 +9,7 @@ angular.module("Skillopedia").controller("listController", function($scope, $roo
 			"2500-3000mile"
 		],
 		priorities: [
-			"distance",
+			// "distance",
 			"price",
 			"review",
 			"hot",
@@ -17,12 +17,10 @@ angular.module("Skillopedia").controller("listController", function($scope, $roo
 	};
 	$scope.input.category = {
 		name: $routeParams.category,
-		id: $routeParams.category_id
+		id: $routeParams.category_id || "0"
 	};
 	// query category list;
-	toastServices.show();
 	skillopediaServices.query_all_second_category().then(function(data) {
-		toastServices.hide()
 		if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
 			$scope.categorys = data.Result.Categorys;
 		} else {
@@ -33,7 +31,7 @@ angular.module("Skillopedia").controller("listController", function($scope, $roo
 	$scope.courses = [];
 	$scope.page = {
 		pn: 1,
-		page_size: 1,
+		page_size: 10,
 		message: "点击加载更多",
 		kw: $routeParams.kw,
 		latitude: "0",
@@ -71,7 +69,7 @@ angular.module("Skillopedia").controller("listController", function($scope, $roo
 		$scope.courses = [];
 		$scope.page = {
 			pn: 1,
-			page_size: 1,
+			page_size: 10,
 			message: "点击加载更多",
 			kw: $routeParams.kw,
 			latitude: "0",
@@ -82,11 +80,16 @@ angular.module("Skillopedia").controller("listController", function($scope, $roo
 			prioritys: $scope.input.priority
 		}
 		$scope.no_more = false;
-		console.log($scope.page)
 		$scope.loadMore();
 	};
 	// filter by category;
 	$scope.$watch("input.category", function(n, o) {
+		if (n === o) {
+			return;
+		}
+		$scope.reload();
+	}, true);
+	$scope.$watch("input.priority", function(n, o) {
 		if (n === o) {
 			return;
 		}
@@ -102,15 +105,22 @@ angular.module("Skillopedia").controller("listController", function($scope, $roo
 	$scope.change_sidebar = function(title) {
 		$scope.sidebar.title = title;
 	}
-	$scope.open_map = function(e) {
+	$scope.open_map = function(course, e) {
 		e.preventDefault();
 		e.stopPropagation();
 		$.magnificPopup.open({
 			items: {
-				src: "https://maps.google.com/maps?q=221B+Baker+Street,+London,+United+Kingdom&hl=en&t=v&hnear=221B+Baker+St,+London+NW1+6XE,+United+Kingdom"
+				src: "https://maps.google.com/maps?q=" + course.city + course.area
 			},
 			type: "iframe"
 		});
+	};
+	// go to detail
+	$scope.local_go = function(id) {
+		$location.path("detail").search({
+			category: null,
+			cagegory_id: null,
+			course_id: id
+		});
 	}
-
 })

@@ -160,6 +160,12 @@ gulp.task('html', function() {
         .pipe(gulp.dest(config.dest));
 });
 
+gulp.task('key', function() {
+    var inject = [];
+    gulp.src(['src/key/**/*'])
+        .pipe(gulp.dest(config.dest + "/key"));
+});
+
 gulp.task('templates', function() {
     var inject = [];
     gulp.src(['src/templates/**/*.html'])
@@ -256,7 +262,7 @@ gulp.task('watch', function() {
 ======================================*/
 
 gulp.task('build', function(done) {
-    var tasks = ['html', 'templates', 'lib', 'fonts', 'images', 'less', 'js'];
+    var tasks = ['html', 'templates', 'lib', 'fonts', 'images', 'less', 'js', 'key'];
     seq('clean', tasks, done);
 });
 

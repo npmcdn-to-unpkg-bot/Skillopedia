@@ -19,11 +19,11 @@
                     <label class="condition" ng-class="{'active':input.priority == priority}" ng-repeat="priority in input.priorities">
                         <input type="radio" class="hide" ng-model="input.priority" value="{{priority}}" name="priority">{{priority}}</label>
                 </div>
-                <span class="condition select" ng-if="input.category" ng-click="remove('category')">{{input.category.name}} <i class="fa fa-times-circle" aria-hidden="true"></i></span>
+                <span class="condition select" ng-if="input.category.name" ng-click="remove('category')">{{input.category.name}} <i class="fa fa-times-circle" aria-hidden="true"></i></span>
                 <span class="condition select" ng-if="input.distance" ng-click="remove('distance')">{{input.distance}} <i class="fa fa-times-circle" aria-hidden="true"></i></span>
                 <span class="condition select" ng-if="input.priority" ng-click="remove('priority')">{{input.priority}} <i class="fa fa-times-circle" aria-hidden="true"></i></span>
             </div>
-            <div class="coach-item hover" ng-click="go('detail')" ng-repeat="course in courses">
+            <div class="coach-item hover" ng-click="local_go(course.course_id)" ng-repeat="course in courses">
                 <div class="coach-avatar">
                     <img ng-src="{{staticImageUrl + course.coach_image}}" class="full-width full-height" alt="" err-src="../images/example_7.png">
                     <span class="official-coach" ng-if="course.is_official"></span>
@@ -41,18 +41,18 @@
                     <div class="coach-meta">
                         <span><i class="fa fa-bars" aria-hidden="true"></i>{{course.catetory_name}}</span>
                         <span><i class="fa fa-user" aria-hidden="true"></i>by {{course.coach_name}}</span>
-                        <span><i class="fa fa-map-marker" aria-hidden="true"></i>newyowk</span>
-                        <span class="text-success open-map" ng-click="open_map($event)"><i class="fa fa-hand-paper-o" aria-hidden="true"></i>open map</span>
+                        <span><i class="fa fa-map-marker" aria-hidden="true"></i>{{course.city}}</span>
+                        <span class="text-success open-map" ng-click="open_map(course,$event)"><i class="fa fa-hand-paper-o" aria-hidden="true"></i>open map</span>
                         
                     </div>
                 </div>
             </div>
             <div class="section text-center">
-                <span class="btn btn-lg">{{page.message}}</span>
+                <span class="btn btn-lg" ng-click="loadMore()">{{page.message}}</span>
             </div>
         </div>
         <div class="list-right">
-            <form class="search-form" name="searchForm" ng-submit="ajaxForm()" ng-controller="searchController">
+            <form class="search-form" name="searchForm" ng-submit="ajaxForm()" ng-controller="searchFormController">
                 <!-- <p>Search on Skillopedia</p> -->
                 <div class="skill-input addon">
                     <i class="fa fa-search" aria-hidden="true"></i>
@@ -66,7 +66,7 @@
                 </div>
                 </span>
         </div>
-        <button class="btn btn-primary btn-lg full-width" ng-disabled="searchForm.$invalid">Search</button>
+        <button class="btn btn-primary btn-lg full-width" type="submit" ng-disabled="searchForm.$invalid">Search</button>
         </form>
         <div class="category-tab">
             <div class="tab-header clearfix">

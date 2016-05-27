@@ -68,7 +68,7 @@
 </div>
 <!-- search -->
 <div class="wrap">
-    <form class="search-input" ng-submit="ajaxForm()" name="searchForm" ng-controller="searchController">
+    <form class="search-input" ng-submit="ajaxForm()" name="searchForm" ng-controller="searchFormController">
         <i class="fa fa-search" aria-hidden="true"></i>
         <input type="text" class="full-width" ng-model="input.keyword" required placeholder="find your private coach or lesson">
         <span class="zipcode">
@@ -124,14 +124,14 @@
 <!-- category -->
 <div class="wrap">
     <div class="section category-section" ng-repeat="hot in hots">
-        <a class="category-large" ng-href="#/list">
+        <a class="category-large" ng-href="#/list?category={{hot.name}}&category_id={{hot.catetory_id}}">
             <img ng-src="{{staticImageUrl+hot.big_image_01}}" class="hvr-bounce-in" alt="" err-src="../images/error.jpg">
             <div class="category-caption large">
                 <h3 class="text-ellipsis">{{hot.name}}</h3>
                 <span class="block">{{hot.sub_title}}</span>
             </div>
         </a>
-        <a class="category-small" ng-href="#/detail" ng-repeat="single in hot.Courses">
+        <a class="category-small" ng-href="#/detail?course_id={{single.course_id}}" ng-repeat="single in hot.Courses">
             <img ng-src="{{staticImageUrl + single.big_coach_image}}" class="hvr-bounce-in" alt="" err-src="../images/error.jpg">
             <div class="category-caption">
                 <h3 class="text-ellipsis">{{single.title}}</h3>

@@ -4,6 +4,7 @@ angular.module("Skillopedia", [
 		// "mobile-angular-ui",
 		// "mobile-angular-ui.core",
 		"LocalStorageModule",
+		"ngSanitize",
 		// "flow",
 		// "timer"
 	])
@@ -15,7 +16,7 @@ angular.module("Skillopedia", [
 			controllername = controllername + "Controller";
 			$routeProvider.when("/" + path, {
 				templateUrl: "templates/" + path + ".html",
-				reloadOnSearch: false,
+				reloadOnSearch: true,
 				controller: controllername
 			})
 		})

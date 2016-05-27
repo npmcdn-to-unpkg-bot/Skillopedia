@@ -31,6 +31,9 @@
  			type: 'inline'
  		}, 0);
  	}
+ 	var close_popup_signin = function() {
+ 		$.magnificPopup.close();
+ 	}
  	return {
  		init: function() {
  			$rootScope.$on("$routeChangeStart", routeChangeStart);
@@ -53,6 +56,9 @@
  			}
  			$rootScope.go = function(path) {
  				$location.path(path);
+ 			}
+ 			$rootScope.close_popup_signin = function() {
+ 				close_popup_signin();
  			}
  			$rootScope.staticImageUrl = config.imageUrl;
  		}
