@@ -60,6 +60,19 @@ angular.module("Skillopedia").factory("skillopediaServices", function($http, loc
 			}).then(function(data) {
 				return data.data;
 			});
+		},
+		// upload image ,return image url
+		upload: function(input) {
+			return $http({
+				// by dribehance <dribehance.kksdapp.com>
+				url: config.url + "/app/Experiences/updatePic",
+				method: "GET",
+				params: angular.extend({}, config.common_params, {
+					token: localStorageService.get("token")
+				}, input)
+			}).then(function(data) {
+				return data.data;
+			});
 		}
 	}
 });

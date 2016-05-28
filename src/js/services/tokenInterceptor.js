@@ -1,5 +1,5 @@
 // by dribehance <dribehance.kksdapp.com>
-angular.module("Skillopedia").factory("tokenInterceptor", function($location, $q, localStorageService, errorServices, config) {
+angular.module("Skillopedia").factory("tokenInterceptor", function($location, $rootScope, $q, localStorageService, errorServices, config) {
 	return {
 		// optional method
 		'request': function(config) {
@@ -27,7 +27,8 @@ angular.module("Skillopedia").factory("tokenInterceptor", function($location, $q
 			if (response.data.respcode == config.request.TOKEN_INVALID) {
 				console.log("TOKEN_INVALID")
 				localStorageService.remove("token");
-				$location.path("/signIn").replace();
+				// $location.path("/index").replace();
+				$rootScope.popup_signin();
 				return defer.promise;
 			} else {
 				return response;

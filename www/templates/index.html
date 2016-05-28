@@ -9,9 +9,21 @@
     <span class="nav-btn">
         Skillopedia<i class="fa fa-angle-down hover-spin-reverse" aria-hidden="true"></i>
     </span>
-    <div class="nav-action">
-        <span class="signin-btn btn btn-black" ng-click="signin()">Sign In</span>
-        <span class="signup-btn btn btn-black" ng-click="signup()">Sign Up</span>
+    <div class="nav-action" ng-controller="headerController">
+        <span class="signin-btn btn btn-black" ng-click="signin()" ng-if="!is_signin()">Sign In</span>
+        <span class="signup-btn btn" ng-click="signup()" ng-if="!is_signin()">Sign Up</span>
+        <span class="logout-btn" ng-click="show_menu()" ng-if="is_signin()"><img ng-src="{{staticImageUrl + user.image_01}}" alt="" err-src="../images/example_7.png"></span>
+        <div class="dropdown-menu">
+            <a class="menu-item" ng-href="#/course">
+                <i class="fa fa-user" aria-hidden="true"></i>个人中心
+            </a>
+            <a class="menu-item" ng-href="#/shoppingcart">
+                <i class="fa fa-shopping-cart" aria-hidden="true"></i>购物车
+            </a>
+            <a class="menu-item" ng-click="logout()">
+                <i class="fa fa-sign-out" aria-hidden="true"></i>退出登录
+            </a>
+        </div>
     </div>
     <div class="dropdown clearfix">
         <div class="dropdown-section">

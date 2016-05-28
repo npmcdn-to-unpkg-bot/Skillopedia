@@ -25,6 +25,7 @@ angular.module("Skillopedia").controller("signinController", function($scope, $r
 				toastServices.hide();
 				if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
 					localStorageService.set("token", data.token);
+					$rootScope.user = data;
 					$rootScope.close_popup_signin();
 				} else {
 					errorServices.autoHide(data.message);
