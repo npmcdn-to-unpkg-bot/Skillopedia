@@ -114,14 +114,15 @@
     width: 50px;
     border-bottom: 4px solid @gray-base;
 }
-.nav .dropdown-menu {
+.dropdown-menu {
     position: absolute;
     right: 0;
     width: 200px;
     border-radius: 5px;
-    background-color: fade(white, 50%);
+    background-color: fade(white, 80%);
     visibility: hidden;
     opacity: 0;
+    z-index: 1000;
     .menu-item {
         display:block;
         padding: 8px;

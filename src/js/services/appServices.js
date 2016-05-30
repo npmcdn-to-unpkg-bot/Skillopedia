@@ -39,18 +39,18 @@
  			$rootScope.$on("$routeChangeStart", routeChangeStart);
  			$rootScope.$on("$routeChangeSuccess", routeChangeSuccess);
  			$rootScope.$on("$routeChangeError", routeChangeError);
- 			$rootScope.signin = function() {
- 				$rootScope.sign = "signin";
- 				popup_signin();
- 			}
- 			$rootScope.signup = function() {
- 				$rootScope.sign = "signup";
- 				popup_signin();
- 			}
- 			$rootScope.forget = function() {
- 				$rootScope.sign = "forget";
- 				popup_signin();
- 			}
+			$rootScope.signin = function() {
+				$rootScope.sign = "signin";
+				popup_signin();
+			}
+			$rootScope.signup = function() {
+				$rootScope.sign = "signup";
+				popup_signin();
+			}
+			$rootScope.forget = function() {
+				$rootScope.sign = "forget";
+				popup_signin();
+			}
  			$rootScope.back = function() {
  				$window.history.back();
  			}

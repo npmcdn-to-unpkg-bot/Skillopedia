@@ -29,6 +29,7 @@ angular.module("Skillopedia").constant("config", {
 		"fillinorder",
 		"index",
 		"list",
+		"landing",
 		"messages",
 		"order",
 		"order_booking",

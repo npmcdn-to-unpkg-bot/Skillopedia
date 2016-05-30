@@ -17,7 +17,20 @@ angular.module("Skillopedia", [
 			$routeProvider.when("/" + path, {
 				templateUrl: "templates/" + path + ".html",
 				reloadOnSearch: true,
-				controller: controllername
+				controller: controllername,
+				resolve: {
+					user: function($q, $location, localStorageService) {
+						var resolve_path = ["account", "shoppingcart", "orders", "order", "order_booking", "order_comment", "coach", "authenication", "orders_management", "order_management", "order_confirm", "order_cancel", "order_finish", "order_refund", "schedule", "steps_publish", "favourite", "messages", "coupons"],
+							defer = $q.defer();
+						if (resolve_path.includes(path) && !localStorageService.get("token")) {
+							defer.reject();
+							$location.path("/signin").replace();
+							return;
+						}
+						defer.resolve();
+						return defer.promise;
+					}
+				}
 			})
 		})
 		$routeProvider.otherwise("/index");
