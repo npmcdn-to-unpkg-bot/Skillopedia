@@ -58,6 +58,7 @@ angular.module("Skillopedia").factory("coursesServices", function($http, localSt
 				return data.data;
 			});
 		},
+		// 新建课程 两级分类
 		query_category: function(input) {
 			return $http({
 				// by dribehance <dribehance.kksdapp.com>
@@ -135,6 +136,18 @@ angular.module("Skillopedia").factory("coursesServices", function($http, localSt
 			return $http({
 				// by dribehance <dribehance.kksdapp.com>
 				url: config.url + "/app/CourseManage/editCourseCertification",
+				method: "GET",
+				params: angular.extend({}, config.common_params, {
+					token: localStorageService.get("token")
+				}, input)
+			}).then(function(data) {
+				return data.data;
+			});
+		},
+		remove_certification: function(input) {
+			return $http({
+				// by dribehance <dribehance.kksdapp.com>
+				url: config.url + "/app/CourseManage/deleteCourseCertification",
 				method: "GET",
 				params: angular.extend({}, config.common_params, {
 					token: localStorageService.get("token")

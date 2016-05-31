@@ -1,4 +1,4 @@
-<link href="lib/css/account.css" rel="stylesheet"> 
+<link href="lib/css/account.css" rel="stylesheet">
 <!-- header -->
 <div ng-include="'templates/header.html'"></div>
 <div class="wrap">
@@ -6,27 +6,29 @@
         <!-- sidebar -->
         <div ng-include="'templates/sidebar.html'" class="sidebar-wrap"></div>
         <div class="content-wrap">
-        	<div class="tabs clearfix">
+            <div class="tabs clearfix">
                 <a class="tab-item pull-left active">Account</a>
             </div>
-
-            <div class="title-input">
-                <div class="namewrap">
-                    <span>name</span>
-                    <div class="u-input"> 
-						<input type="text" name="" id="" value="" class="full-width" placeholder=""/>
-					</div>
+            <div class="account-center">
+                <div class="account-center-left" flow-init="{singleFile:true}" flow-file-added="!!{png:1,gif:1,jpg:1,jpeg:1}[$file.getExtension()]" flow-attrs="{accept:'image/*'}" ng-controller="uploadAvatarController">
+                    <div class="account-avatar">
+                        <img ng-src="{{staticImageUrl + user.image_01}}" err-src="../images/example_7.png" flow-img="$flow.files[0]" alt="">
+                    </div>
+                    <button class="btn btn-second btn-block" ng-if="$flow.files.length==0" flow-btn >Upload</button>
+                    <button class="btn btn-second btn-block" ng-if="$flow.files.length>0" flow-btn >Change</button>
                 </div>
-            </div>
-            <div class="title-input">
-            	<span>avatat</span>
-            	<a class="images" href="">
-                    <img src="images/head.png" class="full-width">
-            	</a>
-
-            </div>
-            <div class="account-btn">
-                <a class="btn-edit" href="" >comfirm</a> 
+                <form ng-submit="ajaxForm()" name="nicknameForm" class="account-center-right">
+                    <p class="">
+                        当前登录emial:{{user.email}}
+                    </p>
+                    <p>
+                        <span ng-if="user.agent_level == 1">身份：普通用户</span><span ng-if="user.agent_level == 2">身份：教练</span>
+                    </p>
+                    <div class="skill-input">
+                        <input type="text" ng-model="input.nickname" placeholder="enter your nickname" class="full-width">
+                    </div>
+                    <button class="btn btn-second" type="submit">Update nickname</button>
+                </form>
             </div>
         </div>
     </div>

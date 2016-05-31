@@ -6,12 +6,12 @@
     <div class="section">
         <div class="crease_coursewrap">
             <!-- 新建课程第1步 -->
-            <div class="step" ng-if="step == 1">
+            <form class="step" ng-show="step == 1" name="createFormCourse" ng-submit="ajaxForm()">
                 <img ng-src="../images/step_1.png" class="full-width" alt="">
                 <div class="title-input">
                     <span>Course Title</span>
                     <div class="course-input">
-                        <input type="text" placeholder="enter course title" class="full-width" />
+                        <input type="text" name="title" ng-model="input.title" required placeholder="enter course title" class="full-width" />
                     </div>
                 </div>
                 <div class="title-input">
@@ -20,18 +20,14 @@
                     <div class="m-session pull-left clearfix">
                         <div class="">
                             <div class="input-select">
-                                <select name="">
-                                    <option value="">Sports</option>
-                                </select>
+                                <select name="category_1" ng-model="input.category_1" ng-options="c1.name for c1 in category_1"></select>
                                 <i class="fa fa-caret-down" aria-hidden="true"></i>
                             </div>
                         </div>
                     </div>
                     <div class="m-session pull-right clearfix">
                         <div class="input-select">
-                            <select name="">
-                                <option value="">Football</option>
-                            </select>
+                            <select name="category_2" ng-model="input.category_2" ng-options="c2.name for c2 in category_2[input.category_1.name]"></select>
                             <i class="fa fa-caret-down" aria-hidden="true"></i>
                         </div>
                     </div>
@@ -39,26 +35,28 @@
                 <div class="title-input">
                     <span>Certification</span>
                     <div class="course-itemwrap clearfix">
-                        <div class="course-items pull-left">
-                            <div class="course-item">
-                                <div class="imgwrap">
-                                    <img src="images/about_bg.png" class="full-width full-height" />
+                        <div class="course-items pull-left" ng-repeat="cert in input.certs">
+                            <div class="course-item" ng-form="certForm">
+                                <div class="imgwrap" flow-init="{singleFile:true}" flow-attrs="{accept:'image/*'}" ng-controller="uploadController">
+                                    <img ng-src="images/about_bg.png" flow-btn flow-img="$flow.files[0]" class="full-width full-height" />
+                                    <input type="hidden" name="cert_url" ng-model="cert.url" required>
                                 </div>
                                 <div class="course-input">
-                                    <input type="text" name="" id="" value="" class="full-width" placeholder="Certification Name" />
+                                    <input type="text" name="cert_title" ng-model="cert.title" required class="full-width" placeholder="Certification Name" />
                                 </div>
                                 <div class="course-input">
-                                    <input type="text" name="" id="" value="" class="full-width" placeholder="Effective Time Certification" />
+                                    <input type="text" name="cert_time" ng-model="cert.time" required class="full-width" placeholder="Effective Time Certification" />
                                 </div>
                                 <div class="course-input">
-                                    <input type="text" name="" id="" value="" class="full-width" placeholder="Institue" />
+                                    <input type="text" name="cert_institute" ng-model="cert.institute" required class="full-width" placeholder="Institute" />
                                 </div>
-                                <div class="course-remove">remove</div>
-                                <div class="course-update pull-right">update</div>
+                                <a class="btn btn-danger" ng-click="remove_cert(cert)">remove</a>
+                                <a class="btn btn-success pull-right" ng-if="cert.id==''" ng-click="ajaxCert(cert)" ng-disabled="certForm.$invalid">upload</a>
+                                <a class="btn btn-warning pull-right" ng-if="cert.id!=''" ng-click="editCert(cert)" ng-disabled="certForm.$invalid">update</a>
                             </div>
                         </div>
                         <div class="course-items pull-left">
-                            <div class="course-item">
+                            <div class="course-item" ng-click="add_cert()">
                                 <div class="imgwrap">
                                     <img src="images/upload.png" class="full-width full-height" />
                                 </div>
@@ -68,21 +66,24 @@
                 </div>
                 <div class="title-input">
                     <span class="clearfix">Overview</span>
-                    <textarea class="full-width" rows="8" placeholder="overview"></textarea>
+                    <textarea class="full-width" rows="8" ng-model="input.overview" required placeholder="overview"></textarea>
                 </div>
                 <div class="title-input">
                     <span>cover</span>
-                    <div class="open-img">
+                    <div class="open-img" ng-repeat="cover in input.covers track by $index" ng-form="coverForm">
+                        <img ng-src="{{staticImageUrl + cover}}" class="full-width full-height" err-src="../images/error.jpg" alt="">
+                        <input type="hidden" name="cover" ng-model="cover" required>
+                        <a ng-click="remove_cover(cover)" class="remove"><i class="fa fa-times"></i></a>
+                    </div>
+                    <div class="open-img" flow-init="{singleFile:true}" ng-controller="uploadCoversController" flow-btn>
                         <img ng-src="../images/upload.png" class="full-width full-height" alt="">
                     </div>
                 </div>
                 <div class="title-input">
-                    <span>video<div class="pull-right"><i class="fa fa-plus-circle" aria-hidden="true" style="font-size: 26px;color: #00E370;"></i></div></span>
-                    <div class="remove-input">
-                        <input type="text" name="" id="" value="" class="full-width" placeholder="http://www.youtube.com" />
-                        <a href="">
-                            <div class="course-videoremove">remove</div>
-                        </a>
+                    <span>video,eg <code class="text-primary">http://www.youtube.com/watch?v=xxx</code><div class="pull-right" ng-click="add_video()"><i class="fa fa-plus-circle" aria-hidden="true" style="font-size: 26px;color: #00E370;"></i></div></span>
+                    <div class="remove-input" ng-repeat="video in input.videos" ng-form="videoForm">
+                        <input type="text" ng-model="video" class="full-width" placeholder="http://www.youtube.com" />
+                        <div class="course-videoremove" ng-click="remove_video(video)">remove</div>
                     </div>
                 </div>
                 <div class="section text-center">
@@ -90,7 +91,7 @@
                 </div>
             </div>
             <!-- 新建课程第2步 -->
-            <div class="step" ng-if="step == 2">
+            <div class="step" ng-show="step == 2">
                 <!-- 步骤框 -->
                 <img ng-src="../images/step_2.png" class="full-width" alt="">
                 <div class="title-input">
@@ -178,7 +179,7 @@
                     </div>
             </div>
             <!-- 新建课程第3步 -->
-            <div class="step" ng-if="step == 3">
+            <div class="step" ng-show="step == 3">
                 <img ng-src="../images/step_3.png" class="full-width" alt="">
                 <div class="title-input">
                     <span>Course Title</span>
@@ -206,7 +207,7 @@
                         </div>
                     </div>
                 </div>
-                <div ng-if="location_mode == 'preview'">
+                <div ng-show="location_mode == 'preview'">
                     <div class="title-input">
                         <span>Location</span>
                         <div class="clearfix">
@@ -224,7 +225,7 @@
                         <button class="btn btn-success col-xs-3 btn-md col-xs-offset-1">Finsh</button>
                     </div>
                 </div>
-                <div ng-if="location_mode == 'edit'">
+                <div ng-show="location_mode == 'edit'">
                     <div class="title-input">
                         <span>Location</span>
                         <div class="course-input">
@@ -260,7 +261,7 @@
                     travel to session if you choose yes,means you are agree with travel terms.
                 </div>
             </div>
-        </div>
+        </form>
     </div>
 </div>
 <!-- footer -->

@@ -87,6 +87,21 @@ angular.module("Skillopedia").factory("userServices", function($http, localStora
 				return data.data;
 			});
 		},
+		sync: function() {
+			$rootScope.user = $rootScope.user || {};
+			var self = this;
+			self.query_basicinfo({}).then(function(data) {
+				if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
+					$rootScope.user = angular.extend({}, $rootScope.user, data.Result.user);
+				} else {
+					self.logout();
+				}
+			});
+		},
+		logout: function() {
+			$rootScope.user = {};
+			localStorageService.remove("token");
+		},
 		// 个人主页 基本信息，课程列表，评论列表，经历列表
 		query_user_by_id: function(input) {
 			return $http({

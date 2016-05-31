@@ -5,7 +5,7 @@ angular.module("Skillopedia", [
 		// "mobile-angular-ui.core",
 		"LocalStorageModule",
 		"ngSanitize",
-		// "flow",
+		"flow",
 		// "timer"
 	])
 	.config(function($routeProvider, $httpProvider, $locationProvider, localStorageServiceProvider, config) {
@@ -25,6 +25,17 @@ angular.module("Skillopedia", [
 						if (resolve_path.includes(path) && !localStorageService.get("token")) {
 							defer.reject();
 							$location.path("/signin").replace();
+							return;
+						}
+						defer.resolve();
+						return defer.promise;
+					},
+					authenication: function($rootScope, $q, $location, localStorageService) {
+						var resolve_path = ["coach"],
+							defer = $q.defer();
+						if (resolve_path.includes(path) && $rootScope.user.agent_level) {
+							defer.reject();
+							$location.path("/authenication").replace();
 							return;
 						}
 						defer.resolve();

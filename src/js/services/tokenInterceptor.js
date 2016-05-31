@@ -24,11 +24,10 @@ angular.module("Skillopedia").factory("tokenInterceptor", function($location, $r
 				return response;
 			}
 			// server response
-			if (response.data.respcode == config.request.TOKEN_INVALID) {
+			if (response.data.code == config.request.TOKEN_INVALID) {
 				console.log("TOKEN_INVALID")
 				localStorageService.remove("token");
-				// $location.path("/index").replace();
-				$rootScope.popup_signin();
+				$location.path("/landing").replace();
 				return defer.promise;
 			} else {
 				return response;
