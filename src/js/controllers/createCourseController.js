@@ -1,5 +1,5 @@
 // by dribehance <dribehance.kksdapp.com>
-angular.module("Skillopedia").controller("createCourseController", function($scope, $sce, $timeout, filterFilter, coursesServices, errorServices, toastServices, localStorageService, config) {
+angular.module("Skillopedia").controller("createCourseController", function($scope, $rootScope, $sce, $timeout, filterFilter, coursesServices, errorServices, toastServices, localStorageService, config) {
 	$scope.input = {};
 	$scope.step = 1;
 	$scope.show_step = function(step) {
@@ -151,8 +151,10 @@ angular.module("Skillopedia").controller("createCourseController", function($sco
 	};
 	// 第二步
 	// 课程时长
-	$scope.course_durations = ["60min"];
+	$scope.course_durations = ["60"];
 	$scope.input.course_duration = $scope.course_durations[0];
+	// teaching since
+	$scope.input.teaching_since = "";
 	// 课程费用
 	$scope.input.rate = "";
 	// 教育年限
@@ -220,7 +222,7 @@ angular.module("Skillopedia").controller("createCourseController", function($sco
 		discount.mode = "edit";
 	};
 	// 第三步
-	$scope.input.travel_to_session = "yes";
+	$scope.input.travel_to_session = "1";
 	$scope.input.distance = "";
 	$scope.input.traffic_cost = "";
 	$scope.input.street = "";
@@ -254,7 +256,99 @@ angular.module("Skillopedia").controller("createCourseController", function($sco
 	};
 	// 提交表单 最终创建课程
 	$scope.ajaxForm = function() {
-		console.log($scope.input.certs)
+		var discount_onetion_pur_money_01, discount_price_01, discount_onetion_pur_money_02, discount_price_02, discount_onetion_pur_money_03, discount_price_03;
+		if ($scope.input.discounts.length > 0) {
+			discount_onetion_pur_money_01 = $scope.input.discounts[0].purchase;
+			discount_price_01 = $scope.input.discounts[0].off;
+		}
+		if ($scope.input.discounts.length > 1) {
+			discount_onetion_pur_money_02 = $scope.input.discounts[0].purchase;
+			discount_price_02 = $scope.input.discounts[0].off;
+		}
+		if ($scope.input.discounts.length > 2) {
+			discount_onetion_pur_money_03 = $scope.input.discounts[0].purchase;
+			discount_price_03 = $scope.input.discounts[0].off;
+		}
+		console.log({
+				course_id: $scope.course_id,
+				title: $scope.input.title,
+				category_01_id: $scope.input.category_1.id,
+				category_01_name: $scope.input.category_1.name,
+				category_02_id: $scope.input.category_2.id,
+				category_02_name: $scope.input.category_2.name,
+				overview: $scope.input.overview,
+				fileName: $scope.input.covers.join("#"),
+				vedioURL: $scope.input.videos.map(function(video) {
+					return video.url
+				}).join("#"),
+				session_length: $scope.input.course_duration,
+				session_rate: $scope.input.rate,
+				teaching_age: $scope.input.teaching_age,
+				teaching_since: $scope.input.teaching_since,
+				travel_to_session: $scope.input.travel_to_session,
+				travel_to_session_distance: $scope.input.distance,
+				travel_to_session_trafic_surcharge: $scope.input.traffic_cost,
+				city: $scope.input.state,
+				area: $scope.input.city,
+				address: $scope.input.street,
+				latitude: "0",
+				longitude: "0",
+				additional_partner: $scope.input.partner,
+				surcharge_for_each: $scope.input.surcharge,
+				discount_type: $scope.input.discount == "by_money" ? "2" : "1",
+				discount_onetion_pur_money_01: discount_onetion_pur_money_01,
+				discount_price_01: discount_price_01,
+				discount_onetion_pur_money_02: discount_onetion_pur_money_02,
+				discount_price_02: discount_price_02,
+				discount_onetion_pur_money_03: discount_onetion_pur_money_03,
+				discount_price_03: discount_price_03,
+			})
+			// return;
+		toastServices.show();
+		coursesServices.create_course({
+			course_id: $scope.course_id,
+			title: $scope.input.title,
+			category_01_id: $scope.input.category_1.id,
+			category_01_name: $scope.input.category_1.name,
+			category_02_id: $scope.input.category_2.id,
+			category_02_name: $scope.input.category_2.name,
+			overview: $scope.input.overview,
+			fileName: $scope.input.covers.join("#"),
+			vedioURL: $scope.input.videos.map(function(video) {
+				return video.url
+			}).join("#"),
+			session_length: $scope.input.course_duration,
+			session_rate: $scope.input.rate,
+			teaching_age: $scope.input.teaching_age,
+			teaching_since: $scope.input.teaching_since,
+			travel_to_session: $scope.input.travel_to_session,
+			travel_to_session_distance: $scope.input.distance,
+			travel_to_session_trafic_surcharge: $scope.input.traffic_cost,
+			city: $scope.input.state,
+			area: $scope.input.city,
+			address: $scope.input.street,
+			latitude: "0",
+			longitude: "0",
+			additional_partner: $scope.input.partner,
+			surcharge_for_each: $scope.input.surcharge,
+			discount_type: $scope.input.discount == "by_money" ? "2" : "1",
+			discount_onetion_pur_money_01: discount_onetion_pur_money_01,
+			discount_price_01: discount_price_01,
+			discount_onetion_pur_money_02: discount_onetion_pur_money_02,
+			discount_price_02: discount_price_02,
+			discount_onetion_pur_money_03: discount_onetion_pur_money_03,
+			discount_price_03: discount_price_03,
+		}).then(function(data) {
+			toastServices.hide()
+			if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
+				errorServices.autoHide(data.message);
+				$timeout(function() {
+					$rootScope.back();
+				}, 2000)
+			} else {
+				errorServices.autoHide(data.message);
+			}
+		})
 	}
 });
 // uploadController upload certs

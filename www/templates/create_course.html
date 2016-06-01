@@ -95,11 +95,19 @@
                 <!-- 步骤框 -->
                 <img ng-src="../images/step_2.png" class="full-width" alt="">
                 <div class="title-input">
-                    <span>Session Length</span>
-                    <!-- 下拉框 -->
-                    <div class="course-select">
-                        <select name="course_duration" ng-model="input.course_duration" ng-options="course_duration for course_duration in course_durations"></select>
-                        <i class="fa fa-caret-down" aria-hidden="true"></i>
+                    <div class="m-session pull-left">
+                        <span>Session Length</span>
+                        <!-- 下拉框 -->
+                        <div class="course-select">
+                            <select name="course_duration" ng-model="input.course_duration" ng-options="course_duration for course_duration in course_durations"></select>
+                            <i class="fa fa-caret-down" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                    <div class="m-session pull-right">
+                        <span>Teaching Since</span>
+                        <div class="u-input">
+                            <input type="text" name="teaching_since" ng-model="input.teaching_since" ng-required="true" class="full-width" placeholder="teaching since xx" class="full-width" />
+                        </div>
                     </div>
                 </div>
                 <!-- session -->
@@ -155,14 +163,14 @@
                                     <span>{{discount.message}} {{discount.unit}} {{discount.purchase||"xxx"}}</span>
                                     <span>Discount {{discount.unit}} {{discount.off||"xxx"}}</span>
                                 </div>
-                                <div class="course-input" >
+                                <div class="course-input">
                                     <input type="text" class="full-width" name="purchase" ng-model="discount.purchase" ng-required="true" placeholder="{{discount.message}} {{discount.unit}}" />
                                 </div>
                                 <div class="course-input">
                                     <input type="text" class="full-width" name="off" ng-model="discount.off" ng-required="true" placeholder="Discount {{discount.unit}}" />
                                 </div>
                                 <!-- <div class="course-comfirm" ng-if="money.mode=='edit'" ng-click="confirm_discount(money)">comfirm</div>-->
-                                <div class="course-edit" ng-click="remove_discount(discount)">remove</div> 
+                                <div class="course-edit" ng-click="remove_discount(discount)">remove</div>
                             </div>
                         </div>
                         <div class="course-items pull-left">
@@ -185,12 +193,12 @@
                 <div class="title-input">
                     <span>Travel to Sessions</span>
                     <div class="m-check clearfix">
-                        <label class="u-check" ng-class="{'text-primary':input.travel_to_session == 'yes'}">
-                            <input type="radio" class="hide" ng-model="input.travel_to_session" value="yes">
+                        <label class="u-check" ng-class="{'text-primary':input.travel_to_session == '1'}">
+                            <input type="radio" class="hide" ng-model="input.travel_to_session" value="1">
                             <i class="btn fa fa-circle-o"></i>Yes,i am willing to travel to session
                         </label>
-                        <label class="u-check" ng-class="{'text-primary':input.travel_to_session == 'noop'}">
-                            <input type="radio" class="hide" ng-model="input.travel_to_session" value="noop">
+                        <label class="u-check" ng-class="{'text-primary':input.travel_to_session == '0'}">
+                            <input type="radio" class="hide" ng-model="input.travel_to_session" value="0">
                             <i class="btn fa fa-circle-o"></i> Noop,i am not willing to travel session
                         </label>
                     </div>
