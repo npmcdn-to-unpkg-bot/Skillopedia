@@ -289,6 +289,7 @@
     vertical-align: middle;
     display: inline-block;
     border-radius: 3px;
+    cursor: pointer;
 }
 
 .course-next,

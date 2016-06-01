@@ -1,18 +1,11 @@
 // by dribehance <dribehance.kksdapp.com>
-angular.module("Skillopedia").controller("createCourseController", function($scope, coursesServices, errorServices, toastServices, localStorageService, config) {
+angular.module("Skillopedia").controller("createCourseController", function($scope, $sce, $timeout, filterFilter, coursesServices, errorServices, toastServices, localStorageService, config) {
 	$scope.input = {};
 	$scope.step = 1;
 	$scope.show_step = function(step) {
-		$scope.step = step;
-	}
-	$scope.location_mode = "edit";
-	$scope.save = function() {
-		$scope.location_mode = "preview";
-	}
-	$scope.edit = function() {
-		$scope.location_mode = "edit";
-	};
-	// 获取新建课程id
+			$scope.step = step;
+		}
+		// 获取新建课程id
 	toastServices.show();
 	coursesServices.prapare_create_course().then(function(data) {
 		toastServices.hide()
@@ -139,16 +132,125 @@ angular.module("Skillopedia").controller("createCourseController", function($sco
 		})
 	};
 	// video 视频路径
-	$scope.input.videos = [];
+	$scope.input.videos = [{
+		id: new Date().getTime(),
+		url: ""
+	}];
 	// 增加视频输入
 	$scope.add_video = function() {
-		$scope.input.videos.push("http://");
-		console.log($scope.input.videos);
+		var video = {
+			id: new Date().getTime(),
+			url: "",
+		}
+		$scope.input.videos.push(video);
 	};
 	$scope.remove_video = function(video) {
 		$scope.input.videos = $scope.input.videos.filter(function(v) {
 			return video != v;
 		})
+	};
+	// 第二步
+	// 课程时长
+	$scope.course_durations = ["60min"];
+	$scope.input.course_duration = $scope.course_durations[0];
+	// 课程费用
+	$scope.input.rate = "";
+	// 教育年限
+	$scope.input.teaching_age = "";
+	// addtional partner
+	$scope.input.partner = "";
+	$scope.input.surcharge = "";
+	// 打折方式
+	// unit:["Money","Amount"]
+	$scope.input.discount = "by_money";
+	$scope.input.discounts = [{
+		message: "One-time Purchase",
+		unit: "Money",
+		purchase: "",
+		discount: ""
+	}];
+	// 增加打折输入
+	$scope.add_discount = function() {
+		var discount = {
+			message: "One-time Purchase",
+			unit: "Money",
+			purchase: "",
+			off: ""
+		}
+		if ($scope.input.discounts.length > 3) {
+			return;
+		}
+		if ($scope.input.discount == 'by_amount') {
+			discount.unit = "Amount";
+		}
+		$scope.input.discounts.push(discount);
+	}
+	$scope.remove_discount = function(discount) {
+		$scope.input.discounts = $scope.input.discounts.filter(function(d) {
+			return discount != d;
+		})
+	}
+	$scope.$watch("input.discount", function(n, o) {
+		if (n === o) {
+			return;
+		}
+		var unit = "Money";
+		if (n == "by_amount") {
+			unit = "Amount";
+		}
+		$scope.input.discounts = [{
+			message: "One-time Purchase",
+			unit: unit,
+			purchase: "",
+			discount: ""
+		}];
+	})
+	$scope.confirm_discount = function(discount) {
+		if ($scope.input.discount == 'by_money' && discount.money != "" && discount.off != "") {
+			discount.mode = "preview";
+			return;
+		}
+		if ($scope.input.discount == 'by_amount' && discount.amount != "" && discount.off != "") {
+			discount.mode = "preview";
+			return;
+		}
+		errorServices.autoHide("请填写");
+	}
+	$scope.edit_discount = function(discount) {
+		discount.mode = "edit";
+	};
+	// 第三步
+	$scope.input.travel_to_session = "yes";
+	$scope.input.distance = "";
+	$scope.input.traffic_cost = "";
+	$scope.input.street = "";
+	$scope.input.apt = "";
+	$scope.input.city = "";
+	$scope.input.state = "";
+	// zipcode
+	$scope.input.zipcode = "";
+	var suggestions = ["235689", "565237", "2356998", "53389"];
+	$scope.$watch("input.zipcode", function(n, o) {
+		$scope.input.suggestions = filterFilter(suggestions, n);
+	})
+	$scope.select = function(s) {
+		$scope.input.zipcode = s;
+		$timeout(function() {
+			$scope.input.suggestions = [];
+		}, 100)
+	};
+	$scope.location_mode = "edit";
+	$scope.save_location = function() {
+		$scope.location_mode = "preview";
+		$scope.map_url = $scope.get_map($scope.input.state, $scope.input.city, $scope.input.street, $scope.input.apt);
+	}
+	$scope.edit_location = function() {
+		$scope.location_mode = "edit";
+	};
+	// parse iframe map url
+	$scope.get_map = function(state, city, street, apt) {
+		var map_url = "https://maps.google.com/maps?q=" + state + city + street + apt + "&output=embed";
+		return $sce.trustAsResourceUrl(map_url);
 	};
 	// 提交表单 最终创建课程
 	$scope.ajaxForm = function() {
