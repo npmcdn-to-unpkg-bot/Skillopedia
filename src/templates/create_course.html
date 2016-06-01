@@ -264,7 +264,7 @@
                         <div class="u-input" style="position:relative">
                             <input type="text" name="zipcode" ng-model="input.zipcode" ng-required="true" class="full-width" placeholder="Zip code e.g. 94103" />
                             <div class="zipcode-suggestion" ng-if="input.zipcode && input.suggestions.length>0">
-                                <span class="suggestion-item" ng-repeat="suggestion in input.suggestions | filter:input.zipcode" ng-click="select(suggestion)">{{suggestion}}</span>
+                                <span class="suggestion-item" ng-repeat="suggestion in input.suggestions | filter:input.zipcode" ng-click="select(suggestion)">{{suggestion.zipcode}}</span>
                             </div>
                         </div>
                     </div>

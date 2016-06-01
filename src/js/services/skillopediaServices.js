@@ -73,6 +73,17 @@ angular.module("Skillopedia").factory("skillopediaServices", function($http, loc
 			}).then(function(data) {
 				return data.data;
 			});
-		}
+		},
+		// zipcode
+		query_zipcode: function(input) {
+			return $http({
+				// by dribehance <dribehance.kksdapp.com>
+				url: config.url + "/app/Home/cityList",
+				method: "GET",
+				params: angular.extend({}, config.common_params, input)
+			}).then(function(data) {
+				return data.data;
+			});
+		},
 	}
 });

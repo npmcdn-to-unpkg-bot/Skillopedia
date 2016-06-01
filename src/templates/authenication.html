@@ -10,19 +10,19 @@
         	<div class="tabs clearfix">
                 <a class="tab-item pull-left active">Authenication</a>
             </div>
-            <div class="authen-step">
+            <form class="authen-step" ng-submit="ajaxForm()" name="authenForm">
                 <div class="title-input">
                     <div class="m-session pull-left">
                         <span>Name</span>
                         <div class="course-input">
-                            <input type="text" name="" id="" value="" class="full-width"/>
+                            <input type="text" name="realname" ng-model="input.realname" ng-required="true" placeholder="enter your realname" class="full-width"/>
                         </div>
                     </div>
                     
-                    <div class="m-session pull-right">
+                    <div class="m-session pull-left">
                         <span>Phone Number</span>
                         <div class="course-input">
-                            <input type="text" name="" id="" value="" class="full-width"/>
+                            <input type="text" name="telephone" ng-model="input.telephone" ng-required="true" placeholder="enter your phone number" class="full-width"/>
                         </div>
                     </div>
                 </div>
@@ -31,36 +31,33 @@
                     <div class="m-session pull-left">
                         <span>Gender</span>
                         <div class="input-select">
-                            <select name="">
-                                <option value=""></option>
+                            <select ng-model="input.gender" ng-required="true">
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
                             </select>
                             <i class="fa fa-caret-down" aria-hidden="true"></i>
                         </div>
                     </div>
-                    <div class="m-session pull-right">
+                    <div class="m-session pull-left">
                         <span>Date of Birth</span>
-                        <div class="input-select">
-                            <select name="">
-                                <option value=""></option>
-                            </select>
-                            <i class="fa fa-caret-down" aria-hidden="true"></i>
-                        </div>
-
+                        <input type="text" class="full-width pickadate" ng-model="input.date">
                     </div>
                 </div>
-                
+                <div class="title-input"><span>Government ID:</span></div>
                 <div class="title-input">
-                    <span>Government ID:</span>
-                    <div class="authen-images">
-                        <a class="images" href=""><img src="" class="full-width" alt=""></a>
-                        <a class="images" href=""><img src="" class="full-width" alt=""></a>
-                        <a class="images" href=""><img src="" class="full-width" alt=""></a>
-                        <a class="images" href=""><img src="" class="full-width" alt=""></a>
+                    <div class="m-session pull-left">
+                        <img ng-src="../images/example_12.png" class="full-width full-height" alt="">
                     </div>
-
+                    <div class="m-session pull-left">
+                        <img ng-src="../images/example_12.png" class="full-width full-height" alt="">
+                    </div>
+                    <div class="m-session pull-left">
+                        <img ng-src="../images/example_13.png" class="full-width full-height" alt="" style="max-width:367px;max-height:243px">
+                    </div>
+                    <div class="m-session pull-left">
+                        <img ng-src="../images/example_13.png" class="full-width full-height" alt="" style="max-width:367px;max-height:243px">
+                    </div>
                 </div>
-                
-                
                 <label>
                     Take a photo or selct one to upload you official ID,such as Driver license
                     passport.this information will not share with others. You should take your
@@ -69,12 +66,12 @@
                 <div class="nextbtn-addr">
                     <div class="authen-authen">AUTHEN</div>
                 </div>
-            </div>
+            </form>
             <!-- 教练认证中 -->
             <div class="authen-step">
                 <div class="authening">
                     <div class="authening-content">
-                        <a class="images" href=""><img src="" class="full-width" alt=""></a>
+                        <span><img ng-src="../images/notyet.png" alt=""></span>
                         <span>抱歉，</span>
                         <span>你还未成为SKILLOPEDIA!</span>
                         <span>你提交的资料审核不通过。</span>

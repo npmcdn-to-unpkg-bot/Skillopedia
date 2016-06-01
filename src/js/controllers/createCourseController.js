@@ -1,7 +1,7 @@
 // by dribehance <dribehance.kksdapp.com>
-angular.module("Skillopedia").controller("createCourseController", function($scope, $rootScope, $sce, $timeout, filterFilter, coursesServices, errorServices, toastServices, localStorageService, config) {
+angular.module("Skillopedia").controller("createCourseController", function($scope, $rootScope, $sce, $timeout, skillopediaServices, filterFilter, coursesServices, errorServices, toastServices, localStorageService, config) {
 	$scope.input = {};
-	$scope.step = 1;
+	$scope.step = 3;
 	$scope.show_step = function(step) {
 			$scope.step = step;
 		}
@@ -231,7 +231,16 @@ angular.module("Skillopedia").controller("createCourseController", function($sco
 	$scope.input.state = "";
 	// zipcode
 	$scope.input.zipcode = "";
-	var suggestions = ["235689", "565237", "2356998", "53389"];
+	var suggestions = [];
+	toastServices.show();
+	skillopediaServices.query_zipcode().then(function(data) {
+		toastServices.hide()
+		if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
+			suggestions = data.Result.CityBeans;
+		} else {
+			errorServices.autoHide(data.message);
+		}
+	})
 	$scope.$watch("input.zipcode", function(n, o) {
 		$scope.input.suggestions = filterFilter(suggestions, n);
 	})
@@ -269,41 +278,6 @@ angular.module("Skillopedia").controller("createCourseController", function($sco
 			discount_onetion_pur_money_03 = $scope.input.discounts[0].purchase;
 			discount_price_03 = $scope.input.discounts[0].off;
 		}
-		console.log({
-				course_id: $scope.course_id,
-				title: $scope.input.title,
-				category_01_id: $scope.input.category_1.id,
-				category_01_name: $scope.input.category_1.name,
-				category_02_id: $scope.input.category_2.id,
-				category_02_name: $scope.input.category_2.name,
-				overview: $scope.input.overview,
-				fileName: $scope.input.covers.join("#"),
-				vedioURL: $scope.input.videos.map(function(video) {
-					return video.url
-				}).join("#"),
-				session_length: $scope.input.course_duration,
-				session_rate: $scope.input.rate,
-				teaching_age: $scope.input.teaching_age,
-				teaching_since: $scope.input.teaching_since,
-				travel_to_session: $scope.input.travel_to_session,
-				travel_to_session_distance: $scope.input.distance,
-				travel_to_session_trafic_surcharge: $scope.input.traffic_cost,
-				city: $scope.input.state,
-				area: $scope.input.city,
-				address: $scope.input.street,
-				latitude: "0",
-				longitude: "0",
-				additional_partner: $scope.input.partner,
-				surcharge_for_each: $scope.input.surcharge,
-				discount_type: $scope.input.discount == "by_money" ? "2" : "1",
-				discount_onetion_pur_money_01: discount_onetion_pur_money_01,
-				discount_price_01: discount_price_01,
-				discount_onetion_pur_money_02: discount_onetion_pur_money_02,
-				discount_price_02: discount_price_02,
-				discount_onetion_pur_money_03: discount_onetion_pur_money_03,
-				discount_price_03: discount_price_03,
-			})
-			// return;
 		toastServices.show();
 		coursesServices.create_course({
 			course_id: $scope.course_id,
@@ -326,7 +300,9 @@ angular.module("Skillopedia").controller("createCourseController", function($sco
 			travel_to_session_trafic_surcharge: $scope.input.traffic_cost,
 			city: $scope.input.state,
 			area: $scope.input.city,
-			address: $scope.input.street,
+			street: $scope.input.street,
+			address: $scope.input.apt,
+			zipcode: $scope.input.zipcode,
 			latitude: "0",
 			longitude: "0",
 			additional_partner: $scope.input.partner,

@@ -55,7 +55,15 @@ angular.module("Skillopedia").controller("detailController", function($scope, $r
 		if (!$scope.course.city) {
 			return;
 		}
-		var map_url = "https://maps.google.com/maps?q=" + $scope.course.city + $scope.course.area + "&output=embed";
+		var map_url = "https://maps.google.com/maps?q=" + $scope.course.city + $scope.course.area + $scope.course.address + "&output=embed";
 		return $sce.trustAsResourceUrl(map_url);
+	};
+	// parse video url
+	$scope.get_video = function(video) {
+		if (video) {
+			// ?autoplay=0
+			var video = video.replace("watch?v=", "embed/");
+			return $sce.trustAsResourceUrl(video);
+		}
 	}
 })

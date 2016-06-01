@@ -297,6 +297,7 @@
     padding: 10px 100px;
     vertical-align: middle;
     display: inline-block;
+    cursor: pointer;
 }
 
 .authen-recertification {
@@ -304,6 +305,7 @@
     vertical-align: middle;
     display: inline-block;
     border-radius: 3px;
+    cursor: pointer;
 }
 
 .course-videoremove {
@@ -1324,11 +1326,11 @@
 .authen-images .images {
     display: inline-block;
     width: 40%;
-    height: 180px;
+    height: 188px;
     margin: 0 5px 5px 0;
     overflow: hidden;
-    border: 1px solid #ccc;
-    border-radius: 3px;
+    border: 1px solid #F3E7D9;
+    border-radius: 6px;
     -webkit-box-sizing: border-box;
     box-sizing: boder-box;
     overflow: hidden;
@@ -1341,7 +1343,9 @@
     -webkit-box-sizing: border-box;
     box-sizing: boder-box;
 }
-
+.authen-step .m-session:nth-child(even) {
+    margin-left: 15px;
+}
 .authen-step a {
     text-decoration: none;
     display: block;

@@ -113,6 +113,16 @@ angular.module("Skillopedia").factory("userServices", function($http, localStora
 				return data.data;
 			});
 		},
+		query_courses_by_user_id: function(input) {
+			return $http({
+				// by dribehance <dribehance.kksdapp.com>
+				url: config.url + "/app/PersonalHomepage/taCourseList",
+				method: "GET",
+				params: angular.extend({}, config.common_params, input)
+			}).then(function(data) {
+				return data.data;
+			});
+		},
 		query_comments_by_user_id: function(input) {
 			return $http({
 				// by dribehance <dribehance.kksdapp.com>

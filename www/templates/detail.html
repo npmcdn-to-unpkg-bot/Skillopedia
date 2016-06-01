@@ -28,7 +28,7 @@
                     <span class="pull-right">Session Duration: {{course.session_length}}min</span>
                 </p>
                 <div class="clearfix">
-                    <span class="pull-left">Group Session:since Jun 2007</span>
+                    <span class="pull-left">Group Session:Up to {{course.additional_partner}}</span>
                     <span class="pull-right">Teaches: Age {{course.teaching_age}} and up</span>
                 </div>
             </div>
@@ -43,7 +43,7 @@
                 </div>
                 <div class="videos">
                     <div class="video" ng-repeat="video in course.CourseBannerVedios | filter:{type:2}">
-                        <iframe src="{{video.URL_01}}?autoplay=0" frameborder="0" allowfullscreen></iframe>
+                        <iframe ng-src="{{get_video(video.URL_01)}}" frameborder="0" allowfullscreen></iframe>
                     </div>
                 </div>
             </div>
@@ -128,8 +128,8 @@
         </div>
         <div class="detail-right">
             <div class="settlement">
-                <p class="price text-center">$100</p>
-                <p class="text-center">per session 60min</p>
+                <p class="price text-center">{{course.session_rate|currency:"$"}}</p>
+                <p class="text-center">per session {{course.session_length}}min</p>
                 <!-- <p class="clearfix settlement-action">
                     购买数量
                     <span class="pull-right">
@@ -151,7 +151,7 @@
             <div class="section sm map-section">
                 <div class="section-title">Teaching location</div>
                 <iframe ng-src="{{get_map()}}" class="map" height="300px" frameborder="0" allowfullscreen></iframe>
-                <p>{{course.city+course.area}}</p>
+                <p>{{course.city+course.area+course.street}}</p>
                 <span>specific location will show up after your payment</span>
             </div>
         </div>

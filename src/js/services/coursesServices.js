@@ -1,6 +1,7 @@
 // by dribehance <dribehance.kksdapp.com>
 angular.module("Skillopedia").factory("coursesServices", function($http, localStorageService, config) {
 	return {
+		// 课程列表
 		query: function(input) {
 			return $http({
 				// by dribehance <dribehance.kksdapp.com>

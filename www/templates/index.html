@@ -76,7 +76,7 @@
         <span class="zipcode">
             <input type="text" class="full-width" ng-model="input.zipcode" required placeholder="zipcode">
             <div class="zipcode-suggestion" ng-if="input.zipcode && input.suggestions.length>0">
-                <span class="suggestion-item" ng-repeat="suggestion in input.suggestions | filter:input.zipcode" ng-click="select(suggestion)">{{suggestion}}</span>
+                <span class="suggestion-item" ng-repeat="suggestion in input.suggestions | filter:input.zipcode" ng-click="select(suggestion)">{{suggestion.zipcode}}</span>
             </div>
         </span>
         <button class="btn" type="submit" ng-disabled="searchForm.$invalid">Search</button>
