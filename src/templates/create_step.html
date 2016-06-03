@@ -4,7 +4,7 @@
 <div ng-include="'templates/header.html'"></div>
 <div class="wrap">
     <div class="section">
-        <form name="createStepForm" ng-submit="ajaxForm()">
+        <form name="createStepForm">
             <div class="tabs clearfix">
                 <a class="tab-item pull-left active">Write</a>
             </div>
@@ -30,8 +30,8 @@
                 </div>
             </div>
             <div class="create-step-btn">
-                <button class="btn btn-lg btn-default" ng-click="save_to_draft()" ng-disabled="createStepForm.$invalid">Save to draft</button>
-                <button type="submit" class="btn btn-publish btn-lg btn-primary" ng-disabled="createStepForm.$invalid">Publish</button>
+                <button type="button" class="btn btn-lg btn-default" ng-click="save_to_draft()" ng-disabled="createStepForm.$invalid">Save to draft</button>
+                <button type="submit" class="btn btn-publish btn-lg btn-primary" ng-click="ajaxForm()" ng-disabled="createStepForm.$invalid">Publish</button>
             </div>
         </form>
     </div>

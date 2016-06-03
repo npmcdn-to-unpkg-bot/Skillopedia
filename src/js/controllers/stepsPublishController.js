@@ -1,5 +1,5 @@
 // by dribehance <dribehance.kksdapp.com>
-angular.module("Skillopedia").controller("stepsPublishController", function($scope, $location, $window, userServices, errorServices, toastServices, localStorageService, config) {
+angular.module("Skillopedia").controller("stepsPublishController", function($scope, $location, $window, $timeout, $route, userServices, errorServices, toastServices, localStorageService, config) {
 	$scope.input = {};
 	$scope.input.step_status = "1";
 	$scope.$watch("input.step_status", function(n, o) {
@@ -28,5 +28,28 @@ angular.module("Skillopedia").controller("stepsPublishController", function($sco
 		e.stopPropagation();
 		var url = $location.protocol() + "://" + $location.host() + ":" + $location.port() + "/#/edit_step?id=" + id;
 		$window.open(url);
+	}
+	$scope.remove_step = function(id, e) {
+		e.preventDefault();
+		e.stopPropagation();
+		$scope.confirm.content = "确定删除吗？";
+		$scope.confirm.open();
+		$scope.confirm.cancle_callback = function() {}
+		$scope.confirm.ok_callback = function() {
+			toastServices.show();
+			userServices.remove_step({
+				experience_id: id
+			}).then(function(data) {
+				toastServices.hide()
+				if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
+					errorServices.autoHide(data.message);
+					$timeout(function() {
+						$route.reload();
+					}, 2000)
+				} else {
+					errorServices.autoHide(data.message);
+				}
+			})
+		}
 	}
 })
