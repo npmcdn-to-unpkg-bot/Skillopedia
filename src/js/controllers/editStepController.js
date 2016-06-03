@@ -1,5 +1,5 @@
 // by dribehance <dribehance.kksdapp.com>
-angular.module("Skillopedia").controller("editStepController", function($scope, $routeParams, userServices, errorServices, toastServices, localStorageService, config) {
+angular.module("Skillopedia").controller("editStepController", function($scope, $timeout, $routeParams, $window, userServices, errorServices, toastServices, localStorageService, config) {
 	$scope.input = {};
 	// 封面
 	// mock {id:"",url:""}
@@ -19,11 +19,12 @@ angular.module("Skillopedia").controller("editStepController", function($scope, 
 			return;
 		}
 		toastServices.show();
-		userServices.create_step({
+		userServices.edit_step({
 			title: $scope.input.title,
 			content: $scope.input.content,
 			status: "1",
-			fileName: $scope.input.covers.join("#")
+			fileName: $scope.input.covers.join("#"),
+			experience_id: $routeParams.id
 		}).then(function(data) {
 			toastServices.hide()
 			if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
