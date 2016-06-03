@@ -73,6 +73,9 @@
  				userServices.sync();
  			}
  			$rootScope.staticImageUrl = config.imageUrl;
+ 			$rootScope.sr = ScrollReveal({
+ 				delay: 200,
+ 			});
  		}
  	}
  });
