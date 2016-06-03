@@ -1,11 +1,17 @@
 // by dribehance <dribehance.kksdapp.com>
-angular.module("Skillopedia").controller("createCourseController", function($scope, $rootScope, $sce, $timeout, skillopediaServices, filterFilter, coursesServices, errorServices, toastServices, localStorageService, config) {
+angular.module("Skillopedia").controller("createCourseController", function($scope, $rootScope, $sce, $timeout, $location, $window, skillopediaServices, filterFilter, coursesServices, errorServices, toastServices, localStorageService, config) {
+	// 未认证，跳转认证
+	// agent_level 1:普通用户 2:教练
+	if ($rootScope.user.agent_level != "2") {
+		$location.path("authenication").replace();
+		return;
+	}
 	$scope.input = {};
-	$scope.step = 3;
+	$scope.step = 1;
 	$scope.show_step = function(step) {
-			$scope.step = step;
-		}
-		// 获取新建课程id
+		$scope.step = step;
+	};
+	// 获取新建课程id
 	toastServices.show();
 	coursesServices.prapare_create_course().then(function(data) {
 		toastServices.hide()
@@ -308,18 +314,19 @@ angular.module("Skillopedia").controller("createCourseController", function($sco
 			additional_partner: $scope.input.partner,
 			surcharge_for_each: $scope.input.surcharge,
 			discount_type: $scope.input.discount == "by_money" ? "2" : "1",
-			discount_onetion_pur_money_01: discount_onetion_pur_money_01,
-			discount_price_01: discount_price_01,
-			discount_onetion_pur_money_02: discount_onetion_pur_money_02,
-			discount_price_02: discount_price_02,
-			discount_onetion_pur_money_03: discount_onetion_pur_money_03,
-			discount_price_03: discount_price_03,
+			discount_onetion_pur_money_01: discount_onetion_pur_money_01 || "",
+			discount_price_01: discount_price_01 || "",
+			discount_onetion_pur_money_02: discount_onetion_pur_money_02 || "",
+			discount_price_02: discount_price_02 || "",
+			discount_onetion_pur_money_03: discount_onetion_pur_money_03 || "",
+			discount_price_03: discount_price_03 || "",
 		}).then(function(data) {
 			toastServices.hide()
 			if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
 				errorServices.autoHide(data.message);
 				$timeout(function() {
-					$rootScope.back();
+					// $rootScope.back();
+					$window.close();
 				}, 2000)
 			} else {
 				errorServices.autoHide(data.message);

@@ -8,30 +8,34 @@
         <div ng-include="'templates/sidebar.html'" class="sidebar-wrap"></div>
         <div class="content-wrap">
         	<div class="tabs clearfix">
-                <a class="tab-item pull-left active">Published</a>
-                <a class="tab-item pull-left">Draft</a>
+                <label class="tab-item pull-left" ng-class="{'active':input.step_status == '1'}">
+                    <input type="radio" class="hide" name="published" ng-model="input.step_status" value="1">Published
+                </label>
+                <label class="tab-item pull-left" ng-class="{'active':input.step_status == '2'}">
+                    <input type="radio" class="hide" name="draft" ng-model="input.step_status" value="2">Draft
+                </label>
                 <div class="btn-group pull-right clearfix">
-                    <a class="btn btn-success" ng-href="#/create_step">创建经历</a>
+                    <a class="btn btn-success" ng-href="#/create_step" target="_blank">创建经历</a>
                 </div>
             </div>
-            <a class="coach-item">
-                <div class="coach-avatar">
+            <a class="coach-item step-item" ng-repeat="step in steps" ng-href="#/step?id={{step.experience_id}}" target="_blank">
+                <!-- <div class="coach-avatar">
                     <img src="images/avatar.png" class="full-width" alt="">
-                </div>
+                </div> -->
                 <div class="coach-info">
                     <div class="step-info">
-                        <span>Expreience Title </span>
-                        <label>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem laudantium reiciendis, eos blanditiis. Beatae praesentium sint recusandae quam blanditiis molestias eligendi quidem dolores delectus non odio, amet reiciendis similique nihil.</label>
+                        <span>{{step.title}}</span>
+                        <label ng-bind-html="step.content"></label>
                         <em>
-                            Jun 12, 2015 
+                            {{step.post_time}}
                             <strong><i class="fa fa-pencil" aria-hidden="true"></i>Edit</strong>
                         </em>
                     </div>
                 </div>
             </a>
-
-           
-                <!-- <a ng-href="#/create_step" class="btn">发布经历</a> -->
+            <div class="section text-center" ng-if="steps.length == 0">
+                <span class="btn btn-lg">{{steps_message}}</span>
+            </div>
         </div>
     </div>
 </div>

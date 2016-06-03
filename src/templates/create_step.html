@@ -1,47 +1,40 @@
 <!-- header -->
-<link href="lib/css/account.css" rel="stylesheet"> 
+<link href="lib/css/account.css" rel="stylesheet">
 <link href="lib/css/media.css" rel="stylesheet" />
 <div ng-include="'templates/header.html'"></div>
 <div class="wrap">
     <div class="section">
-        <div class="writeWrap">
-        	<div class="tabs clearfix">
-        		<a class="tab-item pull-left active">Write</a>
-        	</div>
-
-        	<div class="title-input">
-        		<span>Experience Title</span>
-	        	<div class="course-input">
-					<input type="text" class="full-width"/>
-				</div>
-        	</div>
-        	<div class="title-input"> 
-        		<span>Experience Content</span>
-        		<div class="writeContent">
-        			say something you feel, you learn
-        		</div>
-        	</div>
-			
-			<div class="writeImages">
-				<a class="images" href="" >
-					<img ng-src="../images/banner.png" class="full-width full-height">
-					<i class="fa fa-times-circle-o text-primary" aria-hidden="true"></i>
-				</a>
-
-				<a class="images" href="">
-					<img ng-src="../images/banner.png" class="full-width full-height">
-					<i class="fa fa-times-circle-o text-primary" aria-hidden="true"></i>
-				</a>
-				<a class="images" href="">
-					<img ng-src="../images/upload.png" class="full-width full-height">
-				</a>
-			</div>
-			<div class="create-step-btn">
-                 <div class="btn btn-lg btn-default">Save to draft</div>
-                 <div class="btn btn-publish btn-lg btn-primary" ng-href="">Publish</div>
-			</div>
-        </div>
+        <form name="createStepForm" ng-submit="ajaxForm()">
+            <div class="tabs clearfix">
+                <a class="tab-item pull-left active">Write</a>
+            </div>
+            <div class="title-input">
+                <span>Experience Title</span>
+                <div class="course-input">
+                    <input type="text" name="title" ng-required="true" ng-model="input.title" placeholder="what about you experience" class="full-width" />
+                </div>
+            </div>
+            <div class="title-input">
+                <span>Experience Content</span>
+            </div>
+                <text-angular ng-model="input.content" class="text-angular"></text-angular>
+            <div class="title-input">
+                <span>cover</span>
+                <div class="open-img" ng-repeat="cover in input.covers track by $index" ng-form="coverForm">
+                    <img ng-src="{{staticImageUrl + cover}}" class="full-width full-height" err-src="../images/error.jpg" alt="">
+                    <input type="hidden" name="cover" ng-model="cover" required>
+                    <a ng-click="remove_cover(cover)" class="remove"><i class="fa fa-times"></i></a>
+                </div>
+                <div class="open-img" flow-init="{singleFile:true}" ng-controller="uploadCoversController" flow-btn>
+                    <img ng-src="../images/upload.png" class="full-width full-height" alt="">
+                </div>
+            </div>
+            <div class="create-step-btn">
+                <button class="btn btn-lg btn-default" ng-click="save_to_draft()" ng-disabled="createStepForm.$invalid">Save to draft</button>
+                <button type="submit" class="btn btn-publish btn-lg btn-primary" ng-disabled="createStepForm.$invalid">Publish</button>
+            </div>
+        </form>
     </div>
 </div>
 <!-- footer -->
-<div ng-include="'templates/footer.html'"></div> 
+<div ng-include="'templates/footer.html'"></div>

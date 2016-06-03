@@ -12,21 +12,21 @@
                 <a class="tab-item pull-left" ng-href="#/comments">Comments</a>
                 <a class="tab-item pull-left active">Steps</a>
             </div>
-            <a class="coach-item">
+            <a class="coach-item" ng-repeat="step in steps" ng-href="#/step?id={{step.experience_id}}" target="_blank">
                 <div class="coach-avatar">
-                    <img src="images/avatar.png" class="full-width" alt="">
+                    <img ng-src="{{staticImageUrl + step.image_01}}" class="full-width full-height" alt="" err-src="../images/example_7.png">
                 </div>
                 <div class="coach-info">
                     <div class="step-info">
-                        <span>Expreience Title </span>
-                        <label>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem laudantium reiciendis, eos blanditiis. Beatae praesentium sint recusandae quam blanditiis molestias eligendi quidem dolores delectus non odio, amet reiciendis similique nihil.</label>
-                        <em>
-                            Jun 12, 2015 
-                            <strong><i class="fa fa-pencil" aria-hidden="true"></i>Edit</strong>
-                        </em>
+                        <span>{{step.title}}</span>
+                        <label ng-bind-html="step.content"></label>
+                        <em>{{step.post_time}}</em>
                     </div>
                 </div>
             </a>
+            <div class="section text-center" ng-if="steps.length == 0">
+                <span class="btn btn-lg">{{steps_message}}</span>
+            </div>
         </div>
     </div>
 </div>

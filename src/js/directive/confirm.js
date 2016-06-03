@@ -16,9 +16,15 @@ angular.module("Skillopedia").directive('confirm', function() {
 				},
 				cancel: function() {
 					$(element).hide();
+					if (typeof scope.confirm.cancle_callback == "function") {
+						scope.confirm.cancle_callback();
+					}
 				},
 				ok: function() {
 					$(element).hide();
+					if (typeof scope.confirm.ok_callback == "function") {
+						scope.confirm.ok_callback();
+					}
 				}
 			}, scope.confirm);
 		}

@@ -1,5 +1,5 @@
 // by dribehance <dribehance.kksdapp.com>
-angular.module("Skillopedia").factory("userServices", function($http, localStorageService, config) {
+angular.module("Skillopedia").factory("userServices", function($rootScope, $http, localStorageService, config) {
 	return {
 		rsa_key: function(input) {
 			return $http({
@@ -102,7 +102,8 @@ angular.module("Skillopedia").factory("userServices", function($http, localStora
 			$rootScope.user = {};
 			localStorageService.remove("token");
 		},
-		// 个人主页 基本信息，课程列表，评论列表，经历列表
+		// 个人主页 
+		// 基本信息，课程列表，评论列表，经历列表
 		query_user_by_id: function(input) {
 			return $http({
 				// by dribehance <dribehance.kksdapp.com>
@@ -133,18 +134,18 @@ angular.module("Skillopedia").factory("userServices", function($http, localStora
 				return data.data;
 			});
 		},
-		// 列表
+		// 经历列表
 		query_steps_by_user_id: function(input) {
 			return $http({
 				// by dribehance <dribehance.kksdapp.com>
-				url: config.url + "/app/PersonalHomepage/taExperienceListt",
+				url: config.url + "/app/PersonalHomepage/taExperienceList",
 				method: "GET",
 				params: angular.extend({}, config.common_params, input)
 			}).then(function(data) {
 				return data.data;
 			});
 		},
-		// 详情
+		// 经历详情
 		query_step_by_user_id: function(input) {
 			return $http({
 				// by dribehance <dribehance.kksdapp.com>
@@ -155,49 +156,21 @@ angular.module("Skillopedia").factory("userServices", function($http, localStora
 				return data.data;
 			});
 		},
-		// 收藏 取消收藏 收藏列表
-		like: function(input) {
+		// 教练认证
+		authenication: function(input) {
 			return $http({
 				// by dribehance <dribehance.kksdapp.com>
-				url: config.url + "/app/Courses/addCollectionCourse",
+				url: config.url + "/app/UserCenter/authen",
 				method: "GET",
-				params: angular.extend({}, config.common_params, input)
+				params: angular.extend({}, config.common_params, {
+					token: localStorageService.get("token")
+				}, input)
 			}).then(function(data) {
 				return data.data;
 			});
 		},
-		unlike: function(input) {
-			return $http({
-				// by dribehance <dribehance.kksdapp.com>
-				url: config.url + "/app/Courses/deleteCollectionCourse",
-				method: "GET",
-				params: angular.extend({}, config.common_params, input)
-			}).then(function(data) {
-				return data.data;
-			});
-		},
-		favourite: function(input) {
-			return $http({
-				// by dribehance <dribehance.kksdapp.com>
-				url: config.url + "/app/Courses/myCollectionCourseList",
-				method: "GET",
-				params: angular.extend({}, config.common_params, input)
-			}).then(function(data) {
-				return data.data;
-			});
-		},
-		// 优惠券 过期优惠券 选择优惠券
-		query_coupons: function(input) {
-			return $http({
-				// by dribehance <dribehance.kksdapp.com>
-				url: config.url + "coupons",
-				method: "GET",
-				params: angular.extend({}, config.common_params, input)
-			}).then(function(data) {
-				return data.data;
-			});
-		},
-		// 个人中心 我的经历 撰写经历
+		// 个人中心
+		// 我的经历 撰写经历
 		query_steps: function(input) {
 			return $http({
 				// by dribehance <dribehance.kksdapp.com>
@@ -226,8 +199,17 @@ angular.module("Skillopedia").factory("userServices", function($http, localStora
 			return $http({
 				// by dribehance <dribehance.kksdapp.com>
 				url: config.url + "/app/Experiences/addExperience",
-				method: "GET",
-				params: angular.extend({}, config.common_params, {
+				method: "POST",
+				headers: {
+					'Content-Type': 'application/x-www-form-urlencoded'
+				},
+				transformRequest: function(obj) {
+					var str = [];
+					for (var p in obj)
+						str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+					return str.join("&");
+				},
+				data: angular.extend({}, config.common_params, {
 					token: localStorageService.get("token")
 				}, input)
 			}).then(function(data) {
@@ -245,6 +227,64 @@ angular.module("Skillopedia").factory("userServices", function($http, localStora
 			}).then(function(data) {
 				return data.data;
 			});
-		}
+		},
+		// 收藏 取消收藏 收藏列表
+		like: function(input) {
+			return $http({
+				// by dribehance <dribehance.kksdapp.com>
+				url: config.url + "/app/Courses/addCollectionCourse",
+				method: "GET",
+				params: angular.extend({}, config.common_params, {
+					token: localStorageService.get("token")
+				}, input)
+			}).then(function(data) {
+				return data.data;
+			});
+		},
+		unlike: function(input) {
+			return $http({
+				// by dribehance <dribehance.kksdapp.com>
+				url: config.url + "/app/Courses/deleteCollectionCourse",
+				method: "GET",
+				params: angular.extend({}, config.common_params, {
+					token: localStorageService.get("token")
+				}, input)
+			}).then(function(data) {
+				return data.data;
+			});
+		},
+		favourite: function(input) {
+			return $http({
+				// by dribehance <dribehance.kksdapp.com>
+				url: config.url + "/app/Courses/myCollectionCourseList",
+				method: "GET",
+				params: angular.extend({}, config.common_params, {
+					token: localStorageService.get("token")
+				}, input)
+			}).then(function(data) {
+				return data.data;
+			});
+		},
+		query_messages: function(input) {
+			return $http({
+				// by dribehance <dribehance.kksdapp.com>
+				url: config.url + "in",
+				method: "GET",
+				params: angular.extend({}, config.common_params, input)
+			}).then(function(data) {
+				return data.data;
+			});
+		},
+		// 优惠券 过期优惠券 选择优惠券
+		query_coupons: function(input) {
+			return $http({
+				// by dribehance <dribehance.kksdapp.com>
+				url: config.url + "coupons",
+				method: "GET",
+				params: angular.extend({}, config.common_params, input)
+			}).then(function(data) {
+				return data.data;
+			});
+		},
 	}
 });

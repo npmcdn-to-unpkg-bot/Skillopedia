@@ -3,7 +3,7 @@ angular.module("Skillopedia").controller("coursesController", function($scope, $
 	$scope.courses = [];
 	$scope.page = {
 		pn: 1,
-		page_size: 1,
+		page_size: 10,
 		message: "点击加载更多",
 		latitude: "0",
 		longitude: "0",
@@ -31,11 +31,5 @@ angular.module("Skillopedia").controller("coursesController", function($scope, $
 		})
 
 	};
-	// $scope.loadMore();
-	var timer = $interval(function() {
-		if ($rootScope.user) {
-			$interval.cancel(timer);
-			$scope.loadMore();
-		}
-	}, 10);
+	$scope.loadMore();
 })

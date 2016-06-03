@@ -1,5 +1,5 @@
 // by dribehance <dribehance.kksdapp.com>
-angular.module("Skillopedia").controller("detailController", function($scope, $routeParams, $sce, coursesServices, errorServices, toastServices, localStorageService, config) {
+angular.module("Skillopedia").controller("detailController", function($scope, $routeParams, $sce, userServices, coursesServices, errorServices, toastServices, localStorageService, config) {
 	$scope.calendar = {
 		// mode: "edit",
 		times: [{
@@ -65,5 +65,19 @@ angular.module("Skillopedia").controller("detailController", function($scope, $r
 			var video = video.replace("watch?v=", "embed/");
 			return $sce.trustAsResourceUrl(video);
 		}
+	};
+	// 加入收藏
+	$scope.like = function() {
+		toastServices.show();
+		userServices.like({
+			course_id: $scope.course.course_id
+		}).then(function(data) {
+			toastServices.hide()
+			if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
+				errorServices.autoHide(data.message);
+			} else {
+				errorServices.autoHide(data.message);
+			}
+		})
 	}
 })

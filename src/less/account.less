@@ -6,6 +6,7 @@
         padding: 15px 30px;
         text-align: center;
         .link();
+        cursor: pointer;
     }
     .tab-item.active {
         color: @brand-primary;
@@ -90,12 +91,15 @@
     }
     &.hover {
         height: 100px;
+        &:hover {
+            border-bottom-color: @brand-primary;
+        }
         .coach-info p {
             height: 52px;
             overflow: hidden;
         }
         .coach-info:hover {
-            background-color: #f1f1f1;
+            // background-color: #f1f1f1;
         }
     }
     &.with-action-bar {
@@ -119,6 +123,9 @@
     }
     @media (min-width:748px) {
         padding-left: 110px;
+        &.step-item {
+            padding-left: 0;
+        }
         .coach-avatar {
             position: absolute;
             left: 0;

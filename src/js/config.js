@@ -16,7 +16,6 @@ angular.module("Skillopedia").constant("config", {
 		"about",
 		"account",
 		"authenication",
-		"coach",
 		"comments",
 		"contact",
 		"coupons_expired",
@@ -45,10 +44,12 @@ angular.module("Skillopedia").constant("config", {
 		"schedule",
 		"services",
 		"shoppingcart",
+		"search",
+		"skillopedia",
+		"step",
 		"steps",
 		"steps_draft",
 		"steps_publish",
 		"support",
-		"search"
 	]
 });

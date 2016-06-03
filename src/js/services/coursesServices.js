@@ -89,8 +89,18 @@ angular.module("Skillopedia").factory("coursesServices", function($http, localSt
 			return $http({
 				// by dribehance <dribehance.kksdapp.com>
 				url: config.url + "/app/CourseManage/addCourse",
-				method: "GET",
-				params: angular.extend({}, config.common_params, {
+				// method: "GET",
+				method: "POST",
+				headers: {
+					'Content-Type': 'application/x-www-form-urlencoded'
+				},
+				transformRequest: function(obj) {
+					var str = [];
+					for (var p in obj)
+						str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+					return str.join("&");
+				},
+				data: angular.extend({}, config.common_params, {
 					token: localStorageService.get("token")
 				}, input)
 			}).then(function(data) {

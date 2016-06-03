@@ -6,6 +6,7 @@ angular.module("Skillopedia", [
 		"LocalStorageModule",
 		"ngSanitize",
 		"flow",
+		"textAngular",
 		// "timer"
 	])
 	.config(function($routeProvider, $httpProvider, $locationProvider, localStorageServiceProvider, config) {
@@ -19,26 +20,27 @@ angular.module("Skillopedia", [
 				reloadOnSearch: true,
 				controller: controllername,
 				resolve: {
-					user: function($q, $location, localStorageService) {
-						var resolve_path = ["account", "shoppingcart", "orders", "order", "order_booking", "order_comment", "coach", "authenication", "orders_management", "order_management", "order_confirm", "order_cancel", "order_finish", "order_refund", "schedule", "steps_publish", "favourite", "messages", "coupons"],
+					user: function($rootScope, $q, $location, $interval, localStorageService) {
+						var resolve_path = ["account", "courses", "create_course", "shoppingcart", "orders", "order", "order_booking", "order_comment", "coach", "authenication", "orders_management", "order_management", "order_confirm", "order_cancel", "order_finish", "order_refund", "schedule", "steps", "steps_publish", "favourite", "messages", "coupons"],
 							defer = $q.defer();
+						// 未登录;
 						if (resolve_path.includes(path) && !localStorageService.get("token")) {
 							defer.reject();
-							$location.path("/signin").replace();
+							$location.path("/landing").replace();
 							return;
 						}
-						defer.resolve();
-						return defer.promise;
-					},
-					authenication: function($rootScope, $q, $location, localStorageService) {
-						var resolve_path = ["coach"],
-							defer = $q.defer();
-						if (resolve_path.includes(path) && $rootScope.user.agent_level) {
-							defer.reject();
-							$location.path("/authenication").replace();
-							return;
+						// 登录过,获取用户信息
+						if (resolve_path.includes(path) && localStorageService.get("token")) {
+							var timer = $interval(function() {
+								if ($rootScope.user) {
+									$interval.cancel(timer);
+									defer.resolve();
+								}
+							}, 10);
+						} else {
+							// 其他不需要登录的地方，直接resolve
+							defer.resolve();
 						}
-						defer.resolve();
 						return defer.promise;
 					}
 				}
