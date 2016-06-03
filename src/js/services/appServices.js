@@ -70,13 +70,7 @@
  				return false;
  			}
  			if (localStorageService.get("token")) {
- 				userServices.query_basicinfo().then(function(data) {
- 					if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
- 						$rootScope.user = data.Result.UserInfo;
- 					} else {
- 						errorServices.autoHide(data.message);
- 					}
- 				})
+ 				userServices.sync();
  			}
  			$rootScope.staticImageUrl = config.imageUrl;
  		}

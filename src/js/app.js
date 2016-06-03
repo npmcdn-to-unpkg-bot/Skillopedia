@@ -21,7 +21,7 @@ angular.module("Skillopedia", [
 				controller: controllername,
 				resolve: {
 					user: function($rootScope, $q, $location, $interval, localStorageService) {
-						var resolve_path = ["account", "courses", "create_course", "shoppingcart", "orders", "order", "order_booking", "order_comment", "coach", "authenication", "orders_management", "order_management", "order_confirm", "order_cancel", "order_finish", "order_refund", "schedule", "steps", "steps_publish", "favourite", "messages", "coupons"],
+						var resolve_path = ["account", "courses", "create_course", "shoppingcart", "orders", "order", "order_booking", "order_comment", "skillopedia", "authenication", "orders_management", "order_management", "order_confirm", "order_cancel", "order_finish", "order_refund", "schedule", "steps", "steps_publish", "favourite", "messages", "coupons"],
 							defer = $q.defer();
 						// 未登录;
 						if (resolve_path.includes(path) && !localStorageService.get("token")) {

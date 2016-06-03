@@ -1,5 +1,10 @@
 // by dribehance <dribehance.kksdapp.com>
 angular.module("Skillopedia").controller("authenicationController", function($scope, $rootScope, $route, $filter, $timeout, userServices, errorServices, toastServices, localStorageService, config) {
+	// it's coach,redirect,agent_level:1 普通用户,2:教练
+	if ($rootScope.user.agent_level == '2') {
+		$rootScope.back();
+		return;
+	}
 	$scope.input = {};
 	$scope.input.gender = "1";
 	// picker

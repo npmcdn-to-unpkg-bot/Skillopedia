@@ -24,6 +24,7 @@ angular.module("Skillopedia").constant("config", {
 		"create_course",
 		"create_step",
 		"detail",
+		"edit_step",
 		"favourite",
 		"fillinorder",
 		"index",

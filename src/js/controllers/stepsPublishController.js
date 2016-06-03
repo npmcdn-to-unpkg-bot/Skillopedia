@@ -1,5 +1,5 @@
 // by dribehance <dribehance.kksdapp.com>
-angular.module("Skillopedia").controller("stepsPublishController", function($scope, userServices, errorServices, toastServices, localStorageService, config) {
+angular.module("Skillopedia").controller("stepsPublishController", function($scope, $location, $window, userServices, errorServices, toastServices, localStorageService, config) {
 	$scope.input = {};
 	$scope.input.step_status = "1";
 	$scope.$watch("input.step_status", function(n, o) {
@@ -22,5 +22,11 @@ angular.module("Skillopedia").controller("stepsPublishController", function($sco
 				errorServices.autoHide(data.message);
 			}
 		})
+	}
+	$scope.edit_step = function(id, e) {
+		e.preventDefault();
+		e.stopPropagation();
+		var url = $location.protocol() + "://" + $location.host() + ":" + $location.port() + "/#/edit_step?id=" + id;
+		$window.open(url);
 	}
 })

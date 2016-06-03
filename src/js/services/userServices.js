@@ -88,11 +88,11 @@ angular.module("Skillopedia").factory("userServices", function($rootScope, $http
 			});
 		},
 		sync: function() {
-			$rootScope.user = $rootScope.user || {};
+			$rootScope.user = undefined;
 			var self = this;
-			self.query_basicinfo({}).then(function(data) {
+			self.query_basicinfo().then(function(data) {
 				if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
-					$rootScope.user = angular.extend({}, $rootScope.user, data.Result.user);
+					$rootScope.user = angular.extend({}, $rootScope.user, data.Result.UserInfo);
 				} else {
 					self.logout();
 				}

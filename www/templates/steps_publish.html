@@ -28,7 +28,7 @@
                         <label ng-bind-html="step.content"></label>
                         <em>
                             {{step.post_time}}
-                            <strong><i class="fa fa-pencil" aria-hidden="true"></i>Edit</strong>
+                            <strong ng-click="edit_step(step.experience_id,$event)"><i class="fa fa-pencil" aria-hidden="true"></i>Edit</strong>
                         </em>
                     </div>
                 </div>
