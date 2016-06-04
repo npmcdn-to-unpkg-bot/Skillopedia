@@ -28,6 +28,7 @@ angular.module("Skillopedia").constant("config", {
 		"edit_step",
 		"favourite",
 		"fillinorder",
+		"forget",
 		"index",
 		"list",
 		"landing",
