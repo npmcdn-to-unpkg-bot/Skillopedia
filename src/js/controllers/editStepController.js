@@ -50,7 +50,6 @@ angular.module("Skillopedia").controller("editStepController", function($scope, 
 			$scope.input.covers = $scope.step.exBanners.map(function(c) {
 				return c.image_01;
 			})
-			console.log($scope.covers);
 		} else {
 			errorServices.autoHide(data.message);
 		}

@@ -1,5 +1,5 @@
 // by dribehance <dribehance.kksdapp.com>
-angular.module("Skillopedia").controller("skillopediaController", function($scope, $rootScope, $location, $timeout, coursesServices, errorServices, toastServices, localStorageService, config) {
+angular.module("Skillopedia").controller("skillopediaController", function($scope, $rootScope, $window, $location, $timeout, coursesServices, errorServices, toastServices, localStorageService, config) {
 	// 未认证，跳转认证
 	// agent_level 1:普通用户 2:教练
 	if ($rootScope.user.agent_level != "2") {
@@ -47,7 +47,10 @@ angular.module("Skillopedia").controller("skillopediaController", function($scop
 	};
 	// edit course
 	$scope.edit_course = function(course_id, e) {
-
+		e.preventDefault();
+		e.stopPropagation();
+		var url = $location.protocol() + "://" + $location.host() + ":" + $location.port() + "/#/edit_course?id=" + course_id;
+		$window.open(url);
 	};
 	// remove course
 	$scope.remove_course = function(course_id, e) {

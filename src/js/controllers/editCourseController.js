@@ -1,5 +1,5 @@
 // by dribehance <dribehance.kksdapp.com>
-angular.module("Skillopedia").controller("createCourseController", function($scope, $rootScope, $sce, $timeout, $location, $window, skillopediaServices, filterFilter, coursesServices, errorServices, toastServices, localStorageService, config) {
+angular.module("Skillopedia").controller("editCourseController", function($scope, $routeParams, $rootScope, $sce, $timeout, $location, $window, skillopediaServices, filterFilter, coursesServices, errorServices, toastServices, localStorageService, config) {
 	// 未认证，跳转认证
 	// agent_level 1:普通用户 2:教练
 	if ($rootScope.user.agent_level != "2") {
@@ -11,12 +11,59 @@ angular.module("Skillopedia").controller("createCourseController", function($sco
 	$scope.show_step = function(step) {
 		$scope.step = step;
 	};
-	// 获取新建课程id
+	// // 获取新建课程id
+	// toastServices.show();
+	// coursesServices.prapare_create_course().then(function(data) {
+	// 	toastServices.hide()
+	// 	if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
+	// 		$scope.course_id = data.course_id
+	// 	} else {
+	// 		errorServices.autoHide(data.message);
+	// 	}
+	// });
+	// 获取编辑课程详情
+	$scope.course = {};
 	toastServices.show();
-	coursesServices.prapare_create_course().then(function(data) {
+	coursesServices.query_by_user({
+		course_id: $routeParams.id,
+	}).then(function(data) {
 		toastServices.hide()
 		if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
-			$scope.course_id = data.course_id
+			$scope.course = data.Result.Course;
+			$scope.input.title = $scope.course.title;
+			// $scope.input.category_1 = 
+			// $scope.input.category_2 = 
+			parse_category();
+			parse_certs($scope.course.CourseCertifications);
+			// overview
+			$scope.input.overview = $scope.course.overview;
+			// covers
+			$scope.input.covers = $scope.course.CourseBanners.map(function(c) {
+				return c.image_01;
+			});
+			// video
+			$scope.input.videos = $scope.course.videos.split("#").map(function(v) {
+				var video = {
+					id: new Date().getTime(),
+					url: v
+				}
+				return video;
+			});
+			$scope.input.teaching_since = $scope.course.teaching_since;
+			$scope.input.rate = $scope.course.session_rate;
+			$scope.input.teaching_age = $scope.course.teaching_age;
+			$scope.input.partner = $scope.course.additional_partner;
+			$scope.input.surcharge = $scope.course.surcharge_for_each;
+			parse_discount();
+			$scope.input.travel_to_session = $scope.course.travel_to_session;
+			$scope.input.distance = $scope.course.travel_to_session_distance;
+			$scope.input.traffic_cost = $scope.course.travel_to_session_trafic_surcharge;
+			$scope.input.street = $scope.course.street;
+			$scope.input.apt = $scope.course.address;
+			$scope.input.city = $scope.course.area;
+			$scope.input.state = $scope.course.city;
+			// zipcode
+			$scope.input.zipcode = $scope.course.zipcode;
 		} else {
 			errorServices.autoHide(data.message);
 		}
@@ -26,39 +73,64 @@ angular.module("Skillopedia").controller("createCourseController", function($sco
 	$scope.category_2 = {};
 	$scope.$watch("input.category_1", function(n, o) {
 		if (n === o) return;
-		$scope.input.category_2 = $scope.category_2[$scope.input.category_1.name][0];
-	});
-	toastServices.show();
-	coursesServices.query_category().then(function(data) {
-		toastServices.hide()
-		if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
-			angular.forEach(data.Result.Categorys, function(category) {
-				var obj = {};
-				obj.name = category.category_01_name;
-				obj.id = category.category_01_id;
-				$scope.category_1.push(obj);
-				$scope.category_2[category.category_01_name] = [];
-				angular.forEach(category.category02s, function(sub) {
-					var temp_obj = {};
-					temp_obj.name = sub.category_02_name;
-					temp_obj.id = sub.category_02_id;
-					$scope.category_2[category.category_01_name].push(temp_obj);
-				})
-			});
-			$scope.input.category_1 = $scope.category_1[0];
-			$scope.input.category_2 = $scope.category_2[$scope.input.category_1.name][0];
-		} else {
-			errorServices.autoHide(data.message);
+		if (o === undefined) return;
+		if ($scope.category_2[n.name]) {
+			$scope.input.category_2 = $scope.category_2[n.name][0];
 		}
 	});
+
+	function parse_category() {
+		toastServices.show();
+		coursesServices.query_category().then(function(data) {
+			toastServices.hide();
+			if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
+				angular.forEach(data.Result.Categorys, function(category) {
+					var obj = {};
+					obj.name = category.category_01_name;
+					obj.id = category.category_01_id;
+					$scope.category_1.push(obj);
+					$scope.category_2[category.category_01_name] = [];
+					angular.forEach(category.category02s, function(sub) {
+						var temp_obj = {};
+						temp_obj.name = sub.category_02_name;
+						temp_obj.id = sub.category_02_id;
+						$scope.category_2[category.category_01_name].push(temp_obj);
+					})
+				});
+				// $scope.input.category_1 = $scope.category_1[0];
+				// $scope.input.category_2 = $scope.category_2[$scope.input.category_1.name][0];
+				angular.forEach($scope.category_1, function(c1) {
+					if (c1.id == $scope.course.category_01_id) {
+						$scope.input.category_1 = c1;
+					}
+				})
+				angular.forEach($scope.category_2[$scope.input.category_1.name], function(c2) {
+					if (c2.id == $scope.course.category_02_id) {
+						$scope.input.category_2 = c2;
+					}
+				})
+
+			} else {
+				errorServices.autoHide(data.message);
+			}
+		});
+	}
 	// 证书列表
-	$scope.input.certs = [{
-		id: "",
-		title: "",
-		time: "",
-		url: "",
-		institute: ""
-	}];
+	$scope.input.certs = [];
+
+	function parse_certs(certs) {
+		angular.forEach(certs, function(cert) {
+			var c = {
+				id: cert.course_certification_id,
+				random_id: "",
+				title: cert.name,
+				time: cert.get_time,
+				url: cert.image_01,
+				institute: cert.institue
+			};
+			$scope.input.certs.push(c);
+		})
+	}
 	// 增加证书输入
 	$scope.add_cert = function() {
 		var cert = {
@@ -92,7 +164,7 @@ angular.module("Skillopedia").controller("createCourseController", function($sco
 	$scope.ajaxCert = function(cert) {
 		toastServices.show();
 		coursesServices.create_certification({
-			course_id: $scope.course_id,
+			course_id: $routeParams.id,
 			name: cert.title,
 			get_time: cert.time,
 			institue: cert.institute,
@@ -138,10 +210,7 @@ angular.module("Skillopedia").controller("createCourseController", function($sco
 		})
 	};
 	// video 视频路径
-	$scope.input.videos = [{
-		id: new Date().getTime(),
-		url: ""
-	}];
+	$scope.input.videos = [];
 	// 增加视频输入
 	$scope.add_video = function() {
 		var video = {
@@ -170,13 +239,8 @@ angular.module("Skillopedia").controller("createCourseController", function($sco
 	$scope.input.surcharge = "";
 	// 打折方式
 	// unit:["Money","Amount"]
-	$scope.input.discount = "by_money";
-	$scope.input.discounts = [{
-		message: "One-time Purchase",
-		unit: "Money",
-		purchase: "",
-		off: ""
-	}];
+	// $scope.input.discount = "by_money";
+	$scope.input.discounts = [];
 	// 增加打折输入
 	$scope.add_discount = function() {
 		var discount = {
@@ -202,6 +266,9 @@ angular.module("Skillopedia").controller("createCourseController", function($sco
 		if (n === o) {
 			return;
 		}
+		if (o === undefined) {
+			return;
+		}
 		var unit = "Money";
 		if (n == "by_amount") {
 			unit = "Amount";
@@ -212,21 +279,45 @@ angular.module("Skillopedia").controller("createCourseController", function($sco
 			purchase: "",
 			off: ""
 		}];
-	})
-	$scope.confirm_discount = function(discount) {
-		if ($scope.input.discount == 'by_money' && discount.money != "" && discount.off != "") {
-			discount.mode = "preview";
-			return;
-		}
-		if ($scope.input.discount == 'by_amount' && discount.amount != "" && discount.off != "") {
-			discount.mode = "preview";
-			return;
-		}
-		errorServices.autoHide("请填写");
-	}
-	$scope.edit_discount = function(discount) {
-		discount.mode = "edit";
+	});
+
+	function parse_discount() {
+		$scope.input.discounts = [{
+			message: "One-time Purchase",
+			unit: "Money",
+			purchase: $scope.course.discount_onetion_pur_money_01,
+			off: $scope.course.discount_price_01
+		}, {
+			message: "One-time Purchase",
+			unit: "Money",
+			purchase: $scope.course.discount_onetion_pur_money_02,
+			off: $scope.course.discount_price_02
+		}, {
+			message: "One-time Purchase",
+			unit: "Money",
+			purchase: $scope.course.discount_onetion_pur_money_03,
+			off: $scope.course.discount_price_03
+		}];
+		$scope.input.discount = $scope.course.discount_type == "2" ? "by_money" : "by_amount";
+		$scope.input.discounts = $scope.input.discounts.filter(function(d) {
+			return d.purchase != 0;
+		})
 	};
+	// $scope.confirm_discount = function(discount) {
+	//     if ($scope.input.discount == 'by_money' && discount.money != "" && discount.off != "") {
+	//         discount.mode = "preview";
+	//         return;
+	//     }
+	//     if ($scope.input.discount == 'by_amount' && discount.amount != "" && discount.off != "") {
+	//         discount.mode = "preview";
+	//         return;
+	//     }
+	//     errorServices.autoHide("请填写");
+	// }
+	// $scope.edit_discount = function(discount) {
+	//     discount.mode = "edit";
+	// };
+
 	// 第三步
 	$scope.input.travel_to_session = "1";
 	$scope.input.distance = "";
@@ -285,8 +376,8 @@ angular.module("Skillopedia").controller("createCourseController", function($sco
 			discount_price_03 = $scope.input.discounts[0].off;
 		}
 		toastServices.show();
-		coursesServices.create_course({
-			course_id: $scope.course_id,
+		coursesServices.edit_course({
+			course_id: $routeParams.id,
 			title: $scope.input.title,
 			category_01_id: $scope.input.category_1.id,
 			category_01_name: $scope.input.category_1.name,
