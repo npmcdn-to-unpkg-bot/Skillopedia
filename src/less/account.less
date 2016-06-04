@@ -1,6 +1,6 @@
 .tabs {
-    border-bottom: 3px solid #f1f1f1;
     margin-bottom: 15px;
+    border-bottom: 3px solid #f1f1f1;
     .tab-item {
         position: relative;
         padding: 15px 30px;
@@ -23,56 +23,47 @@
 }
 
 .coach-item {
-    display: block;
     position: relative;
+    display: block;
     padding-bottom: 15px;
     margin-bottom: 15px;
     border-bottom: 1px dashed #ccc;
     overflow: hidden;
     color: #494949;
     cursor: pointer;
+    font-weight: 100;
     .link();
-    .coach-avatar {
-        position: relative;
-        float: left;
-        width: 110px;
-        height: 100px;
-        margin-right: 15px;
-        background-color: #f3e7d9;
-        .box-sizing(border-box);
-        text-align: center;
-        border: 2px solid @brand-primary;
-        border-radius: 10px;
-        overflow: hidden;
-        img {
-            width: 100%;
-        }
-        .official-coach {
-            position: absolute;
-            bottom: 10px;
-            right: -1px;
-            background-image: url("../images/official.png");
-            background-repeat: no-repeat;
-            background-position: center center;
-            height: 20px;
-            width: 84px;
-            background-size: 100%;
-        }
-    }
-    .coach-info {
+    .title {
         display: block;
-        font-size: 18px;
-        font-weight: 100;
-        .link();
-        .transition(background ease-out 0.5s);
-        .title {
-            font-weight: 400;
-        }
+        margin-bottom: 8px;
+        font-size: 20px;
+        font-weight: 400;
+        .text-ellipsis;
+    }
+    .long-title {
+        display: block;
+        height: 52px;
+        margin-bottom: 8px;
+        line-height: 26px;
+        font-size: 20px;
+        overflow: hidden;
+    }
+    .auto-title {
+        display: block;
+        min-height: 52px;
+        margin-bottom: 8px;
+        line-height: 26px;
+        font-size: 20px;
+    }
+    .summary {
+        height: 40px;
+        margin-bottom: 5px;
+        line-height: 20px;
+        font-size: 14px;
+        overflow: hidden;
+        // reset summary p
         p {
-            margin-top: 0;
-            margin-bottom: 8px;
-            line-height: 26px;
-            min-height: 52px;
+            margin: 0;
         }
     }
     .star {
@@ -81,40 +72,16 @@
     .star i.active {
         color: @brand-primary;
     }
-    .coach-meta {
-        color: #c1c1c1;
-        font-size: 14px;
-        font-weight: 100;
-        i {
-            margin-right: 5px;
-        }
-        span {
-            margin-right: 15px;
-        }
-    }
     &.hover {
         height: 100px;
         &:hover {
             border-bottom-color: @brand-primary;
-        }
-        .coach-info p {
-            height: 52px;
-            overflow: hidden;
-        }
-        .coach-info:hover {
-            // background-color: #f1f1f1;
         }
     }
     &.with-action-bar {
         margin-bottom: 86px;
         overflow: visible;
         // height: 100px;
-        .coach-info p {
-            height: 52px;
-        }
-        .coach-info:hover {
-            background-color: white;
-        }
         .action-bar {
             position: absolute;
             top: 100%;
@@ -136,10 +103,49 @@
         }
         .coach-info {
             padding: 0px 15px;
-            p {
-                overflow: hidden;
-            }
         }
+    }
+}
+
+.coach-avatar {
+    position: relative;
+    float: left;
+    width: 110px;
+    height: 100px;
+    margin-right: 15px;
+    background-color: #f3e7d9;
+    .box-sizing(border-box);
+    text-align: center;
+    border: 2px solid @brand-primary;
+    border-radius: 10px;
+    overflow: hidden;
+    img {
+        width: 100%;
+    }
+    .official-coach {
+        position: absolute;
+        bottom: 10px;
+        right: -1px;
+        background-image: url("../images/official.png");
+        background-repeat: no-repeat;
+        background-position: center center;
+        height: 20px;
+        width: 84px;
+        background-size: 100%;
+    }
+}
+
+.coach-meta {
+    height: 20px;
+    overflow: hidden;
+    color: #c1c1c1;
+    font-size: 14px;
+    font-weight: 100;
+    i {
+        margin-right: 5px;
+    }
+    span {
+        margin-right: 15px;
     }
 }
 
@@ -200,7 +206,7 @@
         display: block;
         width: 200px;
         height: 200px;
-        margin:0 auto 15px;
+        margin: 0 auto 15px;
         text-align: center;
         border-radius: 200px;
         border: 1px solid @brand-primary;
@@ -228,6 +234,7 @@
         }
     }
 }
+
 input.pickadate {
     padding: 14px;
     border: 1px solid #ccc;

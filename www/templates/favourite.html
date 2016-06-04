@@ -16,7 +16,7 @@
                     <span class="official-coach" ng-if="course.Course.is_official"></span>
                 </div>
                 <div class="coach-info">
-                    <p>{{course.Course.title}}</p>
+                    <div class="long-title">{{course.Course.title}}</div>
                     <span class="pull-right text-primary btn btn-second text-big" ng-click="unlike(course.collection_id,$event)">取消收藏</span>
                     <div class="star text-ellipsis">
                         <i class="fa fa-star" ng-class="{'active':course.Course.total_score >0}" aria-hidden="true"></i>
