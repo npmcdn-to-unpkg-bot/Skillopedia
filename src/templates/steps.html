@@ -12,16 +12,14 @@
                 <a class="tab-item pull-left" ng-href="#/comments">Comments</a>
                 <a class="tab-item pull-left active">Steps</a>
             </div>
-            <a class="coach-item" ng-repeat="step in steps" ng-href="#/step?id={{step.experience_id}}" target="_blank">
+            <a class="coach-item hover" ng-repeat="step in steps" ng-href="#/step?id={{step.experience_id}}" target="_blank">
                 <div class="coach-avatar">
                     <img ng-src="{{staticImageUrl + step.image_01}}" class="full-width full-height" alt="" err-src="../images/example_7.png">
                 </div>
                 <div class="coach-info">
-                    <div class="step-info">
-                        <span>{{step.title}}</span>
-                        <label ng-bind-html="step.content"></label>
-                        <em>{{step.post_time}}</em>
-                    </div>
+                    <span class="title">{{step.title}}</span>
+                    <p ng-bind-html="step.content" class="text-md"></p>
+                    <span class="text-md">{{step.post_time}}</span>
                 </div>
             </a>
             <div class="section text-center" ng-if="steps.length == 0">

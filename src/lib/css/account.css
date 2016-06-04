@@ -448,18 +448,26 @@
 /*********************************************************************
  *                    steps
  * *********************************************************************/
-
-.step-info span {
+.step-item {
     display: block;
-    font-size: 22px;
+    margin-bottom: 15px;
+    padding-bottom: 26px;
+    border-bottom: 1px dashed #ccc;
+    color:inherit;
+    text-decoration: none;
+}
+.step-info .step-title {
+    display: block;
+    font-size: 20px;
 }
 
-.step-info label {
-    color: #A2A2A2;
+.step-info .step-content {
     display: block;
     height: 52px;
-    line-height: 26px;
+    margin-bottom: 15px;
+    line-height: 20px;
     overflow: hidden;
+    color: #A2A2A2;
 }
 
 .step-info em {

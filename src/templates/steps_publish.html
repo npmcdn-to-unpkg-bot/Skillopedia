@@ -18,14 +18,14 @@
                     <a class="btn btn-success" ng-href="#/create_step" target="_blank"><i class="fa fa-paper-plane-o " style="margin-right:8px"></i>创建经历</a>
                 </div>
             </div>
-            <a class="coach-item step-item" ng-repeat="step in steps" ng-href="#/step?id={{step.experience_id}}" target="_blank">
+            <a class="step-item" ng-repeat="step in steps" ng-href="#/step?id={{step.experience_id}}" target="_blank">
                 <!-- <div class="coach-avatar">
                     <img src="images/avatar.png" class="full-width" alt="">
                 </div> -->
                 <div class="coach-info">
                     <div class="step-info">
-                        <span>{{step.title}}</span>
-                        <label ng-bind-html="step.content"></label>
+                        <span class="step-title">{{step.title}}</span>
+                        <div ng-bind-html="step.content" class="step-content"></div>
                         {{step.post_time}}
                         <div class="btn-group pull-right">
                             <button class="btn btn-success" ng-click="edit_step(step.experience_id,$event)"><i class="fa fa-edit" style="margin-right:8px"></i>编辑</button>
