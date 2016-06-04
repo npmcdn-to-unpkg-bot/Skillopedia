@@ -54,5 +54,8 @@ angular.module("Skillopedia").constant("config", {
 		"steps_draft",
 		"steps_publish",
 		"support",
+		"show",
+		"show_comments",
+		"show_steps",
 	]
 });

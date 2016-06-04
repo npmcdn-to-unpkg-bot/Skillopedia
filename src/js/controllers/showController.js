@@ -1,5 +1,9 @@
 // by dribehance <dribehance.kksdapp.com>
-angular.module("Skillopedia").controller("coursesController", function($scope, $rootScope, user, userServices, errorServices, toastServices, localStorageService, config) {
+angular.module("Skillopedia").controller("showController", function($scope, $routeParams, $rootScope, user, userServices, errorServices, toastServices, localStorageService, config) {
+	if (!$routeParams.user_id) {
+		$rootScope.back();
+		return;
+	}
 	$scope.courses = [];
 	$scope.page = {
 		pn: 1,
@@ -14,7 +18,7 @@ angular.module("Skillopedia").controller("coursesController", function($scope, $
 		}
 		toastServices.show();
 		$scope.page.message = "正在加载...";
-		$scope.page.user_id = $rootScope.user.user_id;
+		$scope.page.user_id = $routeParams.user_id;
 		userServices.query_courses_by_user_id($scope.page).then(function(data) {
 			toastServices.hide();
 			$scope.page.message = "点击加载更多";
