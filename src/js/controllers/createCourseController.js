@@ -251,7 +251,7 @@ angular.module("Skillopedia").controller("createCourseController", function($sco
 		$scope.input.suggestions = filterFilter(suggestions, n);
 	})
 	$scope.select = function(s) {
-		$scope.input.zipcode = s;
+		$scope.input.zipcode = s.zipcode;
 		$timeout(function() {
 			$scope.input.suggestions = [];
 		}, 100)

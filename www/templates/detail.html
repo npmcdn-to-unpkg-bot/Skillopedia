@@ -37,13 +37,13 @@
                 <div class="section-title">Photo and Video</div>
                 <!-- <button id="openpopup">open</button> -->
                 <div class="image-gallaxy clearfix">
-                    <a class="image" href="{{staticImageUrl + photo.URL_01}}" ng-repeat="photo in course.CourseBannerVedios | filter:{type:1}">
-                        <img ng-src="{{staticImageUrl + photo.URL_01}}" class="full-width" alt="" err-src="../images/error.jpg">
+                    <a class="image" href="{{staticImageUrl + photo.image_01}}" ng-repeat="photo in course.CourseBanners">
+                        <img ng-src="{{staticImageUrl + photo.image_01}}" class="full-width" alt="" err-src="../images/error.jpg">
                     </a>
                 </div>
                 <div class="videos">
-                    <div class="video" ng-repeat="video in course.CourseBannerVedios | filter:{type:2}">
-                        <iframe ng-src="{{get_video(video.URL_01)}}" frameborder="0" allowfullscreen></iframe>
+                    <div class="video" ng-repeat="video in course.CourseVedios">
+                        <iframe ng-src="{{get_video(video.vedio_url)}}" frameborder="0" allowfullscreen></iframe>
                     </div>
                 </div>
             </div>
