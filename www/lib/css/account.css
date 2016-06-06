@@ -463,7 +463,8 @@
 
 .step-info .step-content {
     display: block;
-    height: 52px;
+    height: 40px;
+    margin-top: 15px;
     margin-bottom: 15px;
     line-height: 20px;
     overflow: hidden;
