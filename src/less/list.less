@@ -97,6 +97,7 @@
     }
     .tab-content-item {
         position: relative;
+        display: block;
         margin-bottom: 8px;
         img {
             display: block;
@@ -109,11 +110,13 @@
             right: 0;
             bottom: 0;
             text-align: center;
-            line-height: 26px;
-            height: 78px;
             margin: auto auto;
-            overflow: hidden;
             color: white;
+        }
+        .summary {
+            height: 78px;
+            line-height: 26px;
+            overflow: hidden;
         }
         &:before {
             content: "";

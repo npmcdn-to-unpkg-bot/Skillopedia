@@ -8,9 +8,9 @@
         <div ng-include="'templates/sidebar_1.html'" class="sidebar-wrap"></div>
         <div class="content-wrap">
             <div class="tabs clearfix">
-                <a class="tab-item pull-left" ng-href="#/show">Courses</a>
+                <a class="tab-item pull-left" ng-href="#/show?user_id={{user_id}}">Courses</a>
                 <a class="tab-item pull-left active">Comments</a>
-                <a class="tab-item pull-left" ng-href="#/show_steps">Steps</a>
+                <a class="tab-item pull-left" ng-href="#/show_steps?user_id={{user_id}}">Steps</a>
             </div>
             <div class="section sm">
                 <div class="comments">

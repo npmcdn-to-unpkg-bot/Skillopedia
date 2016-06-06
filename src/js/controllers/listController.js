@@ -16,7 +16,7 @@ angular.module("Skillopedia").controller("listController", function($scope, $roo
 		]
 	};
 	$scope.input.category = {
-		name: $routeParams.category,
+		name: $routeParams.type == "2" ? $routeParams.category : "",
 		id: $routeParams.category_id || "0"
 	};
 	// query category list;
@@ -34,6 +34,7 @@ angular.module("Skillopedia").controller("listController", function($scope, $roo
 		page_size: 10,
 		message: "点击加载更多",
 		kw: $routeParams.kw,
+		type: $routeParams.type,
 		latitude: "0",
 		longitude: "0",
 		category_02_id: $scope.input.category.id,
@@ -72,6 +73,7 @@ angular.module("Skillopedia").controller("listController", function($scope, $roo
 			page_size: 10,
 			message: "点击加载更多",
 			kw: $routeParams.kw,
+			type: "2",
 			latitude: "0",
 			longitude: "0",
 			category_02_id: $scope.input.category.id,
@@ -122,5 +124,15 @@ angular.module("Skillopedia").controller("listController", function($scope, $roo
 			cagegory_id: null,
 			course_id: id
 		});
-	}
+	};
+	// recommand and hot
+	toastServices.show();
+	skillopediaServices.query_recommand_category().then(function(data) {
+		toastServices.hide()
+		if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
+			$scope.recommands = data.Result.Catetorys;
+		} else {
+			errorServices.autoHide(data.message);
+		}
+	})
 })

@@ -8,8 +8,8 @@
         <div ng-include="'templates/sidebar_1.html'" class="sidebar-wrap"></div>
         <div class="content-wrap">
             <div class="tabs clearfix">
-                <a class="tab-item pull-left" ng-href="#/show">Courses</a>
-                <a class="tab-item pull-left" ng-href="#/show_comments">Comments</a>
+                <a class="tab-item pull-left" ng-href="#/show?user_id={{user_id}}">Courses</a>
+                <a class="tab-item pull-left" ng-href="#/show_comments?user_id={{user_id}}">Comments</a>
                 <a class="tab-item pull-left active">Steps</a>
             </div>
             <a class="coach-item hover" ng-repeat="step in steps" ng-href="#/step?id={{step.experience_id}}" target="_blank">

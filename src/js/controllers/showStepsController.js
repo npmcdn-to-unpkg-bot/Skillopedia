@@ -4,6 +4,9 @@ angular.module("Skillopedia").controller("showStepsController", function($scope,
 		$rootScope.back();
 		return;
 	}
+	if ($routeParams.user_id) {
+		$scope.user_id = $routeParams.user_id
+	}
 	toastServices.show();
 	userServices.query_steps_by_user_id({
 		user_id: $routeParams.user_id

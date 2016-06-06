@@ -4,6 +4,9 @@ angular.module("Skillopedia").controller("showController", function($scope, $rou
 		$rootScope.back();
 		return;
 	}
+	if ($routeParams.user_id) {
+		$scope.user_id = $routeParams.user_id
+	}
 	$scope.courses = [];
 	$scope.page = {
 		pn: 1,

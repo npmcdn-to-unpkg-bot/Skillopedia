@@ -74,17 +74,15 @@
                 <span ng-class="{'active':sidebar.title=='hot'}" ng-click="change_sidebar('hot')">Hot</span>
             </div>
             <div class="tab-content">
-                <div class="tab-content-item">
-                    <img src="images/cinelli-front.jpeg" alt="">
+                <a class="tab-content-item" ng-repeat="recommand in recommands" ng-href="#/list?category={{recommand.name}}&category_id={{recommand.catetory_id}}">
+                    <img ng-src="{{staticImageUrl + recommand.big_image_01}}" alt="" err-src="../images/error.jpg" onload>
                     <div class="caption">
+                        <h3>{{recommand.name}}</h3>
+                        <div class="summary">
+                            {{recommand.sub_title}}
+                        </div>
                     </div>
-                </div>
-                <div class="tab-content-item">
-                    <img src="images/cinelli-front.jpeg" alt="">
-                    <div class="caption">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis sunt dicta eos quisquam ratione fugit voluptates assumenda asperiores iste accusamus, dolores molestias maxime omnis dignissimos reprehenderit nostrum! Aspernatur, perspiciatis eaque.
-                    </div>
-                </div>
+                </a>
             </div>
         </div>
     </div>

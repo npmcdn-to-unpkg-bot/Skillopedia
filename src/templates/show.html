@@ -8,8 +8,8 @@
         <div class="content-wrap">
             <div class="tabs clearfix">
                 <a class="tab-item pull-left active">Courses</a>
-                <a class="tab-item pull-left" ng-href="#/show_comments">Comments</a>
-                <a class="tab-item pull-left" ng-href="#/show_steps">Steps</a>
+                <a class="tab-item pull-left" ng-href="#/show_comments?user_id={{user_id}}">Comments</a>
+                <a class="tab-item pull-left" ng-href="#/show_steps?user_id={{user_id}}">Steps</a>
             </div>
             <a class="coach-item hover" ng-href="#/detail?course_id={{course.course_id}}" ng-repeat="course in courses">
                 <div class="coach-avatar">
