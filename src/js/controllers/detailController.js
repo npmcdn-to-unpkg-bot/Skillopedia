@@ -1,41 +1,5 @@
 // by dribehance <dribehance.kksdapp.com>
-angular.module("Skillopedia").controller("detailController", function($scope, $rootScope, $routeParams, $sce, userServices, coursesServices, errorServices, toastServices, localStorageService, config) {
-	$scope.calendar = {
-		// mode: "edit",
-		times: [{
-			hour: "00:00-08:30",
-			plan: "free time",
-			state: "1"
-		}, {
-			hour: "08:30-09:00",
-			plan: "free time",
-			state: "3"
-		}, {
-			hour: "09:00-08:30",
-			plan: "free time",
-			state: "1"
-		}, {
-			hour: "10:30-09:00",
-			plan: "free time",
-			state: "1"
-		}, {
-			hour: "11:00-08:30",
-			plan: "free time",
-			state: "1"
-		}, {
-			hour: "12:00-08:30",
-			plan: "free time",
-			state: "1"
-		}, {
-			hour: "13:30-09:00",
-			plan: "free time",
-			state: "1"
-		}, {
-			hour: "14:00-08:30",
-			plan: "free time",
-			state: "1"
-		}]
-	}
+angular.module("Skillopedia").controller("detailController", function($scope, $rootScope, $filter, $routeParams, $sce, scheduleServices, userServices, coursesServices, errorServices, toastServices, localStorageService, config) {
 	$scope.course = {};
 	toastServices.show();
 	coursesServices.query_by_id({
@@ -49,6 +13,8 @@ angular.module("Skillopedia").controller("detailController", function($scope, $r
 		} else {
 			errorServices.autoHide(data.message);
 		}
+	}).then(function(data) {
+		$scope.query_schedule($filter("date")(new Date().getTime(), "yyyy-MM-dd"));
 	});
 	// parse iframe map url
 	$scope.get_map = function() {
@@ -83,5 +49,41 @@ angular.module("Skillopedia").controller("detailController", function($scope, $r
 				errorServices.autoHide(data.message);
 			}
 		})
+	};
+	// schedule
+	$scope.calendar = {
+		mode: "",
+		disabled: false,
+		disabled_message: "All Day Busy",
+		times: []
+	}
+	$scope.query_schedule = function(day) {
+		$scope.calendar.selected = null;
+		toastServices.show();
+		scheduleServices.query({
+			user_id: $scope.course.user_id,
+			choice_currentdate: day,
+		}).then(function(data) {
+			toastServices.hide()
+			if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
+				$scope.calendar.times = data.ScheduleBeans.map(function(time) {
+					time.schedule_state = time.schedule_state;
+					time.schedule_state_message = time.schedule_state_message;
+					return time;
+				})
+				$scope.calendar.is_stop_course = data.is_stop_course;
+				$scope.calendar.is_busy_24 = data.is_busy_24;
+				if ($scope.calendar.is_stop_course == "1" || $scope.calendar.is_busy_24 == "1") {
+					$scope.calendar.disabled = true;
+				} else {
+					$scope.calendar.disabled = false;
+				}
+			} else {
+				errorServices.autoHide(data.message);
+			}
+		})
+	}
+	$scope.calendar.onDayChange = function() {
+		$scope.query_schedule($filter("date")(new Date($scope.calendar.day).getTime(), "yyyy-MM-dd"))
 	}
 })

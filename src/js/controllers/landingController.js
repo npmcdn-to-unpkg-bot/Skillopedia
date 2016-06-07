@@ -28,7 +28,7 @@ angular.module("Skillopedia").controller("landingController", function($scope, $
 				toastServices.hide();
 				if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
 					localStorageService.set("token", data.token);
-					$rootScope.user = data;
+					userServices.sync();
 					$rootScope.back();
 				} else {
 					errorServices.autoHide(data.message);

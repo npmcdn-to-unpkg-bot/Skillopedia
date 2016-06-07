@@ -1,4 +1,5 @@
 .calendar {
+	position: relative;
 	color: #494949;
 	border: 1px solid @brand-second;
 	background-color: white;
@@ -15,7 +16,8 @@
 		width: 25%;
 		padding: 15px 10px;
 		.box-sizing(border-box);
-		border: 1px solid @brand-second;
+		border: 1px solid #ECD5BA;
+		// border: 1px solid white;
 		text-align: center;
 		i {
 			position: absolute;
@@ -23,18 +25,23 @@
 			bottom: 2px;
 			color:@brand-primary;
 		}
+		// unavalibale
 		&.state_1 {
-			
+			color:@brand-second;
 		}
+		// busy
 		&.state_2 {
 			// color:@brand-primary;
 			background-color: @brand-second;
+		}
+		&.state_3 {
+			
+		}
+		&.active {
+			color: @brand-primary;
 			i {
 				display: block;
 			}
-		}
-		&.state_3 {
-			color:@brand-second;
 		}
 	}
 	.hour {
@@ -44,5 +51,17 @@
 	.plan {
 		font-size: 12px;
 	}
-	
+	.calendar-disabled {
+		position: absolute;
+		top:50px;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background-color: fade(black, 50%);
+		color: white;
+		text-align: center;
+	}
+}
+.small-calendar .hour {
+	font-size: 12px;
 }

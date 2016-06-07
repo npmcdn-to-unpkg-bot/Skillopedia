@@ -11,6 +11,7 @@ angular.module("Skillopedia").directive('confirm', function() {
 			scope.confirm = angular.extend({}, {
 				title: "Tips",
 				content: "Are You Sure?",
+				content_type: "content",
 				open: function() {
 					$(element).show();
 				},
@@ -24,6 +25,7 @@ angular.module("Skillopedia").directive('confirm', function() {
 					$(element).hide();
 					if (typeof scope.confirm.ok_callback == "function") {
 						scope.confirm.ok_callback();
+						scope.confirm.content_type = "content";
 					}
 				}
 			}, scope.confirm);
