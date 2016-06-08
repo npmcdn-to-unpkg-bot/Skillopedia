@@ -40,11 +40,13 @@ angular.module("Skillopedia").directive('calendar', function($filter) {
 					// schedule_state_1 disabled,schedule_state_2 busy,schedule_state_3 free
 					if (time.schedule_state == 3 && scope.calendar.times[next].schedule_state == 3) {
 						time.schedule_state = 2;
+						time.active = true;
 						var selected_time = {
 							from: time,
 							to: scope.calendar.times[next]
 						}
 						scope.calendar.times[next].schedule_state = 2;
+						scope.calendar.times[next].active = true;
 						scope.calendar.selected.push(selected_time);
 					}
 				};
@@ -55,6 +57,7 @@ angular.module("Skillopedia").directive('calendar', function($filter) {
 					scope.calendar.times = scope.calendar.times.map(function(t) {
 						if (t.hour == selected.from.hour || t.hour == selected.to.hour) {
 							t.schedule_state = 3;
+							t.active = false;
 						}
 						return t;
 					});

@@ -1,29 +1,29 @@
-<div class="location-wrap step">
-    <span>Enter the loaction you want the coach to travel</span>
+<form class="location-wrap step" name="locationForm" ng-submit="save_location()">
+    <p>Enter the loaction you want the coach to travel</p>
     <div class="course-input">
-        <input type="text" name="" id="" value="" class="full-width" placeholder="Street Address e.g 123 Main St" />
+        <input type="text" ng-model="input.street" required class="full-width" placeholder="Street Address e.g 123 Main St" />
     </div>
     <div class="course-input z-margin">
-        <input type="text" name="" id="" value="" class="full-width" placeholder="APt,Suite,Bldg.e.g Apt #7" />
+        <input type="text" ng-model="input.address" required class="full-width" placeholder="APt,Suite,Bldg.e.g Apt #7" />
     </div>
     <div class="clearfix">
         <div class="m-session z-margin pull-left">
             <div class="u-input">
-                <input type="text" name="" id="" value="" class="full-width" placeholder="City.e.g.San Francisco" />
+                <input type="text" ng-model="input.area" required class="full-width" placeholder="City.e.g.San Francisco" />
             </div>
         </div>
         <div class="m-session z-margin pull-right">
             <div class="u-input">
-                <input type="text" name="" id="" value="" class="full-width" placeholder="State e.. CA" />
+                <input type="text" ng-model="input.city" required class="full-width" placeholder="State e.. CA" />
             </div>
         </div>
         <div class="m-session pull-left z-margin">
             <div class="u-input">
-                <input type="text" name="" id="" value="" class="full-width" placeholder="Zip code e.g. 94103" />
+                <input type="text" ng-model="input.zipcode" class="full-width" placeholder="Zip code e.g. 94103" />
             </div>
         </div>
     </div>
-    <div class="clearfix">
-        <div class="course-save z-margin pull-left">Save</div>
+    <div class="m-session z-margin">
+        <button type="submit" class="btn btn-danger btn-lg" ng-disabled="loactionForm.$inalid">Save</button>
     </div>
-</div>
+</form>

@@ -6,9 +6,7 @@ angular.module("Skillopedia").factory("scheduleServices", function($http, localS
 				// by dribehance <dribehance.kksdapp.com>
 				url: config.url + "/app/ScheduleManage/scheduleList",
 				method: "GET",
-				params: angular.extend({}, config.common_params, {
-					token: localStorageService.get("token")
-				}, input)
+				params: angular.extend({}, config.common_params, input)
 			}).then(function(data) {
 				return data.data;
 			});

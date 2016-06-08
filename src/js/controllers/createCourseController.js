@@ -277,12 +277,12 @@ angular.module("Skillopedia").controller("createCourseController", function($sco
 			discount_price_01 = $scope.input.discounts[0].off;
 		}
 		if ($scope.input.discounts.length > 1) {
-			discount_onetion_pur_money_02 = $scope.input.discounts[0].purchase;
-			discount_price_02 = $scope.input.discounts[0].off;
+			discount_onetion_pur_money_02 = $scope.input.discounts[1].purchase;
+			discount_price_02 = $scope.input.discounts[1].off;
 		}
 		if ($scope.input.discounts.length > 2) {
-			discount_onetion_pur_money_03 = $scope.input.discounts[0].purchase;
-			discount_price_03 = $scope.input.discounts[0].off;
+			discount_onetion_pur_money_03 = $scope.input.discounts[2].purchase;
+			discount_price_03 = $scope.input.discounts[2].off;
 		}
 		toastServices.show();
 		coursesServices.create_course({
@@ -313,7 +313,7 @@ angular.module("Skillopedia").controller("createCourseController", function($sco
 			longitude: "0",
 			additional_partner: $scope.input.partner,
 			surcharge_for_each: $scope.input.surcharge,
-			discount_type: $scope.input.discount == "by_money" ? "2" : "1",
+			discount_type: $scope.input.discount == "by_money" ? "1" : "2",
 			discount_onetion_pur_money_01: discount_onetion_pur_money_01 || "",
 			discount_price_01: discount_price_01 || "",
 			discount_onetion_pur_money_02: discount_onetion_pur_money_02 || "",
