@@ -52,10 +52,10 @@ angular.module("Skillopedia").directive('calendar', function($filter) {
 				};
 				scope.calendar.remove = function(selected) {
 					scope.calendar.selected = scope.calendar.selected.filter(function(s) {
-						return s.from.hour != selected.from.hour;
+						return s != selected;
 					})
 					scope.calendar.times = scope.calendar.times.map(function(t) {
-						if (t.hour == selected.from.hour || t.hour == selected.to.hour) {
+						if ((t.day == selected.from.day && t.hour == selected.from.hour) || (t.day == selected.to.day && t.hour == selected.to.hour)) {
 							t.schedule_state = 3;
 							t.active = false;
 						}

@@ -235,7 +235,7 @@
                     </div>
                     <div class="section text-center">
                         <button type="button" class="btn btn-default col-xs-3 btn-md col-xs-offset-2" ng-click="show_step(2)">Last step</button>
-                        <button class="btn btn-success col-xs-3 btn-md col-xs-offset-1" type="submit" ng-disabled="createCourseForm.$invalid">Finsh</button>
+                        <button class="btn btn-success col-xs-3 btn-md col-xs-offset-1" type="button" ng-disabled="stepForm3.$invalid" ng-click="show_step(4)">Next</button>
                     </div>
                 </div>
                 <div ng-show="location_mode == 'edit'" ng-form="locationForm">
@@ -275,6 +275,41 @@
                 </div>
                 <div class="course-tips">
                     travel to session if you choose yes,means you are agree with travel terms.
+                </div>
+            </div>
+            <!-- 新建课程 第四步 -->
+            <div class="step" ng-show="step == 4" ng-form="stepForm4">
+                <img ng-src="../images/step_4.png" class="full-width" alt="">
+                <div class="title-input">
+                    <div class="clearfix">
+                        <div class="m-session pull-left">
+                            <span>Start Time</span>
+                            <div class="input-select">
+                                <select name="start_time" ng-model="input.start_time" ng-options="time_slot.slot as time_slot.time for time_slot in time_slots">
+                                </select>
+                                <i class="fa fa-caret-down" aria-hidden="true"></i>
+                            </div>
+                        </div>
+                        <div class="m-session pull-right">
+                            <span>End time</span>
+                            <div class="input-select">
+                                <select name="end_time" ng-model="input.end_time" ng-options="time_slot.slot as time_slot.time for time_slot in end_time_slots">
+                                </select>
+                                <i class="fa fa-caret-down" aria-hidden="true"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="title-input">
+                    <span>Weekly,You could deselect the day your want you course off</span>
+                    <div class="btn-group">
+                        <a class="btn btn-default btn-lg" ng-repeat="week in input.weeks" ng-click="select_week(week)" ng-class="{'btn-primary':week.select}">{{week.day}}</a>
+                    </div>
+                </div>
+                <div class="section text-center">
+                    <button type="button" class="btn btn-default col-xs-3 btn-md" ng-click="show_step(3)">Last step</button>
+                    <!-- <button class="btn btn-success col-xs-3 btn-md col-xs-offset-1" type="submit" ng-disabled="createCourseForm.$invalid">Skip</button> -->
+                    <button class="btn btn-danger col-xs-3 btn-md col-xs-offset-1" type="submit" ng-disabled="createCourseForm.$invalid">Finsh</button>
                 </div>
             </div>
         </form>

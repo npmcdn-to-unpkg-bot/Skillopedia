@@ -1,5 +1,5 @@
 // by dribehance <dribehance.kksdapp.com>
-angular.module("Skillopedia").controller("skillopediaController", function($scope, $rootScope, $window, $location, $timeout, coursesServices, errorServices, toastServices, localStorageService, config) {
+angular.module("Skillopedia").controller("skillopediaController", function($scope, $rootScope, $route, $window, $location, $timeout, coursesServices, errorServices, toastServices, localStorageService, config) {
 	// 未认证，跳转认证
 	// agent_level 1:普通用户 2:教练
 	if ($rootScope.user.agent_level != "2") {

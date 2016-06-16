@@ -62,6 +62,7 @@ angular.module("Skillopedia").controller("editCourseController", function($scope
 			$scope.input.apt = $scope.course.address;
 			$scope.input.city = $scope.course.area;
 			$scope.input.state = $scope.course.city;
+			parse_weeks();
 			// zipcode
 			$scope.input.zipcode = $scope.course.zipcode;
 		} else {
@@ -360,6 +361,142 @@ angular.module("Skillopedia").controller("editCourseController", function($scope
 		var map_url = "https://maps.google.com/maps?q=" + state + city + street + apt + "&output=embed";
 		return $sce.trustAsResourceUrl(map_url);
 	};
+	// 第四步;
+	$scope.time_slots = [{
+		time: "09:00-09:30",
+		slot: "1"
+	}, {
+		time: "09:30-10:00",
+		slot: "2"
+	}, {
+		time: "10:00-10:30",
+		slot: "3"
+	}, {
+		time: "10:30-11:00",
+		slot: "4"
+	}, {
+		time: "11:00-11:30",
+		slot: "5"
+	}, {
+		time: "11:30-12:00",
+		slot: "6"
+	}, {
+		time: "12:00-12:30",
+		slot: "7"
+	}, {
+		time: "12:30-13:00",
+		slot: "8"
+	}, {
+		time: "13:00-13:30",
+		slot: "9"
+	}, {
+		time: "13:30-14:00",
+		slot: "10"
+	}, {
+		time: "14:00-14:30",
+		slot: "11"
+	}, {
+		time: "14:30-15:00",
+		slot: "12"
+	}, {
+		time: "15:00-15:30",
+		slot: "13"
+	}, {
+		time: "15:30-16:00",
+		slot: "14"
+	}, {
+		time: "16:00-16:30",
+		slot: "15"
+	}, {
+		time: "16:30-17:00",
+		slot: "16"
+	}, {
+		time: "17:00-17:30",
+		slot: "17"
+	}, {
+		time: "17:30-18:00",
+		slot: "18"
+	}, {
+		time: "18:00-18:30",
+		slot: "19"
+	}, {
+		time: "18:30-19:00",
+		slot: "20"
+	}, {
+		time: "19:00-19:30",
+		slot: "21"
+	}, {
+		time: "19:30-20:00",
+		slot: "22"
+	}, {
+		time: "20:00-20:30",
+		slot: "23"
+	}, {
+		time: "20:30-21:00",
+		slot: "24"
+	}];
+	$scope.$watch("input.start_time", function(n, o) {
+		$scope.get_time_slots(n);
+	});
+
+	function parse_weeks() {
+		$scope.input.weeks = [{
+			day: "Monday",
+			value: "2",
+			select: true,
+		}, {
+			day: "Tuesday",
+			value: "3",
+			select: true,
+		}, {
+			day: "Wensday",
+			value: "4",
+			select: true,
+		}, {
+			day: "Thursday",
+			value: "5",
+			select: true,
+		}, {
+			day: "Friday",
+			value: "6",
+			select: true,
+		}, {
+			day: "Saturday",
+			value: "7",
+			select: true,
+		}, {
+			day: "Sunday",
+			value: "1",
+			select: true,
+		}];
+		$scope.course.weeks = $scope.course.weeks == null ? "" : $scope.course.weeks;
+		console.log($scope.course.weeks)
+		$scope.input.weeks = $scope.input.weeks.map(function(w) {
+			if ($scope.course.weeks.indexOf(w.value) == -1) {
+				w.select = false;
+			}
+			return w;
+		});
+		console.log($scope.input.weeks);
+		$scope.course.start_time_slot = $scope.course.start_time_slot == "0" ? "1" : $scope.course.start_time_slot;
+		$scope.course.end_time_slot = $scope.course.end_time_slot == "0" ? "24" : $scope.course.end_time_slot;
+		$scope.time_slots.map(function(t) {
+			if (t.slot == $scope.course.start_time_slot) {
+				$scope.input.start_time = t.slot;
+			}
+			if (t.slot == $scope.course.end_time_slot) {
+				$scope.input.end_time = t.slot;
+			}
+		});
+	}
+	$scope.select_week = function(week) {
+		week.select = !week.select;
+	}
+	$scope.get_time_slots = function(slot) {
+		$scope.end_time_slots = $scope.time_slots.filter(function(s) {
+			return parseFloat(s.slot) > parseFloat(slot);
+		});
+	};
 	// 提交表单 最终创建课程
 	$scope.ajaxForm = function() {
 		var discount_onetion_pur_money_01, discount_price_01, discount_onetion_pur_money_02, discount_price_02, discount_onetion_pur_money_03, discount_price_03;
@@ -411,6 +548,13 @@ angular.module("Skillopedia").controller("editCourseController", function($scope
 			discount_price_02: discount_price_02 || "",
 			discount_onetion_pur_money_03: discount_onetion_pur_money_03 || "",
 			discount_price_03: discount_price_03 || "",
+			start_time_slot: $scope.input.start_time,
+			end_time_slot: $scope.input.end_time,
+			weeks: $scope.input.weeks.filter(function(week) {
+				return week.select == true;
+			}).map(function(w) {
+				return w.value
+			}).join("#")
 		}).then(function(data) {
 			toastServices.hide()
 			if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {

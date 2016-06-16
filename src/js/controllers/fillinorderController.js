@@ -127,7 +127,8 @@ angular.module("Skillopedia").controller("fillinorderController", function($scop
 			return t.from.day + " " + t.from.hour + "to" + t.to.day + " " + t.to.hour;
 		}).join("#");
 		toastServices.show();
-		scheduleServices.query({
+		scheduleServices.query_by_order({
+			course_id: $routeParams.course_id,
 			user_id: $scope.course.user_id,
 			choice_currentdate: day,
 		}).then(function(data) {

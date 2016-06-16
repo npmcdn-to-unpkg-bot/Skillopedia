@@ -4,7 +4,7 @@ angular.module("Skillopedia").factory("orderServices", function($http, localStor
 		query_course: function(input) {
 			return $http({
 				// by dribehance <dribehance.kksdapp.com>
-				url: config.url + "/app/OrdersManage/courseInfo2",
+				url: config.url + "/app/OrdersManage/orderCourseInfo",
 				method: "GET",
 				params: angular.extend({}, config.common_params, {
 					token: localStorageService.get("token")
