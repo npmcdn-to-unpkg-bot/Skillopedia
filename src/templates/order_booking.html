@@ -3,7 +3,7 @@
 <div class="wrap">
     <div class="section account-section">
         <!-- sidebar -->
-        <div ng-include="'templates/sidebar.html'" class="sidebar-wrap"></div>
+        <sidebar active="" class="sidebar-wrap"></sidebar>
         <div class="content-wrap">
             <div class="tabs clearfix">
                 <a class="tab-item pull-left active">Booking</a>
@@ -14,11 +14,20 @@
                     <div class="calenader-result">
                         <p class="text-center">schedule</p>
                         <div class="result-item" ng-click="calendar.remove(select)" ng-repeat="select in calendar.selected">
-                            {{select.from.hour}} to {{select.to.hour}}
                             <i class="pull-right fa fa-times"></i>
+                            <div>{{select.from.day}}</div>
+                            {{select.from.hour}} to {{select.to.hour}}
                         </div>
                         <div class="result-item" ng-if="calendar.selected.length==0">
-                            no schedule
+                            your booking time will show here!
+                        </div>
+                        <div class="result-item" ng-if="calendar.selected.length>0">
+                            there are {{get_left()}} couse you can book !
+                        </div>
+                        <div class="clearfix" ng-if="calendar.selected.length>0">
+                            <p class="btn-group text-center">
+                                <button type="button" class="btn btn-primary" ng-click="booking()">confirm booking</button>
+                            </p>
                         </div>
                     </div>
                 </div>

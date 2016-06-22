@@ -1,67 +1,72 @@
 .calendar {
-	position: relative;
-	color: #494949;
-	border: 1px solid @brand-second;
-	background-color: white;
-	.calendar-day {
-		padding: 15px;
-		text-align: center;
-	}
-	.calendar-times {
-		overflow: hidden;
-	}
-	.calendar-time {
-		position: relative;
-		float: left;
-		width: 25%;
-		padding: 15px 10px;
-		.box-sizing(border-box);
-		border: 1px solid #ECD5BA;
-		// border: 1px solid white;
-		text-align: center;
-		i {
-			position: absolute;
-			right: 2px;
-			bottom: 2px;
-			color:@brand-primary;
-		}
-		// unavalibale
-		&.state_1 {
-			color:@brand-second;
-		}
-		// busy
-		&.state_2 {
-			// color:@brand-primary;
-			background-color: @brand-second;
-		}
-		&.state_3 {
-			
-		}
-		&.active {
-			color: @brand-primary;
-			i {
-				display: block;
-			}
-		}
-	}
-	.hour {
-		display: block;
-		font-size: 14px;
-	}
-	.plan {
-		font-size: 12px;
-	}
-	.calendar-disabled {
-		position: absolute;
-		top:50px;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		background-color: fade(black, 50%);
-		color: white;
-		text-align: center;
-	}
+    position: relative;
+    color: #494949;
+    border: 1px solid @brand-second;
+    background-color: white;
+    .calendar-day {
+        padding: 15px;
+        text-align: center;
+    }
+    .calendar-times {
+        overflow: hidden;
+    }
+    .calendar-time {
+        position: relative;
+        float: left;
+        width: 25%;
+        padding: 15px 10px;
+        .box-sizing(border-box);
+        border-left: 1px solid #F3E7D9;
+        border-top: 1px solid #F3E7D9;
+        &:nth-child(4n+1) {
+        	border-left: none;
+        }
+        // border: 1px solid white;
+        text-align: center;
+        i {
+            position: absolute;
+            right: 2px;
+            bottom: 2px;
+            color: @brand-primary;
+        }
+        // unavalibale
+        &.state_1 {
+            color: @brand-second;
+        }
+        // busy
+        &.state_2 {
+            // color:@brand-primary;
+            background-color: @brand-second;
+        }
+        &.state_3 {}
+        &.active {
+            color: @brand-primary;
+            border-left: 1px solid white;
+            border-top: 1px solid white;
+            i {
+                display: block;
+            }
+        }
+    }
+    .hour {
+        display: block;
+        font-size: 14px;
+    }
+    .plan {
+        font-size: 12px;
+    }
+    .calendar-disabled {
+        position: absolute;
+        top: 50px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: fade(black, 50%);
+        color: white;
+        text-align: center;
+    }
 }
+
 .small-calendar .hour {
-	font-size: 12px;
+    font-size: 12px;
 }

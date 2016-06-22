@@ -1,0 +1,33 @@
+<div ng-include="'templates/header.html'"></div>
+<div class="wrap" ng-cloak ng-if="payment">
+	<p>支付金额</p>
+    <span class="text-primary text-big">{{payment.total_total_session_rate|currency:"$"}}</span><span class="text-line-through">{{payment.total_original_total_session_rate|currency:"$"}}</span>
+    <div class="section sm">
+        选择支付方式
+    </div>
+    <a class="btn btn-second btn-md" ng-click="pay('1')">pay with alipay</a>
+    <a class="btn btn-primary btn-md" ng-click="pay('2')"><i class="fa fa-cc-visa" aria-hidden="true"></i>pay with visa</a>
+    <a class="btn btn-success btn-md" ng-click="pay('3')"><i class="fa fa-cc-paypal" aria-hidden="true"></i>pay with paypal</a>
+</div>
+<div class="wrap" ng-cloak ng-if="error_msg">
+    {{error_msg}}
+</div>
+<!-- alipay -->
+<form name="alipayForm" method="post" id="alipayForm" action="https://mapi.alipay.com/gateway.do?_input_charset=utf-8">
+    <input type="hidden" name="service" value="{{alipay.service}}">
+    <input type="hidden" name="partner" value="{{alipay.partner}}">
+    <input type="hidden" name="seller_id" value="{{alipay.seller_id}}">
+    <input type="hidden" name="_input_charset" value="{{alipay._input_charset}}">
+    <input type="hidden" name="payment_type" value="{{alipay.payment_type}}">
+    <input type="hidden" name="notify_url" value="{{alipay.notify_url}}">
+    <input type="hidden" name="return_url" value="{{alipay.return_url}}">
+    <input type="hidden" name="out_trade_no" value="{{alipay.out_trade_no}}">
+    <input type="hidden" name="subject" value="{{alipay.subject}}">
+    <input type="hidden" name="total_fee" value="{{alipay.total_fee}}">
+    <input type="hidden" name="show_url" value="{{alipay.show_url}}">
+    <input type="hidden" name="body" value="{{alipay.body}}">
+    <input type="hidden" name="it_b_pay" value="{{alipay.it_b_pay}}">
+    <input type="hidden" name="extern_token" value="{{alipay.extern_token}}">
+    <input type="hidden" name="sign" value="{{alipay.sign}}">
+    <input type="hidden" name="sign_type" value="{{alipay.sign_type}}">
+</form>

@@ -1,5 +1,5 @@
 <div class="calendar">
-    <div class="calendar-day" ng-click="pickadate($event)">
+    <div class="calendar-day" ng-click="pickadate($event)" ng-show="calendar.mode != 'confirm'">
         <i class="fa fa-calendar pull-left" aria-hidden="true"></i>
         {{calendar.day}}
         <i class="fa fa-angle-right pull-right" aria-hidden="true"></i>

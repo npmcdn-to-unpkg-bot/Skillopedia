@@ -63,6 +63,16 @@ angular.module("Skillopedia").factory("userServices", function($rootScope, $http
 				return data.data;
 			});
 		},
+		query_basicinfo_id: function(input) {
+			return $http({
+				// by dribehance <dribehance.kksdapp.com>
+				url: config.url + "/app/PersonalHomepage/personalInfo",
+				method: "GET",
+				params: angular.extend({}, config.common_params, input)
+			}).then(function(data) {
+				return data.data;
+			});
+		},
 		modify_avatar: function(input) {
 			return $http({
 				// by dribehance <dribehance.kksdapp.com>
@@ -127,7 +137,7 @@ angular.module("Skillopedia").factory("userServices", function($rootScope, $http
 		query_comments_by_user_id: function(input) {
 			return $http({
 				// by dribehance <dribehance.kksdapp.com>
-				url: config.url + "/app/PersonalHomepage/taCourseList",
+				url: config.url + "/app/PersonalHomepage/taCommentList",
 				method: "GET",
 				params: angular.extend({}, config.common_params, input)
 			}).then(function(data) {
@@ -277,9 +287,35 @@ angular.module("Skillopedia").factory("userServices", function($rootScope, $http
 		query_messages: function(input) {
 			return $http({
 				// by dribehance <dribehance.kksdapp.com>
-				url: config.url + "in",
+				url: config.url + "/app/CommentManage/commentList",
 				method: "GET",
-				params: angular.extend({}, config.common_params, input)
+				params: angular.extend({}, config.common_params, {
+					token: localStorageService.get("token")
+				}, input)
+			}).then(function(data) {
+				return data.data;
+			});
+		},
+		remove_message: function(input) {
+			return $http({
+				// by dribehance <dribehance.kksdapp.com>
+				url: config.url + "/app/CommentManage/deleteComment",
+				method: "GET",
+				params: angular.extend({}, config.common_params, {
+					token: localStorageService.get("token")
+				}, input)
+			}).then(function(data) {
+				return data.data;
+			});
+		},
+		reply_message: function(input) {
+			return $http({
+				// by dribehance <dribehance.kksdapp.com>
+				url: config.url + "/app/CommentManage/commentReply",
+				method: "GET",
+				params: angular.extend({}, config.common_params, {
+					token: localStorageService.get("token")
+				}, input)
 			}).then(function(data) {
 				return data.data;
 			});
@@ -288,12 +324,40 @@ angular.module("Skillopedia").factory("userServices", function($rootScope, $http
 		query_coupons: function(input) {
 			return $http({
 				// by dribehance <dribehance.kksdapp.com>
-				url: config.url + "coupons",
+				url: config.url + "/app/CouponManage/myCouponList",
 				method: "GET",
-				params: angular.extend({}, config.common_params, input)
+				params: angular.extend({}, config.common_params, {
+					token: localStorageService.get("token")
+				}, input)
 			}).then(function(data) {
 				return data.data;
 			});
-		}
+		},
+		// get coupons
+		get_coupon: function(input) {
+			return $http({
+				// by dribehance <dribehance.kksdapp.com>
+				url: config.url + "/app/CouponManage/getCoupon",
+				method: "GET",
+				params: angular.extend({}, config.common_params, {
+					token: localStorageService.get("token")
+				}, input)
+			}).then(function(data) {
+				return data.data;
+			});
+		},
+		// remove coupon
+		remove_coupon: function(input) {
+			return $http({
+				// by dribehance <dribehance.kksdapp.com>
+				url: config.url + "/app/CouponManage/deteleMyCoupon",
+				method: "GET",
+				params: angular.extend({}, config.common_params, {
+					token: localStorageService.get("token")
+				}, input)
+			}).then(function(data) {
+				return data.data;
+			});
+		},
 	}
 });

@@ -1,5 +1,5 @@
 // by dribehance <dribehance.kksdapp.com>
-angular.module("Skillopedia").controller("fillinorderController", function($scope, $rootScope, $filter, $routeParams, $sce, orderServices, scheduleServices, userServices, coursesServices, errorServices, toastServices, localStorageService, config) {
+angular.module("Skillopedia").controller("fillinorderController", function($scope, $rootScope, $window, $timeout, $location, $filter, $routeParams, $sce, orderServices, scheduleServices, userServices, coursesServices, errorServices, toastServices, localStorageService, config) {
 	$scope.input = {};
 	$scope.course = {};
 	toastServices.show();
@@ -50,6 +50,9 @@ angular.module("Skillopedia").controller("fillinorderController", function($scop
 		all: []
 	};
 	$scope.query_coupons = function() {
+		if (!$rootScope.is_signin()) {
+			return;
+		}
 		toastServices.show();
 		orderServices.query_coupons({
 			category_01_id: $scope.course.category_01_id,
@@ -75,12 +78,25 @@ angular.module("Skillopedia").controller("fillinorderController", function($scop
 			type: 'inline'
 		}, 0);
 	};
+	$scope.old_course = $scope.course;
 	$scope.save_location = function() {
 		$scope.teaching_location_map = $scope.get_map($scope.input.city, $scope.input.area, $scope.input.street, $scope.input.address);
 		$scope.course.city = $scope.input.city;
 		$scope.course.area = $scope.input.area;
 		$scope.course.street = $scope.input.street;
 		$scope.course.address = $scope.input.address;
+		$scope.course.zipcode = $scope.input.zipcode;
+		$scope.course.travel_to_session = 1;
+		$.magnificPopup.close();
+	};
+	$scope.reset_location = function() {
+		$scope.teaching_location_map = $scope.get_map($scope.old_course.city, $scope.old_course.area, $scope.old_course.street, $scope.old_course.address);
+		$scope.course.city = $scope.old_course.city;
+		$scope.course.area = $scope.old_course.area;
+		$scope.course.street = $scope.old_course.street;
+		$scope.course.address = $scope.old_course.address;
+		$scope.course.zipcode = $scope.old_course.zipcode;
+		$scope.course.travel_to_session = 0;
 		$.magnificPopup.close();
 	};
 	// parse iframe map url
@@ -119,7 +135,8 @@ angular.module("Skillopedia").controller("fillinorderController", function($scop
 		mode: "edit",
 		disabled: false,
 		disabled_message: "All Day Busy",
-		times: []
+		times: [],
+		size: 1
 	}
 	$scope.query_schedule = function(day) {
 		// $scope.calendar.selected = [];
@@ -127,7 +144,7 @@ angular.module("Skillopedia").controller("fillinorderController", function($scop
 			return t.from.day + " " + t.from.hour + "to" + t.to.day + " " + t.to.hour;
 		}).join("#");
 		toastServices.show();
-		scheduleServices.query_by_order({
+		scheduleServices.query_by_course({
 			course_id: $routeParams.course_id,
 			user_id: $scope.course.user_id,
 			choice_currentdate: day,
@@ -165,10 +182,18 @@ angular.module("Skillopedia").controller("fillinorderController", function($scop
 	$scope.add_amount = function() {
 		$scope.input.amount++;
 		$scope.calculate();
+		// control calendar selected size;
+		$scope.calendar.size = $scope.input.amount;
 	}
 	$scope.minus_amount = function() {
+		if (parseFloat($scope.input.amount) < parseFloat($scope.calendar.selected.length) + 1) {
+			errorServices.autoHide("You have booking time,before you can change the amount, cancel booking")
+			return;
+		}
 		$scope.input.amount = --$scope.input.amount < 1 ? ++$scope.input.amount : $scope.input.amount;
 		$scope.calculate();
+		// control calendar selected size;
+		$scope.calendar.size = $scope.input.amount;
 	}
 	$scope.input.partner = 0;
 	$scope.add_partner = function() {
@@ -186,6 +211,7 @@ angular.module("Skillopedia").controller("fillinorderController", function($scop
 		if ($scope.course.discount_type == 1) {
 			angular.forEach($scope.discounts, function(discount) {
 				if (parseFloat($scope.input.total_price) > parseFloat(discount.purchase) - 1) {
+					$scope.input.temp_discount_price = discount.off;
 					discount_price = parseFloat($scope.input.total_price) - parseFloat(discount.off);
 				}
 			});
@@ -194,6 +220,7 @@ angular.module("Skillopedia").controller("fillinorderController", function($scop
 		if ($scope.course.discount_type == 2) {
 			angular.forEach($scope.discounts, function(discount) {
 				if (parseFloat($scope.input.amount) > parseFloat(discount.purchase) - 1) {
+					$scope.input.temp_discount_price = discount.off;
 					discount_price = parseFloat($scope.input.total_price) - parseFloat(discount.off);
 				}
 			});
@@ -208,7 +235,8 @@ angular.module("Skillopedia").controller("fillinorderController", function($scop
 		if ($scope.input.coupons.all.length == 0) {
 			$scope.is_watch = false;
 			$scope.input.coupons.selected = {
-				coupon_name: "无可用优惠券"
+				coupon_name: "无可用优惠券",
+				my_coupon_id: "0"
 			};
 		}
 		if ($scope.input.coupons.selected.coupon_money) {
@@ -222,5 +250,61 @@ angular.module("Skillopedia").controller("fillinorderController", function($scop
 		}
 		$scope.is_watch = true;
 		$scope.calculate();
-	}, true)
+	}, true);
+	// 加入购物车;
+	// 下单;
+	$scope.fillinorder = function(type) {
+		if (!$rootScope.is_signin()) {
+			$rootScope.signin();
+			return;
+		}
+		// 首单服务费
+		var total_session_rate = $scope.input.discount_price || $scope.input.total_price,
+			total_session_rate = parseFloat(total_session_rate) + parseFloat($scope.course.first_joint_fee),
+			original_total_session_rate = parseFloat($scope.input.total_price) + parseFloat($scope.course.first_joint_fee);
+		toastServices.show();
+		orderServices.fillinorder({
+			order_type: type,
+			course_id: $scope.course.course_id,
+			title: $scope.course.title,
+			address: $scope.course.city + $scope.course.area + $scope.course.street + $scope.course.address,
+			course_user_id: $scope.course.user_id,
+			buy_amount: $scope.input.amount,
+			session_rate: $scope.course.session_rate,
+			go_door_status: $scope.input.travel_to_session,
+			go_door_city: $scope.course.city,
+			go_door_area: $scope.course.area,
+			go_door_street: $scope.course.street,
+			go_door_address: $scope.course.address,
+			go_door_latitude: "0",
+			go_door_longitude: "0",
+			go_door_zipcode: $scope.course.zipcode,
+			go_door_traffic_cost: $scope.course.travel_to_session_trafic_surcharge,
+			my_coupon_id: $scope.input.coupons.selected.my_coupon_id,
+			my_coupon_money: $scope.input.coupons.selected.coupon_money,
+			leave_message: $scope.input.message,
+			discount_type: $scope.course.discount_type,
+			discount_price: $scope.input.temp_discount_price,
+			take_partner_num: $scope.input.partner,
+			surcharge_for_each_cash: $scope.course.surcharge_for_each,
+			total_session_rate: total_session_rate,
+			original_total_session_rate: original_total_session_rate,
+			schedule_datas: $scope.calendar.selected.map(function(c) {
+				return c.from.day + "A" + c.from.hour_index + "A" + c.to.hour_index;
+			}).join("#"),
+			first_joint_fee: $scope.course.first_joint_fee
+		}).then(function(data) {
+			toastServices.hide()
+			if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
+				errorServices.autoHide(data.message);
+				$timeout(function() {
+
+					var url = $location.protocol() + "://" + $location.host() + ":" + $location.port() + "/#/payment?id=" + data.orders_id;
+					type == "11" && $window.open(url);
+				}, 2000)
+			} else {
+				errorServices.autoHide(data.message);
+			}
+		})
+	}
 })

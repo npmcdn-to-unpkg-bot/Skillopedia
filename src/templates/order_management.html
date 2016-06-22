@@ -5,7 +5,7 @@
 <div class="wrap">
     <div class="section account-section">
         <!-- sidebar -->
-        <div ng-include="'templates/sidebar.html'" class="sidebar-wrap"></div>
+        <sidebar active="'/skillopedia'" class="sidebar-wrap"></sidebar>
         <div class="content-wrap">
             <div class="tabs clearfix">
                 <a class="tab-item pull-left active">Order manament</a>
@@ -17,19 +17,18 @@
                         <div class="comments">
                             <div class="comment-header">
                                 <div class="comment-avatar">
-                                    <img src="../images/head.png" class="full-width" alt="">
+                                    <img ng-src="{{staticImageUrl + order.Course.course_image_01}}" err-src="../images/head.png" class="full-width" alt="">
                                 </div>
                                 <div class="comment-meta">
                                     <span class="comment-name">
-                                        dribehance
+                                        {{order.Course.course_nickname}}
                                     </span>
                                     <div class="clearfix">
                                         <span class="pull-left">
-                                            message:icanot to wait!
+                                            {{order.leave_message||"暂无留言"}}
                                         </span>
                                         <span class="pull-right">
-                                            <a href="" class="btn btn-success font-white" ng-href="">LINK</a>
-
+                                            <a class="btn btn-success font-white" ng-href="#/show?user_id={{order.Course.user_id}}" target="_blank">查看</a>
                                         </span>
                                     </div>
                                 </div>
@@ -37,74 +36,78 @@
                         </div>
                         
                     </li>
-                    <li><a href="">Price:<em>$60</em></a></li>
-                    <li><a href="">Additional partner(2):<em>$20</em></a></li>
-                    <li><a href="">Traffic costs:<em>$0</em></a></li>
-                    <li><a href="">Amound:<em>5</em></a></li>
-                    <li><a href="">Discount:<em>-$100</em></a></li>
-                    <li><a href="">Total:<em>$300</em></a></li>
+                    <li><a href="">Price:<em>{{order.Course.session_rate|currency:"$"}}</em></a></li>
+                    <li><a href="">Additional partner({{order.take_partner_num}}):<em>${{get_total_partner_fee()}}</em></a></li>
+                    <li><a href="">Traffic costs:<em>{{order.go_door_traffic_cost|currency:"$"}}</em></a></li>
+                    <li><a href="">service fee:<em>{{order.first_joint_fee|currency:"$"}}</em></a></li>
+                    <li><a href="">Amount:<em>x{{order.buy_amount}}</em></a></li>
+                    <li><a href="">Discount:<em>{{order.discount_price|currency:"$"}}</em></a></li>
+                    <li><a href="">Total:<em>{{order.total_session_rate|currency:"$"}}</em></a></li>
                 </ul>
             </div>
             <div class="tit">
                 Teaching location
             </div>
-            <iframe src="https://maps.google.com/maps?q=Baker+Street,+London,+United+Kingdom&hl=en&t=v&hnear=221B+Baker+St,+London+NW1+6XE,+United+Kingdom&output=embed" class="map" height="300px" frameborder="0" allowfullscreen></iframe>
+            <iframe ng-src="{{get_map()}}" class="map" height="300px" frameborder="0" allowfullscreen></iframe>
             <div class="tit">
-                广东省深圳西乡名优采购中心
+                {{order.Course.city+order.Course.area+order.Course.street+order.Course.address}}
             </div>
-            <div class="goods clearfix">
-                <div class="left-table pull-left">
-                    <ul>
-                        <li><a>Session1:</a></li>
-                        <li><a>Session2:</a></li>
-                        <li><a>Session3:</a></li>
-                        <li><a>Session4:</a></li>
-                        <li><a>Session5:</a></li>
-                    </ul>
-                </div>
-                <div class="right-table pull-right">
-                    <ul>
-                        <li><a>June 18,2007 14:00~15:00<span>finish</span></a></li>
-                        <li><a>June 18,2007 14:00~15:00<span>padding</span></a></li>
-                        <li><a>June 18,2007 14:00~15:00<span>unconfirm</span></a></li>
-                        <li><a>unselcted<span>unselcted</span></a></li>
-                        <li><a>unselcted<span>unselcted</span></a></li>
-                    </ul>
+            <div class="list-group">
+                <div class="list-group-item clearfix" ng-class="{'text-success':schedule.status == '1','text-primary':schedule.status=='20' && schedule.refund_status=='10','text-danger':schedule.status=='3' && schedule.refund_status=='10'}" ng-repeat="schedule in order.OrdersSchedules">
+                    <div class="col-xs-3">session1</div>
+                    <div class="col-xs-6">{{schedule.schedule_data}} {{schedule.schedule_hours}}</div>
+                    <!-- 课程完成 -->
+                    <div class="col-xs-3 text-right" ng-if="schedule.status=='1'">finish</div>
+                    <!-- 教练确认 -->
+                    <div class="col-xs-3 text-right" ng-if="schedule.status=='20' && schedule.refund_status=='10'">confirm</div>
+                    <!-- 教练未确认 -->
+                    <div class="col-xs-3 text-right" ng-if="schedule.status=='3' && schedule.refund_status=='10'">unconfirm</div>
+                    <!-- 用户未选择 -->
+                    <div class="col-xs-3 text-right" ng-if="schedule.status=='4' && schedule.refund_status=='10'">unselected</div>
+                    <!-- 退款中 -->
+                    <div class="col-xs-3 text-right" ng-if="schedule.refund_status=='2' || schedule.refund_status=='30'">pending</div>
+                    <!-- 退款完成 -->
+                    <div class="col-xs-3 text-right" ng-if="schedule.refund_status=='31'">refunded</div>
                 </div>
             </div>
             <div class="section sm">
-                <div class="btn-group text-center clearfix">
-                    <a class="btn btn-danger" ng-href="#/order_cancel">CANCEL</a>
-                    <a class="btn btn-success" ng-href="#/order_confirm">CONFIRM</a>
-                    <a class="btn btn-success" ng-href="#/order_finish">FINISH</a>
-                </div>
+                <div class="btn-group clearfix text-center">
+                        <!-- coach cancel course -->
+                        <a class="btn btn-success" ng-if="order.button_status == '1'" ng-href="#/order_cancel">cancel</a>
+                        <!-- confirm course time -->
+                        <a class="btn btn-success" ng-if="order.button_status == '2'" ng-href="#/order_confirm">confirm</a>
+                        <!-- finish course -->
+                        <a class="btn btn-success" ng-if="order.button_status == '3'" ng-href="#/order_finish">confirm</a>
+                        <span class="btn btn-danger" ng-if="order.button_status=='4'" ng-click="remove(order)">delete</span>
+                    </div>
             </div>
             <div class="tit clearfix">
-                <p>Transaction ID:26266565515465</p>
-                <p>Payment time:june 18,2007 14:00:00</p>
+                <p>Transaction ID:{{order.order_number}}</p>
+                <p>Time:{{order.post_time}}</p>
             </div>
-            <div class="coach-item hover">
+            <a class="coach-item" ng-href="#/detail?course_id={{order.Course.course_id}}">
                 <div class="coach-avatar">
-                    <img src="images/avatar.png" class="full-width" alt="">
+                    <img ng-src="{{staticImageUrl + order.Course.coach_image}}" class="full-width full-height" alt="" err-src="../images/example_7.png">
+                    <span class="official-coach" ng-if="order.Course.is_official"></span>
                 </div>
                 <div class="coach-info">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem laudantium reiciendis, eos blanditiis. Beatae praesentium sint recusandae quam blanditiis molestias eligendi quidem dolores delectus non odio, amet reiciendis similique nihil.</p>
-                    <span class="pull-right text-primary text-big">$100</span>
+                    <div class="long-title">{{order.Course.title}}</div>
+                    <span class="pull-right" style="margin-left:8px;">x{{order.buy_amount}}</span>
+                    <span class="pull-right text-primary text-big">{{order.Course.session_rate|currency:"$"}}</span>
                     <div class="star text-ellipsis">
-                        <i class="fa fa-star active" aria-hidden="true"></i>
-                        <i class="fa fa-star active" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" ng-class="{'active':order.Course.total_score >0}" aria-hidden="true"></i>
+                        <i class="fa fa-star" ng-class="{'active':order.Course.total_score >1}" aria-hidden="true"></i>
+                        <i class="fa fa-star" ng-class="{'active':order.Course.total_score >2}" aria-hidden="true"></i>
+                        <i class="fa fa-star" ng-class="{'active':order.Course.total_score >3}" aria-hidden="true"></i>
+                        <i class="fa fa-star" ng-class="{'active':order.Course.total_score >4}" aria-hidden="true"></i>
                     </div>
                     <div class="coach-meta">
-                        <span><i class="fa fa-bars" aria-hidden="true"></i>football</span>
-                        <span><i class="fa fa-user" aria-hidden="true"></i>by dribehace</span>
-                        <span><i class="fa fa-map-marker" aria-hidden="true"></i>newyowk</span>
-                        <span class="text-success"><i class="fa fa-hand-paper-o" aria-hidden="true"></i>open map</span>
+                        <span><i class="fa fa-bars" aria-hidden="true"></i>{{order.Course.category_02_name}}</span>
+                        <span><i class="fa fa-user" aria-hidden="true"></i>by {{order.Course.coach_name}}</span>
+                        <span><i class="fa fa-map-marker" aria-hidden="true"></i>{{order.Course.area}}</span>
                     </div>
                 </div>
-            </div>
+            </a>
         </div>
         <!-- 订单详情 -->
     </div>

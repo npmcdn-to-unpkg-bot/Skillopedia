@@ -52,6 +52,9 @@
                             <div class="result-item" ng-if="calendar.selected.length==0">
                                 your booking time will show here!
                             </div>
+                            <div class="result-item" ng-if="calendar.selected.length>0">
+                                you total can book {{calendar.size}} course ! you can change the amount before you can book more!
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -69,7 +72,8 @@
             <div class="settlement">
                 <p class="price text-center">
                     <span ng-class="{'underline':input.discount_price>0}">{{input.total_price|currency:"$"}}</span>
-                    <span ng-if="input.discount_price>0">{{input.discount_price|currency:"$"}}</span></p>
+                    <span ng-if="input.discount_price>0">{{input.discount_price|currency:"$"}}</span>
+                    <span ng-if="course.first_joint_fee>0">+ {{course.first_joint_fee|currency:"$"}}</span></p>
                 <p class="text-center">per session {{course.session_length||'60'}}min</p>
                 <p class="clearfix settlement-action">
                     购买数量
@@ -92,30 +96,34 @@
                         优惠券
                     </span>
                     <span class="col-xs-8">
-                        <dribehance-select options="input.coupons"></dribehance-select>
+                        <dribehance-select options="input.coupons" ng-if="is_signin()"></dribehance-select>
+                        <span class="pull-right" ng-click="signin()" ng-if="!is_signin()">登录查看优惠券</span>
                     </span>
                 </p>
                 <p class="text-center">
-                    <a class="btn btn-danger btn-md">add to cart</a>
+                    <a class="btn btn-primary btn-md" ng-click="fillinorder('1')">add to cart</a>
                     <span class="or bg-second">or</span>
-                    <a class="btn btn-primary btn-md" ng-href="#/fillinorder">pay with visa</a>
-                    <a class="btn btn-success btn-md" ng-href="#/fillinorder">pay with paypal</a>
+                    <a class="btn btn-success btn-md" ng-click="fillinorder('11')">pay now</a>
                 </p>
                 <div class="settlement-discount">
-                    <div ng-if="course.discount_type == '1'">
-                        <b>Discount</b>
-                        <div ng-if="course.discount_onetion_pur_money_01>0" ng-repeat="discount in discounts">
+                    <div ng-if="course.discount_type == '1' && discounts.length>0">
+                        <p><b>Discount </b></p>
+                        <div ng-repeat="discount in discounts">
                             buy Money to <span class="text-danger">{{discount.purchase|currency:"$"}}</span> get <span class="text-danger">{{discount.off|currency:"$"}} </span> off
                         </div>
                     </div>
-                    <div ng-if="course.discount_type == '2'">
-                        <b>Discount</b>
-                        <div ng-if="course.discount_onetion_pur_money_01>0" ng-repeat="discount in discounts">
+                    <div ng-if="course.discount_type == '2' && discounts.length>0">
+                        <p><b>Discount </b></p>
+                        <div ng-repeat="discount in discounts">
                             buy Amount to <span class="text-danger">{{discount.purchase}}</span> get <span class="text-danger">{{discount.off|currency:"$"}}</span> off
                         </div>
                     </div>
+                    <div ng-if="course.first_joint_fee>0">
+                        <p><b>First services fee </b></p>
+                        <div class="text-danger">{{course.first_joint_fee|currency:"$"}}</div>
+                    </div>
                     <p>
-                        <b>Additional</b>
+                        <b>Additional </b>
                         <div>each for {{course.surcharge_for_each|currency:"$"}},up to {{course.additional_partner}}</div>
                     </p>
                 </div>

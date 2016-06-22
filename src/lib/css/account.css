@@ -448,14 +448,16 @@
 /*********************************************************************
  *                    steps
  * *********************************************************************/
+
 .step-item {
     display: block;
     margin-bottom: 15px;
     padding-bottom: 26px;
     border-bottom: 1px dashed #ccc;
-    color:inherit;
+    color: inherit;
     text-decoration: none;
 }
+
 .step-info .step-title {
     display: block;
     font-size: 20px;
@@ -532,8 +534,7 @@
 
 .message .note {
     background-color: #eee;
-    padding: 0 10px;
-    float: left;
+    padding:1px 5px;
 }
 
 .message .note p {
@@ -581,13 +582,17 @@
 
 .coupon {
     position: relative;
-    width: 48%;
-    height: 30%;
+    width: 100%;
     background-color: #F5E7D9;
-    margin: 0 auto;
-    margin: 0 1% 2%;
+    margin: 0 1% 10px;
     float: left;
     padding-bottom: 116px;
+}
+
+@media (min-width:900px) {
+    .coupon {
+        width: 48%;
+    }
 }
 
 .coupon:before {
@@ -1171,7 +1176,7 @@
 
 /*新建课程，教练认证输入框样式*/
 
-.course-input input{
+.course-input input {
     width: 100%;
     border: 1px solid #CCCCCC;
     padding: 15px;
@@ -1352,9 +1357,11 @@
     -webkit-box-sizing: border-box;
     box-sizing: boder-box;
 }
+
 .authen-step .m-session:nth-child(even) {
     margin-left: 15px;
 }
+
 .authen-step a {
     text-decoration: none;
     display: block;

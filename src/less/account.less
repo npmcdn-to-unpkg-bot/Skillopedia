@@ -106,7 +106,21 @@
         }
     }
 }
-
+.coach-item.shopping-cart {
+    @media (min-width:748px) {
+        padding-left: 155px;
+        .radio-btn {
+            position: absolute;
+            left: 0;
+            top: 30px;
+        }
+        .coach-avatar {
+            position: absolute;
+            left: 40px;
+            top: 0px;
+        }
+    }
+}
 .coach-avatar {
     position: relative;
     float: left;
@@ -239,4 +253,19 @@
 input.pickadate {
     padding: 14px;
     border: 1px solid #ccc;
+}
+.coupon-form {
+    text-align: center;
+    input {
+        padding: 10px 16px;
+        font-size: 14px;
+        line-height: 1.42857143;
+    }
+    button {
+        padding: 10px 32px;
+    }
+}
+.order-header {
+    padding: 15px;
+    background-color: @brand-second;
 }

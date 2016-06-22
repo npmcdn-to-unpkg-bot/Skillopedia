@@ -11,7 +11,7 @@ angular.module("Skillopedia").factory("scheduleServices", function($http, localS
 				return data.data;
 			});
 		},
-		query_by_order: function(input) {
+		query_by_course: function(input) {
 			return $http({
 				// by dribehance <dribehance.kksdapp.com>
 				url: config.url + "/app/TimeOrdersManage/bookingScheduleList",

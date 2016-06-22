@@ -347,6 +347,10 @@ angular.module("Skillopedia").controller("createCourseController", function($sco
 		$scope.get_time_slots(n);
 	});
 	$scope.input.weeks = [{
+		day: "Sunday",
+		value: "1",
+		select: true,
+	}, {
 		day: "Monday",
 		value: "2",
 		select: true,
@@ -369,10 +373,6 @@ angular.module("Skillopedia").controller("createCourseController", function($sco
 	}, {
 		day: "Saturday",
 		value: "7",
-		select: true,
-	}, {
-		day: "Sunday",
-		value: "1",
 		select: true,
 	}];
 	$scope.select_week = function(week) {

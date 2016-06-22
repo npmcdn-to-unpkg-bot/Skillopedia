@@ -55,7 +55,7 @@
  				$window.history.back();
  			}
  			$rootScope.go = function(path) {
- 				$location.path(path);
+				$location.path(path);
  			}
  			$rootScope.popup_signin = function() {
  				popup_signin();

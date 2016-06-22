@@ -27,6 +27,7 @@ angular.module("Skillopedia").controller("signinController", function($scope, $r
 					localStorageService.set("token", data.token);
 					userServices.sync();
 					$rootScope.close_popup_signin();
+					$route.reload();
 				} else {
 					errorServices.autoHide(data.message);
 				}

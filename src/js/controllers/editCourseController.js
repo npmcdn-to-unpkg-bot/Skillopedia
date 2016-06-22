@@ -441,6 +441,10 @@ angular.module("Skillopedia").controller("editCourseController", function($scope
 
 	function parse_weeks() {
 		$scope.input.weeks = [{
+			day: "Sunday",
+			value: "1",
+			select: true,
+		}, {
 			day: "Monday",
 			value: "2",
 			select: true,
@@ -463,10 +467,6 @@ angular.module("Skillopedia").controller("editCourseController", function($scope
 		}, {
 			day: "Saturday",
 			value: "7",
-			select: true,
-		}, {
-			day: "Sunday",
-			value: "1",
 			select: true,
 		}];
 		$scope.course.weeks = $scope.course.weeks == null ? "" : $scope.course.weeks;

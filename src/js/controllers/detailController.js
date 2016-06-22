@@ -60,7 +60,8 @@ angular.module("Skillopedia").controller("detailController", function($scope, $r
 	$scope.query_schedule = function(day) {
 		$scope.calendar.selected = null;
 		toastServices.show();
-		scheduleServices.query({
+		scheduleServices.query_by_course({
+			course_id: $routeParams.course_id,
 			user_id: $scope.course.user_id,
 			choice_currentdate: day,
 		}).then(function(data) {
