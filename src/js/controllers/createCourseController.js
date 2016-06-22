@@ -16,7 +16,11 @@ angular.module("Skillopedia").controller("createCourseController", function($sco
 	coursesServices.prapare_create_course().then(function(data) {
 		toastServices.hide()
 		if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
-			$scope.course_id = data.course_id
+			$scope.course_id = data.course_id;
+			// pickadate
+			$timeout(function() {
+				$(".pickadate").pickadate();
+			}, 0);
 		} else {
 			errorServices.autoHide(data.message);
 		}

@@ -65,6 +65,10 @@ angular.module("Skillopedia").controller("editCourseController", function($scope
 			parse_weeks();
 			// zipcode
 			$scope.input.zipcode = $scope.course.zipcode;
+			// pickadate
+			$timeout(function() {
+				$(".pickadate").pickadate();
+			}, 0);
 		} else {
 			errorServices.autoHide(data.message);
 		}
@@ -470,14 +474,12 @@ angular.module("Skillopedia").controller("editCourseController", function($scope
 			select: true,
 		}];
 		$scope.course.weeks = $scope.course.weeks == null ? "" : $scope.course.weeks;
-		console.log($scope.course.weeks)
 		$scope.input.weeks = $scope.input.weeks.map(function(w) {
 			if ($scope.course.weeks.indexOf(w.value) == -1) {
 				w.select = false;
 			}
 			return w;
 		});
-		console.log($scope.input.weeks);
 		$scope.course.start_time_slot = $scope.course.start_time_slot == "0" ? "1" : $scope.course.start_time_slot;
 		$scope.course.end_time_slot = $scope.course.end_time_slot == "0" ? "24" : $scope.course.end_time_slot;
 		$scope.time_slots.map(function(t) {

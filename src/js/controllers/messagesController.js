@@ -5,7 +5,7 @@ angular.module("Skillopedia").controller("messagesController", function($scope, 
 		pn: 1,
 		page_size: 10,
 		message: "点击加载更多",
-		// type: $rootScope.user.agent_level
+		type: $rootScope.user.agent_level
 	}
 	$scope.loadMore = function() {
 		if ($scope.no_more) {

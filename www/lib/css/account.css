@@ -505,17 +505,19 @@
     margin: 0;
     padding: 0;
 }
-
+.message dl {
+    margin: 0;
+}
 .message dl dd {
-    line-height: 40px;
     display: block;
+    line-height: 26px;
     -webkit-margin-start: 0px;
 }
 
 .message dl dt {
+    padding: 10px 0px;
+    font-size: 18px;
     color: #000000;
-    padding: 10px 0x;
-    line-height: 40px;
 }
 
 .message-info dd {
@@ -553,7 +555,7 @@
 
 .message dd li {
     float: left;
-    padding: 0 80px 0 0;
+    // padding: 0 80px 0 0;
 }
 
 .message dd li span {
@@ -1053,7 +1055,7 @@
 
 .step {
     display: block;
-    overflow: hidden;
+    // overflow: hidden;
 }
 
 .direction-arrow img {
@@ -1092,23 +1094,21 @@
 .input-select {
     position: relative;
     width: 100%;
-    padding: 15px;
-    border: solid 1px #CCCCCC;
     display: inline-block;
-    padding-left: 10px;
     -webkit-box-sizing: border-box;
     box-sizing: boder-box;
 }
 
 .input-select select {
-    -webkit-appearance: none;
-    border: none;
-    outline: none;
     width: 100%;
     height: 100%;
+    padding: 15px;
+    border: solid 1px #CCCCCC;
     // color: #CECECE;
     line-height: 100%;
+    outline: none;
     background-color: white;
+    -webkit-appearance: none;
 }
 
 .input-select .fa {
@@ -1238,26 +1238,24 @@
 /****************新建课程第二步*******************/
 
 .course-select {
-    -webkit-appearance: none;
-    width: 100%;
     position: relative;
-    padding: 15px;
-    border: solid 1px #CCCCCC;
     display: inline-block;
-    padding-left: 10px;
+    width: 100%;
+    -webkit-appearance: none;
     -webkit-box-sizing: border-box;
     box-sizing: boder-box;
 }
 
 .course-select select {
-    -webkit-appearance: none;
-    border: none;
-    outline: none;
+    padding: 15px;
     width: 100%;
     height: 100%;
-    color: #CECECE;
+    border: solid 1px #CCCCCC;
+    outline: none;
+    // color: #CECECE;
     line-height: 100%;
     background-color: white;
+    -webkit-appearance: none;
 }
 
 .course-select .fa {
@@ -1274,8 +1272,8 @@
 }
 
 .u-input {
-    padding: 15px;
-    border: 1px solid #ccc;
+    // padding: 15px;
+    // border: 1px solid #ccc;
     -webkit-box-sizing: border-box;
     box-sizing: boder-box;
 }
@@ -1288,8 +1286,9 @@
 }
 
 .u-input input {
+    padding: 15px;
+    border: 1px solid #ccc;
     outline: none;
-    border: none;
 }
 
 
