@@ -23,6 +23,10 @@ angular.module("Skillopedia").controller("indexController", function($scope, $ro
 		}
 	});
 	$scope.open_left_feature = function(e) {
+		var target = e.currentTarget;
+		if ($(target).hasClass("active")) {
+			return;
+		}
 		toastServices.show();
 		skillopediaServices.query_second_category({
 			category_01_id: $scope.sport.category_01_id
@@ -39,6 +43,10 @@ angular.module("Skillopedia").controller("indexController", function($scope, $ro
 		})
 	}
 	$scope.open_right_feature = function(e) {
+		var target = e.currentTarget;
+		if ($(target).hasClass("active")) {
+			return;
+		}
 		toastServices.show();
 		skillopediaServices.query_second_category({
 			category_01_id: $scope.arts.category_01_id
