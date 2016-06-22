@@ -19,7 +19,12 @@
                             {{select.from.hour}} to {{select.to.hour}}
                         </div>
                         <div class="result-item" ng-if="calendar.selected.length==0">
-                            your booking time will show here!
+                            <span ng-if="schedule_meta.under_select_course_num>0">
+                                your booking time will show here! there are {{schedule_meta.under_select_course_num}} couse you can book !
+                            </span>
+                            <span ng-if="schedule_meta.under_select_course_num==0">
+                                you now has book all you time! 
+                            </span>
                         </div>
                         <div class="result-item" ng-if="calendar.selected.length>0">
                             there are {{get_left()}} couse you can book !

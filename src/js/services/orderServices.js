@@ -118,11 +118,24 @@ angular.module("Skillopedia").factory("orderServices", function($http, localStor
 				return data.data;
 			});
 		},
-		// 退款
+		// 退款列表
 		query_refund: function(input) {
 			return $http({
 				// by dribehance <dribehance.kksdapp.com>
 				url: config.url + "/app/OrdersManage/refundList",
+				method: "GET",
+				params: angular.extend({}, config.common_params, {
+					token: localStorageService.get("token")
+				}, input)
+			}).then(function(data) {
+				return data.data;
+			});
+		},
+		// 退款
+		refund: function(input) {
+			return $http({
+				// by dribehance <dribehance.kksdapp.com>
+				url: config.url + "/app/OrdersManage/refundOrders",
 				method: "GET",
 				params: angular.extend({}, config.common_params, {
 					token: localStorageService.get("token")
@@ -187,6 +200,31 @@ angular.module("Skillopedia").factory("orderServices", function($http, localStor
 			return $http({
 				// by dribehance <dribehance.kksdapp.com>
 				url: config.url + "/app/CoachOrdersManage/rejectConfirmOrders",
+				method: "GET",
+				params: angular.extend({}, config.common_params, {
+					token: localStorageService.get("token")
+				}, input)
+			}).then(function(data) {
+				return data.data;
+			});
+		},
+		// 发表评论界面
+		query_course_by_comment: function(input) {
+			return $http({
+				// by dribehance <dribehance.kksdapp.com>
+				url: config.url + "/app/CommentManage/commentCourseInfo",
+				method: "GET",
+				params: angular.extend({}, config.common_params, {
+					token: localStorageService.get("token")
+				}, input)
+			}).then(function(data) {
+				return data.data;
+			});
+		},
+		comment: function(input) {
+			return $http({
+				// by dribehance <dribehance.kksdapp.com>
+				url: config.url + "/app/CommentManage/comment",
 				method: "GET",
 				params: angular.extend({}, config.common_params, {
 					token: localStorageService.get("token")

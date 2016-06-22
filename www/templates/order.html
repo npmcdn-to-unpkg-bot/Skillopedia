@@ -51,8 +51,8 @@
                 {{order.Course.city+order.Course.area+order.Course.street+order.Course.address}}
             </div>
             <div class="list-group">
-                <div class="list-group-item clearfix" ng-class="{'text-success':schedule.status == '1','text-primary':schedule.status=='20' && schedule.refund_status=='10','text-danger':schedule.status=='3' && schedule.refund_status=='10'}" ng-repeat="schedule in order.OrdersSchedules">
-                    <div class="col-xs-3">session1</div>
+                <div class="list-group-item clearfix" ng-class="{'text-success':schedule.status == '1','text-primary':schedule.status=='20' && schedule.refund_status=='10','text-danger':schedule.status=='3' && schedule.refund_status=='10'}" ng-repeat="schedule in order.OrdersSchedules track by $index">
+                    <div class="col-xs-3">session{{$index+1}}</div>
                     <div class="col-xs-6">{{schedule.schedule_data}} {{schedule.schedule_hours}}</div>
                     <!-- 课程完成 -->
                     <div class="col-xs-3 text-right" ng-if="schedule.status=='1'">finish</div>
@@ -74,7 +74,7 @@
             </div>
             <a class="coach-item" ng-href="#/detail?course_id={{order.Course.course_id}}">
                 <div class="coach-avatar">
-                    <img ng-src="{{staticImageUrl + order.Course.coach_image}}" class="full-width full-height" alt="" err-src="../images/example_7.png">
+                    <img ng-src="{{staticImageUrl + order.Course.course_image_01}}" class="full-width full-height" alt="" err-src="../images/example_7.png">
                     <span class="official-coach" ng-if="order.Course.is_official"></span>
                 </div>
                 <div class="coach-info">
@@ -90,7 +90,7 @@
                     </div>
                     <div class="coach-meta">
                         <span><i class="fa fa-bars" aria-hidden="true"></i>{{order.Course.category_02_name}}</span>
-                        <span><i class="fa fa-user" aria-hidden="true"></i>by {{order.Course.coach_name}}</span>
+                        <span><i class="fa fa-user" aria-hidden="true"></i>by {{order.Course.course_nickname}}</span>
                         <span><i class="fa fa-map-marker" aria-hidden="true"></i>{{order.Course.area}}</span>
                     </div>
                 </div>

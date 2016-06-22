@@ -1,5 +1,5 @@
 // by dribehance <dribehance.kksdapp.com>
-angular.module("Skillopedia").controller("orderBookingController", function($scope, $rootScope, $routeParams, $filter, $timeout, orderServices, scheduleServices, errorServices, toastServices, localStorageService, config) {
+angular.module("Skillopedia").controller("orderBookingController", function($scope, $rootScope, $route, $routeParams, $filter, $timeout, orderServices, scheduleServices, errorServices, toastServices, localStorageService, config) {
 	// schedule
 	$scope.calendar = {
 		mode: "edit",
@@ -23,6 +23,7 @@ angular.module("Skillopedia").controller("orderBookingController", function($sco
 		}).then(function(data) {
 			toastServices.hide()
 			if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
+				$scope.schedule_meta = data;
 				$scope.calendar.times = data.ScheduleBeans.map(function(time) {
 					time.schedule_state = time.schedule_state;
 					time.schedule_state_message = time.schedule_state_message;
@@ -70,7 +71,7 @@ angular.module("Skillopedia").controller("orderBookingController", function($sco
 			if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
 				errorServices.autoHide(data.message);
 				$timeout(function() {
-					$rootScope.back();
+					$route.reload();
 				}, 2000)
 			} else {
 				errorServices.autoHide(data.message);

@@ -54,7 +54,7 @@
             </div>
             <div class="list-group">
                 <div class="list-group-item clearfix" ng-class="{'text-success':schedule.status == '1','text-primary':schedule.status=='20' && schedule.refund_status=='10','text-danger':schedule.status=='3' && schedule.refund_status=='10'}" ng-repeat="schedule in order.OrdersSchedules">
-                    <div class="col-xs-3">session1</div>
+                    <div class="col-xs-3">session{{$index+1}}</div>
                     <div class="col-xs-6">{{schedule.schedule_data}} {{schedule.schedule_hours}}</div>
                     <!-- 课程完成 -->
                     <div class="col-xs-3 text-right" ng-if="schedule.status=='1'">finish</div>
