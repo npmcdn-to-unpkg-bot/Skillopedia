@@ -1,6 +1,6 @@
  // by dribehance <dribehance.kksdapp.com>
  // EventHandle
- angular.module("Skillopedia").factory("appServices", function($rootScope, $window, $location, userServices, localStorageService, errorServices, toastServices, config) {
+ angular.module("Skillopedia").factory("appServices", function($rootScope, $window, $location, browserServices, userServices, localStorageService, errorServices, toastServices, config) {
  	var routeChangeStart = function(e) {
  		// do something white routechangestart,eg:
  		// toastServices.show();
@@ -55,7 +55,7 @@
  				$window.history.back();
  			}
  			$rootScope.go = function(path) {
-				$location.path(path);
+ 				$location.path(path);
  			}
  			$rootScope.popup_signin = function() {
  				popup_signin();
@@ -76,6 +76,10 @@
  			$rootScope.sr = ScrollReveal({
  				delay: 200,
  			});
+ 			$rootScope.isIE = false;
+ 			if (browserServices.isIE) {
+ 				$rootScope.isIE = true;
+ 			}
  		}
  	}
  });

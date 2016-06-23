@@ -7,7 +7,9 @@
     background-color: fade(@color, 50%);
     z-index: 1000;
 }
-
+.overlay {
+    .overlay(black);
+}
 .toast {
     .overlay(black);
     visibility: hidden;
@@ -82,4 +84,15 @@
 #nprogress .spinner-icon {
     border-top-color: @brand-primary;
     border-left-color: @brand-primary;
+}
+
+.browser-message {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 45%;
+    margin-top: -50px;
+    padding: 50px;
+    background-color: fade(@brand-primary, 50%);
+    color: white;
 }

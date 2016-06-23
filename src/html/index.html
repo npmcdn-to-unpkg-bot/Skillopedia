@@ -9,7 +9,10 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimal-ui" />
     <meta name="apple-mobile-web-app-status-bar-style" content="yes" />
-    <script src="//cdn.bootcss.com/jquery/2.2.2/jquery.js"></script>
+    <meta name="renderer" content="webkit">
+    <script src="lib/js/detect.js"></script>
+    <script src="lib/js/include.js"></script>
+    <script src="//cdn.bootcss.com/jquery/1.8.3/jquery.js"></script>
     <script src="//cdn.bootcss.com/angular.js/1.5.5/angular.js"></script>
     <script src="//cdn.bootcss.com/angular.js/1.5.5/angular-route.js"></script>
     <script src="//cdn.bootcss.com/angular-sanitize/1.5.5/angular-sanitize.min.js"></script>
@@ -26,7 +29,6 @@
     <!-- <script src="//cdn.bootcss.com/animations/2.1/js/animations.min.js"></script>
     <script src="//cdn.bootcss.com/animations/2.1/js/appear.min.js"></script> -->
     <script src="lib/js/jsencrypt.js"></script>
-    <script src="lib/js/include.js"></script>
     <script src="js/app.min.js"></script>
     <link href="images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <link href="//cdn.bootcss.com/normalize/4.1.1/normalize.min.css" rel="stylesheet">
@@ -63,6 +65,13 @@
     <div class="error-msg hide">{{error_msg}}</div>
     <!-- preload  -->
     <img ng-src="../images/error.jpg" class="hide" alt="">
+    <!-- ie -->
+    <div class="overlay" ng-if="isIE">
+        <div class="browser-message text-center">
+            <h1>It is time to go to 21st world, the first thing is to change a modern browser !</h1>
+            <a ng-href="http://www.google.cn/chrome/browser" target="_blank">download chrome</a>
+        </div>
+    </div>
     <script type="text/javascript">
     $(document).ready(function() {
         angular.bootstrap($("html"), ['Skillopedia']);
