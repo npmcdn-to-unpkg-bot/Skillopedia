@@ -1,5 +1,5 @@
 // by dribehance <dribehance.kksdapp.com>
-angular.module("Skillopedia").controller("createCourseController", function($scope, $rootScope, $sce, $timeout, $location, $window, skillopediaServices, filterFilter, coursesServices, errorServices, toastServices, localStorageService, config) {
+angular.module("Skillopedia").controller("createCourseController", function($scope, $rootScope, $sce, $timeout, $location, $window, googleMapServices, skillopediaServices, filterFilter, coursesServices, errorServices, toastServices, localStorageService, config) {
 	// 未认证，跳转认证
 	// agent_level 1:普通用户 2:教练
 	if ($rootScope.user.agent_level != "2") {
@@ -264,6 +264,11 @@ angular.module("Skillopedia").controller("createCourseController", function($sco
 	$scope.save_location = function() {
 		$scope.location_mode = "preview";
 		$scope.map_url = $scope.get_map($scope.input.state, $scope.input.city, $scope.input.street, $scope.input.apt);
+		googleMapServices.geocoding({
+			address: $scope.input.apt + " " + $scope.input.street + "," + $scope.input.city + "," + $scope.input.state
+		}).then(function(data) {
+			$scope.lat_lng = data.results[0].geometry.location;
+		})
 	}
 	$scope.edit_location = function() {
 		$scope.location_mode = "edit";
@@ -429,8 +434,8 @@ angular.module("Skillopedia").controller("createCourseController", function($sco
 			street: $scope.input.street,
 			address: $scope.input.apt,
 			zipcode: $scope.input.zipcode,
-			latitude: "0",
-			longitude: "0",
+			latitude: $scope.lat_lng.lat,
+			longitude: $scope.lat_lng.lng,
 			additional_partner: $scope.input.partner,
 			surcharge_for_each: $scope.input.surcharge,
 			discount_type: $scope.input.discount == "by_money" ? "1" : "2",

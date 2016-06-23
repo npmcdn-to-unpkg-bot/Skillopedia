@@ -12,6 +12,9 @@ angular.module("Skillopedia").constant("config", {
 		invoke: "h5",
 		app_sign: "123456"
 	},
+	key: {
+		google: "AIzaSyDimOSOuBupzzpGhzX9lspVfLWaHW-6DNI"
+	},
 	interceptor: [
 		"about",
 		"account",
