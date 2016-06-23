@@ -69,10 +69,11 @@
         <button class="btn btn-primary btn-lg full-width" type="submit" ng-disabled="searchForm.$invalid">Search</button>
         </form>
         <div class="category-tab">
-            <div class="tab-header clearfix">
+            <!-- <div class="tab-header clearfix">
                 <span ng-class="{'active':sidebar.title=='recommand'}" ng-click="change_sidebar('recommand')">Recommand</span>
                 <span ng-class="{'active':sidebar.title=='hot'}" ng-click="change_sidebar('hot')">Hot</span>
-            </div>
+            </div> -->
+            <p>Recommand</p>
             <div class="tab-content">
                 <a class="tab-content-item" ng-repeat="recommand in recommands" ng-href="#/list?category={{recommand.name}}&category_id={{recommand.catetory_id}}">
                     <img ng-src="{{staticImageUrl + recommand.big_image_01}}" alt="" err-src="../images/error.jpg" onload>
