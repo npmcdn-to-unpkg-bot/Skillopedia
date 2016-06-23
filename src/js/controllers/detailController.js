@@ -86,5 +86,36 @@ angular.module("Skillopedia").controller("detailController", function($scope, $r
 	}
 	$scope.calendar.onDayChange = function() {
 		$scope.query_schedule($filter("date")(new Date($scope.calendar.day).getTime(), "yyyy-MM-dd"))
+	};
+	// 查询课程评价列表
+	$scope.comments = [];
+	$scope.page = {
+		pn: 1,
+		page_size: 1,
+		message: "点击加载更多"
 	}
+	$scope.loadMore = function() {
+		if ($scope.no_more) {
+			return;
+		}
+		toastServices.show();
+		$scope.page.message = "正在加载...";
+		coursesServices.query_comment_by_course($scope.page).then(function(data) {
+			toastServices.hide();
+			$scope.page.message = "点击加载更多";
+			if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
+				$scope.comments = $scope.comments.concat(data.Result.Comments.list);
+				$scope.total_comments = data.Result.Comments.totalRow;
+				$scope.no_more = $scope.comments.length == data.Result.Comments.totalRow ? true : false;
+			} else {
+				errorServices.autoHide("服务器错误");
+			}
+			if ($scope.no_more) {
+				$scope.page.message = "加载完成，共加载" + $scope.comments.length + "条记录";
+			}
+			$scope.page.pn++;
+		})
+
+	}
+	$scope.loadMore();
 })

@@ -23,7 +23,7 @@ angular.module("Skillopedia").factory("coursesServices", function($http, localSt
 				return data.data;
 			});
 		},
-		// 编辑课程详情
+		// 获取编辑课程详情
 		query_by_user: function(input) {
 			return $http({
 				// by dribehance <dribehance.kksdapp.com>
@@ -36,6 +36,18 @@ angular.module("Skillopedia").factory("coursesServices", function($http, localSt
 				return data.data;
 			});
 		},
+		// 课程详情评价列表
+		query_comment_by_course: function(input) {
+			return $http({
+				// by dribehance <dribehance.kksdapp.com>
+				url: config.url + "/app/Courses/courseCommentList",
+				method: "GET",
+				params: angular.extend({}, config.common_params, input)
+			}).then(function(data) {
+				return data.data;
+			});
+		},
+		// 关键字搜索
 		search_by_keyword: function(input) {
 			return $http({
 				// by dribehance <dribehance.kksdapp.com>
