@@ -67,6 +67,10 @@ angular.module("Skillopedia").controller("listController", function($scope, $roo
 	$scope.loadMore();
 	// reload course;
 	$scope.reload = function() {
+		$location.search({
+			category: null,
+			category_id: null
+		})
 		$scope.courses = [];
 		$scope.page = {
 			pn: 1,
