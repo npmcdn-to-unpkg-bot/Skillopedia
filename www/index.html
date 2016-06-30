@@ -72,6 +72,19 @@
             <a ng-href="http://www.google.cn/chrome/browser" target="_blank">download chrome</a>
         </div>
     </div>
+    <!-- facebook sdk -->
+    <script>
+    (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {
+            return;
+        }
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+    </script>
     <script type="text/javascript">
     $(document).ready(function() {
         angular.bootstrap($("html"), ['Skillopedia']);

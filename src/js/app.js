@@ -9,7 +9,7 @@ angular.module("Skillopedia", [
 		"textAngular",
 		// "timer"
 	])
-	.config(function($routeProvider, $httpProvider, $locationProvider, localStorageServiceProvider, config) {
+	.config(function($routeProvider, $httpProvider, $locationProvider, $provide, localStorageServiceProvider, config) {
 		angular.forEach(config.interceptor, function(path) {
 			var controllername = path.replace(/_[a-z]/g, function(letter) {
 				return letter.split("_")[1].toUpperCase();
@@ -52,7 +52,6 @@ angular.module("Skillopedia", [
 		delete $httpProvider.defaults.headers.common["X-Requested-With"];
 		localStorageServiceProvider.setStorageCookie(1 / 50);
 		$httpProvider.interceptors.push('tokenInterceptor');
-
 	}).run(function(appServices) {
 		// init event such as routechangestart...
 		appServices.init();

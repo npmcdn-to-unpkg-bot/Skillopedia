@@ -1,5 +1,5 @@
 // by dribehance <dribehance.kksdapp.com>
-angular.module("Skillopedia").controller("signinController", function($scope, $rootScope, $route, $window, $timeout, userServices, errorServices, toastServices, localStorageService, config) {
+angular.module("Skillopedia").controller("signinController", function($scope, $rootScope, $route, $window, $timeout, facebookServices, userServices, errorServices, toastServices, localStorageService, config) {
 	$scope.input = {
 		signin_email: "",
 		signin_password: "",
@@ -68,5 +68,14 @@ angular.module("Skillopedia").controller("signinController", function($scope, $r
 				errorServices.autoHide(data.message);
 			}
 		})
+	};
+	// oauth
+	$scope.facebook_login = function() {
+		facebookServices.login().then(function(data) {
+			console.log(data)
+		});
+	}
+	$scope.twitter_login = function() {
+
 	}
 });
