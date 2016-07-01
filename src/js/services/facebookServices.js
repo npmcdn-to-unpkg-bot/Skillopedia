@@ -6,7 +6,7 @@ angular.module("Skillopedia").factory("facebookServices", function($rootScope, $
         FB.init({
             appId: '217442991983314',
             xfbml: true,
-            version: 'v2.5'
+            version: 'v2.6'
         });
     };
     return {
@@ -66,7 +66,7 @@ angular.module("Skillopedia").factory("facebookServices", function($rootScope, $
             var FB = $window.FB || undefined;
             if (!FB) return;
             FB.api("/me", {
-                    fields: "id,email,name,picture,gender"
+                    fields: "id,email,name,picture,gender,last_name"
                 },
                 function(response) {
                     if (!response || response.error) {
