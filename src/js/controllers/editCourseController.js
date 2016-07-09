@@ -51,7 +51,7 @@ angular.module("Skillopedia").controller("editCourseController", function($scope
 			});
 			$scope.input.teaching_since = $scope.course.teaching_since;
 			$scope.input.rate = $scope.course.session_rate;
-			$scope.input.teaching_age = $scope.course.teaching_age;
+			$scope.input.teaching_age = parseFloat($scope.course.teaching_age);
 			$scope.input.partner = $scope.course.additional_partner;
 			$scope.input.surcharge = $scope.course.surcharge_for_each;
 			parse_discount();
