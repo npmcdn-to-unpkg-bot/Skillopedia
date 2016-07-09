@@ -26,7 +26,13 @@ angular.module("Skillopedia").controller("orderRefundController", function($scop
 		$scope.calculate();
 
 	};
-	// 计算退款，总退金额
+	// 计算退款
+	// ---------用户退款
+	// 总退金额 = 实付金额-服务费-（未退款课程数*原单价）
+	// 未退款课程 = 总课程 - 已经选择要退款的课程
+	// 原单价 = 原单价+外出+additional partner
+	// ---------教练退款
+	// 支付总额-（支付总额 / 总课程数  *退款课程数）
 	$scope.calculate = function() {
 		$scope.total_refund_money = 0;
 		$scope.total_refund_money = parseFloat($scope.order.total_session_rate) - parseFloat($scope.order.first_joint_fee) - parseFloat($scope.query_amount() * $scope.query_single());

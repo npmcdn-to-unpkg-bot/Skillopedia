@@ -5,9 +5,12 @@
     <div class="section sm">
         选择支付方式
     </div>
-    <a class="btn btn-second btn-md" ng-click="pay('1')">pay with alipay</a>
+    <a href="" ng-click="pay('1')" class="alipay"></a>
+    <a href="" ng-click="pay('2')" class="visa"></a>
+    <a href="" ng-click="pay('3')" class="paypal"></a>
+    <!-- <a class="btn btn-second btn-md" ng-click="pay('1')">pay with alipay</a>
     <a class="btn btn-primary btn-md" ng-click="pay('2')"><i class="fa fa-cc-visa" aria-hidden="true"></i>pay with visa</a>
-    <a class="btn btn-success btn-md" ng-click="pay('3')"><i class="fa fa-cc-paypal" aria-hidden="true"></i>pay with paypal</a>
+    <a class="btn btn-success btn-md" ng-click="pay('3')"><i class="fa fa-cc-paypal" aria-hidden="true"></i>pay with paypal</a> -->
 </div>
 <div class="wrap" ng-cloak ng-if="error_msg">
     {{error_msg}}
@@ -31,3 +34,5 @@
     <input type="hidden" name="sign" value="{{alipay.sign}}">
     <input type="hidden" name="sign_type" value="{{alipay.sign_type}}">
 </form>
+<!-- footer -->
+<div ng-include="'templates/footer.html'"></div>

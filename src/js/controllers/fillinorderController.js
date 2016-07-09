@@ -11,6 +11,7 @@ angular.module("Skillopedia").controller("fillinorderController", function($scop
 		toastServices.hide()
 		if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
 			$scope.course = data.Course;
+			$scope.old_course = angular.copy($scope.course);
 			$scope.teaching_location_map = $scope.get_map($scope.course.city, $scope.course.area, $scope.course.street, $scope.course.address);
 			$scope.input.total_price = $scope.course.session_rate;
 			// discount handle
@@ -78,7 +79,6 @@ angular.module("Skillopedia").controller("fillinorderController", function($scop
 			type: 'inline'
 		}, 0);
 	};
-	$scope.old_course = $scope.course;
 	$scope.save_location = function() {
 		$scope.teaching_location_map = $scope.get_map($scope.input.city, $scope.input.area, $scope.input.street, $scope.input.address);
 		$scope.course.city = $scope.input.city;
@@ -86,7 +86,8 @@ angular.module("Skillopedia").controller("fillinorderController", function($scop
 		$scope.course.street = $scope.input.street;
 		$scope.course.address = $scope.input.address;
 		$scope.course.zipcode = $scope.input.zipcode;
-		$scope.course.travel_to_session = 1;
+		// $scope.input.travel_to_session = 1;
+		$scope.calculate();
 		$.magnificPopup.close();
 	};
 	$scope.reset_location = function() {
@@ -96,7 +97,8 @@ angular.module("Skillopedia").controller("fillinorderController", function($scop
 		$scope.course.street = $scope.old_course.street;
 		$scope.course.address = $scope.old_course.address;
 		$scope.course.zipcode = $scope.old_course.zipcode;
-		$scope.course.travel_to_session = 0;
+		// $scope.input.travel_to_session = 0;
+		$scope.calculate();
 		$.magnificPopup.close();
 	};
 	// parse iframe map url
@@ -206,7 +208,11 @@ angular.module("Skillopedia").controller("fillinorderController", function($scop
 	}
 	$scope.calculate = function() {
 		var discount_price = 0;
-		$scope.input.total_price = parseFloat($scope.course.session_rate) * parseFloat($scope.input.amount) + parseFloat($scope.course.surcharge_for_each) * parseFloat($scope.input.partner);
+		// 总价 = 课程费用+小伙伴费用+首次服务费用+交通费用
+		// 课程费用+小伙伴费用 = 课程单价*课程数量+小伙伴单价*小伙伴数量*课程数量
+		// 课程费用+小伙伴费用参与打折
+		// 本次仅计算 课程费用+小伙伴费用
+		$scope.input.total_price = parseFloat($scope.course.session_rate) * parseFloat($scope.input.amount) + parseFloat($scope.course.surcharge_for_each) * parseFloat($scope.input.partner) * parseFloat($scope.input.amount);
 		// by total money;
 		if ($scope.course.discount_type == 1) {
 			angular.forEach($scope.discounts, function(discount) {
@@ -242,6 +248,13 @@ angular.module("Skillopedia").controller("fillinorderController", function($scop
 		if ($scope.input.coupons.selected.coupon_money) {
 			$scope.input.discount_price = parseFloat($scope.input.discount_price) - parseFloat($scope.input.coupons.selected.coupon_money);
 		}
+		// 交通费用，如果选择上门
+		$scope.input.total_traffic_cost = 0;
+		$scope.travel_place = $scope.course.city + $scope.course.area + $scope.course.street;
+		$scope.course_place = $scope.old_course.city + $scope.old_course.area + $scope.old_course.street;
+		if ($scope.course.travel_to_session == '1' && $scope.travel_place != $scope.course_place) {
+			$scope.input.total_traffic_cost = parseFloat($scope.course.travel_to_session_trafic_surcharge) * parseFloat($scope.input.amount);
+		}
 	}
 	$scope.is_watch = false;
 	$scope.$watch("input.coupons.selected", function(n, o) {
@@ -258,10 +271,10 @@ angular.module("Skillopedia").controller("fillinorderController", function($scop
 			$rootScope.signin();
 			return;
 		}
-		// 首单服务费
+		// 首单服务费+交通费
 		var total_session_rate = $scope.input.discount_price || $scope.input.total_price,
-			total_session_rate = parseFloat(total_session_rate) + parseFloat($scope.course.first_joint_fee),
-			original_total_session_rate = parseFloat($scope.input.total_price) + parseFloat($scope.course.first_joint_fee);
+			total_session_rate = parseFloat(total_session_rate) + parseFloat($scope.course.first_joint_fee) + parseFloat($scope.input.total_traffic_cost),
+			original_total_session_rate = parseFloat($scope.input.total_price) + parseFloat($scope.course.first_joint_fee) + parseFloat($scope.input.total_traffic_cost);
 		toastServices.show();
 		orderServices.fillinorder({
 			order_type: type,
