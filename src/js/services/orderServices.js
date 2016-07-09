@@ -208,6 +208,30 @@ angular.module("Skillopedia").factory("orderServices", function($http, localStor
 				return data.data;
 			});
 		},
+		cancel: function(input) {
+			return $http({
+				// by dribehance <dribehance.kksdapp.com>
+				url: config.url + "/app/CoachOrdersManage/cancelOrders",
+				method: "GET",
+				params: angular.extend({}, config.common_params, {
+					token: localStorageService.get("token")
+				}, input)
+			}).then(function(data) {
+				return data.data;
+			});
+		},
+		finish: function(input) {
+			return $http({
+				// by dribehance <dribehance.kksdapp.com>
+				url: config.url + "/app/CoachOrdersManage/finishOrders",
+				method: "GET",
+				params: angular.extend({}, config.common_params, {
+					token: localStorageService.get("token")
+				}, input)
+			}).then(function(data) {
+				return data.data;
+			});
+		},
 		// 发表评论界面
 		query_course_by_comment: function(input) {
 			return $http({

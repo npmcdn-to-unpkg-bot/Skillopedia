@@ -80,6 +80,7 @@
  			if (browserServices.isIE) {
  				$rootScope.isIE = true;
  			}
+ 			$rootScope.onload = false;
  		}
  	}
  });

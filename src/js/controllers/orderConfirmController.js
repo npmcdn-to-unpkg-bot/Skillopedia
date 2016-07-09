@@ -1,5 +1,5 @@
 // by dribehance <dribehance.kksdapp.com>
-angular.module("Skillopedia").controller("orderConfirmController", function($scope, $rootScope, $routeParams, orderServices, errorServices, toastServices, localStorageService, config) {
+angular.module("Skillopedia").controller("orderConfirmController", function($scope, $timeout, $rootScope, $routeParams, orderServices, errorServices, toastServices, localStorageService, config) {
 	if (!$routeParams.id) {
 		$rootScope.back()
 		return;
@@ -12,10 +12,18 @@ angular.module("Skillopedia").controller("orderConfirmController", function($sco
 		toastServices.hide()
 		if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
 			$scope.days = data.scheduleDatas;
+			return true;
 		} else {
 			errorServices.autoHide(data.message);
+			$timeout(function() {
+				$rootScope.back();
+			}, 2000)
+			return false;
 		}
-	}).then(function(day) {
+	}).then(function(promise) {
+		if (!promise) {
+			return;
+		}
 		$scope.current_day = $scope.days[0].schedule_data;
 		$scope.query_schedule($scope.current_day)
 	})
