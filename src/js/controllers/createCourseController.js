@@ -261,6 +261,10 @@ angular.module("Skillopedia").controller("createCourseController", function($sco
 		}, 100)
 	};
 	$scope.location_mode = "edit";
+	$scope.lat_lng = {
+		lng: 0,
+		lat: 0
+	}
 	$scope.save_location = function() {
 		$scope.location_mode = "preview";
 		$scope.map_url = $scope.get_map($scope.input.state, $scope.input.city, $scope.input.street, $scope.input.apt);

@@ -44,12 +44,12 @@
                     <span class="pull-left text-line-through" style="margin-left:8px;">{{order.original_total_session_rate|currency:"$"}}</span>
                     <div class="btn-group clearfix pull-right">
                         <!-- coach cancel course -->
-                        <a class="btn btn-success" ng-if="order.button_status == '1'" ng-href="#/order_cancel?id={{order.orders_id}}">cancel</a>
+                        <a class="btn btn-success" ng-if="order.button_status1 == '1'" ng-href="#/order_cancel?id={{order.orders_id}}">cancel</a>
                         <!-- confirm course time -->
-                        <a class="btn btn-success" ng-if="order.button_status == '2'" ng-href="#/order_confirm?id={{order.orders_id}}">confirm</a>
+                        <a class="btn btn-success" ng-if="order.button_status2 == '1'" ng-href="#/order_confirm?id={{order.orders_id}}">confirm</a>
                         <!-- finish course -->
-                        <a class="btn btn-success" ng-if="order.button_status == '3'" ng-href="#/order_finish?id={{order.orders_id}}">finish</a>
-                        <span class="btn btn-danger" ng-if="order.button_status=='4'" ng-click="remove(order)">delete</span>
+                        <a class="btn btn-success" ng-if="order.button_status3 == '1'" ng-href="#/order_finish?id={{order.orders_id}}">finish</a>
+                        <span class="btn btn-danger" ng-if="order.button_status4 == '1'" ng-click="remove(order)">delete</span>
                     </div>
                 </div>
             </div>

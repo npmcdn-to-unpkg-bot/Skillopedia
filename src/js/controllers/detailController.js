@@ -21,7 +21,7 @@ angular.module("Skillopedia").controller("detailController", function($scope, $r
 		if (!$scope.course.city) {
 			return;
 		}
-		var map_url = "https://maps.google.com/maps?q=" + $scope.course.city + $scope.course.area + $scope.course.address + "&output=embed";
+		var map_url = "https://maps.google.com/maps?q=" + $scope.course.city + " " + $scope.course.area + " " + $scope.course.street + "&output=embed";
 		return $sce.trustAsResourceUrl(map_url);
 	};
 	// parse video url

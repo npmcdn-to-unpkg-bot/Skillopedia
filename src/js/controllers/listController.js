@@ -116,7 +116,7 @@ angular.module("Skillopedia").controller("listController", function($scope, $roo
 		e.stopPropagation();
 		$.magnificPopup.open({
 			items: {
-				src: "https://maps.google.com/maps?q=" + course.city + course.area + course.address
+				src: "https://maps.google.com/maps?q=" + course.city + course.area + course.street
 			},
 			type: "iframe"
 		});
