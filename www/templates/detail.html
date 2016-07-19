@@ -6,7 +6,8 @@
         <div class="detail-left">
             <a class="coach-item" ng-href="#/show?user_id={{course.user_id}}">
                 <div class="coach-avatar">
-                    <img ng-src="{{staticImageUrl + course.user_image_01}}" class="full-width" alt="" err-src="../images/example_7.png">
+                    <!-- <img ng-src="{{staticImageUrl + course.user_image_01}}" class="full-width" alt="" err-src="../images/example_7.png"> -->
+                    <imageview data-rate="1" center-only src="staticImageUrl + course.user_image_01"></imageview>
                     <span class="official-coach" ng-if="course.is_official"></span>
                 </div>
                 <div class="coach-info">
