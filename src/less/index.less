@@ -469,9 +469,12 @@
     background-image: url("../images/visa.jpg");
 }
 
-.paypal {
+.paypal ,.visa{
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center center;
-    background-image: url("../images/paypal.png");
+    input[type='image'] {
+        margin-top:8px;
+        width: 100%;
+    }
 }

@@ -38,6 +38,10 @@ angular.module("Skillopedia").controller("paymentController", function($scope, $
 			}
 		})
 	};
+	$scope.pay_by_paypal = function() {
+		console.log("dd")
+		angular.element("#paypalForm").submit();
+	}
 
 	function rediect() {
 		$scope.error_msg = "找不到该页面，正在为你跳转首页...";

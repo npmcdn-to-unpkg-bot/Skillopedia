@@ -23,7 +23,8 @@ angular.module("Skillopedia").controller("landingController", function($scope, $
 			toastServices.show();
 			userServices.signin({
 				email: $scope.input.signin_email,
-				password: $scope.input.signin_password
+				password: $scope.input.signin_password,
+				t_uid: localStorageService.get("t_uid")
 			}).then(function(data) {
 				toastServices.hide();
 				if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
@@ -42,7 +43,8 @@ angular.module("Skillopedia").controller("landingController", function($scope, $
 		userServices.signup({
 			nickname: $scope.input.username,
 			email: $scope.input.signup_email,
-			password: $scope.input.signup_password
+			password: $scope.input.signup_password,
+			t_uid: localStorageService.get("t_uid")
 		}).then(function(data) {
 			toastServices.hide()
 			if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
@@ -76,8 +78,5 @@ angular.module("Skillopedia").controller("landingController", function($scope, $
 	}
 	$scope.signup = function() {
 		$scope.sign = "signup";
-	}
-	$scope.forget = function() {
-		$scope.sign = "forget";
 	}
 });

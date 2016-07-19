@@ -51,6 +51,16 @@ angular.module("Skillopedia").factory("userServices", function($rootScope, $http
 				return data.data;
 			});
 		},
+		login_by_oauth: function(input) {
+			return $http({
+				// by dribehance <dribehance.kksdapp.com>
+				url: config.url + "/app/UserCenter/isThirdLoginRelated",
+				method: "GET",
+				params: angular.extend({}, config.common_params, input)
+			}).then(function(data) {
+				return data.data;
+			});
+		},
 		query_basicinfo: function(input) {
 			return $http({
 				// by dribehance <dribehance.kksdapp.com>
@@ -111,6 +121,8 @@ angular.module("Skillopedia").factory("userServices", function($rootScope, $http
 		logout: function() {
 			$rootScope.user = {};
 			localStorageService.remove("token");
+			localStorageService.remove("user");
+			localStorageService.remove("t_uid");
 		},
 		// 个人主页 
 		// 基本信息，课程列表，评论列表，经历列表

@@ -1,5 +1,5 @@
 // by dribehance <dribehance.kksdapp.com>
-angular.module("Skillopedia").controller("signinController", function($scope, $rootScope, $route, $window, $timeout, facebookServices, userServices, errorServices, toastServices, localStorageService, config) {
+angular.module("Skillopedia").controller("signinController", function($scope, $rootScope, $location, $route, $window, $timeout, facebookServices, userServices, errorServices, toastServices, localStorageService, config) {
 	$scope.input = {
 		signin_email: "",
 		signin_password: "",
@@ -72,10 +72,25 @@ angular.module("Skillopedia").controller("signinController", function($scope, $r
 	// oauth
 	$scope.facebook_login = function() {
 		facebookServices.login().then(function(data) {
-			console.log(data)
+			localStorageService.set("t_uid", data.id)
+			toastServices.show();
+			userServices.login_by_oauth({
+				u_type: "1",
+				uid: localStorageService.get("t_uid"),
+			}).then(function(data) {
+				toastServices.hide()
+				if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
+					localStorageService.set("token", data.token);
+					userServices.sync();
+					$rootScope.close_popup_signin();
+					$route.reload();
+				} else {
+					$window.location.href = $location.protocol() + "://" + $location.host() + ":" + $location.port() + "/landing_facebook.html";
+				}
+			})
 		});
 	}
 	$scope.twitter_login = function() {
-
+		$window.location.href = config.url + "/twitterOne";
 	}
 });

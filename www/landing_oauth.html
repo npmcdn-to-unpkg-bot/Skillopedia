@@ -10,7 +10,7 @@
     <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimal-ui" />
     <meta name="apple-mobile-web-app-status-bar-style" content="yes" />
     <meta name="renderer" content="webkit">
-    <!-- <script src="lib/js/detect.js"></script> -->
+    <script src="lib/js/detect.js"></script>
     <script src="lib/js/include.js"></script>
     <script src="//cdn.bootcss.com/jquery/1.8.3/jquery.js"></script>
     <script src="//cdn.bootcss.com/angular.js/1.5.5/angular.js"></script>
@@ -47,67 +47,56 @@
 </head>
 
 <body>
-    <ng-view autoscroll></ng-view>
-    <!-- signin -->
-    <div id="signin-popup" class="popup signin-popup mfp-hide">
-        <div ng-include="'templates/signin.html'"></div>
-    </div>
-    <!-- toast -->
-    <div class="toast">
-        <div class="loader loader-inner pacman">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
+    <div ng-cloak class="signin-body" ng-controller="landingController">
+        <div class="signin-panel">
+            <div class="signin-left">
+                账号绑定<#if message??>:${(message)!''}</#if>
+                <div class="section">
+                    <span class="full-width social-btn btn-facebook" ng-click="signin()"><!-- <i class="fa fa-facebook" aria-hidden="true"></i> -->已有账号，登录并绑定</span>
+                    <span class="full-width social-btn btn-twitter" ng-click="signup()"><!-- <i class="fa fa-twitter" aria-hidden="true"></i> -->没有账号，注册并绑定</span>
+                    <span ng-click="go('index')" class="btn">回首页</span>
+                </div>
+            </div>
+            <div class="signin-right" ng-if="sign =='signin'">
+                <form name="signinForm" ng-submit="signin_action()">
+                    登录并绑定
+                    <div class="section">
+                        <div class="input-group">
+                            <input type="email" class="full-width form-control" ng-model="input.signin_email" required placeholder="enter you email/account">
+                        </div>
+                        <div class="input-group">
+                            <input type="password" class="full-width form-control " ng-model="input.signin_password" required placeholder="enter your password">
+                        </div>
+                        <div class="input-group">
+                            <button type="submit" class="btn btn-primary btn-lg full-width" ng-disabled="signinForm.$invalid">sign in</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="signin-right" ng-if="sign =='signup'">
+                注册并绑定
+                <form class="section" name="signupForm" ng-submit="signup_action()">
+                    <div class="input-group">
+                        <input type="text" class="full-width form-control" ng-model="input.username" required placeholder="fullname">
+                    </div>
+                    <div class="input-group">
+                        <input type="email" class="full-width form-control" ng-model="input.signup_email" required placeholder="enter your email/account">
+                    </div>
+                    <div class="input-group">
+                        <input type="password" class="full-width form-control" ng-model="input.signup_password" required placeholder="enter your password">
+                    </div>
+                    <div class="input-group">
+                        <button type="submit" class="btn btn-primary btn-lg full-width" ng-disabled="signupForm.$invalid">sign up</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
-    <!-- error msg-->
-    <div class="error-msg hide">{{error_msg}}</div>
-    <!-- preload  -->
-    <img ng-src="../images/error.jpg" class="hide" alt="">
-    <!-- ie -->
-    <div class="overlay" ng-if="isIE">
-        <div class="browser-message text-center">
-            <h1>It is time to go to 21st world, the first thing is to change a modern browser !</h1>
-            <a ng-href="http://www.google.cn/chrome/browser" target="_blank">download chrome</a>
-        </div>
-    </div>
-    <!-- facebook sdk -->
-    <script>
-    (function(d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) {
-            return;
-        }
-        js = d.createElement(s);
-        js.id = id;
-        js.src = "//connect.facebook.net/en_US/sdk.js";
-        fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-    </script>
     <script type="text/javascript">
+    localStorage.setItem("ls.t_uid","\"${t_uid}\"");
     $(document).ready(function() {
         angular.bootstrap($("html"), ['Skillopedia']);
     })
-    </script>
-    <!-- twitter sdk -->
-    <script>
-    window.twttr = (function(d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0],
-            t = window.twttr || {};
-        if (d.getElementById(id)) return t;
-        js = d.createElement(s);
-        js.id = id;
-        js.src = "https://platform.twitter.com/widgets.js";
-        fjs.parentNode.insertBefore(js, fjs);
-
-        t._e = [];
-        t.ready = function(f) {
-            t._e.push(f);
-        };
-
-        return t;
-    }(document, "script", "twitter-wjs"));
     </script>
 </body>
 
