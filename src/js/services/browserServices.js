@@ -23,7 +23,7 @@ angular.module("Skillopedia").factory("browserServices", function() {
 		// Blink engine detection
 		isBlink: (this.isChrome || this.isOpera) && !!window.CSS,
 		detect: function() {
-			if (this.isIE) {
+			if (this.isIE && $("html").hasClass("lt-ie10")) {
 				$("body").append($(tips))
 			}
 		}
