@@ -54,24 +54,20 @@
     </div>
     <!-- toast -->
     <div class="toast">
+        <div class="loader"></div>
+    </div>
+    <!-- <div class="toast_with_animation">
         <div class="loader loader-inner pacman">
             <div></div>
             <div></div>
             <div></div>
             <div></div>
         </div>
-    </div>
+    </div> -->
     <!-- error msg-->
     <div class="error-msg hide">{{error_msg}}</div>
     <!-- preload  -->
     <img ng-src="../images/error.jpg" class="hide" alt="">
-    <!-- ie -->
-    <div class="overlay" ng-if="isIE">
-        <div class="browser-message text-center">
-            <h1>It is time to go to 21st world, the first thing is to change a modern browser !</h1>
-            <a ng-href="http://www.google.cn/chrome/browser" target="_blank">download chrome</a>
-        </div>
-    </div>
     <!-- facebook sdk -->
     <script>
     (function(d, s, id) {

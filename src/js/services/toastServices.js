@@ -2,10 +2,16 @@
 angular.module("Skillopedia").factory("toastServices", function() {
 	return {
 		show: function() {
-			$(".toast").addClass("active");
+			$(".toast").show();
 		},
 		hide: function() {
-			$(".toast").removeClass("active");
+			$(".toast").hide();
+		},
+		show_toast_animation: function() {
+			$(".toast_with_animation").addClass("active");
+		},
+		hide_toast_animation: function() {
+			$(".toast_with_animation").removeClass("active");
 		},
 		start: function() {
 			NProgress.start();

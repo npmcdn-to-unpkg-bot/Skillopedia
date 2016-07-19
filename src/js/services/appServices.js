@@ -76,11 +76,12 @@
  			$rootScope.sr = ScrollReveal({
  				delay: 200,
  			});
- 			$rootScope.isIE = false;
- 			if (browserServices.isIE) {
- 				$rootScope.isIE = true;
- 			}
- 			$rootScope.onload = false;
+ 			// $rootScope.isIE = false;
+ 			// if (browserServices.isIE) {
+ 			// 	$rootScope.isIE = true;
+ 			// }
+ 			// $rootScope.onload = false;
+ 			browserServices.detect();
  		}
  	}
  });

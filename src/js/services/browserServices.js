@@ -1,5 +1,12 @@
 // by dribehance <dribehance.kksdapp.com>
 angular.module("Skillopedia").factory("browserServices", function() {
+	var tips = "<!-- ie -->" +
+		"<div class='overlay'>" +
+		"<div class='browser-message text-center'>" +
+		"<h1>May be Chrome should be your first choice !</h1>" +
+		"<a class='btn btn-primary' ng-href='http://www.google.cn/chrome/browser' target='_blank'>download chrome</a>" +
+		"</div>" +
+		"</div>";
 	return {
 		// Opera 8.0+
 		isOpera: (!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0,
@@ -15,5 +22,10 @@ angular.module("Skillopedia").factory("browserServices", function() {
 		isChrome: !!window.chrome && !!window.chrome.webstore,
 		// Blink engine detection
 		isBlink: (this.isChrome || this.isOpera) && !!window.CSS,
+		detect: function() {
+			if (this.isIE) {
+				$("body").append($(tips))
+			}
+		}
 	}
 });
