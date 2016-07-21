@@ -1,5 +1,5 @@
 // by dribehance <dribehance.kksdapp.com>
-angular.module("Skillopedia").controller("landingController", function($scope, $rootScope, $route, $window, $timeout, userServices, errorServices, toastServices, localStorageService, config) {
+angular.module("Skillopedia").controller("landingController", function($scope, $rootScope, $route, $window, $timeout, facebookServices, userServices, errorServices, toastServices, localStorageService, config) {
 	if ($rootScope.is_signin()) {
 		$rootScope.back();
 	}
@@ -24,7 +24,8 @@ angular.module("Skillopedia").controller("landingController", function($scope, $
 			userServices.signin({
 				email: $scope.input.signin_email,
 				password: $scope.input.signin_password,
-				t_uid: localStorageService.get("t_uid")
+				t_uid: localStorageService.get("t_uid"),
+				f_uid: localStorageService.get("f_uid")
 			}).then(function(data) {
 				toastServices.hide();
 				if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
@@ -44,7 +45,8 @@ angular.module("Skillopedia").controller("landingController", function($scope, $
 			nickname: $scope.input.username,
 			email: $scope.input.signup_email,
 			password: $scope.input.signup_password,
-			t_uid: localStorageService.get("t_uid")
+			t_uid: localStorageService.get("t_uid"),
+			f_uid: localStorageService.get("f_uid")
 		}).then(function(data) {
 			toastServices.hide()
 			if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
@@ -77,6 +79,30 @@ angular.module("Skillopedia").controller("landingController", function($scope, $
 		$scope.sign = "signin";
 	}
 	$scope.signup = function() {
-		$scope.sign = "signup";
+			$scope.sign = "signup";
+		}
+		// oauth
+	$scope.facebook_login = function() {
+		$window.FB && facebookServices.login().then(function(data) {
+			localStorageService.set("f_uid", data.id)
+			toastServices.show();
+			userServices.login_by_oauth({
+				u_type: "1",
+				uid: localStorageService.get("f_uid"),
+			}).then(function(data) {
+				toastServices.hide()
+				if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
+					localStorageService.set("token", data.token);
+					userServices.sync();
+					$rootScope.close_popup_signin();
+					$route.reload();
+				} else {
+					$window.location.href = $location.protocol() + "://" + $location.host() + ":" + $location.port() + "/landing_facebook.html";
+				}
+			})
+		});
+	}
+	$scope.twitter_login = function() {
+		$window.location.href = config.url + "/twitterOne";
 	}
 });

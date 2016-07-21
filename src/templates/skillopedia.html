@@ -15,7 +15,7 @@
             </div>
             <div class="coach-item with-action-bar" ng-repeat="course in courses" ng-click="local_go(course.course_id)">
                 <div class="coach-avatar">
-                    <img ng-src="{{staticImageUrl + course.coach_image}}" class="full-width full-height" alt="" err-src="../images/example_7.png">
+                    <imageview data-rate="1" center-only src="staticImageUrl + course.coach_image"></imageview>
                     <span class="official-coach" ng-if="course.is_official"></span>
                 </div>
                 <div class="coach-info">

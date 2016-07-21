@@ -123,6 +123,7 @@ angular.module("Skillopedia").factory("userServices", function($rootScope, $http
 			localStorageService.remove("token");
 			localStorageService.remove("user");
 			localStorageService.remove("t_uid");
+			localStorageService.remove("f_uid");
 		},
 		// 个人主页 
 		// 基本信息，课程列表，评论列表，经历列表

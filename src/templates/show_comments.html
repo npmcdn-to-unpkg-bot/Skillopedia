@@ -17,7 +17,7 @@
                     <div class="comment-item" ng-repeat="comment in comments">
                         <div class="comment-header">
                             <div class="comment-avatar">
-                                <img ng-src="{{staticImageUrl+comment.comment_image}}" err-src="../images/head.png" class="full-width" alt="">
+                                <imageview data-rate="1" center-only src="staticImageUrl+comment.comment_image"></imageview>
                             </div>
                             <div class="comment-meta">
                                 <span class="comment-name">

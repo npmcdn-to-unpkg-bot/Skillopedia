@@ -71,12 +71,12 @@ angular.module("Skillopedia").controller("signinController", function($scope, $r
 	};
 	// oauth
 	$scope.facebook_login = function() {
-		facebookServices.login().then(function(data) {
-			localStorageService.set("t_uid", data.id)
+		$window.FB && facebookServices.login().then(function(data) {
+			localStorageService.set("f_uid", data.id)
 			toastServices.show();
 			userServices.login_by_oauth({
 				u_type: "1",
-				uid: localStorageService.get("t_uid"),
+				uid: localStorageService.get("f_uid"),
 			}).then(function(data) {
 				toastServices.hide()
 				if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {

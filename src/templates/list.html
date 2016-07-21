@@ -25,7 +25,7 @@
             </div>
             <div class="coach-item hover" ng-click="local_go(course.course_id)" ng-repeat="course in courses">
                 <div class="coach-avatar">
-                    <img ng-src="{{staticImageUrl + course.coach_image}}" class="full-width full-height" alt="" err-src="../images/example_7.png">
+                    <imageview data-rate="1" center-only src="staticImageUrl + course.coach_image"></imageview>
                     <span class="official-coach" ng-if="course.is_official"></span>
                 </div>
                 <div class="coach-info">
@@ -76,7 +76,8 @@
             <p>Recommand</p>
             <div class="tab-content">
                 <a class="tab-content-item" ng-repeat="recommand in recommands" ng-href="#/list?category={{recommand.name}}&category_id={{recommand.catetory_id}}">
-                    <img ng-src="{{staticImageUrl + recommand.big_image_01}}" alt="" err-src="../images/error.jpg" onload>
+                    <!-- <img ng-src="{{staticImageUrl + recommand.big_image_01}}" alt="" err-src="../images/error.jpg" onload> -->
+                    <imageview data-rate="5/4" center-only src="staticImageUrl + recommand.big_image_01"></imageview>
                     <div class="caption">
                         <h3>{{recommand.name}}</h3>
                         <div class="summary">

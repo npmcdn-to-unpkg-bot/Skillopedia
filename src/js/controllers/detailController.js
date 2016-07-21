@@ -92,7 +92,8 @@ angular.module("Skillopedia").controller("detailController", function($scope, $r
 	$scope.page = {
 		pn: 1,
 		page_size: 1,
-		message: "点击加载更多"
+		message: "点击加载更多",
+		course_id: $routeParams.course_id
 	}
 	$scope.loadMore = function() {
 		if ($scope.no_more) {
@@ -118,4 +119,7 @@ angular.module("Skillopedia").controller("detailController", function($scope, $r
 
 	}
 	$scope.loadMore();
+	$scope.to_fix = function(m) {
+		return m.toFixed(1);
+	}
 })
