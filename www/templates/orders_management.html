@@ -17,7 +17,7 @@
 
             <div class="coach-item with-action-bar" ng-repeat="order in orders">
                 <div class="coach-avatar">
-                    <img ng-src="{{staticImageUrl + order.Course.coach_image}}" class="full-width full-height" alt="" err-src="../images/example_7.png">
+                    <imageview data-rate="1" center-only src="staticImageUrl + order.Course.coach_image"></imageview>
                     <span class="official-coach" ng-if="order.Course.is_official"></span>
                 </div>
                 <div class="coach-info" ng-click="local_go(order.orders_id)">
