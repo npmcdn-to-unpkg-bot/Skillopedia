@@ -33,8 +33,9 @@ angular.module("Skillopedia").controller("landingController", function($scope, $
 					userServices.sync();
 					// $rootScope.back();
 					errorServices.autoHide(data.message);
+					$location.path("index").replace();
 					$timeout(function() {
-						$location.path("index").replace();
+						$window.location.href = $location.protocol() + "://" + $location.host() + ":" + $location.port();
 					}, 2000)
 				} else {
 					errorServices.autoHide(data.message);
@@ -57,8 +58,9 @@ angular.module("Skillopedia").controller("landingController", function($scope, $
 				localStorageService.set("token", data.user.token);
 				$rootScope.user = data.user;
 				errorServices.autoHide(data.message);
+				$location.path("index").replace();
 				$timeout(function() {
-					$location.path("index").replace();
+					$window.location.href = $location.protocol() + "://" + $location.host() + ":" + $location.port();
 				}, 2000)
 			} else {
 				errorServices.autoHide(data.message);
