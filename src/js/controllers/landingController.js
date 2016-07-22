@@ -1,5 +1,5 @@
 // by dribehance <dribehance.kksdapp.com>
-angular.module("Skillopedia").controller("landingController", function($scope, $rootScope, $route, $window, $timeout, facebookServices, userServices, errorServices, toastServices, localStorageService, config) {
+angular.module("Skillopedia").controller("landingController", function($scope, $rootScope, $location, $route, $window, $timeout, facebookServices, userServices, errorServices, toastServices, localStorageService, config) {
 	if ($rootScope.is_signin()) {
 		$rootScope.back();
 	}
@@ -31,7 +31,11 @@ angular.module("Skillopedia").controller("landingController", function($scope, $
 				if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
 					localStorageService.set("token", data.token);
 					userServices.sync();
-					$rootScope.back();
+					// $rootScope.back();
+					errorServices.autoHide(data.message);
+					$timeout(function() {
+						$location.path("index").replace();
+					}, 2000)
 				} else {
 					errorServices.autoHide(data.message);
 				}
@@ -54,7 +58,7 @@ angular.module("Skillopedia").controller("landingController", function($scope, $
 				$rootScope.user = data.user;
 				errorServices.autoHide(data.message);
 				$timeout(function() {
-					$rootScope.back();
+					$location.path("index").replace();
 				}, 2000)
 			} else {
 				errorServices.autoHide(data.message);

@@ -4,6 +4,7 @@ angular.module("Skillopedia").controller("paymentController", function($scope, $
 		rediect();
 		return;
 	}
+	$scope.id = $routeParams.id;
 	toastServices.show();
 	orderServices.query_payment({
 		orders_ids: $routeParams.id
