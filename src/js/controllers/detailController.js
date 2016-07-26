@@ -91,7 +91,7 @@ angular.module("Skillopedia").controller("detailController", function($scope, $r
 	$scope.comments = [];
 	$scope.page = {
 		pn: 1,
-		page_size: 1,
+		page_size: 10,
 		message: "点击加载更多",
 		course_id: $routeParams.course_id
 	}

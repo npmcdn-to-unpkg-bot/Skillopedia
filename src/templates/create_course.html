@@ -38,7 +38,7 @@
                         <div class="course-items pull-left" ng-repeat="cert in input.certs">
                             <div class="course-item" ng-form="certForm">
                                 <div class="imgwrap" flow-init="{singleFile:true}" flow-attrs="{accept:'image/*'}" ng-controller="uploadController">
-                                    <img ng-src="images/about_bg.png" flow-btn flow-img="$flow.files[0]" class="full-width full-height" />
+                                    <img ng-src="../images/about_bg.png" flow-btn flow-img="$flow.files[0]" class="full-width full-height" />
                                     <input type="hidden" name="cert_url" ng-model="cert.url" required>
                                 </div>
                                 <div class="course-input">
@@ -58,7 +58,7 @@
                         <div class="course-items pull-left">
                             <div class="course-item" ng-click="add_cert()">
                                 <div class="imgwrap">
-                                    <img src="images/upload.png" class="full-width full-height" />
+                                    <img src="../images/upload.png" class="full-width full-height" />
                                 </div>
                             </div>
                         </div>
@@ -177,7 +177,7 @@
                         <div class="course-items pull-left">
                             <div class="course-item" ng-if="input.discounts.length<3" ng-click="add_discount()">
                                 <div class="imgwrap" style="height:120px">
-                                    <img src="images/upload.png" class="full-width full-height" />
+                                    <img src="../images/upload.png" class="full-width full-height" />
                                 </div>
                             </div>
                         </div>

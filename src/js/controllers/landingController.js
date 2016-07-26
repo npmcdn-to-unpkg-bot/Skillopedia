@@ -111,4 +111,7 @@ angular.module("Skillopedia").controller("landingController", function($scope, $
 	$scope.twitter_login = function() {
 		$window.location.href = config.url + "/twitterOne";
 	}
+	$scope.go = function() {
+		$window.location.href = $location.protocol() + "://" + $location.host() + ":" + $location.port();
+	}
 });

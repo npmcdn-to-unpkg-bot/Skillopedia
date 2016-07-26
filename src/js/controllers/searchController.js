@@ -126,5 +126,15 @@ angular.module("Skillopedia").controller("searchController", function($scope, $r
 			cagegory_id: null,
 			course_id: id
 		});
-	}
+	};
+	// recommand and hot
+	toastServices.show();
+	skillopediaServices.query_recommand_category().then(function(data) {
+		toastServices.hide()
+		if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
+			$scope.recommands = data.Result.Catetorys;
+		} else {
+			errorServices.autoHide(data.message);
+		}
+	})
 })

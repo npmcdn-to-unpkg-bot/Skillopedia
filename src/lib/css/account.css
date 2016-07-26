@@ -466,11 +466,15 @@
 .step-info .step-content {
     display: block;
     height: 40px;
-    margin-top: 15px;
-    margin-bottom: 15px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     line-height: 20px;
     overflow: hidden;
     color: #A2A2A2;
+}
+.step-info .step-content *{
+    margin: 0;
+    font-weight: 100;
 }
 
 .step-info em {

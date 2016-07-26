@@ -26,7 +26,7 @@ angular.module("Skillopedia").controller("showStepsController", function($scope,
 	}).then(function(data) {
 		toastServices.hide()
 		if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
-			$scope.user = data.Result.UserInfo
+			$scope.guest = data.Result.UserInfo
 		} else {
 			errorServices.autoHide(data.message);
 		}

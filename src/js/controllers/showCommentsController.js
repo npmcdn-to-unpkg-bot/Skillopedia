@@ -7,18 +7,6 @@ angular.module("Skillopedia").controller("showCommentsController", function($sco
 	if ($routeParams.user_id) {
 		$scope.user_id = $routeParams.user_id
 	};
-	// 用户信息
-	toastServices.show();
-	userServices.query_basicinfo_id({
-		user_id: $routeParams.user_id
-	}).then(function(data) {
-		toastServices.hide()
-		if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
-			$scope.user = data.Result.UserInfo
-		} else {
-			errorServices.autoHide(data.message);
-		}
-	});
 	$scope.comments = [];
 	$scope.page = {
 		pn: 1,
@@ -51,5 +39,17 @@ angular.module("Skillopedia").controller("showCommentsController", function($sco
 	$scope.loadMore();
 	$scope.to_fix = function(m) {
 		return m.toFixed(1);
-	}
+	};
+	// 用户信息
+	toastServices.show();
+	userServices.query_basicinfo_id({
+		user_id: $routeParams.user_id
+	}).then(function(data) {
+		toastServices.hide()
+		if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
+			$scope.guest = data.Result.UserInfo
+		} else {
+			errorServices.autoHide(data.message);
+		}
+	})
 })

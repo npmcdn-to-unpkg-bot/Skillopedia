@@ -15,6 +15,8 @@ angular.module("Skillopedia").factory("toastServices", function() {
 		},
 		start: function() {
 			NProgress.start();
+			// NProgress.set(0) == NProgress.start();
+			// NProgress.set(0.4);
 		},
 		done: function() {
 			NProgress.done();
