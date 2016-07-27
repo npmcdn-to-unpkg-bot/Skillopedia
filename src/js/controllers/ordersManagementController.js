@@ -102,7 +102,7 @@ angular.module("Skillopedia").controller("ordersManagementController", function(
 	// pay order
 	$scope.pay = function(order) {
 		var url = $location.protocol() + "://" + $location.host() + ":" + $location.port() + "/#/payment?id=" + order.orders_id;
-		$window.open(url);
+		$window.location.href = url;
 	};
 	$scope.local_go = function(id) {
 		$location.path("order_management").search("id", id)

@@ -1111,12 +1111,14 @@
     // color: #CECECE;
     line-height: 100%;
     outline: none;
-    background-color: white;
+    // background-color: white;
+    background-color: transparent;
     -webkit-appearance: none;
 }
 
 .input-select .fa {
     position: absolute;
+    z-index: -1;
     right: 15px;
     top: 15px;
     color: #5D5D5D;

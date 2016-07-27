@@ -313,7 +313,7 @@ angular.module("Skillopedia").controller("fillinorderController", function($scop
 				$timeout(function() {
 
 					var url = $location.protocol() + "://" + $location.host() + ":" + $location.port() + "/#/payment?id=" + data.orders_id;
-					type == "11" && $window.open(url);
+					type == "11" && ($window.location.href = url);
 				}, 2000)
 			} else {
 				errorServices.autoHide(data.message);

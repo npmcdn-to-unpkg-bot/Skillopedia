@@ -15,19 +15,20 @@
         border-bottom: 4px solid @brand-primary;
     }
 }
+
 .zipcode-suggestion {
     position: absolute;
     left: -1px;
     right: -1px;
     top: 55px;
-    border:1px solid #a0a0a0;
+    border: 1px solid #a0a0a0;
     z-index: 1;
     max-height: 200px;
     overflow-y: scroll;
     overflow-x: hidden;
     .suggestion-item {
         display: block;
-        padding:10px;
+        padding: 10px;
         background-color: white;
         border-bottom: 1px dashed #ccc;
         // .transition(all ease-out 0.3s);
@@ -41,6 +42,33 @@
         border-bottom: 0;
     }
 }
+
+.category-suggestion {
+    position: absolute;
+    top: 100%;
+    left: -1px;
+    right: 0;
+    background-color: white;
+    // padding: 15px;
+    border: 1px solid;
+    z-index: 100;
+    .suggestion-item {
+        display: block;
+        padding: 10px;
+        background-color: white;
+        border-bottom: 1px dashed #ccc;
+        // .transition(all ease-out 0.3s);
+    }
+    .suggestion-item:hover {
+        padding-left: 15px;
+        color: @brand-primary;
+        background-color: @brand-second;
+    }
+    .suggestion-item:last-child {
+        border-bottom: 0;
+    }
+}
+
 .skill-input {
     position: relative;
     display: block;
@@ -57,7 +85,8 @@
             top: 15px;
         }
     }
-    input,textarea {
+    input,
+    textarea {
         -webkit-appearance: none;
         border: none;
         outline: none;
@@ -132,13 +161,14 @@
         }
     }
 }
+
 .list-group {
     margin-bottom: 15px;
     border-top: 1px solid #EEEEEE;
     border-left: 1px solid #EEEEEE;
     border-right: 1px solid #EEEEEE;
     .list-group-item {
-        padding:10px 16px;
+        padding: 10px 16px;
         border-bottom: 1px solid #EEEEEE;
     }
 }

@@ -108,7 +108,7 @@ angular.module("Skillopedia").controller("shoppingcartController", function($sco
 			return course.orders_id;
 		}).join("A");
 		var url = $location.protocol() + "://" + $location.host() + ":" + $location.port() + "/#/payment?id=" + ids;
-		$window.open(url);
+		$window.location.href = url;
 	};
 	$scope.remove_expired = function() {
 		var expired_ids = $scope.courses.filter(function(c) {

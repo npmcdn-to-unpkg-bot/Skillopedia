@@ -22,7 +22,7 @@
                     <div class="m-session pull-left">
                         <span>Phone Number<em class="text-danger text-sm">*</em> <em class="text-danger text-sm" ng-show="authenForm.telephone.$dirty && authenForm.telephone.$invalid">Enter Correct Telephone</em></span>
                         <div class="course-input">
-                            <input type="text" name="telephone" ng-model="input.telephone" ng-required="true" ng-pattern="/(^(13\d|14[57]|15[^4,\D]|17[678]|18\d)\d{8}|170[059]\d{7})$/" placeholder="enter your phone number" class="full-width"/>
+                            <input type="text" name="telephone" ng-model="input.telephone" ng-required="true" ng-pattern="/^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/" placeholder="enter your phone number" class="full-width"/>
                         </div>
                     </div>
                 </div>

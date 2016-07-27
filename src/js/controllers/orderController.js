@@ -57,6 +57,6 @@ angular.module("Skillopedia").controller("orderController", function($scope, $sc
 	// pay order
 	$scope.pay = function(order) {
 		var url = $location.protocol() + "://" + $location.host() + ":" + $location.port() + "/#/payment?id=" + order.orders_id;
-		$window.open(url);
+		$window.location.href = url;
 	};
 })

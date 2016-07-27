@@ -1,8 +1,11 @@
 .search-wrap {
-    position: relative;
-    margin-top: -183px;
+    position: absolute;
     z-index: 1000;
+    left: 0;
+    right: 0;
+    bottom: 10%;
 }
+
 .search-input {
     position: relative;
     display: block;
@@ -226,6 +229,7 @@
         bottom: 0;
         padding-top: 65px;
         color: #fff;
+        font-size: 30px;
         text-align: center;
         // background-color: fade(black, 50%);
     }
@@ -475,12 +479,13 @@
     background-image: url("../images/visa.jpg");
 }
 
-.paypal ,.visa{
+.paypal,
+.visa {
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center center;
     input[type='image'] {
-        margin-top:8px;
+        margin-top: 8px;
         width: 100%;
     }
 }
