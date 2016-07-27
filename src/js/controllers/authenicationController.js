@@ -63,6 +63,7 @@ angular.module("Skillopedia").controller("authenicationController", function($sc
 angular.module("Skillopedia").controller("uploadIdcardController", function($scope, errorServices, toastServices, localStorageService, config) {
 	var filename, extension;
 	$scope.$on("flow::filesSubmitted", function(event, flow) {
+		if (flow.files.length == 0) return;
 		flow.files[0].name.replace(/.png|.jpg|.jpeg|.gif/g, function(ext) {
 			extension = ext;
 			return ext;
@@ -79,7 +80,22 @@ angular.module("Skillopedia").controller("uploadIdcardController", function($sco
 		toastServices.show();
 		flow.upload();
 	});
-	$scope.$on('flow::fileAdded', function(file, message, chunk) {
+	$scope.$on('flow::fileAdded', function(event, flowFile, flow) {
+		if (!{
+				png: 1,
+				gif: 1,
+				jpg: 1,
+				jpeg: 1
+			}[flow.getExtension()]) {
+			errorServices.autoHide("必须上传图片")
+			event.preventDefault(); //prevent file from uploading
+			return;
+		}
+		if (parseFloat(flow.size) / 1000 > 500) {
+			errorServices.autoHide("图片太大，保证图片在500kb以内")
+			event.preventDefault(); //prevent file from uploading
+			return;
+		}
 		$scope.card.url = "";
 	});
 	$scope.$on('flow::fileSuccess', function(file, message, chunk) {
