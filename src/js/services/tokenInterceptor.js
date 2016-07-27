@@ -1,8 +1,10 @@
 // by dribehance <dribehance.kksdapp.com>
-angular.module("Skillopedia").factory("tokenInterceptor", function($location, $q, localStorageService, errorServices, config) {
+angular.module("Skillopedia").factory("tokenInterceptor", function($location, $rootScope, $q, localStorageService, toastServices, errorServices, config) {
+	var request_count = 0;
 	return {
 		// optional method
 		'request': function(config) {
+			++request_count == 1 && toastServices.start();
 			// do something on success
 			return config;
 		},
@@ -17,6 +19,7 @@ angular.module("Skillopedia").factory("tokenInterceptor", function($location, $q
 		},
 		// optional method
 		'response': function(response) {
+			--request_count == 0 && toastServices.done();
 			// do something on success
 			var defer = $q.defer();
 			// static response
@@ -24,10 +27,10 @@ angular.module("Skillopedia").factory("tokenInterceptor", function($location, $q
 				return response;
 			}
 			// server response
-			if (response.data.respcode == config.request.TOKEN_INVALID) {
+			if (response.data.code == config.request.TOKEN_INVALID) {
 				console.log("TOKEN_INVALID")
 				localStorageService.remove("token");
-				$location.path("/signIn").replace();
+				$location.path("/landing").replace();
 				return defer.promise;
 			} else {
 				return response;

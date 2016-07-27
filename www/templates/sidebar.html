@@ -1,9 +1,9 @@
 <div class="sidebar" ng-controller="sidebarController">
     <div class="section" ng-click="go('/account')">
         <div class="sidebar-avatar">
-            <img src="images/avatar.png" alt="">
+            <img ng-src="{{staticImageUrl + user.image_01}}" err-src="../images/example_7.png" alt="">
         </div>
-        <p class="text-center">dribehance</p>
+        <p class="text-center">{{user.nickname}}</p>
     </div>
     <div class="sidebar-list">
     	<div class="sidebar-item-header clearfix">
@@ -30,7 +30,7 @@
     		Orders
     		<i class="fa fa-angle-right pull-right" aria-hidden="true"></i>
     	</a>
-    	<a class="sidebar-item clearfix" ng-href="#/coach" ng-class="{'active':highlight('/coach')}">
+    	<a class="sidebar-item clearfix" ng-href="#/skillopedia" ng-class="{'active':highlight('/skillopedia')}">
             <marquee class="marquee">I am a skillopedia ,Start your new life from here</marquee>
     		<i class="fa fa-angle-right pull-right" aria-hidden="true"></i>
     	</a>

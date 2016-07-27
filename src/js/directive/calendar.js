@@ -16,6 +16,9 @@ angular.module("Skillopedia").directive('calendar', function($filter) {
 					var select = picker.get();
 					scope.$apply(function() {
 						scope.calendar.day = select || scope.calendar.day;
+						if (typeof scope.calendar.onDayChange == "function") {
+							scope.calendar.onDayChange()
+						}
 					})
 				}
 			})
@@ -23,39 +26,91 @@ angular.module("Skillopedia").directive('calendar', function($filter) {
 				picker.open();
 				event.stopPropagation();
 				event.preventDefault()
-			}
-			if (scope.calendar.mode != "edit") {
-				return;
-			}
-			// scope.calendar = angular.extend({}, scope.calendar);
-			scope.calendar.selected = [];
-			scope.select = function(time, index) {
-				var next = index + 1;
-				next = next > scope.calendar.times.length - 1 ? scope.calendar.times.length - 1 : next;
-				if (index == next) {
-					return;
-				}
-				// state_1 free,state_2 check,state_3 disabled
-				if (time.state == 1 && scope.calendar.times[next].state == 1) {
-					time.state = 2;
-					var selected_time = {
-						from: time,
-						to: scope.calendar.times[next]
-					}
-					scope.calendar.times[next].state = 2;
-					scope.calendar.selected.push(selected_time);
-				}
 			};
-			scope.calendar.remove = function(selected) {
-				scope.calendar.selected = scope.calendar.selected.filter(function(s) {
-					return s.from.hour != selected.from.hour;
-				})
-				scope.calendar.times = scope.calendar.times.map(function(t) {
-					if (t.hour == selected.from.hour || t.hour == selected.to.hour) {
-						t.state = 1;
+			// edit mode
+			if (scope.calendar.mode == "edit") {
+				// scope.calendar = angular.extend({}, scope.calendar);
+				scope.calendar.selected = [];
+				scope.select = function(time, index) {
+					var next = index + 1;
+					next = next > scope.calendar.times.length - 1 ? scope.calendar.times.length - 1 : next;
+					if (index == next) {
+						return;
 					}
-					return t;
-				});
+					// schedule_state_1 disabled,schedule_state_2 busy,schedule_state_3 free
+					if (time.schedule_state == 3 && scope.calendar.times[next].schedule_state == 3 && scope.calendar.selected.length < scope.calendar.size) {
+						time.schedule_state = 2;
+						time.active = true;
+						var selected_time = {
+							from: time,
+							to: scope.calendar.times[next]
+						}
+						scope.calendar.times[next].schedule_state = 2;
+						scope.calendar.times[next].active = true;
+						scope.calendar.selected.push(selected_time);
+					}
+				};
+				scope.calendar.remove = function(selected) {
+					scope.calendar.selected = scope.calendar.selected.filter(function(s) {
+						return s != selected;
+					})
+					scope.calendar.times = scope.calendar.times.map(function(t) {
+						if ((t.day == selected.from.day && t.hour == selected.from.hour) || (t.day == selected.to.day && t.hour == selected.to.hour)) {
+							t.schedule_state = 3;
+							t.active = false;
+						}
+						return t;
+					});
+				}
+				return;
+			};
+			// confirm mode
+			if (scope.calendar.mode == "confirm") {
+				// scope.calendar = angular.extend({}, scope.calendar);
+				scope.calendar.selected = [];
+				scope.select = function(time, index) {
+					var next = index + 1;
+					next = next > scope.calendar.times.length - 1 ? scope.calendar.times.length - 1 : next;
+					if (index == next) {
+						return;
+					}
+					// schedule_state_1 disabled,schedule_state_2 busy,schedule_state_3 free
+					if (time.schedule_state == 3 && scope.calendar.times[next].schedule_state == 3 && scope.calendar.selected.length < scope.calendar.size) {
+						time.schedule_state = 2;
+						time.active = true;
+						var selected_time = {
+							from: time,
+							to: scope.calendar.times[next]
+						}
+						scope.calendar.times[next].schedule_state = 2;
+						scope.calendar.times[next].active = true;
+						scope.calendar.selected.push(selected_time);
+					}
+				};
+				scope.calendar.remove = function(selected) {
+					scope.calendar.selected = scope.calendar.selected.filter(function(s) {
+						return s != selected;
+					})
+					scope.calendar.times = scope.calendar.times.map(function(t) {
+						if ((t.day == selected.from.day && t.hour == selected.from.hour) || (t.day == selected.to.day && t.hour == selected.to.hour)) {
+							t.schedule_state = 3;
+							t.active = false;
+						}
+						return t;
+					});
+				}
+				return;
+			};
+			// preview model
+			if (scope.calendar.mode == "preview") {
+				var last = current = {};
+				scope.select = function(time, index) {
+					last = current;
+					current = time;
+					last.active = false;
+					current.active = true;
+					scope.calendar.selected = time;
+				};
 			}
 		}
 	};

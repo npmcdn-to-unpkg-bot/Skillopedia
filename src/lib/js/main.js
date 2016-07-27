@@ -44,27 +44,27 @@ $(document).ready(function() {
 	}, function() {
 		$(this).parent().removeClass("hover-left");
 	});
-	$(".feature-left").bind("click", open_left_feature);
-	$(".feature-right").bind("click", open_right_feature);
-	$(".close_left").bind("click", close_left);
-	$(".close_right").bind("click", close_right);
+	// $(".feature-left").bind("click", open_left_feature);
+	// $(".feature-right").bind("click", open_right_feature);
+	// $(".close_left").bind("click", close_left);
+	// $(".close_right").bind("click", close_right);
 	$(".feature-right").hover(function() {
 		$(this).parent().addClass("hover-right")
 	}, function() {
 		$(this).parent().removeClass("hover-right")
 	});
-	$(".category-large").hover(function() {
-		$(this).find("img").addClass("active");
-		$(this).find(".category-caption").addClass("hover");
-	}, function() {
-		$(this).find("img").removeClass("active");
-		$(this).find(".category-caption").removeClass("hover");
-	});
-	$(".category-small").hover(function() {
-		$(this).find(".category-caption").addClass("hover");
-	}, function() {
-		$(this).find(".category-caption").removeClass("hover");
-	});
+	// $(".category-large").hover(function() {
+	// 	$(this).find("img").addClass("active");
+	// 	$(this).find(".category-caption").addClass("hover");
+	// }, function() {
+	// 	$(this).find("img").removeClass("active");
+	// 	$(this).find(".category-caption").removeClass("hover");
+	// });
+	// $(".category-small").hover(function() {
+	// 	$(this).find(".category-caption").addClass("hover");
+	// }, function() {
+	// 	$(this).find(".category-caption").removeClass("hover");
+	// });
 	// $('#openpopup').magnificPopup({
 	// 	items: [{
 	// 		src: 'http://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Peter_%26_Paul_fortress_in_SPB_03.jpg/800px-Peter_%26_Paul_fortress_in_SPB_03.jpg',
@@ -95,5 +95,5 @@ $(document).ready(function() {
 				enabled: true
 			}
 		});
-	})
+	});
 })

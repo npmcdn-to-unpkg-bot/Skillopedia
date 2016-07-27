@@ -1,15 +1,68 @@
 <!-- header -->
 <div ng-include="'templates/header.html'"></div>
+<link href="lib/css/account.css" rel="stylesheet"> 
+<link href="lib/css/media.css" rel="stylesheet" />
 <div class="wrap">
     <div class="section account-section">
         <!-- sidebar -->
-        <div ng-include="'templates/sidebar.html'" class="sidebar-wrap"></div>
-        <div class="content-wrap">
+        <sidebar active="'/orders'" class="sidebar-wrap"></sidebar>
+        <form class="content-wrap" name="commentForm" ng-submit="ajaxForm()">
             <div class="tabs clearfix">
                 <a class="tab-item pull-left active">Comment</a>
             </div>
-            account order comment
-        </div>
+            <a class="coach-item" ng-href="#/detail?course_id={{order.Course.course_id}}">
+                <div class="coach-avatar">
+                    <img ng-src="{{staticImageUrl + order.Course.course_image_01}}" class="full-width full-height" alt="" err-src="../images/example_7.png">
+                    <span class="official-coach" ng-if="order.Course.is_official"></span>
+                </div>
+                <div class="coach-info">
+                    <div class="long-title">{{order.Course.title}}</div>
+                    <span class="pull-right" style="margin-left:8px;">x{{order.buy_amount}}</span>
+                    <span class="pull-right text-primary text-big">{{order.Course.session_rate|currency:"$"}}</span>
+                    <div class="star text-ellipsis">
+                        <i class="fa fa-star" ng-class="{'active':order.Course.total_score >0}" aria-hidden="true"></i>
+                        <i class="fa fa-star" ng-class="{'active':order.Course.total_score >1}" aria-hidden="true"></i>
+                        <i class="fa fa-star" ng-class="{'active':order.Course.total_score >2}" aria-hidden="true"></i>
+                        <i class="fa fa-star" ng-class="{'active':order.Course.total_score >3}" aria-hidden="true"></i>
+                        <i class="fa fa-star" ng-class="{'active':order.Course.total_score >4}" aria-hidden="true"></i>
+                    </div>
+                    <div class="coach-meta">
+                        <span><i class="fa fa-bars" aria-hidden="true"></i>{{order.Course.category_02_name}}</span>
+                        <span><i class="fa fa-user" aria-hidden="true"></i>by {{order.Course.course_nickname}}</span>
+                        <span><i class="fa fa-map-marker" aria-hidden="true"></i>{{order.Course.area}}</span>
+                    </div>
+                </div>
+            </a>
+            <p class="clearfix">
+                <span>专业技能&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                <span class="fa fa-star-o" ng-class="{'text-primary':input.skill>0}" ng-mouseover="hover('skill','1')"></span>
+                <span class="fa fa-star-o" ng-class="{'text-primary':input.skill>1}" ng-mouseover="hover('skill','2')"></span>
+                <span class="fa fa-star-o" ng-class="{'text-primary':input.skill>2}" ng-mouseover="hover('skill','3')"></span>
+                <span class="fa fa-star-o" ng-class="{'text-primary':input.skill>3}" ng-mouseover="hover('skill','4')"></span>
+                <span class="fa fa-star-o" ng-class="{'text-primary':input.skill>4}" ng-mouseover="hover('skill','5')"></span>
+            </p>
+            <p class="clearfix">
+                <span>教学环境&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                <span class="fa fa-star-o" ng-class="{'text-primary':input.environment>0}" ng-mouseover="hover('environment','1')"></span>
+                <span class="fa fa-star-o" ng-class="{'text-primary':input.environment>1}" ng-mouseover="hover('environment','2')"></span>
+                <span class="fa fa-star-o" ng-class="{'text-primary':input.environment>2}" ng-mouseover="hover('environment','3')"></span>
+                <span class="fa fa-star-o" ng-class="{'text-primary':input.environment>3}" ng-mouseover="hover('environment','4')"></span>
+                <span class="fa fa-star-o" ng-class="{'text-primary':input.environment>4}" ng-mouseover="hover('environment','5')"></span>
+            </p>
+            <p class="clearfix">
+                <span>教学态度&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                <span class="fa fa-star-o" ng-class="{'text-primary':input.attitude>0}" ng-mouseover="hover('attitude','1')"></span>
+                <span class="fa fa-star-o" ng-class="{'text-primary':input.attitude>1}" ng-mouseover="hover('attitude','2')"></span>
+                <span class="fa fa-star-o" ng-class="{'text-primary':input.attitude>2}" ng-mouseover="hover('attitude','3')"></span>
+                <span class="fa fa-star-o" ng-class="{'text-primary':input.attitude>3}" ng-mouseover="hover('attitude','4')"></span>
+                <span class="fa fa-star-o" ng-class="{'text-primary':input.attitude>4}" ng-mouseover="hover('attitude','5')"></span>
+            </p>
+            <p>comment for this class</p>
+            <div class="input-group">
+                <textarea rows="10" name="content" ng-model="input.content" required class="full-width form-control" placeholder="comment..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-lg" ng-disabled="commentForm.$invalid">评论</button>
+        </form>
     </div>
 </div>
 <!-- footer -->

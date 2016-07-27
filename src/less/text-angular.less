@@ -1,0 +1,26 @@
+.text-angular {
+    .ta-toolbar {
+        padding: 10px 10px 5px;
+        background-color: #F0F0F0;
+    }
+    .form-control {
+        color: inherit;
+    }
+    .btn-group {
+        display: inline-block;
+        margin-right: 5px;
+        .btn {
+            margin-left: 0px;
+            float: left;
+        }
+        .btn:disabled {
+            cursor: auto;
+        }
+        &:nth-child(odd) {
+            margin-left: 0;
+        }
+    }
+    .ta-toolbar .btn-default[disabled] {
+        pointer-events: none;
+    }
+}

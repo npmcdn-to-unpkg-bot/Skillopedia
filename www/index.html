@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html class="no-js">
+<!--[if lt IE 10]> <html class="lt-ie10"> <![endif]-->
+<!--[if gt IE 10]><!--> <html> <!--<![endif]-->
 
 <head>
     <!-- <base href="/skillopdiea"></base> -->
@@ -9,37 +10,101 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimal-ui" />
     <meta name="apple-mobile-web-app-status-bar-style" content="yes" />
-    <script src="//cdn.bootcss.com/jquery/2.2.2/jquery.js"></script>
-    <script src="//cdn.bootcss.com/angular.js/1.5.5/angular.js"></script>
-    <script src="//cdn.bootcss.com/angular.js/1.5.5/angular-route.js"></script>
-    <script src="//cdn.bootcss.com/angular-local-storage/0.2.7/angular-local-storage.js"></script>
-    <script src="//cdn.bootcss.com/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
-    <script src="//cdn.bootcss.com/pickadate.js/3.5.6/compressed/picker.js"></script>
-    <script src="//cdn.bootcss.com/pickadate.js/3.5.6/compressed/picker.date.js"></script>
-    <!-- <script src="//cdn.bootcss.com/animations/2.1/js/animations.min.js"></script>
-    <script src="//cdn.bootcss.com/animations/2.1/js/appear.min.js"></script> -->
-    <script src="js/app.min.js"></script>
+    <meta name="renderer" content="webkit">
     <link href="images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <link href="//cdn.bootcss.com/normalize/4.1.1/normalize.min.css" rel="stylesheet">
-    <link href="//cdn.bootcss.com/hover.css/2.0.2/css/hover-min.css" rel="stylesheet">
+    <!-- <link href="//cdn.bootcss.com/hover.css/2.0.2/css/hover-min.css" rel="stylesheet"> -->
     <link href="//cdn.bootcss.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet">
+    <link href="//cdn.bootcss.com/loaders.css/0.1.2/loaders.min.css" rel="stylesheet">
+    <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.css" rel="stylesheet">
     <link href="//cdn.bootcss.com/magnific-popup.js/1.1.0/magnific-popup.min.css" rel="stylesheet">
     <link href="//cdn.bootcss.com/pickadate.js/3.5.6/compressed/themes/classic.css" rel="stylesheet">
     <link href="//cdn.bootcss.com/pickadate.js/3.5.6/compressed/themes/classic.date.css" rel="stylesheet">
+    <link href="//cdn.bootcss.com/textAngular/1.5.1/textAngular.min.css" rel="stylesheet">
     <link href="lib/css/animate.css" rel="stylesheet">
     <link href="css/app.min.css" rel="stylesheet" />
+    <!-- <link href="lib/css/account.css" rel="stylesheet"> 
+    <link href="lib/css/media.css" rel="stylesheet" /> -->
+    <!-- <script src="lib/js/detect.js"></script> -->
+    <script src="lib/js/include.js"></script>
+    <script src="//cdn.bootcss.com/jquery/1.8.3/jquery.js"></script>
+    <script src="//cdn.bootcss.com/angular.js/1.5.5/angular.js"></script>
+    <script src="//cdn.bootcss.com/angular.js/1.5.5/angular-route.js"></script>
+    <script src="//cdn.bootcss.com/angular-sanitize/1.5.5/angular-sanitize.min.js"></script>
+    <script src="//cdn.bootcss.com/angular-local-storage/0.2.7/angular-local-storage.js"></script>
+    <script src="//cdn.bootcss.com/ng-flow/2.7.1/ng-flow-standalone.min.js"></script>
+    <script src="//cdn.bootcss.com/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+    <script src="//cdn.bootcss.com/pickadate.js/3.5.6/compressed/picker.js"></script>
+    <script src="//cdn.bootcss.com/pickadate.js/3.5.6/compressed/picker.date.js"></script>
+    <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+    <script src="//cdn.bootcss.com/textAngular/1.5.1/textAngular-rangy.min.js"></script>
+    <script src="//cdn.bootcss.com/textAngular/1.5.1/textAngular-sanitize.min.js"></script>
+    <script src="//cdn.bootcss.com/textAngular/1.5.1/textAngular.min.js"></script>
+    <script src="//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js"></script>
+    <!-- <script src="//cdn.bootcss.com/animations/2.1/js/animations.min.js"></script>
+    <script src="//cdn.bootcss.com/animations/2.1/js/appear.min.js"></script> -->
+    <script src="lib/js/jsencrypt.js"></script>
+    <script src="js/app.min.js"></script>
 </head>
 
 <body>
-    <ng-view></ng-view>
+    <ng-view autoscroll></ng-view>
     <!-- signin -->
-    <div id="signin-popup" class="popup mfp-hide">
+    <div id="signin-popup" class="popup signin-popup mfp-hide">
         <div ng-include="'templates/signin.html'"></div>
     </div>
+    <!-- toast -->
+    <div class="toast">
+        <div class="loader"></div>
+    </div>
+    <!-- <div class="toast_with_animation">
+        <div class="loader loader-inner pacman">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div> -->
+    <!-- error msg-->
+    <div class="error-msg hide">{{error_msg}}</div>
+    <!-- preload  -->
+    <img ng-src="../images/error.jpg" class="hide" alt="">
+    <!-- facebook sdk -->
+    <script>
+    (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {
+            return;
+        }
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+    </script>
     <script type="text/javascript">
     $(document).ready(function() {
         angular.bootstrap($("html"), ['Skillopedia']);
     })
+    </script>
+    <!-- twitter sdk -->
+    <script>
+    window.twttr = (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0],
+            t = window.twttr || {};
+        if (d.getElementById(id)) return t;
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "https://platform.twitter.com/widgets.js";
+        fjs.parentNode.insertBefore(js, fjs);
+
+        t._e = [];
+        t.ready = function(f) {
+            t._e.push(f);
+        };
+
+        return t;
+    }(document, "script", "twitter-wjs"));
     </script>
 </body>
 

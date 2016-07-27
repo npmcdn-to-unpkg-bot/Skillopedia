@@ -1,4 +1,93 @@
 // by dribehance <dribehance.kksdapp.com>
-angular.module("Skillopedia").controller("couponsController", function($scope, errorServices, toastServices, localStorageService, config) {
+angular.module("Skillopedia").controller("couponsController", function($scope, $route, $timeout, errorServices, userServices, toastServices, localStorageService, config) {
+	$scope.input = {
+		coupon_type: 1
+	};
+	$scope.coupons = [];
+	$scope.page = {
+		pn: 1,
+		page_size: 1000,
+		message: "点击加载更多",
+		type: $scope.input.coupon_type
+	}
+	$scope.loadMore = function() {
+		if ($scope.no_more) {
+			return;
+		}
+		toastServices.show();
+		$scope.page.message = "正在加载...";
+		userServices.query_coupons($scope.page).then(function(data) {
+			toastServices.hide();
+			$scope.page.message = "点击加载更多";
+			if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
+				$scope.coupons = $scope.coupons.concat(data.Result.MyCoupons.list);
+				$scope.no_more = $scope.coupons.length == data.Result.MyCoupons.totalRow ? true : false;
+			} else {
+				errorServices.autoHide("服务器错误");
+			}
+			if ($scope.no_more) {
+				$scope.page.message = "加载完成，共加载" + $scope.coupons.length + "条记录";
+			}
+			$scope.page.pn++;
+		})
 
+	}
+	$scope.loadMore();
+	$scope.get_coupon = function() {
+		toastServices.show();
+		userServices.get_coupon({
+			number: $scope.input.coupon_id
+		}).then(function(data) {
+			$scope.input.coupon_id = "";
+			toastServices.hide()
+			if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
+				errorServices.autoHide(data.message);
+				$timeout(function() {
+					$route.reload();
+				}, 2000)
+			} else {
+				errorServices.autoHide(data.message);
+			}
+		})
+	};
+	$scope.active_tab = function(tab_index) {
+		if (tab_index == $scope.input.coupon_type) {
+			return;
+		}
+		$scope.input.coupon_type = tab_index;
+		$scope.coupons = [];
+		$scope.page = {
+			pn: 1,
+			page_size: 1000,
+			message: "点击加载更多",
+			latitude: "0",
+			longitude: "0",
+			type: $scope.input.coupon_type
+		}
+		$scope.no_more = false;
+		$scope.loadMore();
+	};
+	$scope.remove = function(coupon, e) {
+		e.preventDefault();
+		e.stopPropagation();
+		$scope.confirm.content = "确定删除吗？";
+		$scope.confirm.open();
+		$scope.confirm.cancle_callback = function() {}
+		$scope.confirm.ok_callback = function() {
+			toastServices.show();
+			userServices.remove_coupon({
+				my_coupon_id: coupon.my_coupon_id
+			}).then(function(data) {
+				toastServices.hide()
+				if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
+					errorServices.autoHide(data.message);
+					$timeout(function() {
+						$route.reload();
+					}, 2000)
+				} else {
+					errorServices.autoHide(data.message);
+				}
+			})
+		}
+	}
 })

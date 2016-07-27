@@ -14,6 +14,7 @@
     background-image: none; // Reset unusual Firefox-on-Android default style; see https://github.com/necolas/normalize.css/issues/214
     border: 1px solid transparent;
     white-space: nowrap;
+    text-decoration: none;
     .button-size(@padding-base-vertical;
     @padding-base-horizontal;
     @font-size-base;
@@ -146,7 +147,15 @@
     // line-height: ensure even-numbered height of button next to large input
     .button-size(@padding-large-vertical;
     @padding-large-horizontal;
-    @font-size-base;
+    @font-size-large;
+    @line-height-large;
+    @btn-border-radius-large);
+}
+.btn-md {
+    // line-height: ensure even-numbered height of button next to large input
+    .button-size(@padding-large-vertical;
+    @padding-large-horizontal;
+    @font-size-middle;
     @line-height-large;
     @btn-border-radius-large);
 }

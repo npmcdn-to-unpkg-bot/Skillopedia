@@ -1,0 +1,32 @@
+<!-- header -->
+<link href="lib/css/account.css" rel="stylesheet">
+<link href="lib/css/media.css" rel="stylesheet" />
+<div ng-include="'templates/header.html'"></div>
+<div class="wrap">
+    <div class="section account-section">
+        <!-- sidebar -->
+        <div ng-include="'templates/sidebar_1.html'" class="sidebar-wrap"></div>
+        <div class="content-wrap">
+            <div class="tabs clearfix">
+                <a class="tab-item pull-left" ng-href="#/show?user_id={{user_id}}">Courses</a>
+                <a class="tab-item pull-left" ng-href="#/show_comments?user_id={{user_id}}">Comments</a>
+                <a class="tab-item pull-left active">Steps</a>
+            </div>
+            <a class="coach-item hover" ng-repeat="step in steps" ng-href="#/step?id={{step.experience_id}}" target="_blank">
+                <div class="coach-avatar">
+                    <img ng-src="{{staticImageUrl + step.image_01}}" class="full-width full-height" alt="" err-src="../images/example_7.png">
+                </div>
+                <div class="coach-info">
+                    <span class="title">{{step.title}}</span>
+                    <div ng-bind-html="step.content" class="summary"></div>
+                    <span class="text-md">{{step.post_time}}</span>
+                </div>
+            </a>
+            <div class="section text-center" ng-if="steps.length == 0">
+                <span class="btn btn-lg">{{steps_message}}</span>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- footer -->
+<div ng-include="'templates/footer.html'"></div>

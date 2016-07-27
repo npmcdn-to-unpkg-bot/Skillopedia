@@ -1,11 +1,12 @@
 .tabs {
-    border-bottom: 3px solid #f1f1f1;
     margin-bottom: 15px;
+    border-bottom: 3px solid #f1f1f1;
     .tab-item {
         position: relative;
         padding: 15px 30px;
         text-align: center;
         .link();
+        cursor: pointer;
     }
     .tab-item.active {
         color: @brand-primary;
@@ -21,55 +22,48 @@
     }
 }
 
-.detail-left .coach-item {
-    height: auto;
-    .coach-info {
-        &:hover {
-            background-color: white;
-        }
-    }
-    .coach-info p {
-        height: auto;
-    }
-}
-
 .coach-item {
-    display: block;
     position: relative;
-    padding-left: 110px;
+    display: block;
+    padding-bottom: 15px;
     margin-bottom: 15px;
-    height: 100px;
+    border-bottom: 1px dashed #ccc;
     overflow: hidden;
     color: #494949;
+    cursor: pointer;
+    font-weight: 100;
     .link();
-    .coach-avatar {
-        position: absolute;
-        left: 0;
-        top: 0px;
-        width: 110px;
-        height: 100px;
-        padding: 15px;
-        background-color: #f3e7d9;
-        .box-sizing(border-box);
-        text-align: center;
-        img {
-            width: 80%;
-        }
+    .title {
+        display: block;
+        margin-bottom: 8px;
+        font-size: 20px;
+        font-weight: 400;
+        .text-ellipsis;
     }
-    .coach-info {
-        padding: 0px 15px;
-        font-size: 18px;
-        font-weight: 100;
+    .long-title {
+        display: block;
+        height: 52px;
+        margin-bottom: 8px;
+        line-height: 26px;
+        font-size: 20px;
+        overflow: hidden;
+    }
+    .auto-title {
+        display: block;
+        min-height: 52px;
+        margin-bottom: 8px;
+        line-height: 26px;
+        font-size: 20px;
+    }
+    .summary {
+        height: 40px;
+        margin-bottom: 5px;
+        line-height: 20px;
+        font-size: 14px;
+        overflow: hidden;
+        // reset summary p
         p {
-            margin-top: 0;
-            margin-bottom: 8px;
-            line-height: 26px;
-            height: 52px;
-            overflow: hidden;
-        }
-        .transition(background ease-out 0.5s);
-        &:hover {
-            background-color: #f1f1f1;
+            margin: 0;
         }
     }
     .star {
@@ -78,24 +72,101 @@
     .star i.active {
         color: @brand-primary;
     }
-    .coach-meta {
-        color: #c1c1c1;
-        font-size: 14px;
-        font-weight: 100;
-        i {
-            margin-right: 5px;
+    &.hover {
+        height: 100px;
+        &:hover {
+            border-bottom-color: @brand-primary;
         }
-        span {
-            margin-right: 15px;
+    }
+    &.with-action-bar {
+        margin-bottom: 86px;
+        overflow: visible;
+        // height: 100px;
+        .action-bar {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            padding: 16px 0;
+            border-bottom: 1px dashed #a0a0a0;
         }
+    }
+    @media (min-width:748px) {
+        padding-left: 110px;
+        &.step-item {
+            padding-left: 0;
+        }
+        .coach-avatar {
+            position: absolute;
+            left: 0;
+            top: 0px;
+        }
+        .coach-info {
+            padding: 0px 15px;
+        }
+    }
+}
+.coach-item.shopping-cart {
+    @media (min-width:748px) {
+        padding-left: 155px;
+        .radio-btn {
+            position: absolute;
+            left: 0;
+            top: 30px;
+        }
+        .coach-avatar {
+            position: absolute;
+            left: 40px;
+            top: 0px;
+        }
+    }
+}
+.coach-avatar {
+    position: relative;
+    float: left;
+    width: 110px;
+    height: 100px;
+    margin-right: 15px;
+    background-color: #f3e7d9;
+    .box-sizing(border-box);
+    text-align: center;
+    border: 2px solid @brand-primary;
+    border-radius: 10px;
+    overflow: hidden;
+    img {
+        width: 100%;
+    }
+    .official-coach {
+        position: absolute;
+        bottom: 10px;
+        right: -1px;
+        background-image: url("../images/official.png");
+        background-repeat: no-repeat;
+        background-position: center center;
+        height: 20px;
+        width: 84px;
+        background-size: 100%;
+    }
+}
+
+.coach-meta {
+    height: 20px;
+    overflow: hidden;
+    color: #c1c1c1;
+    font-size: 14px;
+    font-weight: 100;
+    i {
+        margin-right: 5px;
+    }
+    span {
+        margin-right: 15px;
     }
 }
 
 .conditions {
     padding: 15px;
-    background-color: #f1f1f1;
-    margin-right: 15px;
     margin-bottom: 15px;
+    background-color: #f1f1f1;
     .condition {
         display: inline-block;
         padding: 8px;
@@ -107,11 +178,13 @@
         &.select {
             padding: 4px 10px;
             margin-top: 8px;
+            line-height: 17px;
             color: @brand-primary;
             border: 1px solid @brand-primary;
         }
     }
 }
+
 .about-poster {
     height: 200px;
     padding: 100px;
@@ -121,6 +194,78 @@
     background-size: 70%;
     background-color: #292929;
 }
+
 .contact-body {
     background-color: #f0eeee;
+}
+
+.btn-group {
+    .btn {
+        margin-left: 15px;
+        margin-bottom: 10px;
+    }
+}
+
+.stepbystep {
+    display: block;
+    width: 500px;
+    height: 50px;
+    background-image: url("../images/stepbystep.png");
+    background-repeat: no-repeat;
+    background-position: 0 3px;
+}
+
+.account-center {
+    .clearfix();
+    .account-avatar {
+        display: block;
+        width: 200px;
+        height: 200px;
+        margin: 0 auto 15px;
+        text-align: center;
+        border-radius: 200px;
+        border: 1px solid @brand-primary;
+        background-color: #f3e7d9;
+        overflow: hidden;
+        img {
+            width: 100%;
+            height: 100%;
+        }
+    }
+    .account-center-left {
+        display: block;
+        margin-bottom: 15px;
+    }
+    @media (min-width:820px) {
+        .account-center-left {
+            float: right;
+            padding-left: 25px;
+            .box-sizing(border-box);
+            border-left: 1px dashed #ccc;
+        }
+        .account-center-right {
+            margin-right: 255px;
+            .box-sizing(border-box);
+        }
+    }
+}
+
+input.pickadate {
+    padding: 14px;
+    border: 1px solid #ccc;
+}
+.coupon-form {
+    text-align: center;
+    input {
+        padding: 10px 16px;
+        font-size: 14px;
+        line-height: 1.42857143;
+    }
+    button {
+        padding: 10px 32px;
+    }
+}
+.order-header {
+    padding: 15px;
+    background-color: @brand-second;
 }

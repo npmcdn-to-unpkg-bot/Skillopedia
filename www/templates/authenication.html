@@ -1,14 +1,90 @@
 <!-- header -->
 <div ng-include="'templates/header.html'"></div>
+<link href="lib/css/account.css" rel="stylesheet"> 
+<link href="lib/css/media.css" rel="stylesheet" />
 <div class="wrap">
     <div class="section account-section">
         <!-- sidebar -->
-        <div ng-include="'templates/sidebar.html'" class="sidebar-wrap"></div>
+        <sidebar active="" class="sidebar-wrap"></sidebar>
         <div class="content-wrap">
         	<div class="tabs clearfix">
                 <a class="tab-item pull-left active">Authenication</a>
             </div>
-            account coach authen
+            <form class="authen-step" ng-submit="ajaxForm()" name="authenForm" ng-show="user.authen_status == '0'">
+                <div class="title-input">
+                    <div class="m-session pull-left">
+                        <span>Name<em class="text-danger text-sm">*</em></span>
+                        <div class="course-input">
+                            <input type="text" name="realname" ng-model="input.realname" ng-required="true" placeholder="enter your realname" class="full-width"/>
+                        </div>
+                    </div>
+                    
+                    <div class="m-session pull-left">
+                        <span>Phone Number<em class="text-danger text-sm">*</em> <em class="text-danger text-sm" ng-show="authenForm.telephone.$dirty && authenForm.telephone.$invalid">Enter Correct Telephone</em></span>
+                        <div class="course-input">
+                            <input type="text" name="telephone" ng-model="input.telephone" ng-required="true" ng-pattern="/^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/" placeholder="enter your phone number" class="full-width"/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="title-input">
+                    <div class="m-session pull-left">
+                        <span>Gender<em class="text-danger text-sm">*</em></span>
+                        <div class="input-select">
+                            <select ng-model="input.gender" ng-required="true">
+                                <option value="1">Male</option>
+                                <option value="0">Female</option>
+                            </select>
+                            <i class="fa fa-caret-down" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                    <div class="m-session pull-left">
+                        <span>Date of Birth<em class="text-danger text-sm">*</em></span>
+                        <input type="text" class="full-width pickadate" ng-model="input.date">
+                    </div>
+                </div>
+                <div class="title-input"><span>Government ID:</span></div>
+                <div class="title-input">
+                    <div class="m-session pull-left">
+                        <img ng-src="../images/example_12.png" class="full-width full-height" alt="">
+                    </div>
+                    <div class="m-session pull-left">
+                        <img ng-src="../images/example_12.png" class="full-width full-height" alt="">
+                    </div>
+                    <div class="m-session pull-left" flow-init="{singleFile:true}" ng-repeat="card in input.idcards" ng-controller="uploadIdcardController" ng-form="uploadIdcarForm">
+                        <input type="hidden" name="card_url" ng-model="card.url" ng-required="true">
+                        <img ng-src="../images/example_13.png" flow-btn flow-img="$flow.files[0]" class="full-width full-height" alt="" style="max-width:367px;max-height:243px">
+                    </div>
+                </div>
+                <label>
+                    Take a photo or selct one to upload you official ID,such as Driver license
+                    passport.this information will not share with others. You should take your
+                    picture like example above.
+                </label>
+                <div class="nextbtn-addr">
+                    <button type="submit" ng-disabled="authenForm.$invalid" class="btn btn-second btn-lg">AUTHEN</button>
+                </div>
+            </form>
+            <!-- 教练认证中 -->
+            <div class="authen-step" ng-show="user.authen_status != '0'">
+                <div class="authening">
+                    <div class="authening-content">
+                        <span><img ng-src="../images/notyet.png" alt=""></span>
+                        <span>抱歉，</span>
+                        <span>你还未成为SKILLOPEDIA!</span>
+                        <span>你提交的资料{{get_status(user.authen_status)}}</span>
+                        <div></div>
+                    </div>
+                     <div class="nextbtn-addr">
+                        <div class="authen-number">客服：400-300-300</div>
+                        <div class="authen-recertification" ng-click="reauthen()" ng-if="user.authen_status == '3' && user.authen_num !='0'">重新认证</div>
+                    </div>
+                    <div class="anthen-tips">你还有{{user.authen_num}}次机会认证,如有疑问，请电话联系客服</div>
+                </div>
+                
+                 
+            </div>
+            <!--  -->
         </div>
     </div>
 </div>

@@ -12,7 +12,7 @@ var config = {
 
     server: {
         host: '0.0.0.0',
-        port: '8000'
+        port: '9000'
     },
     less: {
         src: [
@@ -160,6 +160,12 @@ gulp.task('html', function() {
         .pipe(gulp.dest(config.dest));
 });
 
+gulp.task('key', function() {
+    var inject = [];
+    gulp.src(['src/key/**/*'])
+        .pipe(gulp.dest(config.dest + "/key"));
+});
+
 gulp.task('templates', function() {
     var inject = [];
     gulp.src(['src/templates/**/*.html'])
@@ -191,12 +197,12 @@ gulp.task('less', function() {
         .pipe(mobilizer('app.css', {
             'app.css': {
                 // hover: 'exclude',
-                screens: ['0px']
+                // screens: ['0px']
             },
-        // 'hover.css': {
-        //     hover: 'only',
-        //     screens: ['0px']
-        // }
+            // 'hover.css': {
+            //     hover: 'only',
+            //     screens: ['0px']
+            // }
         }))
         .pipe(cssmin())
         .pipe(rename({
@@ -256,7 +262,7 @@ gulp.task('watch', function() {
 ======================================*/
 
 gulp.task('build', function(done) {
-    var tasks = ['html', 'templates', 'lib', 'fonts', 'images', 'less', 'js'];
+    var tasks = ['html', 'templates', 'lib', 'fonts', 'images', 'less', 'js', 'key'];
     seq('clean', tasks, done);
 });
 

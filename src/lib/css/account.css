@@ -1,287 +1,1460 @@
-/* CSS reset */
-body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,button,textarea,p,blockquote,th,td{ margin: 0; padding: 0; }
-fieldset,img{ border: 0; }
-:focus{ outline: 0; }
-address,caption,cite,code,dfn,em,strong,th,var,optgroup{ font-style: normal; font-weight: normal; }
-h1,h2,h3,h4,h5,h6{ font-size: 100%; font-weight: normal; font-family: "Microsoft YaHei"; }
-abbr,acronym{ border: 0; font-variant: normal; }
-code,kbd,samp,tt{ font-size: 100%; }
-input,button,textarea,select{ *font-size: 100%; border:none;}
-// body{ background:#fff;color: #5E5E5E; font: 12px/2em Microsoft YaHei,SimSun,Arial;}
-ol,ul,a{ list-style: none; text-decoration: none;color:#5E5E5E;}
-
-.hide{display:none;}
-
-/*公共样式*/
-.fl{float: left;}
-.fr{float: right;}
-.active{color:#FFAF3D ;border-bottom: 2px solid #FFAF3D;}
-// body{font-size:1.2em;font-family: "微软雅黑";}
-/*清浮动*/
-
-
-
-.clearfix {
-	display: block;
+.tabs .tab-color {
+    color: white;
+    background-color: #00E566;
 }
-.clearfix::before{
-	content:"";
-	display: table;
-	clear: both;
-}
-.clearfix::after{
-	content:"";
-	display: table;
-	clear: both;
-}
-
-
-/****头部*****/
-.head-bar{height: 120px;background: #292929;}
-.headerWidth{width: 90%;margin: 0 auto;}
-.logo{}
-.head-box{width:300px;}
-.head-cart{margin: 30px 0 0 0;}
-.logout{margin:40px 0 0  0;width: 170px;height: 50px;border: 1px white solid;text-align: center;line-height: 50px;color: white;}
-
-
-
-
-/*****************底部**************************/
-.footer{width: 100%;padding:60px 0 0 0;background-color: #292929;overflow: hidden;}
-
-.left-info{width: 60%;overflow: hidden;margin: 0 0 0 60px;}
-
-.nav,ul,li{display: block;}
-
-.nav li a{color: #D4D4D4;text-align: center;float: left;text-decoration: none;font-size: 1px;}
-.nav li a span{width: 10px;padding: 0 20px;float: left;}
-
-.copy{height: 60%;color: #565656;text-indent: 20px;margin:0 0 0 60px;}
-
-.right-info{width: 30%;line-height: 30px;overflow: hidden;}
-
-.right-info h1{color: white;margin: 0 0  10px 0;}
-.right-info p{color: #787878;}
-
-.link-icon{display: block;margin: 20px 0 0 0;}
-.link-icon li{float: left;margin: 0 10px 0 0;}
-
-.link-icon a img{width: 30px;height: 30px;}
-
-
-
-
-
-
-.center{width: 90%;margin: auto;padding: 60px 0 0 0;}
-
-/****侧边栏*****/
-.slidebar{min-width:222px;width: 20%;margin: auto;background-color: #F5E7D9;}
-.headportrait{height: 300px;width: 100%;background-color: #F5E7D9;border-bottom: solid white 1px;}
-
-.list{width: 100%;margin: auto;background: #F9F0E6;}
-.list .p-ul ul{display: block;}
-
-.list ul li{border-bottom: solid white 1px;background-color: #F8F0E6;color:#5E5E5E;text-align: left;}
-.list ul li a{text-align: left;line-height: 45px;margin: 0 0 0 20px ;}
-.list ul li a span{float: right;margin: 0 20px 0 0;}
-
-.list .c-ul ul li{display: block;}
-.list .c-ul li{background: #FCF6F0;}
-.list .c-ul a{text-decoration: none;}
-.list .c-ul li:last-child{border-bottom: none;}
-.list .c-ul li:first-child{border-top: solid white 1px;}
-.list .c-ul li:hover{background-color:white ;border-left: 2px solid #FFB03E; color: #FFB03E;}
-
-
-/****内容*****/
-.main{width: 78%;max-width: 1180px;margin: auto;}
-
-.main-tab{height: 40px;border-bottom: 2px solid #F0F0F0;margin-bottom: 10px;}
-.main-tab ul li{display: block;}
-.main-tab li {width: 10%;float: left;text-align: center;font-size: 0.7em;height: 40px;line-height: 40px;}
-.main-tab li:hover  {color:#FFAF3D ;border-bottom: 2px solid #FFAF3D;}
-
-.main-course{display: block;margin: 20px 0 0 0;}
-/*tab 右上角按钮*/
-.tab-btn {width:13%;height:40px;background-color: #00E464;border: solid 1px #00E464;text-align: center;line-height: 40px;}
-.tab-btn a{color: white;font-size: 0.375em;}
-
-.row{width: 780px;text-align: left; padding: 10px 0 0 20px;background: #F1F1F1;overflow: hidden;}
-.inco{width: 500px;}
-.inco ul li{display: block;}
-.inco li{float: left;padding: 3px;}
-.bottom-list{width: 500px;}
-.bottom-list ul li{display: block;}
-.bottom-list li{float: left;padding: 0 15px; color: #A4A4A4; font-size: 12px;}
-.price{color: #FFB449;margin: 0 80px 0 0;font-size: 30px;position: relative;}
 
 
 /*********************************************************************
- *                   commnet
+ *                   commnets
  * *********************************************************************/
 
-.main-comment{
-	margin: 30px 0 0 0;
-	width: 98%;
-	margin: auto;
+.main-comment {
+    margin: 30px 0 0 0;
+    width: 98%;
+    margin: auto;
 }
 
-.comment-top{height:30% ;margin: auto;}
-.comment-top .p2{width: 80%;text-align: left;color: #555555;font-size:1.25em;margin: 35px 0 0 0 ;text-indent: 20px;}
-.left-start{padding: 0 0 0 2%;}
-.left-start ul li{display: block;}
-.left-start li{float: left;padding: 3px;color:#A6A6A6;}
-.right-text{color:#A6A6A6;font-size: 0.95em;width: 50%;}
-.comment-middle{height:180px;width: 100%;text-align: left;color: #A6A6A6;}
-.p3{width:100%;height: 40px;line-height: 40px;text-align: right;color: #F7D2B4;border-bottom: solid 1px #EEEEEE;}
+.comment-top {
+    height: 30%;
+    margin: auto;
+}
+
+.comment-top .p2 {
+    width: 80%;
+    text-align: left;
+    color: #555555;
+    font-size: 1.25em;
+    margin: 35px 0 0 0;
+    text-indent: 20px;
+}
+
+.left-start {
+    padding: 0 0 0 2%;
+}
+
+.left-start ul li {
+    display: block;
+}
+
+.left-start li {
+    float: left;
+    padding: 3px;
+    color: #A6A6A6;
+}
+
+.right-text {
+    color: #A6A6A6;
+    font-size: 0.95em;
+    width: 50%;
+}
+
+.comment-middle {
+    height: 180px;
+    width: 100%;
+    text-align: left;
+    color: #A6A6A6;
+}
+
+.p3 {
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    text-align: right;
+    color: #F7D2B4;
+    border-bottom: solid 1px #EEEEEE;
+}
+
+
+/*********************************************************************
+ *                    items
+ * *********************************************************************/
+
+.itemswrap {
+    float: left;
+    margin-bottom: 15px;
+}
+
+.items {
+    display: block;
+    position: relative;
+    padding-left: 110px;
+    height: auto;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    margin-bottom: 15px;
+}
+
+.items .items-img {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 110px;
+    height: 100px;
+    padding: 15px;
+    background-color: #F3E7D9;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.items .items-img img {
+    width: 80%;
+}
+
+.items .items-info {
+    font-size: 18px;
+    transition(background ease-out 0.5s);
+    -moz-transition: background ease-out 0.5s;
+    /* Firefox 4 */
+    -webkit-transition: background ease-out 0.5s;
+    /* Safari and Chrome */
+    -o-transition: background ease-out 0.5s;
+    /* Opera */
+}
+
+.item-info {
+    padding: 0 15px;
+    position: relative;
+}
+
+.items-info:hover {
+    background-color: #F1F1F1;
+}
+
+.items .items-info p {
+    margin-top: 0;
+    margin-bottom: 6px;
+    line-height: 26px;
+    height: 52px;
+    overflow: hidden;
+}
+
+.items .items-info em {
+    display: inline-block;
+    color: #A2A2A2;
+    text-align: left;
+}
+
+.items-info em strong {
+    display: inline-block;
+    color: #F83937;
+    margin-left: 40px;
+}
+
+.comments-item {
+    display: block;
+    position: relative;
+    padding-left: 70px;
+    margin-bottom: 15px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+}
+
+.comments-item .items-news {
+    padding: 0 0 0 15px;
+    position: relative;
+    display: block;
+}
+
+.comments-avatar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 70px;
+    height: 65px;
+    background-color: #f3e7d9;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.comments-item .items-news span {
+    color: #535353;
+    font-size: 26px;
+}
+
+.comments-itemwrap {
+    margin-top: 15px;
+}
+
+.comments-itemwrap .tip {
+    line-height: 22px;
+    color: #A9A9A9;
+    font-size: 18px;
+}
+
+.comments-itemwrap em {
+    display: block;
+    padding: 10px;
+    text-align: right;
+    color: #F1D0AE;
+    font-size: 18px;
+    border-bottom: 1px solid #ccc;
+}
+
+.items,
+.items-news .star {
+    color: #C1C1C1;
+}
+
+.star .tips {
+    color: #A9A9A9;
+}
+
+.star label {
+    margin-left: 5px;
+    display: inline-block;
+    color: #A9A9A9;
+}
+
+.starwrap {
+    margin-top: 13px;
+}
+
+.star >.active {
+    color: #FFC42D;
+}
+
+.items .items-info span {
+    display: block;
+}
+
+.items .items-info label {
+    color: #A2A2A2;
+    display: block;
+    height: 52px;
+    line-height: 26px;
+    overflow: hidden;
+}
+
+.items .star i.active {
+    color: #FFB342;
+}
+
+.items .items-meta {
+    color: #C1C1C1;
+    font-size: 14px;
+    font-weight: 100;
+    overflow: hidden;
+    height: 14px;
+}
+
+.items .items-meta span {
+    margin-right: 15px;
+    float: left;
+}
+
+.items .items-meta i {
+    margin-right: 5px;
+}
+
+.items-btn {
+    float: right;
+    margin-right: 30px;
+}
+
+
+/****按钮*****/
+
+.items-paybtn,
+.items-delbtn,
+.items-cancel,
+.items-comfirm,
+.items-finish,
+.items-booking,
+.items-getintouch {
+    padding: 1px 20px;
+    margin: 3px;
+    vertical-align: middle;
+    display: inline-block;
+}
+
+.items-booking,
+.items-getintouch,
+.items-refund {
+    padding: 10px 20px;
+    margin: 3px;
+    vertical-align: middle;
+    display: inline-block;
+}
+
+.course-remove,
+.course-update,
+.course-comfirm,
+.course-save,
+.course-location,
+.course-edit,
+.authen-number {
+    padding: 10px 20px;
+    vertical-align: middle;
+    display: inline-block;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.course-next,
+.authen-authen {
+    padding: 10px 100px;
+    vertical-align: middle;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.authen-recertification {
+    padding: 10px 53px;
+    vertical-align: middle;
+    display: inline-block;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.course-videoremove {
+    padding: 17px 30px;
+    vertical-align: middle;
+    display: inline-block;
+}
+
+.items-refund {
+    padding: 10px 20px;
+    margin: 3px;
+    vertical-align: middle;
+    display: inline-block;
+    margin-top: 30px;
+}
+
+.items-paybtn {
+    border: 1px solid #00E464;
+    color: #00E464;
+}
+
+.items-delbtn {
+    border: 1px solid #00E464;
+    color: #00E464;
+}
+
+.items-booking {
+    border: 1px solid #FFB74E;
+    color: #FFB74E;
+}
+
+.items-getintouch,
+.items-refund {
+    border: 1px solid #00E566;
+    color: #fff;
+    background-color: #00E566;
+}
+
+.authen-number {
+    border: 1px solid #E3E3E3;
+    color: #E3E3E3;
+}
+
+
+/****创建课程按钮*****/
+
+.course-update,
+.course-comfirm {
+    border: 1px solid #00E566;
+    color: #fff;
+    background-color: #00E566;
+    box-sizing: border-box;
+}
+
+.course-remove,
+.course-edit,
+.course-save,
+.course-location {
+    border: 1px solid #EF2F26;
+    color: #fff;
+    background-color: #EF2F26;
+}
+
+.course-videoremove {
+    position: absolute;
+    right: 0;
+    top: -2px;
+    border: 1px solid #EF2F26;
+    color: #fff;
+    background-color: #EF2F26;
+}
+
+.course-next {
+    border: 1px solid #77F0B2;
+    color: #fff;
+    background-color: #77F0B2;
+}
+
+
+/*教练验证按钮*/
+
+.authen-authen {
+    border: 1px solid #FFC26C;
+    color: #FFC26C;
+    background-color: #F5E7D9;
+    border-radius: 4px;
+}
+
+.authen-recertification {
+    border: 1px solid #00E566;
+    color: #fff;
+    background-color: #00E566;
+}
+
+
+/*撰写经历按钮*/
+
+.btn-publish {
+    padding: 14px 46px;
+}
+
+
+/**照片div**/
+
+.items .items-imgbox {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 110px;
+    height: 100px;
+    background-color: #F3E7D9;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.items .items-imgbox img {
+    height: 100px;
+}
+
+.rmb {
+    position: absolute;
+    right: 70px;
+    top: 55px;
+    color: #FFB148;
+    font-size: 1em;
+}
+
+.u-rmb {
+    position: absolute;
+    right: 70px;
+    top: 55px;
+    color: #FFB148;
+    font-size: 1em;
+}
+
+
+/*订单详情按钮*/
 
 
 /*********************************************************************
  *                    steps
  * *********************************************************************/
 
-.main-steps{padding: 20px 0 0 0;height: 170px;border-bottom: 1px solid #eee;}
-.main-steps h1{height: 50px;line-height:50px;color: black;font-size: 1.25em;float: left;text-indent: 30px;}
-.main-steps .p2{color: #A8A8A8;text-align: left;width: 72%;padding: 0 0 0 30px;font-size: 1em;}
-.main-steps .font24{font-size: 1.25em;}
+.step-item {
+    display: block;
+    margin-bottom: 15px;
+    padding-bottom: 26px;
+    border-bottom: 1px dashed #ccc;
+    color: inherit;
+    text-decoration: none;
+}
 
+.step-info .step-title {
+    display: block;
+    font-size: 20px;
+}
 
-.item{margin: 10px 0 0 0;width:100%;}
-.imgbox img{}
-.item .middl{padding: 10px 0 0 0;margin: 0 0 0 15px;overflow: hidden;display: block;position: relative;}
+.step-info .step-content {
+    display: block;
+    height: 40px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    line-height: 20px;
+    overflow: hidden;
+    color: #A2A2A2;
+}
+.step-info .step-content *{
+    margin: 0;
+    font-weight: 100;
+}
 
-.item .p2{width: 100%;color: #585858;font-size: 0.375em;line-height: 20px;}
-.start{width: 30%;}
-.start ul li{display: block;}
-.start li{float: left;padding: 0 3px;}
-.start li .first{padding: 0;}
-.bot-link{}
-.bot-link ul li{display: block;}
-.bot-link li{float: left;padding: 0 6px;}
-.bot-link li a{text-decoration: none;color: #B8B8B8;font-size:0.375em;;}
-.rmb{position:absolute;right:30px;top:50px;color: #FFB148;font-size: 1.5em;}
+.step-info em {
+    display: inline-block;
+    color: #A2A2A2;
+    text-align: left;
+}
 
-.item .midd{width: 82%;}
-.item .md{width: 60%;}
+.step-info em strong {
+    display: inline-block;
+    color: #F83937;
+    margin-left: 40px;
+}
 
-
-.btn_box{width: 12%;}
-.r-btn{font-size: 0.375em;line-height: 30px;text-align: center;width: 60%;height:30px;font-size: 0.375em;}
-.padd{margin: 10px 20px 0 0;}
-.mar{margin: 5px 20px 0 0 ;}
-.del{border: 1px solid #F17574;background-color: white;color: red;}
-.pay{border: 1px solid #00E566;background-color: #00E566;color: white;}
-.booking{border: 1px solid #FFB454;background-color: white;color:#FFB454;}
-.redund,.buy_again,.comm{border: 1px solid #AEAEAE;background-color:#F0F0F0;}
-.refund{border: 1px solid #FFB454;background-color: white;color:#FFB454;}
-/*订单详情按钮*/
-.btn-width{width: 30%;}
-.booktou{width:55%;border-radius: 3px;background-color: #00E566;color: white;height: 32px;line-height: 35px;}
-.get{width: 40%;border-radius: 3px;color: #FFB74E;border: solid 1px #FFB74E;}
-/*********************************************************************
- *                    my steps
- * *********************************************************************/
-.p2 span{text-indent: 20px;color: red;}
 
 /*********************************************************************
  *                    my favorite
  * *********************************************************************/
 
 
-
 /******************************消息****************************************/
-.message{padding: 10px 0 0 0;}
-.message dl{}
-.message dt{color: #000000;font-size:18px ;width: 100%;}
-.message dd{font-size:16px ;color: #B4B4B4;float: left;width: 100%;}
-.message dd:last-child{border-bottom:1px solid #eee;}
-.message .note{width;100%;background-color: #eee;padding: 15px 5px;line-height: 20px;}
-.message dd a{height: 100%;float: right;}
-.message dd li{float: left;padding: 0 80px 0 0 ;margin: 20px 0;}
-.message dd li span{color: #00E67E;}
-.message dd li em{color: red;}
-.m-date{width:150px;height: 73px;line-height: 73px;}
+
+.message {
+    margin-top: 15px;
+}
+
+.message-info {
+    display: block;
+}
+
+.message ul {
+    margin: 0;
+    padding: 0;
+}
+.message dl {
+    margin: 0;
+}
+.message dl dd {
+    display: block;
+    line-height: 26px;
+    -webkit-margin-start: 0px;
+}
+
+.message dl dt {
+    padding: 10px 0px;
+    font-size: 18px;
+    color: #000000;
+}
+
+.message-info dd {
+    width: 100%;
+    padding: 5px 0;
+    font-size: 16px;
+    color: #B4B4B4;
+    float: left;
+    list-style: none;
+    line-height: 35px;
+}
+
+.message dd:last-child {
+    border-bottom: 1px solid #eee;
+}
+
+.message .note {
+    background-color: #eee;
+    padding:1px 5px;
+}
+
+.message .note p {
+    line-height: 20px;
+}
+
+.message dd a {
+    height: 100%;
+    float: right;
+}
+
+.message ul li {
+    float: left;
+    list-style: none;
+}
+
+.message dd li {
+    float: left;
+    // padding: 0 80px 0 0;
+}
+
+.message dd li span {
+    color: #00E67E;
+}
+
+.message dd li em {
+    color: red;
+}
+
+.message dd li a {
+    list-style: none;
+    text-decoration: none;
+}
+
+.m-date {
+    float: right;
+}
 
 
 /****************************coupon************************************************/
-.pd{padding: 50px 0 0 0;}
-.coupon{position: relative;width: 49%;height: 30%;background-color: #F5E7D9;margin:  0 auto;margin-bottom: 20px;}
-.coupon:before{position: absolute;content: '';width: 30px;height: 30px;border-radius: 60px;background-color: white;left: -15px;top: 110px;}
-.coupon:after{position: absolute;content: '';width: 30px;height: 30px;border-radius: 60px;background-color: white;right: -15px;top: 110px;}
+
+.pd {
+    padding: 50px 0 0 0;
+}
+
+.coupon {
+    position: relative;
+    width: 100%;
+    background-color: #F5E7D9;
+    margin: 0 1% 10px;
+    float: left;
+    padding-bottom: 116px;
+}
+
+@media (min-width:900px) {
+    .coupon {
+        width: 48%;
+    }
+}
+
+.coupon:before {
+    position: absolute;
+    content: '';
+    width: 30px;
+    height: 30px;
+    border-radius: 60px;
+    background-color: white;
+    left: -15px;
+    top: 110px;
+}
+
+.coupon:after {
+    position: absolute;
+    content: '';
+    width: 30px;
+    height: 30px;
+    border-radius: 60px;
+    background-color: white;
+    right: -15px;
+    top: 110px;
+}
+
 
 /****COUPON TOP******/
-.coupon-top{text-align: center;padding: 10px 0 0 0;border-bottom: dashed 1px #D5C8BC;}
-.coupon-top h2{font-size: 1em;}
-.coupon-top p{color: #F9BE61; font-size: 1.25em;padding: 10px 20px 10px;}
-.coupon-top p strong{font-size: 1.8em;letter-spacing: 5px;padding: 0 5px;}
-.coupon-top .p2{color: #F9BE61;padding: 0 80px;}
 
-.coupon h3{padding: 5px 0 0 10px;color: #A9A8A7;font-size:0.75em;}
-.c-note{padding:0;color: #A9A8A7;font-size: 1em;line-height: 20px;padding: 0 10px ;font-size: 0.8em;}
-.coupon cite{color: #A9A8A7;float: right;margin: 0 15px 0 0;font-size: 0.9em;}
+.coupon-top {
+    text-align: center;
+    padding: 10px 0 0 0;
+    border-bottom: dashed 1px #D5C8BC;
+    position: relative;
+}
+
+.coupon-top h2 {
+    font-size: 1em;
+}
+
+.coupon-top p {
+    color: #F9BE61;
+    font-size: 1.25em;
+    padding: 10px 20px 10px;
+}
+
+.coupon-top p strong {
+    font-size: 1.8em;
+    letter-spacing: 5px;
+    padding: 0 5px;
+}
+
+.coupon-top .p2 {
+    color: #F9BE61;
+    padding: 0 80px 10px;
+}
+
+.coupon-below {
+    position: absolute;
+    padding: 10px;
+    background-color: #F7E7D9;
+    line-height: 26px;
+}
+
+.coupon span {
+    padding-left: 5px;
+    color: #A9A8A7;
+    font-size: 0.75em;
+}
+
+.c-note {
+    height: 52px;
+    padding: 0;
+    color: #A9A8A7;
+    font-size: 1em;
+    line-height: 26px;
+    padding: 0 10px;
+    font-size: 0.8em;
+    overflow: hidden;
+}
+
+.coupon cite {
+    color: #A9A8A7;
+    float: right;
+    margin: 0 15px 0 0;
+    font-size: 0.9em;
+}
+
 
 /****************************购物车************************************************/
 
-.check{margin: 0 0 0 15px;position: relative;color: #A7A6A4;}
-.check input{}
-.check span{position: absolute;top: 2px;left: 25px;}
-.amount{color: #A7A6A4;}
-.amount span{float: left;display:inline-block;padding: 2px 30px;}
-.amount ul {display: block;float: left;}
-.amount li {float: left;padding: 2px 20px;}
-.amount-box{width: 100%;}
+.amount-box {
+    width: 100%;
+    padding: 0;
+    float: left;
+}
+
+.check {
+    margin-right: 5px;
+    position: relative;
+    color: #A7A6A4;
+    float: left;
+    display: inline-block;
+}
+
+.check input {
+    display: inline-block;
+}
+
+.check span {
+    position: absolute;
+    top: 0;
+    left: 25px;
+}
+
+.amount {
+    color: #A7A6A4;
+    float: right;
+    text-align: left;
+    padding-right: 20px;
+}
+
+.amount input {
+    border: none;
+    outline: none;
+    width: 10px;
+}
+
+.amount a {
+    color: #A7A6A4;
+    text-decoration: none;
+}
+
+.amount span {
+    float: left;
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.amount p {
+    display: inline-block;
+}
+
+.amount i {
+    margin-right: 20px;
+    list-style: none;
+    text-align: right;
+}
+
+.amount label {
+    margin-right: 20px;
+    display: inline-block;
+}
+
+
 /****************************编辑************************************************/
-.edit{padding: 10px 0 0 10px;}
-.edit label{padding:20px 0 ;float: left;}
-.edit input{border: 1px solid #DADADA;height:60px;width: 100%;line-height: 60px\9;text-indent: 20px;}
 
-.edit img{float: left;clear: both;}
+.title-input .images {
+    display: block;
+    width: 130px;
+    height: 130px;
+    overflow: hidden;
+}
 
-.edit-btn{width: 20.9%;height: 50px;line-height: 50px;text-align: center;border: 1px solid #FCCE92;clear: both;margin: 80px 0 0 0;background-color: #F5E7D9;color:#FCCE92;font-size: 0.9em;}
+.title-input .namewrap {
+    width: 30%;
+}
 
-/******************定单详情**************************/
-.goods{width: 100%;color: #A6A19F;box-shadow:2px 2px 2px 2px #EDEDED;}
-.goods dl dt dd{display: block;}
-.goods dt{padding:10px 20px;background-color: #F5E7D9; overflow: hidden;}
-.goods dt h1{font-size: 1.15em;}
-.goods dt p{width: 30%;line-height: 40px;display: inline-block;} 
-.goods dd{padding: 10px 20px 5px;border-bottom: 1px solid #EEEEEE;}
-.goods dd a{color:#A6A19F ;}
-.goods dd a span{float: right;}
-.tit{width: 100%;padding:20px 0 15px;}
-.loca-map{width:100%;height:310px;background: url(../img/map.png) left top no-repeat;}
+.account-btn a {
+    text-decoration: none;
+}
 
-.goods .left-table{width: 49%;}
-.goods .left-table ul li{display: block;}
-.goods .left-table li{padding: 10px 20px 5px;border-bottom: 1px solid #EEEEEE;}
-.goods .right-table {width: 49%;}
-.goods .right-table li {padding: 10px 20px 5px;}
-.goods .right-table li a{color: #A6A19F;}
-.goods .right-table li a span{float: right;}
-.tit{color:#A6A19F ;}
+.account-btn .btn-edit {
+    display: block;
+    padding: 10px 30px;
+    margin-top: 30px;
+    width: 8%;
+    border: 1px solid #FFBB59;
+    background-color: #F5E7D9;
+    border-radius: 4px;
+    color: #FFBB59;
+    text-align: center;
+}
 
 
-/****************评价 judge*******************/
+/******************订单详情**************************/
 
-.judge{}
-.judge-start{width: 40%;margin: 20px 0 0 0 ;}
-.judge-start ul li{display: block;}
-.judge-start li{padding:20px 0 0 10px;}
-.judge-start li a{font-size: 1.175em;color: #A1A1A1;}
-.jug-title{padding: 20px 0;font-size: 1.275em;color: #A3A3A3;margin: 20px 0 0 0;}
-.judge textarea{border: solid 2px #EEEEEE;border-radius: 4px;width: 98%;padding: 20px 0 0 10px;}
-.comm-btn{width:20%;padding:10px ;text-align: center;font-size: 1em;color: #FFAC3E;background-color: #F5E7D9;margin: 30px 0 0 0;margin-bottom: 20%;}
+.goods {
+    width: 100%;
+    box-shadow: 0px 2px 2px 0 #EDEDED;
+    margin: 0;
+    border: 1px solid #E9E9E9;
+}
+
+.goods .goods-header {
+    overflow: hidden;
+}
+
+.goods .goods-avatar {
+    float: left;
+    width: 50px;
+    margin-right: 10px;
+}
+
+.goods .font-white {
+    color: white;
+}
+
+.goods ul li {
+    display: block;
+    color: #A6A19F;
+}
+
+.goods .active {
+    background-color: #F5E7D9;
+}
+
+.goods li span {
+    display: block;
+}
+
+.goods li p {
+    width: 30%;
+    display: inline-block;
+}
+
+.goods li {
+    padding: 15px 10px;
+    border-bottom: 1px solid #EEEEEE;
+    background-color: #FFFFFF;
+}
+
+.goods li a {
+    color: #A6A19F;
+    text-decoration: none;
+}
+
+.goods li a span {
+    float: right;
+}
+
+.goods li a em {
+    float: right;
+}
+
+.tit {
+    width: 100%;
+    padding: 20px 0 15px;
+}
+
+.loca-map {
+    width: 100%;
+    height: 310px;
+    background: url(../img/map.png) left top no-repeat;
+}
+
+.left-table {
+    width: 49%;
+}
+
+.left-table,
+.right-table ul {
+    display: block;
+}
+
+.left-table li {
+    padding: 10px;
+    border-bottom: 1px solid #EEEEEE;
+}
+
+.right-table {
+    width: 49%;
+}
+
+.right-table li {
+    padding: 10px;
+}
+
+.right-table li a {
+    color: #A6A19F;
+}
+
+.right-table li a span {
+    float: right;
+    font-size: 16px;
+}
+
+.goods .right-table li p {}
+
+.goods .right-table li span {
+    float: ;
+}
+
+.tit {
+    color: #A6A19F;
+}
+
+.bottom-pad {
+    margin-bottom: 40px;
+}
+
+.goods ul {
+    list-style: none;
+    margin: 0px;
+    padding: 0;
+}
+
+
+/****************用户订单评价order-comment*******************/
+
+.comment-content .content-star span {
+    display: block;
+    padding: 10px 5px;
+    font-size: 18px;
+    color: #9C9C9C;
+}
+
+.comment-content .content-star {
+    display: block;
+    width: 50%;
+}
+
+.margin5 {
+    margin-top: 4px;
+}
+
+.comment-content .content-write span {
+    display: block;
+    padding: 20px 5px;
+    color: #9C9C9C;
+    font-size: 18px;
+}
+
+.comment-content .content-write textarea {
+    width: 100%;
+    height: 300px;
+    padding: 20px;
+    border-color: #9C9C9C;
+    outline: none;
+    -webkit-box-sizing: border-box;
+    box-sizing: boder-box;
+}
+
+.comment-content .comment-btn {
+    display: block;
+    margin-top: 20px;
+}
+
 
 /****************退款 drawback*******************/
-.drawback{}
-.drawback dl dt dd{display: block;}
-.drawback dt{padding:10px 20px;background-color: #F5E7D9; overflow: hidden;}
-.drawback dt h2{font-size: 1.15em;color: #9BA2A4;}
-.drawback dt p{padding:5px 0;display: inline-block;color: #9BA2A4;} 
-.drawback dd{padding: 10px 0 5px 20px;border-bottom: 1px solid #EEEEEE;}
-.drawback dd input{position: relative;top: -3px;margin-right: 10px;}
-.drawback dd a{color: #00E770;}
-.drawback dd a span{float: right;text-align: right;color: #00E770;font-size: 0.9em;}
-.drawback .p2{float: left;color: #00E770;font-size: 0.9em;text-align: right;margin-right:50px;}
+
+.drawback ul {
+    margin: 0;
+    padding: 0;
+}
+
+.drawback .active {
+    background-color: #F5E7D9;
+}
+
+.drawback li {
+    padding: 10px 20px;
+    border-bottom: 1px solid #EEEEEE;
+    list-style: none;
+}
+
+.drawback li span {
+    display: block;
+    color: #9BA2A4;
+    font-size: 26px;
+}
+
+.drawback li label {
+    display: block;
+    color: #9BA2A4;
+    margin-top: 10px;
+}
+
+.drawback li p {
+    padding: 5px 0;
+    display: inline-block;
+    color: #9BA2A4;
+}
+
+.drawback li input {
+    margin-right: 10px;
+}
+
+.drawback .times {
+    float: right;
+    text-align: right;
+    width: 70%;
+}
+
+.drawback .times span {
+    float: left;
+}
+
+.drawback .p2 {
+    float: left;
+    font-size: ;
+    text-align: right;
+    width: 45%;
+    height: 16px;
+    overflow: hidden;
+}
+
+.drawback .p5 {
+    width: 55%;
+    text-align: right;
+    float: right;
+    height: 16px;
+    overflow: hidden;
+}
+
+.lab {
+    padding: 10px 20px;
+    float: left;
+    margin: 30px 0 0 5px;
+    display: block;
+    color: #A1A1A1;
+}
+
+.tips {
+    display: block;
+    margin-top: 30px;
+}
+
+.tips span {
+    color: #A7A7A7;
+    padding: 5px;
+    font-size: 1.2em;
+}
+
+.tips p {
+    font-size: 1em;
+    color: #B4B4B4;
+    padding-left: 5px;
+}
+
+.colo {
+    color: #FFB848;
+}
+
+.scolo {
+    color: #00E770;
+}
+
+.secolo {
+    color: #F43B3B;
+}
+
+
+/****************新建课程*******************/
+
+.crease_coursewrap {
+    max-width: 800px;
+    padding-left: 10px;
+}
+
+.step {
+    display: block;
+    // overflow: hidden;
+}
+
+.direction-arrow img {
+    width: 100%;
+    height: 60px;
+    margin: 30px 0;
+}
+
+.step .z-margin {
+    margin-top: 30px;
+}
+
+.step textarea {
+    padding: 10px 10px;
+    outline: none;
+    border-color: #CCCCCC;
+    -webkit-box-sizing: border-box;
+    box-sizing: boder-box;
+}
+
+.title-input {
+    display: block;
+    overflow: hidden;
+}
+
+.title-input label {
+    display: inline-block;
+    padding: 10px 0;
+}
+
+.title-input span {
+    display: block;
+    padding: 30px 0;
+}
+
+.input-select {
+    position: relative;
+    width: 100%;
+    display: inline-block;
+    -webkit-box-sizing: border-box;
+    box-sizing: boder-box;
+}
+
+.input-select select {
+    width: 100%;
+    height: 100%;
+    padding: 15px;
+    border: solid 1px #CCCCCC;
+    // color: #CECECE;
+    line-height: 100%;
+    outline: none;
+    // background-color: white;
+    background-color: transparent;
+    -webkit-appearance: none;
+}
+
+.input-select .fa {
+    position: absolute;
+    z-index: -1;
+    right: 15px;
+    top: 15px;
+    color: #5D5D5D;
+}
+
+.title-input {
+    display: block;
+}
+
+.course-itemwrap {
+    display: block;
+    overflow: hidden;
+}
+
+.course-items {
+    display: block;
+    width: 33.33333333333333333%;
+    -webkit-box-sizing: border-box;
+    box-sizing: boder-box;
+}
+
+.course-item {
+    display: block;
+    margin-right: 5px;
+    margin-bottom: 20px;
+    -webkit-box-sizing: border-box;
+    box-sizing: boder-box;
+}
+
+.imgwrap {
+    display: block;
+    width: 100%;
+    height: 150px;
+    border: solid 1px #CCCCCC;
+    margin-bottom: 15px;
+    text-align: center;
+    -webkit-box-sizing: border-box;
+    box-sizing: boder-box;
+}
+
+.course-item-header {
+    display: block;
+    width: 100%;
+    height: 120px;
+    padding: 30px 20px;
+    margin-bottom: 15px;
+    background-color: #F5E7D9;
+    border: 1px solid #FFBA56;
+    color: #FFBA56;
+    -webkit-box-sizing: border-box;
+    box-sizing: boder-box;
+}
+
+.course-item-header span {
+    display: block;
+    width: 158px;
+    padding: 3px;
+    white-space: nowrap;
+}
+
+
+/*新建课程，教练认证输入框样式*/
+
+.course-input input {
+    width: 100%;
+    border: 1px solid #CCCCCC;
+    padding: 15px;
+    display: block;
+    margin: 0 0 15px;
+    -webkit-box-sizing: border-box;
+    box-sizing: boder-box;
+    overflow: hidden;
+}
+
+.course-input input {
+    // outline: none;
+    // border: none;
+}
+
+.open-img {
+    position: relative;
+    display: inline-block;
+    margin-right: 15px;
+    margin-bottom: 15px;
+    width: 100px;
+    height: 100px;
+    border: 1px solid #ccc;
+}
+
+.open-img a.remove {
+    position: absolute;
+    right: 0;
+    top: 0;
+    display: inline-block;
+    height: 18px;
+    width: 18px;
+    line-height: 18px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 100%;
+    color: #e32b31;
+    background-color: white;
+}
+
+.remove-input {
+    position: relative;
+    border: 1px solid #CCCCCC;
+    padding: 15px;
+}
+
+.remove-input input {
+    border: none;
+    outline: none;
+    width: 100%;
+}
+
+.nextbtn-addr {
+    margin: 50px 0;
+    text-align: center;
+}
+
+
+/****************新建课程第二步*******************/
+
+.course-select {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    -webkit-appearance: none;
+    -webkit-box-sizing: border-box;
+    box-sizing: boder-box;
+}
+
+.course-select select {
+    padding: 15px;
+    width: 100%;
+    height: 100%;
+    border: solid 1px #CCCCCC;
+    outline: none;
+    // color: #CECECE;
+    line-height: 100%;
+    background-color: white;
+    -webkit-appearance: none;
+}
+
+.course-select .fa {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    color: #5D5D5D;
+}
+
+.m-session {
+    width: 45%;
+    -webkit-box-sizing: border-box;
+    box-sizing: boder-box;
+}
+
+.u-input {
+    // padding: 15px;
+    // border: 1px solid #ccc;
+    -webkit-box-sizing: border-box;
+    box-sizing: boder-box;
+}
+
+.m-session.namewrap {
+    padding: 15px;
+    border: 1px solid #ccc;
+    -webkit-box-sizing: border-box;
+    box-sizing: boder-box;
+}
+
+.u-input input {
+    padding: 15px;
+    border: 1px solid #ccc;
+    outline: none;
+}
+
+
+/*********************选择框***************/
+
+.m-check .u-check {
+    margin-right: 80px;
+    float: left;
+    display: inline-block;
+}
+
+.m-check {
+    display: block;
+    margin: 0 0 30px 0;
+}
+
+
+/*.m-check {display: inline-block;margin-right: 120px;}*/
+
+.step .course-tips {
+    display: block;
+    margin-top: 30px;
+    color: #B7B7B7;
+}
+
+
+/****************教练认证*******************/
+
+.authen-step span {
+    display: block;
+    padding: 20px 0;
+    color: #A3A3A3;
+}
+
+.authen-step p {
+    display: block;
+    text-align: center;
+    color: #C5C5C5;
+}
+
+
+/*设置输入框宽度*/
+
+.authen-images {
+    display: block;
+}
+
+.authen-images .images {
+    display: inline-block;
+    width: 40%;
+    height: 188px;
+    margin: 0 5px 5px 0;
+    overflow: hidden;
+    border: 1px solid #F3E7D9;
+    border-radius: 6px;
+    -webkit-box-sizing: border-box;
+    box-sizing: boder-box;
+    overflow: hidden;
+}
+
+.authen-step label {
+    display: block;
+    color: #A4A4A4;
+    padding: 25px 15px;
+    -webkit-box-sizing: border-box;
+    box-sizing: boder-box;
+}
+
+.authen-step .m-session:nth-child(even) {
+    margin-left: 15px;
+}
+
+.authen-step a {
+    text-decoration: none;
+    display: block;
+    text-align: center;
+    color: #E3E3E3;
+}
+
+
+/****************教练认证中*******************/
+
+.authening {
+    display: block;
+    overflow: hidden;
+}
+
+.authening .images {
+    display: block;
+    width: 200px;
+    height: 200px;
+    margin: 30px auto;
+    border: 1px solid #ccc;
+    -webkit-box-sizing: border-box;
+    box-sizing: boder-box;
+}
+
+.authen-step .authening-content span {
+    display: block;
+    padding: 10px;
+    text-align: center;
+    color: #E3E3E3;
+    font-size: 18px;
+}
+
+.anthen-tips {
+    text-align: center;
+    color: #E3E3E3;
+}
+
+
+/*******************撰写经历**************************/
+
+.writeWrap {
+    max-width: 800px;
+    padding-left: 10px;
+}
+
+.writeWrap span {
+    display: block;
+    padding: 20px 0;
+}
+
+.writeContent {
+    width: 100%;
+    height: 300px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.writeImages {
+    display: block;
+    margin: 40px 0;
+}
+
+.writeImages .images {
+    width: 130px;
+    height: 120px;
+    border: 1px solid #CCCCCC;
+    position: relative;
+}
+
+.writeImages .active {
+    border: 1px solid #FFB13E;
+}
+
+.images .fa {
+    position: absolute;
+    top: -7px;
+    right: -7px;
+    font-size: 18px;
+    // color: #878787;
+    z-index: 10;
+    border-radius: 100%;
+    -webkit-border-radius: 100%;
+    background-color: white;
+}
+
+.writeImages .images {
+    display: inline-block;
+    margin-right: 15px;
+    margin-bottom: 15px;
+}

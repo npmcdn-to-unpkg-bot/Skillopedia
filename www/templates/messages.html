@@ -1,16 +1,58 @@
 <!-- header -->
+<link href="lib/css/account.css" rel="stylesheet"> 
+<link href="lib/css/media.css" rel="stylesheet" />
 <div ng-include="'templates/header.html'"></div>
 <div class="wrap">
     <div class="section account-section">
         <!-- sidebar -->
-        <div ng-include="'templates/sidebar.html'" class="sidebar-wrap"></div>
+        <sidebar active="" class="sidebar-wrap"></sidebar>
         <div class="content-wrap">
         	<div class="tabs clearfix">
         		<a class="tab-item pull-left active">Messages</a>
         	</div>
-            account messages
+            <div class="message clearfix" ng-repeat="message in messages">
+                <dl>
+                    <dt ng-if="message.type =='1'">[评论]</dt>
+                    <dt ng-if="message.type =='2'">[系统推送]</dt>
+                    <dd class="message-info">{{message.note}}</dd>
+                    <dd class="clearfix" ng-if="message.is_reply">
+                        <div class="note">
+                            <p>{{message.content}}</p>
+                        </div>
+                    </dd>
+                    <dd class="clearfix">
+                        <ul>
+                            <li><a class="btn">{{message.comment_name}}</a></li>
+                            <li class="btn-group">
+                                <a ng-click="remove(message)" class="btn text-danger">
+                                    <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                    remove
+                                </a>
+                                <a ng-click="reply(message)" class="btn text-success" ng-if="message.type=='1'&& user.agent_level =='2'">
+                                    <i class="fa fa-share" aria-hidden="true"></i>
+                                    reply
+                                </a>
+                            </li>
+                            <div class="m-date fr">
+                                <a class="btn">{{message.post_time}}</span></a>
+                            </div>
+                        </ul>
+                    </dd>
+                </dl>
+                <div class="reply-input" ng-if="reply_id == message.comment_id">
+                    <div class="section sm">
+                        <input type="text" ng-model="input.reply_content" class="form-control full-width" placeholder="reply">
+                    </div>
+                    <button class="btn btn-primary" ng-click="confirm_reply(message)">reply</button>
+                </div>
+            </div>
+            <div class="section text-center">
+                <span class="btn btn-lg" ng-click="loadMore()">{{page.message}}</span>
+            </div>
         </div>
     </div>
 </div>
+<!-- confirm -->
+<confirm confirm="confirm" class="hide"></confirm>
 <!-- footer -->
 <div ng-include="'templates/footer.html'"></div>

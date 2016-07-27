@@ -4,31 +4,33 @@
 <div class="wrap">
     <div class="section detail-section">
         <div class="detail-left">
-            <div class="coach-item">
+            <a class="coach-item" ng-href="#/show?user_id={{course.user_id}}">
                 <div class="coach-avatar">
-                    <img src="images/avatar.png" class="full-width" alt="">
+                    <!-- <img ng-src="{{staticImageUrl + course.user_image_01}}" class="full-width" alt="" err-src="../images/example_7.png"> -->
+                    <imageview data-rate="1" center-only src="staticImageUrl + course.user_image_01"></imageview>
+                    <span class="official-coach" ng-if="course.is_official"></span>
                 </div>
                 <div class="coach-info">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem laudantium reiciendis, eos blanditiis. Beatae praesentium sint recusandae quam blanditiis molestias eligendi quidem dolores delectus non odio, amet reiciendis similique nihil.</p>
+                    <div class="auto-title">{{course.title}}</div>
                     <div class="star">
-                        <i class="fa fa-star active" aria-hidden="true"></i>
-                        <i class="fa fa-star active" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" ng-class="{'active':course.total_score >0}" aria-hidden="true"></i>
+                        <i class="fa fa-star" ng-class="{'active':course.total_score >1}" aria-hidden="true"></i>
+                        <i class="fa fa-star" ng-class="{'active':course.total_score >2}" aria-hidden="true"></i>
+                        <i class="fa fa-star" ng-class="{'active':course.total_score >3}" aria-hidden="true"></i>
+                        <i class="fa fa-star" ng-class="{'active':course.total_score >4}" aria-hidden="true"></i>
                     </div>
-                    <div class="coach-meta"><span><i class="fa fa-bars" aria-hidden="true"></i>football</span><span><i class="fa fa-user" aria-hidden="true"></i>by dribehace</span><span><i class="fa fa-map-marker" aria-hidden="true"></i>newyowk</span></div>
+                    <div class="coach-meta"><span><i class="fa fa-bars" aria-hidden="true"></i>{{course.category_02_name}}</span><span><i class="fa fa-user" aria-hidden="true"></i>by {{course.nickname}}</span><span><i class="fa fa-map-marker" aria-hidden="true"></i>{{course.area}}</span></div>
                 </div>
-            </div>
+            </a>
             <div class="section sm">
-                <div class="section-title">Ddetail</div>
-                <div class="section sm">
-                    <span class="pull-left">Teaching:since Jun 2007</span>
-                    <span class="pull-right">Session Duration 60min</span>
-                </div>
+                <div class="section-title">Detail</div>
+                <p class="clearfix">
+                    <span class="pull-left">Teaching:since {{course.teaching_since}}</span>
+                    <span class="pull-right">Session Duration: {{course.session_length}}min</span>
+                </p>
                 <div class="clearfix">
-                    <span class="pull-left">Teaching:since Jun 2007</span>
-                    <span class="pull-right">Session Duration 60min</span>
+                    <span class="pull-left">Group Session:Up to {{course.additional_partner}}</span>
+                    <span class="pull-right">Teaches: Age {{course.teaching_age}} and up</span>
                 </div>
             </div>
             <div class="line"></div>
@@ -36,25 +38,13 @@
                 <div class="section-title">Photo and Video</div>
                 <!-- <button id="openpopup">open</button> -->
                 <div class="image-gallaxy clearfix">
-                    <a class="image" href="../images/affinity.jpeg">
-                        <img src="../images/affinity.jpeg" class="full-width" alt="">
-                    </a>
-                    <a class="image" href="../images/cinelli-front.jpeg">
-                        <img src="../images/cinelli-front.jpeg" class="full-width" alt="">
-                    </a>
-                    <a class="image" href="../images/affinity.jpeg">
-                        <img src="../images/affinity.jpeg" class="full-width" alt="">
-                    </a>
-                    <a class="image" href="../images/banner.png">
-                        <img src="../images/banner.png" class="full-width" alt="">
+                    <a class="image" href="{{staticImageUrl + photo.image_01}}" ng-repeat="photo in course.CourseBanners">
+                        <img ng-src="{{staticImageUrl + photo.image_01}}" class="full-width" alt="" err-src="../images/error.jpg">
                     </a>
                 </div>
                 <div class="videos">
-                    <div class="video">
-                        <iframe src="//www.youtube.com/embed/-YfVRbGccLc?autoplay=0" frameborder="0" allowfullscreen></iframe>
-                    </div>
-                    <div class="video">
-                        <iframe src="//www.youtube.com/embed/mibCkK1nDpI?autoplay=0" frameborder="0" allowfullscreen></iframe>
+                    <div class="video" ng-repeat="video in course.CourseVedios">
+                        <iframe ng-src="{{get_video(video.vedio_url)}}" frameborder="0" allowfullscreen></iframe>
                     </div>
                 </div>
             </div>
@@ -62,17 +52,8 @@
             <div class="section sm">
                 <div class="section-title">Certification</div>
                 <div class="image-gallaxy clearfix">
-                    <a class="image" href="../images/affinity.jpeg">
-                        <img src="../images/affinity.jpeg" class="full-width" alt="">
-                    </a>
-                    <a class="image" href="../images/cinelli-front.jpeg">
-                        <img src="../images/cinelli-front.jpeg" class="full-width" alt="">
-                    </a>
-                    <a class="image" href="../images/affinity.jpeg">
-                        <img src="../images/affinity.jpeg" class="full-width" alt="">
-                    </a>
-                    <a class="image" href="../images/people.jpeg">
-                        <img src="../images/people.jpeg" class="full-width" alt="">
+                    <a class="image" href="{{staticImageUrl + certification.image_01}}" ng-repeat="certification in course.CourseCertifications">
+                        <img ng-src="{{staticImageUrl + certification.image_01}}" class="full-width" alt="" err-src="../images/error.jpg">
                     </a>
                 </div>
             </div>
@@ -80,43 +61,73 @@
             <div class="section sm">
                 <div class="section-title">Overview</div>
                 <div class="overview">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem molestias cumque, dolore assumenda recusandae nobis at harum suscipit temporibus aliquid laudantium, minima aspernatur inventore omnis laboriosam labore, numquam iste earum.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Totam laboriosam harum repudiandae suscipit omnis. Consequuntur obcaecati nulla iste quisquam, officia tempora aliquid esse deleniti iure ex similique, debitis culpa illum.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi dolorem, quasi corrupti obcaecati, veritatis hic sapiente ea consectetur porro sed delectus doloremque vitae numquam dicta. Libero voluptatem sunt aliquam eum!
+                    {{course.overview}}
                 </div>
             </div>
             <div class="line"></div>
             <div class="section sm">
-                <div class="section-title">Comments</div>
-                <div class="overview">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem molestias cumque, dolore assumenda recusandae nobis at harum suscipit temporibus aliquid laudantium, minima aspernatur inventore omnis laboriosam labore, numquam iste earum.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Totam laboriosam harum repudiandae suscipit omnis. Consequuntur obcaecati nulla iste quisquam, officia tempora aliquid esse deleniti iure ex similique, debitis culpa illum.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi dolorem, quasi corrupti obcaecati, veritatis hic sapiente ea consectetur porro sed delectus doloremque vitae numquam dicta. Libero voluptatem sunt aliquam eum!
+                <div class="section-title">{{total_comments}} Comments</div>
+                <div class="comments">
+                    <div class="comment-item" ng-repeat="comment in comments">
+                        <div class="comment-header">
+                            <div class="comment-avatar">
+                                <imageview data-rate="1" center-only src="staticImageUrl+comment.comment_image"></imageview>
+                            </div>
+                            <div class="comment-meta">
+                                <span class="comment-name">
+                                    {{comment.comment_name}}
+                                </span>
+                                <div class="clearfix text-ellipsis">
+                                    <span class="pull-left">
+                                        <i class="fa fa-star" ng-class="{'text-primary':comment.total_score >0}" aria-hidden="true"></i>
+                                        <i class="fa fa-star" ng-class="{'text-primary':comment.total_score >1}" aria-hidden="true"></i>
+                                        <i class="fa fa-star" ng-class="{'text-primary':comment.total_score >2}" aria-hidden="true"></i>
+                                        <i class="fa fa-star" ng-class="{'text-primary':comment.total_score >3}" aria-hidden="true"></i>
+                                        <i class="fa fa-star" ng-class="{'text-primary':comment.total_score >4}" aria-hidden="true"></i>
+                                    </span>
+                                    <span class="pull-right">专业技能{{to_fix(comment.pro_skill)}} 教学环境 {{to_fix(comment.teaching_environment)}}教学态度 {{to_fix(comment.teaching_attitude)}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="comment-content">
+                            {{comment.note}}
+                            <div class="comment-reply" ng-if="comment.is_reply">
+                                <b>coach reply:</b>{{comment.commentReply_content}}
+                            </div>
+                        </div>
+                    </div>
                 </div>
+                <div class="section text-center">
+                <span class="btn btn-lg" ng-click="loadMore()">{{page.message}}</span>
+            </div>
             </div>
         </div>
         <div class="detail-right">
             <div class="settlement">
-                <p class="price text-center">$100</p>
-                <p class="text-center">per session 60min</p>
-                <p class="clearfix">
+                <p class="price text-center">{{course.session_rate|currency:"$"}}</p>
+                <p class="text-center">per session {{course.session_length}}min</p>
+                <!-- <p class="clearfix settlement-action">
                     购买数量
                     <span class="pull-right">
-        			<span class="minus">-</span>
-                    <span class="amount">5</span>
-                    <span class="plus">+</span>
+                    <span class="settlement-minus">-</span>
+                    <span class="settlement-amount">5</span>
+                    <span class="settlement-plus">+</span>
                     </span>
-                </p>
+                </p> -->
                 <p class="text-center">
-                    <span class="btn btn-second"><i class="fa fa-heart-o" aria-hidden="true" style="margin-right: 8px"></i>like</span>
-                    <span class="btn btn-primary">add to cart</span>
-                    <span class="btn btn-success">pay now</span>
+                    <span class="btn btn-second" ng-click="like()"><i class="fa fa-heart-o" aria-hidden="true" style="margin-right: 8px"></i>like</span>
+                    <a class="btn btn-primary" ng-href="#/fillinorder?course_id={{course.course_id}}">add to cart</a>
+                    <a class="btn btn-success" ng-href="#/fillinorder?course_id={{course.course_id}}">pay now</a>
                 </p>
             </div>
             <div class="section sm">
-            	<!-- <div ng-include="'templates/calendar.html'"></div> -->
-                <calendar calendar="calendar"></calendar>
+                <!-- <div ng-include="'templates/calendar.html'"></div> -->
+                <calendar calendar="calendar" class="small-calendar"></calendar>
             </div>
             <div class="section sm map-section">
                 <div class="section-title">Teaching location</div>
-                <iframe src="https://maps.google.com/maps?q=Baker+Street,+London,+United+Kingdom&hl=en&t=v&hnear=221B+Baker+St,+London+NW1+6XE,+United+Kingdom&output=embed" class="map" height="300px" frameborder="0" allowfullscreen></iframe>
-                <p>Baker St Marylebone, London UK</p>
+                <iframe ng-src="{{get_map()}}" class="map" height="300px" frameborder="0" allowfullscreen></iframe>
+                <p>{{course.city+course.area+course.street}}</p>
                 <span>specific location will show up after your payment</span>
             </div>
         </div>

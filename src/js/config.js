@@ -1,6 +1,6 @@
 angular.module("Skillopedia").constant("config", {
-	url: "http://",
-	imageUrl: "http://",
+	url: "http://47.88.79.54",
+	imageUrl: "http://47.88.79.54/files/image?name=",
 	request: {
 		"SUCCESS": "200",
 		"TOKEN_INVALID": "405"
@@ -8,12 +8,17 @@ angular.module("Skillopedia").constant("config", {
 	response: {
 		"SUCCESS": 1
 	},
-	common_params: {},
+	common_params: {
+		invoke: "h5",
+		app_sign: "123456"
+	},
+	key: {
+		google: "AIzaSyDimOSOuBupzzpGhzX9lspVfLWaHW-6DNI"
+	},
 	interceptor: [
 		"about",
 		"account",
 		"authenication",
-		"coach",
 		"comments",
 		"contact",
 		"coupons_expired",
@@ -22,10 +27,14 @@ angular.module("Skillopedia").constant("config", {
 		"create_course",
 		"create_step",
 		"detail",
+		"edit_course",
+		"edit_step",
 		"favourite",
 		"fillinorder",
+		"forget",
 		"index",
 		"list",
+		"landing",
 		"messages",
 		"order",
 		"order_booking",
@@ -38,12 +47,19 @@ angular.module("Skillopedia").constant("config", {
 		"orders",
 		"orders_management",
 		"privacy",
+		"payment",
 		"schedule",
 		"services",
 		"shoppingcart",
+		"search",
+		"skillopedia",
+		"step",
 		"steps",
 		"steps_draft",
 		"steps_publish",
-		"support"
+		"support",
+		"show",
+		"show_comments",
+		"show_steps",
 	]
 });
