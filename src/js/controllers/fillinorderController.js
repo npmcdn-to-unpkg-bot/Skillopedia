@@ -46,6 +46,7 @@ angular.module("Skillopedia").controller("fillinorderController", function($scop
 		$scope.query_schedule($filter("date")(new Date().getTime(), "yyyy-MM-dd"));
 	});
 	// 优惠券
+	$scope.coupons = [];
 	$scope.input.coupons = {
 		selected: "",
 		all: []

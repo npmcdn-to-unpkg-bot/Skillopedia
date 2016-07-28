@@ -88,11 +88,11 @@
                     </span>
                 </p>
                 <div class="settlement-discount clearfix">
-                    <div class="col-xs-4 pull-right" ng-if="course.discount_type == '1' && discounts.length>0">
+                    <div class="col-xs-4 pull-right" ng-if="course.discount_type == '1' && discounts.length>0" ng-repeat="discount in discounts">
                         <div class="discount-wrap">
                             <div class="discount">
                                 <div class="title">sessions</div>
-                                <div class="discount-info" ng-repeat="discount in discounts">
+                                <div class="discount-info">
                                     <span>Buy Money</span>
                                     <span class="block">get</span>
                                     <span class="size text-danger">{{discount.purchase|currency:"$"}}</span>
@@ -107,7 +107,7 @@
                             <div class="discount">
                                 <div class="title">sessions</div>
                                 <div class="discount-info" ng-repeat="discount in discounts">
-                                    <span>Buy Money</span>
+                                    <span>Buy Amount</span>
                                     <span class="block">get</span>
                                     <span class="size text-danger">{{discount.purchase|currency:"$"}}</span>
                                     <span class="block">off</span>
@@ -116,7 +116,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-xs-4 pull-right" ng-if="course.discount_type == '3' && discounts.length>0">
+                    <!-- <div class="col-xs-4 pull-right" ng-if="course.discount_type == '3' && discounts.length>0">
                         <div class="discount-wrap">
                             <div class="discount">
                                 <div class="title">sessions</div>
@@ -129,7 +129,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
                 <p class="clearfix settlement-action" ng-if="course.additional_partner>0">
                     additional
@@ -161,7 +161,7 @@
                         <textarea class="form-control full-width" ng-model="input.message" placeholder="leaving message"></textarea>
                     </div>
                 </div>
-                <div class="settlement-discount">
+                <div class="settlement-fee">
                     <!-- <div ng-if="course.discount_type == '1' && discounts.length>0">
                         <p><b>Discount </b></p>
                         <div ng-repeat="discount in discounts">
