@@ -48,6 +48,16 @@ angular.module("Skillopedia").directive('calendar', function($filter) {
 						scope.calendar.times[next].schedule_state = 2;
 						scope.calendar.times[next].active = true;
 						scope.calendar.selected.push(selected_time);
+						return;
+					}
+					if (time.schedule_state == 2) {
+						scope.calendar.selected.map(function(t) {
+							if (t.from == time || t.to == time) {
+								scope.calendar.remove(t);
+							}
+							return t;
+						})
+						return;
 					}
 				};
 				scope.calendar.remove = function(selected) {
