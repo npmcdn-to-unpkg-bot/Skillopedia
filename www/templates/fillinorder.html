@@ -87,6 +87,50 @@
                     <span class="settlement-plus" ng-click="add_amount()">+</span>
                     </span>
                 </p>
+                <div class="settlement-discount clearfix">
+                    <div class="col-xs-4 pull-right" ng-if="course.discount_type == '1' && discounts.length>0">
+                        <div class="discount-wrap">
+                            <div class="discount">
+                                <div class="title">sessions</div>
+                                <div class="discount-info" ng-repeat="discount in discounts">
+                                    <span>Buy Money</span>
+                                    <span class="block">get</span>
+                                    <span class="size text-danger">{{discount.purchase|currency:"$"}}</span>
+                                    <span class="block">off</span>
+                                    <span class="size text-danger margin">{{discount.off|currency:"$"}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-4 pull-right" ng-if="course.discount_type == '2' && discounts.length>0">
+                        <div class="discount-wrap">
+                            <div class="discount">
+                                <div class="title">sessions</div>
+                                <div class="discount-info" ng-repeat="discount in discounts">
+                                    <span>Buy Money</span>
+                                    <span class="block">get</span>
+                                    <span class="size text-danger">{{discount.purchase|currency:"$"}}</span>
+                                    <span class="block">off</span>
+                                    <span class="size text-danger margin">{{discount.off|currency:"$"}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-4 pull-right" ng-if="course.discount_type == '3' && discounts.length>0">
+                        <div class="discount-wrap">
+                            <div class="discount">
+                                <div class="title">sessions</div>
+                                <div class="discount-info" ng-repeat="discount in discounts">
+                                    <span class="block">Buy Money</span>
+                                    <span class="block">get</span>
+                                    <span class="size text-danger">{{discount.purchase|currency:"$"}}</span>
+                                    <span class="block">off</span>
+                                    <span class="size text-danger margin">{{discount.off|currency:"$"}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <p class="clearfix settlement-action" ng-if="course.additional_partner>0">
                     additional
                     <span class="pull-right">
@@ -118,7 +162,7 @@
                     </div>
                 </div>
                 <div class="settlement-discount">
-                    <div ng-if="course.discount_type == '1' && discounts.length>0">
+                    <!-- <div ng-if="course.discount_type == '1' && discounts.length>0">
                         <p><b>Discount </b></p>
                         <div ng-repeat="discount in discounts">
                             buy Money to <span class="text-danger">{{discount.purchase|currency:"$"}}</span> get <span class="text-danger">{{discount.off|currency:"$"}} </span> off
@@ -129,7 +173,7 @@
                         <div ng-repeat="discount in discounts">
                             buy Amount to <span class="text-danger">{{discount.purchase}}</span> get <span class="text-danger">{{discount.off|currency:"$"}}</span> off
                         </div>
-                    </div>
+                    </div> -->
                     <div ng-if="course.first_joint_fee>0">
                         <p><b>First services fee </b></p>
                         <div class="text-danger">{{course.first_joint_fee|currency:"$"}}</div>

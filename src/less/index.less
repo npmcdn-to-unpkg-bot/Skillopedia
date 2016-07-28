@@ -1,4 +1,4 @@
-.search-wrap {
+    .search-wrap {
     position: absolute;
     z-index: 1000;
     left: 0;
@@ -512,5 +512,46 @@
         margin-top: -10px;
         height: 20px;
         width: 20px;
+    }
+}
+
+
+/***************************discunt*********************************/
+
+.discount-wrap {
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+    padding: 0 1px;
+    .box-sizing(border-box);
+    &.padding {
+        margin: 0 2px;
+    }
+    .discount {
+        position: relative;
+        display: inline-block;
+        background-color: #11E862;
+        border: 1px solid #11E862;
+        padding: 0 0 15px 0;
+        width: 100%;
+        .box-sizing(border-box);
+        .title {
+            display: block;
+            text-align: center;
+            padding: 8px 2px;
+            color: white;
+            background-color: #11E862;
+        }
+        .discount-info {
+            display: block;
+            padding-top: 5px;
+            background-color: white;
+            .size {
+                font-size: 24px;
+            }
+            span {
+                color: rgba(43, 40, 40, 0.23)
+            }
+        }
     }
 }
