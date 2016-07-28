@@ -78,7 +78,7 @@
             <span class="suggestion-item" ng-repeat="category in input.categorys" ng-click="select_category(category)">{{category.category_02_name}}</span>
         </span>
         <span class="zipcode">
-            <input type="text" class="full-width" ng-model="input.zipcode" required placeholder="zipcode">
+            <input type="text" class="full-width" ng-model="input.zipcode" placeholder="zipcode">
             <div class="zipcode-suggestion" ng-if="input.zipcode && input.suggestions.length>0">
                 <span class="suggestion-item" ng-repeat="suggestion in input.suggestions" ng-click="select(suggestion)">{{suggestion.zipcode}}</span>
             </div>

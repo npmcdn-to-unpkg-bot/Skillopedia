@@ -1,5 +1,5 @@
 // by dribehance <dribehance.kksdapp.com>
-angular.module("Skillopedia").controller("headerController", function($scope, $route, userServices, orderServices, errorServices, toastServices, localStorageService, config) {
+angular.module("Skillopedia").controller("headerController", function($scope, $rootScope, $route, userServices, orderServices, errorServices, toastServices, localStorageService, config) {
 	$scope.query_shoppingcart_count = function() {
 		orderServices.query_shoppingcart_count().then(function(data) {
 			if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
@@ -9,7 +9,7 @@ angular.module("Skillopedia").controller("headerController", function($scope, $r
 			}
 		})
 	}
-	$scope.query_shoppingcart_count();
+	$rootScope.is_signin() && ($scope.query_shoppingcart_count());
 	$scope.show_menu = function(e) {
 		if ($(".dropdown-menu").hasClass("active")) {
 			$(".dropdown-menu").removeClass("active")
