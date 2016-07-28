@@ -44,7 +44,7 @@ angular.module("Skillopedia").factory("userServices", function($rootScope, $http
 		reset: function(input) {
 			return $http({
 				// by dribehance <dribehance.kksdapp.com>
-				url: config.url + "/app/IndexBannerManage/homeBanner",
+				url: config.url + "/app/UserCenter/resetPassword",
 				method: "GET",
 				params: angular.extend({}, config.common_params, input)
 			}).then(function(data) {

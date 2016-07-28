@@ -8,10 +8,12 @@
     color: #fff;
     cursor: pointer;
 }
+
 .signin-btn.btn-black {
     border: 1px solid #292929;
     color: #292929;
 }
+
 .signup-btn {
     display: inline-block;
     padding: 8px 25px;
@@ -23,6 +25,7 @@
     background-color: @brand-info;
     cursor: pointer;
 }
+
 .logout-btn {
     display: inline-block;
     width: 70px;
@@ -39,17 +42,34 @@
         height: 100%;
     }
 }
+
 .shoppingcart {
-    display: inline-block;
+    position: relative;
     display: inline-block;
     width: 70px;
     height: 70px;
     margin: 8px 8px 8px 28px;
     vertical-align: middle;
+    .cart-count {
+        position: absolute;
+        display: inline-block;
+        height: 20px;
+        width: 20px;
+        line-height: 20px;
+        border-radius: 100%;
+        -webkit-border-radius: 100%;
+        text-align: center;
+        background-color: red;
+        color: white;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
     img {
         width: 100%;
     }
 }
+
 .nav {
     position: fixed;
     top: 0;
@@ -86,14 +106,16 @@
     background-color: white;
     opacity: 0.9;
     color: @gray;
-    .translate(0,50px);
+    .translate(0, 50px);
     .transition(transform ease-out 0.3s);
     visibility: hidden;
 }
+
 .nav .dropdown.animated {
-    .translate(0,0);
+    .translate(0, 0);
     visibility: visible;
 }
+
 .nav .dropdown-cover {
     position: fixed;
     left: 0;
@@ -102,6 +124,7 @@
     bottom: 0;
     background-color: fade(white, 10%);
 }
+
 .dropdown .dropdown-section {
     position: relative;
     padding: 15px;
@@ -129,6 +152,7 @@
     width: 50px;
     border-bottom: 4px solid @gray-base;
 }
+
 .dropdown-menu {
     position: absolute;
     right: 0;
@@ -139,7 +163,7 @@
     opacity: 0;
     z-index: 1000;
     .menu-item {
-        display:block;
+        display: block;
         padding: 8px;
         border-bottom: 1px dashed #ccc;
         overflow: hidden;
@@ -157,6 +181,7 @@
     }
     .transition(opacity 0.3s);
 }
+
 .info-list {
     margin-bottom: 25px;
 }
@@ -187,6 +212,7 @@
     height: 1px;
     background-color: #a0a0a0;
 }
+
 .or::after {
     content: "OR";
     display: block;
@@ -203,13 +229,15 @@
 .or.bg-second::after {
     background-color: @brand-second;
 }
+
 .info-text {
     position: relative;
     top: -7px;
     left: 15px;
 }
+
 .header {
-    padding:15px;
+    padding: 15px;
     background-color: #292929;
     .logo {
         width: 375px;

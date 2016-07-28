@@ -53,11 +53,24 @@ angular.module("Skillopedia").factory("orderServices", function($http, localStor
 				return data.data;
 			});
 		},
-		// 确认下单
+		// 确认下单,加入购物车
 		fillinorder: function(input) {
 			return $http({
 				// by dribehance <dribehance.kksdapp.com>
 				url: config.url + "/app/OrdersManage/addPay",
+				method: "GET",
+				params: angular.extend({}, config.common_params, {
+					token: localStorageService.get("token")
+				}, input)
+			}).then(function(data) {
+				return data.data;
+			});
+		},
+		// 购物车数量
+		query_shoppingcart_count: function(input) {
+			return $http({
+				// by dribehance <dribehance.kksdapp.com>
+				url: config.url + "/app/OrdersManage/cardNum",
 				method: "GET",
 				params: angular.extend({}, config.common_params, {
 					token: localStorageService.get("token")

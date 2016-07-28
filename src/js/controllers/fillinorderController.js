@@ -264,6 +264,23 @@ angular.module("Skillopedia").controller("fillinorderController", function($scop
 		$scope.is_watch = true;
 		$scope.calculate();
 	}, true);
+	// 加入购物车动画
+	var animate_dot = function() {
+		$(".animate-dot").addClass("active").css({
+			top: $(".shoppingcart").offset().top + 10,
+			left: $(".shoppingcart").offset().left + $(".shoppingcart").width() + 10
+		});
+		$scope.$broadcast("addToCart");
+		$timeout(function() {
+			$(".animate-dot").removeClass("active");
+		}, 500)
+		$timeout(function() {
+			$(".animate-dot").css({
+				top: "50%",
+				left: "50%"
+			});
+		}, 1000)
+	};
 	// 加入购物车;
 	// 下单;
 	$scope.fillinorder = function(type) {
@@ -310,8 +327,8 @@ angular.module("Skillopedia").controller("fillinorderController", function($scop
 			toastServices.hide()
 			if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
 				errorServices.autoHide(data.message);
+				type == "1" && (animate_dot());
 				$timeout(function() {
-
 					var url = $location.protocol() + "://" + $location.host() + ":" + $location.port() + "/#/payment?id=" + data.orders_id;
 					type == "11" && ($window.location.href = url);
 				}, 2000)
