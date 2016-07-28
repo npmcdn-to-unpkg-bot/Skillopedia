@@ -1,6 +1,9 @@
 // by dribehance <dribehance.kksdapp.com>
 angular.module("Skillopedia").controller("listController", function($scope, $rootScope, $routeParams, $location, skillopediaServices, coursesServices, errorServices, toastServices, localStorageService, config) {
 	$scope.input = {
+		price: 0,
+		review: 0,
+		hot: 0,
 		distances: [
 			"500-1000mile",
 			"1000-1500mile",
@@ -83,7 +86,10 @@ angular.module("Skillopedia").controller("listController", function($scope, $roo
 			category_02_id: $scope.input.category.id,
 			category_02_name: $scope.input.category.name,
 			distances: $scope.input.distance,
-			prioritys: $scope.input.priority
+			prioritys: $scope.input.priority,
+			price_type: $scope.input.price,
+			review_type: $scope.input.review,
+			hot_type: $scope.input.hot
 		}
 		$scope.no_more = false;
 		$scope.loadMore();
@@ -95,22 +101,41 @@ angular.module("Skillopedia").controller("listController", function($scope, $roo
 		}
 		$scope.reload();
 	}, true);
-	$scope.$watch("input.priority", function(n, o) {
-		if (n === o) {
-			return;
-		}
+	var sort_1 = sort_2 = sort_3 = 0;
+	$scope.sort_by_price = function() {
+		$scope.input.review = sort_2 = 0;
+		$scope.input.hot = sort_3 = 0;
+		$scope.input.price = sort_1++ % 2 + 1;
 		$scope.reload();
-	}, true);
+	};
+	$scope.sort_by_review = function() {
+		$scope.input.price = sort_1 = 0;
+		$scope.input.hot = sort_3 = 0;
+		$scope.input.review = sort_2++ % 2 + 1;
+		$scope.reload();
+	};
+	$scope.sort_by_hot = function() {
+		$scope.input.price = sort_1 = 0;
+		$scope.input.review = sort_2 = 0;
+		$scope.input.hot = sort_3++ % 2 + 1;
+		$scope.reload();
+	};
+	// $scope.$watch("input.priority", function(n, o) {
+	// 	if (n === o) {
+	// 		return;
+	// 	}
+	// 	$scope.reload();
+	// }, true);
 	// filter by priority;
-	$scope.remove = function(condition) {
-		$scope.input[condition] = "";
-	}
-	$scope.sidebar = {
-		title: "recommand"
-	}
-	$scope.change_sidebar = function(title) {
-		$scope.sidebar.title = title;
-	}
+	// $scope.remove = function(condition) {
+	// 	$scope.input[condition] = "";
+	// };
+	// $scope.sidebar = {
+	// 	title: "recommand"
+	// }
+	// $scope.change_sidebar = function(title) {
+	// 	$scope.sidebar.title = title;
+	// }
 	$scope.open_map = function(course, e) {
 		e.preventDefault();
 		e.stopPropagation();
