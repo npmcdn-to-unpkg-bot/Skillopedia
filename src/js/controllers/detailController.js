@@ -30,6 +30,7 @@ angular.module("Skillopedia").controller("detailController", function($scope, $r
 			$scope.lat_lng = data.results[0].geometry.location;
 			var map = googleMapServices.create_map(document.getElementById('map'), $scope.lat_lng);
 			// console.log(map)
+			var marker = googleMapServices.create_marker(map, $scope.lat_lng);
 			var circle = googleMapServices.create_circle(map, $scope.lat_lng);
 		})
 	};
