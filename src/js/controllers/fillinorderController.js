@@ -1,5 +1,5 @@
 // by dribehance <dribehance.kksdapp.com>
-angular.module("Skillopedia").controller("fillinorderController", function($scope, $rootScope, $window, $timeout, $location, $filter, $routeParams, $sce, orderServices, scheduleServices, userServices, coursesServices, errorServices, toastServices, localStorageService, config) {
+angular.module("Skillopedia").controller("fillinorderController", function($scope, $rootScope, $window, $timeout, $location, $filter, $routeParams, $sce, googleMapServices, orderServices, scheduleServices, userServices, coursesServices, errorServices, toastServices, localStorageService, config) {
 	$scope.input = {};
 	$scope.course = {};
 	toastServices.show();
@@ -12,7 +12,7 @@ angular.module("Skillopedia").controller("fillinorderController", function($scop
 		if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
 			$scope.course = data.Course;
 			$scope.old_course = angular.copy($scope.course);
-			$scope.teaching_location_map = $scope.get_map($scope.course.city, $scope.course.area, $scope.course.street, $scope.course.address);
+			$scope.teaching_location_map = $scope.get_map($scope.course.city, $scope.course.area, $scope.course.street, $scope.course.address, 1);
 			$scope.input.total_price = $scope.course.session_rate;
 			// discount handle
 			$scope.discounts = [];
@@ -81,7 +81,7 @@ angular.module("Skillopedia").controller("fillinorderController", function($scop
 		}, 0);
 	};
 	$scope.save_location = function() {
-		$scope.teaching_location_map = $scope.get_map($scope.input.city, $scope.input.area, $scope.input.street, $scope.input.address);
+		$scope.teaching_location_map = $scope.get_map($scope.input.city, $scope.input.area, $scope.input.street, $scope.input.address, 2);
 		$scope.course.city = $scope.input.city;
 		$scope.course.area = $scope.input.area;
 		$scope.course.street = $scope.input.street;
@@ -92,7 +92,7 @@ angular.module("Skillopedia").controller("fillinorderController", function($scop
 		$.magnificPopup.close();
 	};
 	$scope.reset_location = function() {
-		$scope.teaching_location_map = $scope.get_map($scope.old_course.city, $scope.old_course.area, $scope.old_course.street, $scope.old_course.address);
+		$scope.teaching_location_map = $scope.get_map($scope.old_course.city, $scope.old_course.area, $scope.old_course.street, $scope.old_course.address, 1);
 		$scope.course.city = $scope.old_course.city;
 		$scope.course.area = $scope.old_course.area;
 		$scope.course.street = $scope.old_course.street;
@@ -103,9 +103,18 @@ angular.module("Skillopedia").controller("fillinorderController", function($scop
 		$.magnificPopup.close();
 	};
 	// parse iframe map url
-	$scope.get_map = function(state, city, street, unit) {
-		var map_url = "https://maps.google.com/maps?q=" + state + city + street + "&output=embed";
-		return $sce.trustAsResourceUrl(map_url);
+	$scope.get_map = function(state, city, street, unit, type) {
+		// var map_url = "https://maps.google.com/maps?q=" + state + city + street + "&output=embed";
+		// return $sce.trustAsResourceUrl(map_url);
+		googleMapServices.geocoding({
+			address: street + "," + city + "," + state
+		}).then(function(data) {
+			$scope.lat_lng = data.results[0].geometry.location;
+			var map = googleMapServices.create_map(document.getElementById('map'), $scope.lat_lng);
+			// console.log(map)
+			type == "1" && (googleMapServices.create_circle(map, $scope.lat_lng));
+			type == "2" && (googleMapServices.create_marker(map, $scope.lat_lng));
+		})
 	};
 	// parse video url
 	$scope.get_video = function(video) {
@@ -307,8 +316,8 @@ angular.module("Skillopedia").controller("fillinorderController", function($scop
 			go_door_area: $scope.course.area,
 			go_door_street: $scope.course.street,
 			go_door_address: $scope.course.address,
-			go_door_latitude: "0",
-			go_door_longitude: "0",
+			go_door_latitude: ($scope.lat_lng && $scope.lat_lng.lat) || "0",
+			go_door_longitude: ($scope.lat_lng && $scope.lat_lng.lng) || "0",
 			go_door_zipcode: $scope.course.zipcode,
 			go_door_traffic_cost: $scope.course.travel_to_session_trafic_surcharge,
 			my_coupon_id: $scope.input.coupons.selected.my_coupon_id,

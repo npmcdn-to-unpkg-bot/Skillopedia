@@ -3,7 +3,7 @@ angular.module("Skillopedia").factory("googleMapServices", function($http, confi
 	return {
 		create_map: function(container, latlng) {
 			var map = new google.maps.Map(container, {
-				zoom: 15,
+				zoom: 18,
 				center: latlng,
 				// mapTypeId: google.maps.MapTypeId.TERRAIN
 			});
@@ -41,7 +41,7 @@ angular.module("Skillopedia").factory("googleMapServices", function($http, confi
 				fillOpacity: 0.35,
 				map: map,
 				center: latlng,
-				radius: 300
+				radius: 50
 			});
 			return cityCircle;
 		},
