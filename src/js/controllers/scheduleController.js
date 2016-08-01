@@ -55,24 +55,37 @@ angular.module("Skillopedia").controller("scheduleController", function($scope, 
 		}
 	}
 	$scope.free_hour = function() {
-		$scope.confirm.content = "标记为自由时间？";
-		$scope.confirm.open();
-		$scope.confirm.cancle_callback = function() {}
-		$scope.confirm.ok_callback = function() {
-			toastServices.show();
-			scheduleServices.set_free({
-				choice_currentdate: $filter("date")(new Date($scope.calendar.day).getTime(), "yyyy-MM-dd"),
-				time_slots: $scope.calendar.selected.hour_index
-			}).then(function(data) {
-				toastServices.hide()
-				if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
-					errorServices.autoHide(data.message);
-					$scope.query_schedule($filter("date")(new Date($scope.calendar.day).getTime(), "yyyy-MM-dd"))
-				} else {
-					errorServices.autoHide(data.message);
-				}
-			})
-		}
+		toastServices.show();
+		scheduleServices.set_free({
+			choice_currentdate: $filter("date")(new Date($scope.calendar.day).getTime(), "yyyy-MM-dd"),
+			time_slots: $scope.calendar.selected.hour_index
+		}).then(function(data) {
+			toastServices.hide()
+			if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
+				errorServices.autoHide(data.message);
+				$scope.query_schedule($filter("date")(new Date($scope.calendar.day).getTime(), "yyyy-MM-dd"))
+			} else {
+				errorServices.autoHide(data.message);
+			}
+		});
+		// $scope.confirm.content = "标记为自由时间？";
+		// $scope.confirm.open();
+		// $scope.confirm.cancle_callback = function() {}
+		// $scope.confirm.ok_callback = function() {
+		// 	toastServices.show();
+		// 	scheduleServices.set_free({
+		// 		choice_currentdate: $filter("date")(new Date($scope.calendar.day).getTime(), "yyyy-MM-dd"),
+		// 		time_slots: $scope.calendar.selected.hour_index
+		// 	}).then(function(data) {
+		// 		toastServices.hide()
+		// 		if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
+		// 			errorServices.autoHide(data.message);
+		// 			$scope.query_schedule($filter("date")(new Date($scope.calendar.day).getTime(), "yyyy-MM-dd"))
+		// 		} else {
+		// 			errorServices.autoHide(data.message);
+		// 		}
+		// 	})
+		// }
 	}
 	$scope.busy_one_day = function() {
 		$scope.confirm.content = "全天没有课？";

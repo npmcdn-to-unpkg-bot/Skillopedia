@@ -26,17 +26,17 @@
                             <p>时间安排：{{calendar.selected.remarks||"暂无安排"}}</p>
                             <div class="clearfix" ng-if="calendar.selected.hour">
                                 <p class="btn-group text-center">
-                                    <button type="button" ng-diabled="calendar.selected.state != 2" class="btn btn-success" ng-click="free_hour()">Mark as Free</button>
-                                    <button type="button" ng-diabled="calendar.selected.state != 3" class="btn btn-danger" ng-click="busy_hour()">Mark as Busy</button>
+                                    <button type="button" ng-disabled="calendar.selected.schedule_state != 2" class="btn btn-success" ng-click="free_hour()">Mark as Free</button>
+                                    <button type="button" ng-disabled="calendar.selected.schedule_state != 3" class="btn btn-danger" ng-click="busy_hour()">Mark as Busy</button>
                                 </p>
                             </div>
                             <div class="clearfix">
-                                <span class="pull-right" ng-class="{'text-primary':calendar.is_stop_course=='1'}" ng-click="busy_all_day()">
-                                    <i class="fa fa-check-square-o" aria-hidden="true"></i>
+                                <span class="btn pull-right" ng-class="{'text-primary':calendar.is_stop_course=='1'}" ng-click="busy_all_day()">
+                                    <i class="fa" ng-class="{'fa-check-square-o':calendar.is_stop_course=='1','fa-square-o':calendar.is_stop_course!='1'}" aria-hidden="true"></i>
                                 暂停课程
                                 </span>
-                                <span class="pull-left" ng-class="{'text-primary':calendar.is_busy_24=='1'}" ng-click="busy_one_day()">
-                                    <i class="fa fa-check-square-o" aria-hidden="true"></i>
+                                <span class="btn pull-left" ng-class="{'text-primary':calendar.is_busy_24=='1'}" ng-click="busy_one_day()">
+                                    <i class="fa" ng-class="{'fa-check-square-o':calendar.is_busy_24=='1','fa-square-o':calendar.is_busy_24!='1'}" aria-hidden="true"></i>
                                 全天没有空
                                 </span>
                             </div>

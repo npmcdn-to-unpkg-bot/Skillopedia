@@ -15,7 +15,7 @@ angular.module("Skillopedia").factory("errorServices", function($rootScope, $tim
 			$timeout(function() {
 				$rootScope.error_msg = "";
 				$(".error-msg").hide();
-			}, 5000)
+			}, 4000)
 		},
 		requestError: function(data, status, headers, config) {
 			// hide toast

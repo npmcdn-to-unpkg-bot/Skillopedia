@@ -166,7 +166,8 @@ angular.module("Skillopedia").controller("editCourseController", function($scope
 		})
 	};
 	// 提交证书
-	$scope.ajaxCert = function(cert) {
+	$scope.ajaxCert = function(cert, form) {
+		if (form.$invalid) return;
 		toastServices.show();
 		coursesServices.create_certification({
 			course_id: $routeParams.id,
@@ -185,7 +186,8 @@ angular.module("Skillopedia").controller("editCourseController", function($scope
 		})
 	};
 	// 编辑证书
-	$scope.editCert = function(cert) {
+	$scope.editCert = function(cert, form) {
+		if (form.$invalid) return;
 		toastServices.show();
 		coursesServices.edit_certification({
 			course_certification_id: cert.id,
@@ -359,11 +361,24 @@ angular.module("Skillopedia").controller("editCourseController", function($scope
 	}
 	$scope.save_location = function() {
 		$scope.location_mode = "preview";
-		$scope.map_url = $scope.get_map($scope.input.state, $scope.input.city, $scope.input.street, $scope.input.apt);
+		// $scope.map_url = $scope.get_map($scope.input.state, $scope.input.city, $scope.input.street, $scope.input.apt);
+		// googleMapServices.geocoding({
+		// 	address: $scope.input.apt + " " + $scope.input.street + "," + $scope.input.city + "," + $scope.input.state
+		// }).then(function(data) {
+		// 	$scope.lat_lng = data.results[0].geometry.location;
+		// })
 		googleMapServices.geocoding({
-			address: $scope.input.apt + " " + $scope.input.street + "," + $scope.input.city + "," + $scope.input.state
+			address: $scope.input.street + "," + $scope.input.city + "," + $scope.input.state
 		}).then(function(data) {
 			$scope.lat_lng = data.results[0].geometry.location;
+			var map = googleMapServices.create_map(document.getElementById('map'), $scope.lat_lng);
+			// console.log(map)
+			var marker = googleMapServices.create_marker(map, $scope.lat_lng);
+			marker.addListener("dragend", function(e) {
+				$scope.$apply(function() {
+					$scope.lat_lng = e.latLng.toJSON()
+				})
+			})
 		})
 	}
 	$scope.edit_location = function() {
@@ -552,7 +567,7 @@ angular.module("Skillopedia").controller("editCourseController", function($scope
 			longitude: $scope.lat_lng.lng,
 			additional_partner: $scope.input.partner,
 			surcharge_for_each: $scope.input.surcharge,
-			discount_type: $scope.input.discount == "by_money" ? "1" : "2",
+			discount_type: "2", //$scope.input.discount == "by_money" ? "1" : "2",
 			discount_onetion_pur_money_01: discount_onetion_pur_money_01 || "",
 			discount_price_01: discount_price_01 || "",
 			discount_onetion_pur_money_02: discount_onetion_pur_money_02 || "",
@@ -572,7 +587,8 @@ angular.module("Skillopedia").controller("editCourseController", function($scope
 				errorServices.autoHide(data.message);
 				$timeout(function() {
 					// $rootScope.back();
-					$window.close();
+					// $window.close();
+					$location.path("skillopedia").replace();
 				}, 2000)
 			} else {
 				errorServices.autoHide(data.message);

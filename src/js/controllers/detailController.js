@@ -1,5 +1,5 @@
 // by dribehance <dribehance.kksdapp.com>
-angular.module("Skillopedia").controller("detailController", function($scope, $rootScope, $filter, $routeParams, $sce, scheduleServices, userServices, coursesServices, errorServices, toastServices, localStorageService, config) {
+angular.module("Skillopedia").controller("detailController", function($scope, $rootScope, $filter, $routeParams, $sce, $timeout, googleMapServices, scheduleServices, userServices, coursesServices, errorServices, toastServices, localStorageService, config) {
 	$scope.course = {};
 	toastServices.show();
 	coursesServices.query_by_id({
@@ -10,6 +10,7 @@ angular.module("Skillopedia").controller("detailController", function($scope, $r
 		toastServices.hide()
 		if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
 			$scope.course = data.Result.Course;
+			$scope.get_map();
 		} else {
 			errorServices.autoHide(data.message);
 		}
@@ -18,11 +19,19 @@ angular.module("Skillopedia").controller("detailController", function($scope, $r
 	});
 	// parse iframe map url
 	$scope.get_map = function() {
-		if (!$scope.course.city) {
-			return;
-		}
-		var map_url = "https://maps.google.com/maps?q=" + $scope.course.city + " " + $scope.course.area + " " + $scope.course.street + "&output=embed";
-		return $sce.trustAsResourceUrl(map_url);
+		// if (!$scope.course.city) {
+		// 	return;
+		// }
+		// var map_url = "https://maps.google.com/maps?q=" + $scope.course.city + " " + $scope.course.area + " " + $scope.course.street + "&output=embed";
+		// return $sce.trustAsResourceUrl(map_url);
+		googleMapServices.geocoding({
+			address: $scope.course.street + "," + $scope.course.city + "," + $scope.course.state
+		}).then(function(data) {
+			$scope.lat_lng = data.results[0].geometry.location;
+			var map = googleMapServices.create_map(document.getElementById('map'), $scope.lat_lng);
+			// console.log(map)
+			var circle = googleMapServices.create_circle(map, $scope.lat_lng);
+		})
 	};
 	// parse video url
 	$scope.get_video = function(video) {

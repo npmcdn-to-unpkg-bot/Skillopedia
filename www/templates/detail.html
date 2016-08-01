@@ -12,12 +12,14 @@
                 </div>
                 <div class="coach-info">
                     <div class="auto-title">{{course.title}}</div>
-                    <div class="star">
+                    <div class="star text-ellipsis">
                         <i class="fa fa-star" ng-class="{'active':course.total_score >0}" aria-hidden="true"></i>
                         <i class="fa fa-star" ng-class="{'active':course.total_score >1}" aria-hidden="true"></i>
                         <i class="fa fa-star" ng-class="{'active':course.total_score >2}" aria-hidden="true"></i>
                         <i class="fa fa-star" ng-class="{'active':course.total_score >3}" aria-hidden="true"></i>
                         <i class="fa fa-star" ng-class="{'active':course.total_score >4}" aria-hidden="true"></i>
+                        <span ng-if="course.total_coment_num >0">共{{course.total_coment_num}}条评价</span>
+                        <span ng-if="course.total_coment_num ==0">暂无评价</span>
                     </div>
                     <div class="coach-meta"><span><i class="fa fa-bars" aria-hidden="true"></i>{{course.category_02_name}}</span><span><i class="fa fa-user" aria-hidden="true"></i>by {{course.nickname}}</span><span><i class="fa fa-map-marker" aria-hidden="true"></i>{{course.area}}</span></div>
                 </div>
@@ -126,8 +128,14 @@
             </div>
             <div class="section sm map-section">
                 <div class="section-title">Teaching location</div>
-                <iframe ng-src="{{get_map()}}" class="map" height="300px" frameborder="0" allowfullscreen></iframe>
+                <!-- <iframe ng-src="{{get_map()}}" class="map" height="300px" frameborder="0" allowfullscreen></iframe> -->
+                <div style="height:300px;border:1px solid #d2d2d2" id="map"></div>
                 <p>{{course.city+course.area+course.street}}</p>
+                <p>travel: 
+                    <span ng-if="course.travel_to_session == '1'">yes</span>
+                    <span ng-if="course.travel_to_session == '0'">no</span>
+                </p>
+                <p ng-if="course.travel_to_session == '1'">travel distance: {{course.travel_to_session_distance}}miles</p>
                 <span>specific location will show up after your payment</span>
             </div>
         </div>

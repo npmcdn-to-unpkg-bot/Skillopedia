@@ -31,7 +31,8 @@
     		<i class="fa fa-angle-right pull-right" aria-hidden="true"></i>
     	</a>
     	<a class="sidebar-item clearfix" ng-href="#/skillopedia" ng-class="{'active':highlight('/skillopedia')}">
-            <marquee class="marquee">I am a skillopedia ,Start your new life from here</marquee>
+            <marquee class="marquee" ng-if="user.agent_level == '1'">I am a skillopedia ,Start your new life from here</marquee>
+            <span class="marquee" ng-if="user.agent_level == '2'">My Course</span>
     		<i class="fa fa-angle-right pull-right" aria-hidden="true"></i>
     	</a>
         <a class="sidebar-item clearfix" ng-href="#/steps_publish" ng-class="{'active':highlight('/steps_publish')}">

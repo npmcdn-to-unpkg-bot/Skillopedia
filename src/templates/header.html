@@ -13,8 +13,11 @@
                     <a class="menu-item" ng-href="#/courses">
                         <i class="fa fa-user" aria-hidden="true"></i>个人中心
                     </a>
-                    <a class="menu-item" ng-href="#/shoppingcart">
-                        <i class="fa fa-shopping-cart" aria-hidden="true"></i>购物车
+                    <a class="menu-item" ng-href="#/skillopedia" ng-if="user.agent_level == '2'">
+                        <i class="fa fa-bookmark" aria-hidden="true"></i>我的课程
+                    </a>
+                    <a class="menu-item" ng-href="#/skillopedia" ng-if="user.agent_level == '1'">
+                        <i class="fa fa-bookmark" aria-hidden="true"></i>成为教练
                     </a>
                     <a class="menu-item" ng-click="logout()">
                         <i class="fa fa-sign-out" aria-hidden="true"></i>退出登录

@@ -1,5 +1,5 @@
 // by dribehance <dribehance.kksdapp.com>
-angular.module("Skillopedia").controller("listController", function($scope, $rootScope, $routeParams, $location, skillopediaServices, coursesServices, errorServices, toastServices, localStorageService, config) {
+angular.module("Skillopedia").controller("listController", function($scope, $rootScope, $timeout, $routeParams, $location, googleMapServices, skillopediaServices, coursesServices, errorServices, toastServices, localStorageService, config) {
 	$scope.input = {
 		price: 0,
 		review: 0,
@@ -141,10 +141,21 @@ angular.module("Skillopedia").controller("listController", function($scope, $roo
 		e.stopPropagation();
 		$.magnificPopup.open({
 			items: {
-				src: "https://maps.google.com/maps?q=" + course.city + course.area + course.street
+				// src: "https://maps.google.com/maps?q=" + course.city + course.area + course.street
+				src: "<div style='height:300px;border:1px solid #d2d2d2;background-color:white' id='map'></div>"
 			},
-			type: "iframe"
+			type: "inline"
 		});
+		$timeout(function() {
+			googleMapServices.geocoding({
+				address: course.street + "," + course.area + "," + course.city
+			}).then(function(data) {
+				$scope.lat_lng = data.results[0].geometry.location;
+				var map = googleMapServices.create_map(document.getElementById('map'), $scope.lat_lng);
+				// console.log(map)
+				var circle = googleMapServices.create_circle(map, $scope.lat_lng);
+			})
+		}, 0)
 	};
 	// go to detail
 	$scope.local_go = function(id) {
