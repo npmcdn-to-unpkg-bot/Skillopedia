@@ -80,10 +80,11 @@
                 </div>
                 <div class="skill-input addon-btn">
                     <span class="zipcode">
-                        <input type="text" class="full-width" ng-model="input.zipcode" placeholder="zipcode">
+                    <autocomplete value="input.zipcode"></autocomplete>
+                        <!-- <input type="text" class="full-width" ng-model="input.zipcode" placeholder="zipcode">
                         <div class="zipcode-suggestion" ng-if="input.zipcode && input.suggestions.length>0">
                             <span class="suggestion-item" ng-repeat="suggestion in input.suggestions | filter:input.zipcode" ng-click="select(suggestion)">{{suggestion.zipcode}}</span>
-                </div>
+                </div> -->
                 </span>
         </div>
         <button class="btn btn-primary btn-lg full-width" type="submit" ng-disabled="searchForm.$invalid">Search</button>

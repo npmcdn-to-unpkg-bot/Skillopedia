@@ -13,7 +13,8 @@ angular.module("Skillopedia").constant("config", {
 		app_sign: "123456"
 	},
 	key: {
-		google: "AIzaSyDimOSOuBupzzpGhzX9lspVfLWaHW-6DNI"
+		google: "AIzaSyDimOSOuBupzzpGhzX9lspVfLWaHW-6DNI",
+		google_browser_key: "AIzaSyCpIyQ3HnXddxyv9KOyeX0IdMPazzSIH0I"
 	},
 	interceptor: [
 		"about",

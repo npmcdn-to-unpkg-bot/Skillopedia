@@ -1,5 +1,5 @@
 // by dribehance <dribehance.kksdapp.com>
-angular.module("Skillopedia").controller("orderConfirmController", function($scope, $timeout, $rootScope, $routeParams, orderServices, errorServices, toastServices, localStorageService, config) {
+angular.module("Skillopedia").controller("orderConfirmController", function($scope, $timeout, $rootScope, $routeParams, $route, orderServices, errorServices, toastServices, localStorageService, config) {
 	if (!$routeParams.id) {
 		$rootScope.back()
 		return;
@@ -110,6 +110,9 @@ angular.module("Skillopedia").controller("orderConfirmController", function($sco
 				toastServices.hide()
 				if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
 					errorServices.autoHide(data.message);
+					$timeout(function() {
+						$route.reload();
+					}, 2000)
 				} else {
 					errorServices.autoHide(data.message);
 				}
@@ -122,7 +125,24 @@ angular.module("Skillopedia").controller("orderConfirmController", function($sco
 		$scope.confirm.open();
 		$scope.confirm.cancle_callback = function() {}
 		$scope.confirm.ok_callback = function() {
-			console.log("reject")
+			toastServices.show();
+			orderServices.confirm_or_reject({
+				schedule_type: "1",
+				refund_reason: $scope.input.refund_reason,
+				orders_schedule_ids: $scope.calendar.selected.map(function(c) {
+					return c.from.orders_schedule_id
+				}).join("#")
+			}).then(function(data) {
+				toastServices.hide()
+				if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
+					errorServices.autoHide(data.message);
+					$timeout(function() {
+						$route.reload();
+					}, 2000)
+				} else {
+					errorServices.autoHide(data.message);
+				}
+			})
 		}
 	}
 })

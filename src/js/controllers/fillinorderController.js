@@ -112,7 +112,7 @@ angular.module("Skillopedia").controller("fillinorderController", function($scop
 			$scope.lat_lng = data.results[0].geometry.location;
 			var map = googleMapServices.create_map(document.getElementById('map'), $scope.lat_lng);
 			// console.log(map)
-			type == "1" && (googleMapServices.create_circle(map, $scope.lat_lng));
+			type == "1" && (googleMapServices.create_circle_marker(map, $scope.lat_lng));
 			type == "2" && (googleMapServices.create_marker(map, $scope.lat_lng));
 		})
 	};

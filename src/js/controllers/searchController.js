@@ -35,8 +35,8 @@ angular.module("Skillopedia").controller("searchController", function($scope, $r
 		message: "点击加载更多",
 		kw: $routeParams.keyword,
 		zipcode: $routeParams.zipcode,
-		latitude: "0",
-		longitude: "0",
+		latitude: $routeParams.lat || "0",
+		longitude: $routeParams.lng || "0",
 		category_02_id: $scope.input.category.id,
 		category_02_name: $scope.input.category.name,
 		distances: $scope.input.distance,
@@ -103,12 +103,18 @@ angular.module("Skillopedia").controller("searchController", function($scope, $r
 	$scope.remove = function(condition) {
 		$scope.input[condition] = "";
 	}
-	$scope.sidebar = {
-		title: "recommand"
-	}
-	$scope.change_sidebar = function(title) {
-		$scope.sidebar.title = title;
-	}
+	$scope.$on("slideEnd", function(e, m) {
+		$scope.input.distance = m;
+		$timeout(function() {
+			$scope.reload();
+		}, 100)
+	});
+	// $scope.sidebar = {
+	// 	title: "recommand"
+	// }
+	// $scope.change_sidebar = function(title) {
+	// 	$scope.sidebar.title = title;
+	// }
 	$scope.open_map = function(course, e) {
 		e.preventDefault();
 		e.stopPropagation();
@@ -126,8 +132,7 @@ angular.module("Skillopedia").controller("searchController", function($scope, $r
 				$scope.lat_lng = data.results[0].geometry.location;
 				var map = googleMapServices.create_map(document.getElementById('map'), $scope.lat_lng);
 				// console.log(map)
-				var marker = googleMapServices.create_marker(map, $scope.lat_lng);
-				var circle = googleMapServices.create_circle(map, $scope.lat_lng);
+				var circle_marker = googleMapServices.create_circle_marker(map, $scope.lat_lng);
 			})
 		}, 0)
 	};

@@ -4,10 +4,17 @@
     border: 1px solid @brand-second;
     background-color: white;
     .calendar-day {
-        padding: 15px;
         text-align: center;
+        clear: both;
+        input {
+            padding: 15px;
+            text-align: center;
+            border:none;
+            .box-sizing(border-box);
+        }
     }
     .calendar-times {
+        clear: both;
         overflow: hidden;
     }
     .calendar-time {

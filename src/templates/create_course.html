@@ -45,7 +45,9 @@
                                     <input type="text" name="cert_title" ng-model="cert.title" class="full-width" placeholder="Certification Name" />
                                 </div>
                                 <div class="course-input">
-                                    <input type="text" name="cert_time" ng-model="cert.time" class="full-width pickadate" placeholder="Effective Time Certification, eg: May 12,2000" />
+                                    <datepicker date-format="MMM dd, yyyy">
+                                        <input type="text" name="cert_time" ng-model="cert.time" class="full-width" placeholder="Effective Time Certification, eg: May 12,2000" readonly/>
+                                    </datepicker>
                                 </div>
                                 <div class="course-input">
                                     <input type="text" name="cert_institute" ng-model="cert.institute" class="full-width" placeholder="Institute" />
@@ -65,14 +67,10 @@
                     </div>
                 </div>
                 <div class="title-input">
-                    <span class="clearfix"><b class="text-danger"> * </b>Overview</span>
-                    <textarea class="full-width" rows="8" name="overview" ng-model="input.overview" ng-required="true" placeholder="Overview"></textarea>
-                </div>
-                <div class="title-input">
-                    <span><b class="text-danger"> * </b>Cover</span>
+                    <span>pictureVideo</span>
                     <div class="open-img" ng-repeat="cover in input.covers track by $index" ng-form="coverForm">
                         <img ng-src="{{staticImageUrl + cover}}" class="full-width full-height" err-src="../images/error.jpg" alt="">
-                        <input type="hidden" name="cover" ng-model="cover" required>
+                        <input type="hidden" name="cover" ng-model="cover">
                         <a ng-click="remove_cover(cover)" class="remove"><i class="fa fa-times"></i></a>
                     </div>
                     <div class="open-img" flow-init="{singleFile:true}" ng-controller="uploadCoversController" flow-btn>
@@ -86,8 +84,18 @@
                         <div class="course-videoremove" ng-click="remove_video(video)">remove</div>
                     </div>
                 </div>
+                <div class="title-input">
+                    <span class="clearfix"><b class="text-danger"> * </b>Overview</span>
+                    <textarea class="full-width" rows="8" name="overview" ng-model="input.overview" ng-required="true" placeholder="Overview"></textarea>
+                </div>
                 <div class="section text-center">
                     <button type="button" class="btn btn-success col-xs-4 btn-md col-xs-offset-4" ng-click="show_step(2)" ng-disabled="createCourseForm.stepForm1.$invalid">Next</button>
+                </div>
+                <div class="section text-center text-danger">
+                    <div ng-if="stepForm1.title.$invalid &&stepForm1.$dirty">* 课程必填</div>
+                    <div ng-if="stepForm1.certForm.$invalid &&stepForm1.$dirty">* 证书必须上传</div>
+                    <div ng-if="stepForm1.videoForm.$invalid &&stepForm1.$dirty">* 如果选择上传视频，视频链接必填</div>
+                    <div ng-if="stepForm1.overview.$invalid &&stepForm1.$dirty">* 简介必填</div>
                 </div>
             </div>
             <!-- 新建课程第2步 -->
@@ -104,9 +112,19 @@
                         </div>
                     </div>
                     <div class="m-session pull-right">
-                        <span><b class="text-danger"> * </b>Teaching Since</span>
-                        <div class="u-input">
-                            <input type="text" name="teaching_since" ng-model="input.teaching_since" ng-required="true" class="full-width pickadate" placeholder="teaching since xx, eg: May 12,2000" class="full-width" />
+                        <span><b class="text-danger"> * </b>Experienced Year</span>
+                        <div class="course-select">
+                            <select name="teaching_since" ng-model="input.teaching_since" required>
+                                <option value="">请选择</option>
+                                <option value="1+">1+</option>
+                                <option value="3+">3+</option>
+                                <option value="5+">5+</option>
+                                <option value="8+">8+</option>
+                                <option value="10+">10+</option>
+                                <option value="15+">15+</option>
+                            </select>
+                            <i class="fa fa-caret-down" aria-hidden="true"></i>
+                            <!-- <input type="text" name="teaching_since" ng-model="input.teaching_since" ng-required="true" class="full-width pickadate" placeholder="Experienced Year" class="full-width" /> -->
                         </div>
                     </div>
                 </div>
@@ -121,8 +139,16 @@
                         </div>
                         <div class="m-session pull-right">
                             <span><b class="text-danger"> * </b>Teaching age<b class="text-danger" ng-if="stepForm2.teaching_age.$invalid && stepForm2.teaching_age.$dirty"> (Number Only) </b></span>
-                            <div class="u-input">
-                                <input type="number" name="teaching_age" ng-model="input.teaching_age" ng-required="true" ng-pattern="/^\d+$/" class="full-width" placeholder="teaching age" class="full-width" />
+                            <div class="course-select">
+                                <select name="teaching_age" ng-model="input.teaching_age" required>
+                                    <option value="">请选择</option>
+                                    <option value="4+">4+</option>
+                                    <option value="7+">7+</option>
+                                    <option value="15+">15+</option>
+                                    <option value="18+">18+</option>
+                                </select>
+                                <i class="fa fa-caret-down" aria-hidden="true"></i>
+                                <!-- <input type="number" name="teaching_age" ng-model="input.teaching_age" ng-required="true" ng-pattern="/^\d+$/" class="full-width" placeholder="teaching age" class="full-width" /> -->
                             </div>
                         </div>
                     </div>
@@ -160,7 +186,7 @@
                                 <div class="course-input">
                                     <input type="number" class="full-width" name="off" ng-model="discount.off" ng-required="true" ng-pattern="/^\d+$/" placeholder="discount amount" />
                                 </div>
-                                <div class="course-edit" ng-click="remove_discount(discount)">remove</div>
+                                <!-- <div class="course-edit" ng-click="remove_discount(discount)">remove</div> -->
                             </div>
                         </div>
                         <div class="course-items pull-left">
@@ -175,6 +201,14 @@
                 <div class="section text-center">
                     <button type="button" class="btn btn-default col-xs-3 btn-md col-xs-offset-2" ng-click="show_step(1)">Last step</button>
                     <button type="button" class="btn btn-success col-xs-3 btn-md col-xs-offset-1" ng-click="show_step(3)" ng-disabled="createCourseForm.stepForm2.$invalid">Next</button>
+                </div>
+                <div class="section text-center text-danger">
+                    <div ng-if="stepForm2.rate.$invalid &&stepForm2.$dirty">* Session rate is number required</div>
+                    <div ng-if="stepForm2.teaching_since.$invalid &&stepForm2.$dirty">* Experienced year is required</div>
+                    <div ng-if="stepForm2.teaching_age.$invalid &&stepForm2.$dirty">* Teaching age is required</div>
+                    <div ng-if="stepForm2.partner.$invalid &&stepForm2.$dirty">* Parter is number required</div>
+                    <div ng-if="stepForm2.surcharge.$invalid &&stepForm2.$dirty">* Surcharge is number required</div>
+                    <div ng-if="stepForm2.byMoneyForm.$invalid &&stepForm2.$dirty">* Discount is number required</div>
                 </div>
             </div>
             <!-- 新建课程第3步 -->
@@ -212,10 +246,11 @@
                 </div>
                 <div ng-show="location_mode == 'preview'">
                     <div class="title-input">
-                        <span>Location <b class="text-danger">(drag to your location!)</b></span>
+                        <span>Location <!-- <b class="text-danger">(drag to your location!)</b> --></span>
                         <div class="clearfix">
                             <div class="location">
-                                <label class="pull-left">{{input.state+input.city+input.street+input.apt}}</label>
+                                <!-- <label class="pull-left">{{input.street+" , "+input.apt+" , "+input.city+" , "+input.state+" , "+input.zipcode}}</label> -->
+                                <label class="pull-left">{{format_address}}</label>
                                 <div class="course-location pull-right" ng-click="edit_location()">Edit Location</div>
                             </div>
                         </div>
@@ -254,20 +289,25 @@
                     <div class="m-session z-margin">
                         <div class="u-input" style="position:relative">
                             <input type="text" autocomplete="off" name="zipcode" ng-pattern="/[0-9]/" ng-model="input.zipcode" ng-required="true" class="full-width" placeholder="Zip code e.g. 94103" />
-                            <div class="zipcode-suggestion" ng-if="input.zipcode && input.suggestions.length>0">
+                            <!-- <div class="zipcode-suggestion" ng-if="input.zipcode && input.suggestions.length>0">
                                 <span class="suggestion-item" ng-repeat="suggestion in input.suggestions | filter:input.zipcode" ng-click="select(suggestion)">{{suggestion.zipcode}}</span>
                             </div>
                             <div class="zipcode-suggestion" ng-if="locationForm.zipcode.$invalid && locationForm.zipcode.$dirty">
-                                <span class="suggestion-item text-danger" > Invalid Zip Code</span>
-                            </div>
+                                <span class="suggestion-item text-danger"> Invalid Zip Code</span>
+                            </div> -->
                         </div>
                     </div>
                     <div class="section text-center">
                         <button type="button" class="btn btn-default col-xs-3 btn-md col-xs-offset-2" ng-click="show_step(2)">Last step</button>
                         <button type="button" class="btn btn-danger col-xs-3 btn-md col-xs-offset-1" ng-click="save_location()" ng-disabled="locationForm.$invalid">Save</button>
                     </div>
+                    <div class="section text-center text-danger">
+                        <div ng-if="stepForm3.distance.$invalid &&stepForm3.$dirty">* Travel distance is number required</div>
+                        <div ng-if="stepForm3.traffic_cost.$invalid &&stepForm3.$dirty">* traffic_cost number is required</div>
+                        <div ng-if="stepForm3.locationForm.$invalid &&stepForm3.$dirty">* street,city,state is required</div>
+                    </div>
                 </div>
-                <div class="course-tips">
+                <div class="course-tips text-success">
                     travel to session if you choose yes,means you are agree with travel terms.
                 </div>
             </div>

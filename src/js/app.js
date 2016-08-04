@@ -7,6 +7,7 @@ angular.module("Skillopedia", [
 		"ngSanitize",
 		"flow",
 		"textAngular",
+		"720kb.datepicker",
 		// "timer"
 	])
 	.config(function($routeProvider, $httpProvider, $locationProvider, $provide, localStorageServiceProvider, config) {

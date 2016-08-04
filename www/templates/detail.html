@@ -27,12 +27,17 @@
             <div class="section sm">
                 <div class="section-title">Detail</div>
                 <p class="clearfix">
-                    <span class="pull-left">Teaching:since {{course.teaching_since}}</span>
+                    <span class="pull-left">Teaching: since {{course.teaching_since}}</span>
                     <span class="pull-right">Session Duration: {{course.session_length}}min</span>
                 </p>
-                <div class="clearfix">
-                    <span class="pull-left">Group Session:Up to {{course.additional_partner}}</span>
+                <p class="clearfix">
+                    <span class="pull-left">Group Session: Up to {{course.additional_partner}}</span>
                     <span class="pull-right">Teaches: Age {{course.teaching_age}} and up</span>
+                </p>
+                <div class="clearfix">
+                    <span class="pull-left" ng-if="course.travel_to_session == '1'">Travel: Yes</span>
+                    <span class="pull-left" ng-if="course.travel_to_session == '0'">Travel: No</span>
+                    <span class="pull-right" ng-if="course.travel_to_session == '1'">Travel Distance: {{course.travel_to_session_distance}} miles</span>
                 </div>
             </div>
             <div class="line"></div>
@@ -130,7 +135,7 @@
                 <div class="section-title">Teaching location</div>
                 <!-- <iframe ng-src="{{get_map()}}" class="map" height="300px" frameborder="0" allowfullscreen></iframe> -->
                 <div style="height:300px;border:1px solid #d2d2d2" id="map"></div>
-                <p>{{course.city+course.area+course.street}}</p>
+                <p>{{course.street+" , "+course.area+" , "+course.city}}</p>
                 <p>travel: 
                     <span ng-if="course.travel_to_session == '1'">yes</span>
                     <span ng-if="course.travel_to_session == '0'">no</span>

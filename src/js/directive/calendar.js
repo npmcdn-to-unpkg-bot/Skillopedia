@@ -7,27 +7,33 @@ angular.module("Skillopedia").directive('calendar', function($filter) {
 			calendar: "=",
 		},
 		link: function(scope, element, attrs) {
+			scope.nowaday = $filter("date")(new Date(), "yyyy-MM-dd");
 			scope.calendar = angular.extend({}, scope.calendar);
 			scope.calendar.day = $filter("date")(new Date());
-			var date = $(".calendar-day").pickadate();
-			var picker = date.pickadate('picker');
-			picker.on({
-				set: function(thingSet) {
-					var select = picker.get();
-					scope.$apply(function() {
-						scope.calendar.day = select || scope.calendar.day;
-						if (typeof scope.calendar.onDayChange == "function") {
-							scope.calendar.onDayChange()
-						}
-					})
+			// var date = $(".calendar-day").pickadate();
+			// var picker = date.pickadate('picker');
+			// picker.on({
+			// 	set: function(thingSet) {
+			// 		var select = picker.get();
+			// 		scope.$apply(function() {
+			// 			scope.calendar.day = select || scope.calendar.day;
+			// 			if (typeof scope.calendar.onDayChange == "function") {
+			// 				scope.calendar.onDayChange()
+			// 			}
+			// 		})
+			// 	}
+			// })
+			// scope.pickadate = function(event) {
+			// 	picker.open();
+			// 	event.stopPropagation();
+			// 	event.preventDefault()
+			// };
+			// edit mode
+			scope.$watch("calendar.day", function(n, o) {
+				if (n && n != o && typeof scope.calendar.onDayChange == "function") {
+					scope.calendar.onDayChange()
 				}
 			})
-			scope.pickadate = function(event) {
-				picker.open();
-				event.stopPropagation();
-				event.preventDefault()
-			};
-			// edit mode
 			if (scope.calendar.mode == "edit") {
 				// scope.calendar = angular.extend({}, scope.calendar);
 				scope.calendar.selected = [];

@@ -1082,7 +1082,8 @@
 
 .title-input {
     display: block;
-    overflow: hidden;
+    // overflow: hidden;
+    clear: both;
 }
 
 .title-input label {
@@ -1094,7 +1095,10 @@
     display: block;
     padding: 30px 0;
 }
-
+.title-input datepicker span {
+    display: inline-block;
+    padding: 0
+}
 .input-select {
     position: relative;
     width: 100%;
@@ -1109,7 +1113,7 @@
     padding: 15px;
     border: solid 1px #CCCCCC;
     // color: #CECECE;
-    line-height: 100%;
+    // line-height: 100%;
     outline: none;
     // background-color: white;
     background-color: transparent;
@@ -1130,7 +1134,8 @@
 
 .course-itemwrap {
     display: block;
-    overflow: hidden;
+    // overflow: hidden;
+    clear: both;
 }
 
 .course-items {
@@ -1259,7 +1264,7 @@
     border: solid 1px #CCCCCC;
     outline: none;
     // color: #CECECE;
-    line-height: 100%;
+    // line-height: 100%;
     background-color: white;
     -webkit-appearance: none;
 }

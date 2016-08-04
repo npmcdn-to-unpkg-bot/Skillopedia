@@ -4,26 +4,9 @@
     <div class="section list-section">
         <div class="list-left">
             <div class="conditions">
-                <!-- <div class="condition-1">
-                    <span><b>Category:</b></span>
-                    <label class="condition" ng-class="{'active':input.category.id == category.category_02_id}" ng-repeat="category in categorys">
-                        <input type="radio" class="hide" ng-model="input.category" ng-value="{name:category.category_02_name,id:category.category_02_id}" name="category">{{category.category_02_name}}</label>
-                </div>
-                <div class="condition-2">
-                    <span><b>Distance:</b></span>
-                    <label class="condition" ng-class="{'active':input.distance == distance}" ng-repeat="distance in input.distances">
-                        <input type="radio" class="hide" ng-model="input.distance" value="{{distance}}" name="distance">{{distance}}</label>
-                </div>
-                <div class="condition-3">
-                    <span><b>Priority:</b></span>
-                    <label class="condition" ng-class="{'active':input.priority == priority}" ng-repeat="priority in input.priorities">
-                        <input type="radio" class="hide" ng-model="input.priority" value="{{priority}}" name="priority">{{priority}}</label>
-                </div>
-                <span class="condition select" ng-if="input.category.name" ng-click="remove('category')">{{input.category.name}} <i class="fa fa-times-circle" aria-hidden="true"></i></span>
-                <span class="condition select" ng-if="input.distance" ng-click="remove('distance')">{{input.distance}} <i class="fa fa-times-circle" aria-hidden="true"></i></span>
-                <span class="condition select" ng-if="input.priority" ng-click="remove('priority')">{{input.priority}} <i class="fa fa-times-circle" aria-hidden="true"></i></span> -->
                 <span class="text-primary">{{page.result}}</span>
             </div>
+            <rangeslider></rangeslider>
             <div class="coach-item hover" ng-click="local_go(course.course_id)" ng-repeat="course in courses">
                 <div class="coach-avatar">
                     <imageview data-rate="1" center-only src="staticImageUrl + course.coach_image"></imageview>
@@ -40,6 +23,7 @@
                         <i class="fa fa-star" ng-class="{'active':course.total_score >4}" aria-hidden="true"></i>
                         <span ng-if="course.total_coment_num >0">共{{course.total_coment_num}}条评价</span>
                         <span ng-if="course.total_coment_num ==0">暂无评价</span>
+                        <span ng-if="course.distance">{{course.distance}}</span>
                     </div>
                     <div class="coach-meta">
                         <span><i class="fa fa-bars" aria-hidden="true"></i>{{course.category_02_name}}</span>
@@ -65,10 +49,11 @@
                 </div>
                 <div class="skill-input addon-btn">
                     <span class="zipcode">
-                        <input type="text" class="full-width" ng-model="input.zipcode" placeholder="zipcode">
+                        <autocomplete value="input.zipcode"></autocomplete>
+                        <!-- <input type="text" class="full-width" ng-model="input.zipcode" placeholder="zipcode">
                         <div class="zipcode-suggestion" ng-if="input.zipcode && input.suggestions.length>0">
                             <span class="suggestion-item" ng-repeat="suggestion in input.suggestions | filter:input.zipcode" ng-click="select(suggestion)">{{suggestion.zipcode}}</span>
-                </div>
+                </div> -->
                 </span>
         </div>
         <button class="btn btn-primary btn-lg full-width" type="submit" ng-disabled="searchForm.$invalid">Search</button>
@@ -95,5 +80,7 @@
     </div>
 </div>
 </div>
+<!-- confirm -->
+<confirm confirm="confirm" class="hide"></confirm>
 <!-- footer -->
 <div ng-include="'templates/footer.html'"></div>

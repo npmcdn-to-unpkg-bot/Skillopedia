@@ -18,9 +18,9 @@ angular.module("Skillopedia").controller("createCourseController", function($sco
 		if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
 			$scope.course_id = data.course_id;
 			// pickadate
-			$timeout(function() {
-				$(".pickadate").pickadate();
-			}, 0);
+			// $timeout(function() {
+			// 	$(".pickadate").pickadate();
+			// }, 0);
 		} else {
 			errorServices.autoHide(data.message);
 		}
@@ -180,8 +180,18 @@ angular.module("Skillopedia").controller("createCourseController", function($sco
 	$scope.input.discounts = [{
 		message: "One-time Purchase",
 		unit: "Money",
-		purchase: "",
-		off: ""
+		purchase: 3,
+		off: 0
+	}, {
+		message: "One-time Purchase",
+		unit: "Money",
+		purchase: 5,
+		off: 0
+	}, {
+		message: "One-time Purchase",
+		unit: "Money",
+		purchase: 10,
+		off: 0
 	}];
 	// 增加打折输入
 	$scope.add_discount = function() {
@@ -271,9 +281,11 @@ angular.module("Skillopedia").controller("createCourseController", function($sco
 		$scope.location_mode = "preview";
 		// $scope.map_url = $scope.get_map($scope.input.state, $scope.input.city, $scope.input.street, $scope.input.apt);
 		googleMapServices.geocoding({
-			address: $scope.input.street + "," + $scope.input.city + "," + $scope.input.state
+			address: $scope.input.street + "," + $scope.input.apt + "," + $scope.input.city + "," + $scope.input.state + "," + $scope.input.zipcode
 		}).then(function(data) {
+			console.log(data)
 			$scope.lat_lng = data.results[0].geometry.location;
+			$scope.format_address = data.results[0].formatted_address;
 			var map = googleMapServices.create_map(document.getElementById('map'), $scope.lat_lng);
 			// console.log(map)
 			var marker = googleMapServices.create_marker(map, $scope.lat_lng);
@@ -294,76 +306,76 @@ angular.module("Skillopedia").controller("createCourseController", function($sco
 	};
 	// 第四步;
 	$scope.time_slots = [{
-		time: "09:00-09:30",
+		time: "09:00",
 		slot: "1"
 	}, {
-		time: "09:30-10:00",
+		time: "09:30",
 		slot: "2"
 	}, {
-		time: "10:00-10:30",
+		time: "10:00",
 		slot: "3"
 	}, {
-		time: "10:30-11:00",
+		time: "10:30",
 		slot: "4"
 	}, {
-		time: "11:00-11:30",
+		time: "11:00",
 		slot: "5"
 	}, {
-		time: "11:30-12:00",
+		time: "11:30",
 		slot: "6"
 	}, {
-		time: "12:00-12:30",
+		time: "12:00",
 		slot: "7"
 	}, {
-		time: "12:30-13:00",
+		time: "12:30",
 		slot: "8"
 	}, {
-		time: "13:00-13:30",
+		time: "13:00",
 		slot: "9"
 	}, {
-		time: "13:30-14:00",
+		time: "13:30",
 		slot: "10"
 	}, {
-		time: "14:00-14:30",
+		time: "14:00",
 		slot: "11"
 	}, {
-		time: "14:30-15:00",
+		time: "14:30",
 		slot: "12"
 	}, {
-		time: "15:00-15:30",
+		time: "15:00",
 		slot: "13"
 	}, {
-		time: "15:30-16:00",
+		time: "15:30",
 		slot: "14"
 	}, {
-		time: "16:00-16:30",
+		time: "16:00",
 		slot: "15"
 	}, {
-		time: "16:30-17:00",
+		time: "16:30",
 		slot: "16"
 	}, {
-		time: "17:00-17:30",
+		time: "17:00",
 		slot: "17"
 	}, {
-		time: "17:30-18:00",
+		time: "17:30",
 		slot: "18"
 	}, {
-		time: "18:00-18:30",
+		time: "18:00",
 		slot: "19"
 	}, {
-		time: "18:30-19:00",
+		time: "18:30",
 		slot: "20"
 	}, {
-		time: "19:00-19:30",
+		time: "19:00",
 		slot: "21"
 	}, {
-		time: "19:30-20:00",
+		time: "19:30",
 		slot: "22"
 	}, {
-		time: "20:00-20:30",
+		time: "20:00",
 		slot: "23"
 	}, {
-		time: "20:30-21:00",
+		time: "20:30",
 		slot: "24"
 	}];
 	$scope.$watch("input.start_time", function(n, o) {
@@ -469,12 +481,12 @@ angular.module("Skillopedia").controller("createCourseController", function($sco
 		}).then(function(data) {
 			toastServices.hide()
 			if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
-				errorServices.autoHide(data.message);
+				errorServices.autoHide(data.message, 7000);
 				$timeout(function() {
 					// $rootScope.back();
 					// $window.close();
 					$location.path("skillopedia").replace();
-				}, 2000)
+				}, 7000)
 			} else {
 				errorServices.autoHide(data.message);
 			}
@@ -555,11 +567,11 @@ angular.module("Skillopedia").controller("uploadCoversController", function($sco
 			event.preventDefault(); //prevent file from uploading
 			return;
 		}
-		if (parseFloat(flow.size) / 1000 > 500) {
-			errorServices.autoHide("图片太大，保证图片在500kb以内")
-			event.preventDefault(); //prevent file from uploading
-			return;
-		}
+		// if (parseFloat(flow.size) / 1000 > 500) {
+		// 	errorServices.autoHide("图片太大，保证图片在500kb以内")
+		// 	event.preventDefault(); //prevent file from uploading
+		// 	return;
+		// }
 		// $scope.cover.url = "";
 	});
 	$scope.$on('flow::fileSuccess', function(file, message, chunk) {

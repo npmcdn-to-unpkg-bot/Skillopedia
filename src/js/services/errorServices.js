@@ -9,13 +9,14 @@ angular.module("Skillopedia").factory("errorServices", function($rootScope, $tim
 			$rootScope.error_msg = "";
 			$(".error-msg").hide();
 		},
-		autoHide: function(error) {
+		autoHide: function(error, duration) {
+			var duration = duration || 3000;
 			$rootScope.error_msg = error;
 			$(".error-msg").show();
 			$timeout(function() {
 				$rootScope.error_msg = "";
 				$(".error-msg").hide();
-			}, 4000)
+			}, duration)
 		},
 		requestError: function(data, status, headers, config) {
 			// hide toast
