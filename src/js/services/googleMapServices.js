@@ -6,7 +6,7 @@ angular.module("Skillopedia").factory("googleMapServices", function($http, $q, c
 				zoom: 17,
 				center: latlng,
 				disableDoubleClickZoom: true,
-				draggable: false,
+				draggable: true,
 				scrollwheel: false,
 				zoomControl: false,
 				// mapTypeId: google.maps.MapTypeId.TERRAIN
@@ -28,7 +28,7 @@ angular.module("Skillopedia").factory("googleMapServices", function($http, $q, c
 				icon: {
 					url: 'images/spotlight-poi.png',
 				},
-				draggable: true,
+				draggable: false,
 			});
 			return marker;
 		},

@@ -7,7 +7,7 @@ angular.module("Skillopedia").controller("scheduleController", function($scope, 
 		times: []
 	}
 	$scope.query_schedule = function(day) {
-		$scope.calendar.selected = null;
+		$scope.calendar.selected = [];
 		toastServices.show();
 		scheduleServices.query({
 			user_id: $rootScope.user.user_id,
@@ -41,7 +41,9 @@ angular.module("Skillopedia").controller("scheduleController", function($scope, 
 			toastServices.show();
 			scheduleServices.set_busy({
 				choice_currentdate: $filter("date")(new Date($scope.calendar.day).getTime(), "yyyy-MM-dd"),
-				time_slots: $scope.calendar.selected.hour_index,
+				time_slots: $scope.calendar.selected.map(function(t) {
+					return t.hour_index
+				}).join("#"),
 				remarks: $scope.confirm.content
 			}).then(function(data) {
 				toastServices.hide()
@@ -58,7 +60,9 @@ angular.module("Skillopedia").controller("scheduleController", function($scope, 
 		toastServices.show();
 		scheduleServices.set_free({
 			choice_currentdate: $filter("date")(new Date($scope.calendar.day).getTime(), "yyyy-MM-dd"),
-			time_slots: $scope.calendar.selected.hour_index
+			time_slots: $scope.calendar.selected.map(function(t) {
+				return t.hour_index;
+			}).join("#")
 		}).then(function(data) {
 			toastServices.hide()
 			if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
@@ -68,27 +72,9 @@ angular.module("Skillopedia").controller("scheduleController", function($scope, 
 				errorServices.autoHide(data.message);
 			}
 		});
-		// $scope.confirm.content = "标记为自由时间？";
-		// $scope.confirm.open();
-		// $scope.confirm.cancle_callback = function() {}
-		// $scope.confirm.ok_callback = function() {
-		// 	toastServices.show();
-		// 	scheduleServices.set_free({
-		// 		choice_currentdate: $filter("date")(new Date($scope.calendar.day).getTime(), "yyyy-MM-dd"),
-		// 		time_slots: $scope.calendar.selected.hour_index
-		// 	}).then(function(data) {
-		// 		toastServices.hide()
-		// 		if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
-		// 			errorServices.autoHide(data.message);
-		// 			$scope.query_schedule($filter("date")(new Date($scope.calendar.day).getTime(), "yyyy-MM-dd"))
-		// 		} else {
-		// 			errorServices.autoHide(data.message);
-		// 		}
-		// 	})
-		// }
 	}
 	$scope.busy_one_day = function() {
-		$scope.confirm.content = "全天没有课？";
+		$scope.confirm.content = $scope.calendar.is_busy_24 == "0" ? "全天没有课？" : "全天有课？";
 		$scope.confirm.open();
 		$scope.confirm.cancle_callback = function() {}
 		$scope.confirm.ok_callback = function() {
@@ -109,7 +95,7 @@ angular.module("Skillopedia").controller("scheduleController", function($scope, 
 		}
 	}
 	$scope.busy_all_day = function() {
-		$scope.confirm.content = "暂停课程？";
+		$scope.confirm.content = $scope.calendar.is_stop_course == "0" ? "暂停课程" : "启动课程";
 		$scope.confirm.open();
 		$scope.confirm.cancle_callback = function() {}
 		$scope.confirm.ok_callback = function() {

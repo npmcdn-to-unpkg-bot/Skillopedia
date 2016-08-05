@@ -42,6 +42,13 @@
             </div>
             <div class="line"></div>
             <div class="section sm">
+                <div class="section-title">Overview</div>
+                <div class="overview">
+                    {{course.overview}}
+                </div>
+            </div>
+            <div class="line"></div>
+            <div class="section sm">
                 <div class="section-title">Photo and Video</div>
                 <!-- <button id="openpopup">open</button> -->
                 <div class="image-gallaxy clearfix">
@@ -62,13 +69,6 @@
                     <a class="image" href="{{staticImageUrl + certification.image_01}}" ng-repeat="certification in course.CourseCertifications">
                         <img ng-src="{{staticImageUrl + certification.image_01}}" class="full-width" alt="" err-src="../images/error.jpg">
                     </a>
-                </div>
-            </div>
-            <div class="line"></div>
-            <div class="section sm">
-                <div class="section-title">Overview</div>
-                <div class="overview">
-                    {{course.overview}}
                 </div>
             </div>
             <div class="line"></div>
@@ -130,6 +130,9 @@
             <div class="section sm">
                 <!-- <div ng-include="'templates/calendar.html'"></div> -->
                 <calendar calendar="calendar" class="small-calendar"></calendar>
+                <span class="calender-tip unavailable">不可预约</span>
+                <span class="calender-tip confirm">已经被人预约</span>
+                <span class="calender-tip busy">忙</span>
             </div>
             <div class="section sm map-section">
                 <div class="section-title">Teaching location</div>

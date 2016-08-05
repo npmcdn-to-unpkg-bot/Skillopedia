@@ -265,6 +265,12 @@ angular.module("Skillopedia").controller("fillinorderController", function($scop
 		if ($scope.course.travel_to_session == '1' && $scope.travel_place != $scope.course_place) {
 			$scope.input.total_traffic_cost = parseFloat($scope.course.travel_to_session_trafic_surcharge) * parseFloat($scope.input.amount);
 		}
+		// 首次服务费用 百分比
+		if ($rootScope.is_signin()) {
+			$scope.input.total_fee = parseFloat($scope.input.total_price) * parseFloat($scope.course.first_joint_fee) / 100;
+		} else {
+			$scope.input.total_fee = 0;
+		}
 	}
 	$scope.is_watch = false;
 	$scope.$watch("input.coupons.selected", function(n, o) {
@@ -300,8 +306,8 @@ angular.module("Skillopedia").controller("fillinorderController", function($scop
 		}
 		// 首单服务费+交通费
 		var total_session_rate = $scope.input.discount_price || $scope.input.total_price,
-			total_session_rate = parseFloat(total_session_rate) + parseFloat($scope.course.first_joint_fee) + parseFloat($scope.input.total_traffic_cost),
-			original_total_session_rate = parseFloat($scope.input.total_price) + parseFloat($scope.course.first_joint_fee) + parseFloat($scope.input.total_traffic_cost);
+			total_session_rate = parseFloat(total_session_rate) + parseFloat($scope.input.total_fee) + parseFloat($scope.input.total_traffic_cost),
+			original_total_session_rate = parseFloat($scope.input.total_price) + parseFloat($scope.input.total_fee) + parseFloat($scope.input.total_traffic_cost);
 		toastServices.show();
 		orderServices.fillinorder({
 			order_type: type,
@@ -332,7 +338,7 @@ angular.module("Skillopedia").controller("fillinorderController", function($scop
 			schedule_datas: $scope.calendar.selected.map(function(c) {
 				return c.from.day + "A" + c.from.hour_index + "A" + c.to.hour_index;
 			}).join("#"),
-			first_joint_fee: $scope.course.first_joint_fee
+			first_joint_fee: $scope.input.total_fee
 		}).then(function(data) {
 			toastServices.hide()
 			if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
