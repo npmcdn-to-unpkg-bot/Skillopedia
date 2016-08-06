@@ -6,7 +6,6 @@
             <div class="conditions">
                 <span class="text-primary">{{page.result}}</span>
             </div>
-            <rangeslider></rangeslider>
             <div class="coach-item hover" ng-click="local_go(course.course_id)" ng-repeat="course in courses">
                 <div class="coach-avatar">
                     <imageview data-rate="1" center-only src="staticImageUrl + course.coach_image"></imageview>
@@ -58,6 +57,9 @@
         </div>
         <button class="btn btn-primary btn-lg full-width" type="submit" ng-disabled="searchForm.$invalid">Search</button>
         </form>
+        <div class="section sm">
+            <rangeslider></rangeslider>
+        </div>
         <div class="category-tab">
             <!-- <div class="tab-header clearfix">
                 <span ng-class="{'active':sidebar.title=='recommand'}" ng-click="change_sidebar('recommand')">Recommand</span>
