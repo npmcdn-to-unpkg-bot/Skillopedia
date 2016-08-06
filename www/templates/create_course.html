@@ -67,7 +67,18 @@
                     </div>
                 </div>
                 <div class="title-input">
-                    <span>picture</span>
+                    <span><b class="text-danger"> * </b>Poster</span>
+                    <!-- <div class="open-img">
+                        <img ng-src="{{staticImageUrl + input.poster}}" class="full-width full-height" err-src="../images/error.jpg" alt="">
+                        <input type="hidden" name="poster" ng-model="input.poster" required>
+                        <a ng-click="remove_cover(cover)" class="remove"><i class="fa fa-times"></i></a>
+                    </div> -->
+                    <div class="open-img" flow-init="{singleFile:true}" ng-controller="uploadPosterController" flow-btn>
+                        <img ng-src="../images/upload.png" flow-img="$flow.files[0]" class="full-width full-height" alt="">
+                    </div>
+                </div>
+                <div class="title-input">
+                    <span>Picture</span>
                     <div class="open-img" ng-repeat="cover in input.covers track by $index" ng-form="coverForm">
                         <img ng-src="{{staticImageUrl + cover}}" class="full-width full-height" err-src="../images/error.jpg" alt="">
                         <input type="hidden" name="cover" ng-model="cover">

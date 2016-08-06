@@ -71,6 +71,12 @@ angular.module("Skillopedia").controller("fillinorderController", function($scop
 			}
 		})
 	};
+	$scope.get_from_time = function(t) {
+		return t.split("-")[0]
+	}
+	$scope.get_to_time = function(t) {
+		return t.split("-")[1]
+	};
 	// 编辑地址 
 	$scope.edit = function() {
 		$.magnificPopup.open({

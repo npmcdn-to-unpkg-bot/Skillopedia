@@ -52,7 +52,7 @@
                             <div class="result-item" ng-click="calendar.remove(select)" ng-repeat="select in calendar.selected">
                                 <i class="pull-right fa fa-times"></i>
                                 <div>{{select.from.day}}</div>
-                                {{select.from.hour}} to {{select.to.hour}}
+                                {{get_from_time(select.from.hour)}} to {{get_to_time(select.to.hour)}}
                             </div>
                             <div class="result-item" ng-if="calendar.selected.length==0">
                                 your booking time will show here!

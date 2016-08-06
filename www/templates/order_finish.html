@@ -14,7 +14,7 @@
                     <div class="calenader-result">
                         <p class="text-center">schedule</p>
                         <div class="result-item" ng-click="calendar.remove(select)" ng-repeat="select in calendar.selected">
-                            {{select.from.hour}} to {{select.to.hour}}
+                            {{get_from_time(select.from.hour)}} to {{get_to_time(select.to.hour)}}
                             <i class="pull-right fa fa-times"></i>
                         </div>
                         <div class="result-item" ng-if="calendar.selected.length==0">
@@ -25,6 +25,10 @@
                                 <!-- <span class="btn btn-danger" ng-click="reject_course()">reject</span> -->
                                 <span class="btn btn-primary" ng-click="confirm_course()">confirm</span>
                             </div>
+                        </div>
+                        <div class="text-center">
+                            <span class="calender-tip confirm">已经被人预约</span>
+                            <span class="calender-tip busy">忙</span>
                         </div>
                     </div>
                 </div>
