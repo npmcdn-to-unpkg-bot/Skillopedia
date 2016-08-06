@@ -24,6 +24,7 @@ angular.module("Skillopedia").directive('autocomplete', function($window) {
 			function initAutocomplete() {
 				// Create the autocomplete object, restricting the search to geographical
 				// location types.
+				if (!google) return;
 				autocomplete = new google.maps.places.Autocomplete(
 					/** @type {!HTMLInputElement} */
 					(document.getElementById('autocomplete')), {
