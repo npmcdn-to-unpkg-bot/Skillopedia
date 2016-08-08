@@ -28,7 +28,7 @@ angular.module("Skillopedia").factory("googleMapServices", function($http, $q, c
 				position: latlng,
 				map: map,
 				icon: {
-					url: "images/spotlight-poi.png",
+					url: "../images/spotlight-poi.png",
 					// origin: new google.maps.Point(50, 50)
 				},
 				draggable: false,
