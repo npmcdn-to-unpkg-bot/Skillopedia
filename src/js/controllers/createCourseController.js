@@ -6,6 +6,11 @@ angular.module("Skillopedia").controller("createCourseController", function($sco
 		$location.path("authenication").replace();
 		return;
 	}
+	$window.onbeforeunload = function(e) {
+		var dialogText = '确定离开网页吗？';
+		e.returnValue = dialogText;
+		return dialogText;
+	}
 	$scope.input = {};
 	$scope.step = 1;
 	$scope.show_step = function(step) {
