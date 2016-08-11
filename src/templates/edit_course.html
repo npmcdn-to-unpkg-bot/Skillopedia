@@ -145,7 +145,7 @@
                         <div class="m-session pull-left">
                             <span><b class="text-danger"> * </b>Session Rate($) <b class="text-danger" ng-if="stepForm2.rate.$invalid && stepForm2.rate.$dirty"> (Number Only) </b></span>
                             <div class="u-input">
-                                <input type="number" name="rate" ng-model="input.rate" ng-required="true" ng-pattern="/^\d+$/" class="full-width" placeholder="session rate" class="full-width" />
+                                <input type="number" min="0" name="rate" ng-model="input.rate" ng-required="true" ng-pattern="/^\d+$/" class="full-width" placeholder="session rate" class="full-width" />
                             </div>
                         </div>
                         <div class="m-session pull-right">
@@ -159,7 +159,7 @@
                                     <option value="18+">18+</option>
                                 </select>
                                 <i class="fa fa-caret-down" aria-hidden="true"></i>
-                                <!-- <input type="number" name="teaching_age" ng-model="input.teaching_age" ng-required="true" ng-pattern="/^\d+$/" class="full-width" placeholder="teaching age" class="full-width" /> -->
+                                <!-- <input type="number" min="0" name="teaching_age" ng-model="input.teaching_age" ng-required="true" ng-pattern="/^\d+$/" class="full-width" placeholder="teaching age" class="full-width" /> -->
                             </div>
                         </div>
                     </div>
@@ -170,13 +170,13 @@
                         <div class="m-session pull-left">
                             <span><b class="text-danger"> * </b>Additional partner<b class="text-danger" ng-if="stepForm2.partner.$invalid && stepForm2.partner.$dirty"> (Number Only) </b></span>
                             <div class="u-input">
-                                <input type="number" name="partner" ng-model="input.partner" ng-required="true" ng-pattern="/^\d+$/" class="full-width" placeholder="partner limit" class="full-width" />
+                                <input type="number" min="0" name="partner" ng-model="input.partner" ng-required="true" ng-pattern="/^\d+$/" class="full-width" placeholder="partner limit" class="full-width" />
                             </div>
                         </div>
                         <div class="m-session pull-right">
                             <span><b class="text-danger"> * </b>Surcharge for each<b class="text-danger" ng-if="stepForm2.surcharge.$invalid && stepForm2.surcharge.$dirty"> (Number Only) </b></span>
                             <div class="u-input">
-                                <input type="number" name="surcharge" ng-model="input.surcharge" ng-required="true" ng-pattern="/^\d+$/" class="full-width" placeholder="Surcharge for each,($)" class="full-width" />
+                                <input type="number" min="0" name="surcharge" ng-model="input.surcharge" ng-required="true" ng-pattern="/^\d+$/" class="full-width" placeholder="Surcharge for each,($)" class="full-width" />
                             </div>
                         </div>
                     </div>
@@ -192,10 +192,10 @@
                                     <span><b class="text-danger" ng-if="(byMoneyForm.purchase.$invalid && byMoneyForm.purchase.$dirty) || (byMoneyForm.off.$invalid && byMoneyForm.off.$dirty)"> (Number Only) </b></span>
                                 </div>
                                 <div class="course-input">
-                                    <input type="number" class="full-width" name="purchase" ng-model="discount.purchase" ng-required="true" ng-pattern="/^\d+$/" placeholder="course quantity" />
+                                    <input type="number" min="0" class="full-width" name="purchase" ng-model="discount.purchase" ng-required="true" ng-pattern="/^\d+$/" placeholder="course quantity" readonly />
                                 </div>
                                 <div class="course-input">
-                                    <input type="number" class="full-width" name="off" ng-model="discount.off" ng-required="true" ng-pattern="/^\d+$/" placeholder="discount amount" />
+                                    <input type="number" min="0" class="full-width" name="off" ng-model="discount.off" ng-required="true" ng-pattern="/^\d+$/" placeholder="discount amount" />
                                 </div>
                                 <!-- <div class="course-edit" ng-click="remove_discount(discount)">remove</div> -->
                             </div>
@@ -244,13 +244,13 @@
                         <div class="m-session pull-left">
                             <span><b class="text-danger"> * </b>Travel Distance<b class="text-danger" ng-if="stepForm3.distance.$invalid && stepForm3.distance.$dirty"> (Number Only) </b></span>
                             <div class="u-input">
-                                <input type="number" name="distance" ng-model="input.distance" ng-required="true" ng-pattern="/^\d+$/" class="full-width" placeholder="travel distance(miles)" class="full-width" />
+                                <input type="number" min="0" name="distance" ng-model="input.distance" ng-required="true" ng-pattern="/^\d+$/" class="full-width" placeholder="travel distance(miles)" class="full-width" />
                             </div>
                         </div>
                         <div class="m-session pull-right">
                             <span><b class="text-danger"> * </b>Traffic Cost<b class="text-danger" ng-if="stepForm3.traffic_cost.$invalid && stepForm3.traffic_cost.$dirty"> (Number Only) </b></span>
                             <div class="u-input">
-                                <input type="number" name="traffic_cost" ng-model="input.traffic_cost" ng-required="true" ng-pattern="/^\d+$/" class="full-width" placeholder="travel cost" class="full-width" />
+                                <input type="number" min="0" name="traffic_cost" ng-model="input.traffic_cost" ng-required="true" ng-pattern="/^\d+$/" class="full-width" placeholder="travel cost" class="full-width" />
                             </div>
                         </div>
                     </div>

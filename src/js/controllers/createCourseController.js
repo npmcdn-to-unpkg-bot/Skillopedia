@@ -202,6 +202,22 @@ angular.module("Skillopedia").controller("createCourseController", function($sco
 		purchase: 10,
 		off: 0
 	}];
+	// $scope.$watch("input.discounts[0].off", function(n, o) {
+	// 	console.log(n)
+	// 	if (!n) {
+	// 		$scope.input.discounts[0].off = 0;
+	// 	}
+	// });
+	// $scope.$watch("input.discounts[1].off", function(n, o) {
+	// 	if (!n) {
+	// 		$scope.input.discounts[1].off = 0;
+	// 	}
+	// });
+	// $scope.$watch("input.discounts[2].off", function(n, o) {
+	// 	if (!n) {
+	// 		$scope.input.discounts[2].off = 0;
+	// 	}
+	// });
 	// 增加打折输入
 	$scope.add_discount = function() {
 		var discount = {
