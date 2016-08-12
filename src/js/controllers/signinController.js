@@ -44,10 +44,10 @@ angular.module("Skillopedia").controller("signinController", function($scope, $r
 		}).then(function(data) {
 			toastServices.hide()
 			if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
-				errorServices.autoHide(data.message);
+				errorServices.autoHide(data.message, 5000);
 				$timeout(function() {
 					$rootScope.close_popup_signin();
-				}, 1000)
+				}, 5000)
 			} else {
 				errorServices.autoHide(data.message);
 			}

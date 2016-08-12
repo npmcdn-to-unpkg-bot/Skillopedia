@@ -34,10 +34,10 @@
                 </div>
                 <div class="section-content">
                     <!-- <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod libero impedit dolorum iure. Eos sint autem nostrum culpa quas eius, quidem animi laborum ratione cupiditate. Aspernatur minus vitae sint totam!</p> -->
-                    <p>{{course.city+course.area+course.street}}</p>
+                    <p>{{course.street+" , "+course.area+" , "+course.city}}</p>
                     <!-- <iframe ng-src="{{teaching_location_map}}" class="map" height="300px" frameborder="0" allowfullscreen></iframe> -->
                     <div style="height:300px;border:1px solid #d2d2d2" id="map"></div>
-                    <a class="text-success" ng-if="course.travel_to_session == '1'" ng-click="edit()">the coach offer travel to session ,edit location!</a>
+                    <a class="btn text-success" ng-if="course.travel_to_session == '1'" ng-click="edit()">the coach offer travel to session ,edit location!</a>
                 </div>
             </div>
             <div class="section sm">
@@ -52,7 +52,7 @@
                             <div class="result-item" ng-click="calendar.remove(select)" ng-repeat="select in calendar.selected">
                                 <i class="pull-right fa fa-times"></i>
                                 <div>{{select.from.day}}</div>
-                                {{select.from.hour}} to {{select.to.hour}}
+                                {{get_from_time(select.from.hour)}} to {{get_to_time(select.to.hour)}}
                             </div>
                             <div class="result-item" ng-if="calendar.selected.length==0">
                                 your booking time will show here!
@@ -60,6 +60,11 @@
                             <div class="result-item" ng-if="calendar.selected.length>0">
                                 you total can book {{calendar.size}} course ! you can change the amount before you can book more!
                             </div>
+                        </div>
+                        <div class="text-center">
+                            <!-- <span class="calender-tip unavailable">不可预约</span> -->
+                            <span class="calender-tip confirm">已经被人预约</span>
+                            <span class="calender-tip busy">忙</span>
                         </div>
                     </div>
                 </div>
@@ -75,11 +80,11 @@
         </div>
         <div class="detail-right">
             <div class="settlement">
-                <p class="text-center">课程费用<span ng-if="course.first_joint_fee>0">+服务费用</span><span ng-if="input.total_traffic_cost>0">+交通费用</span></p>
+                <p class="text-center">课程费用<span ng-if="input.total_fee>0">+服务费用</span><span ng-if="input.total_traffic_cost>0">+交通费用</span></p>
                 <p class="price text-center">
                     <span ng-class="{'underline':input.discount_price>0}">{{input.total_price|currency:"$"}}</span>
                     <span ng-if="input.discount_price>0">{{input.discount_price|currency:"$"}}</span>
-                    <span ng-if="course.first_joint_fee>0">+ {{course.first_joint_fee|currency:"$"}}</span>
+                    <span ng-if="input.total_fee>0">+ {{input.total_fee|currency:"$"}}</span>
                     <span ng-if="input.total_traffic_cost>0">+ {{input.total_traffic_cost|currency:"$"}}</span>
                 </p>
                 <p class="text-center">per session {{course.session_length||'60'}}min</p>
@@ -149,7 +154,7 @@
                     </span>
                     <span class="col-xs-8">
                         <dribehance-select options="input.coupons" ng-if="is_signin()"></dribehance-select>
-                        <span class="pull-right" ng-click="signin()" ng-if="!is_signin()">登录查看优惠券</span>
+                        <span class="pull-right hover" ng-click="signin()" ng-if="!is_signin()">登录查看优惠券</span>
                     </span>
                 </p>
                 <p class="text-center">
@@ -180,7 +185,7 @@
                     </div> -->
                     <div ng-if="course.first_joint_fee>0">
                         <p><b>First services fee </b></p>
-                        <div class="text-danger">{{course.first_joint_fee|currency:"$"}}</div>
+                        <div class="text-danger">{{course.first_joint_fee}}%</div>
                     </div>
                     <div ng-if="course.travel_to_session=='1'">
                         <p><b>Traffic Cost </b></p>

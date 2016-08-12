@@ -6,50 +6,50 @@
         <p class="text-center">{{user.nickname}}</p>
     </div>
     <div class="sidebar-list">
-    	<div class="sidebar-item-header clearfix">
-    		Home page
-    		<i class="fa fa-angle-down pull-right" aria-hidden="true"></i>
-    	</div>
-    	<a class="sidebar-item sub-item clearfix" ng-href="#/courses" ng-class="{'active':highlight('/courses')}">
-    		Courses
-    		<i class="fa fa-angle-right pull-right" aria-hidden="true"></i>
-    	</a>
-    	<a class="sidebar-item sub-item clearfix" ng-href="#/comments" ng-class="{'active':highlight('/comments')}">
-    		Comments
-    		<i class="fa fa-angle-right pull-right" aria-hidden="true"></i>
-    	</a>
-    	<a class="sidebar-item sub-item clearfix" ng-href="#/steps" ng-class="{'active':highlight('/steps')}">
-    		Steps
-    		<i class="fa fa-angle-right pull-right" aria-hidden="true"></i>
-    	</a>
-    	<a class="sidebar-item clearfix" ng-href="#/shoppingcart" ng-class="{'active':highlight('/shoppingcart')}">
-    		Shoppingcart
-    		<i class="fa fa-angle-right pull-right" aria-hidden="true"></i>
-    	</a>
-    	<a class="sidebar-item clearfix" ng-href="#/orders" ng-class="{'active':highlight('/orders')}">
-    		Orders
-    		<i class="fa fa-angle-right pull-right" aria-hidden="true"></i>
-    	</a>
-    	<a class="sidebar-item clearfix" ng-href="#/skillopedia" ng-class="{'active':highlight('/skillopedia')}">
-            <marquee class="marquee" ng-if="user.agent_level == '1'">I am a skillopedia ,Start your new life from here</marquee>
-            <span class="marquee" ng-if="user.agent_level == '2'">My Course</span>
-    		<i class="fa fa-angle-right pull-right" aria-hidden="true"></i>
-    	</a>
-        <a class="sidebar-item clearfix" ng-href="#/steps_publish" ng-class="{'active':highlight('/steps_publish')}">
-            My Steps
+        <!-- <a class="sidebar-item sub-item clearfix" ng-href="#/courses" ng-class="{'active':highlight('/courses')}">
+            Courses
             <i class="fa fa-angle-right pull-right" aria-hidden="true"></i>
         </a>
-    	<a class="sidebar-item clearfix" ng-href="#/favourite" ng-class="{'active':highlight('/favourite')}">
-    		My Favourite
-    		<i class="fa fa-angle-right pull-right" aria-hidden="true"></i>
-    	</a>
-    	<a class="sidebar-item clearfix" ng-href="#/messages" ng-class="{'active':highlight('/messages')}">
-    		Messages
-    		<i class="fa fa-angle-right pull-right" aria-hidden="true"></i>
-    	</a>
-    	<a class="sidebar-item clearfix" ng-href="#/coupons" ng-class="{'active':highlight('/coupons')}">
-    		Coupons
-    		<i class="fa fa-angle-right pull-right" aria-hidden="true"></i>
-    	</a>
+        <a class="sidebar-item sub-item clearfix" ng-href="#/comments" ng-class="{'active':highlight('/comments')}">
+            Comments
+            <i class="fa fa-angle-right pull-right" aria-hidden="true"></i>
+        </a>
+        <a class="sidebar-item sub-item clearfix" ng-href="#/steps" ng-class="{'active':highlight('/steps')}">
+            Steps
+            <i class="fa fa-angle-right pull-right" aria-hidden="true"></i>
+        </a> -->
+        <!-- <a class="sidebar-item clearfix" ng-href="#/shoppingcart" ng-class="{'active':highlight('/shoppingcart')}">
+            Shoppingcart
+            <i class="fa fa-angle-right pull-right" aria-hidden="true"></i>
+        </a> -->
+        <a class="sidebar-item clearfix" ng-href="#/orders" ng-class="{'active':highlight('/orders')}">
+            Orders
+            <i class="fa fa-angle-right pull-right" aria-hidden="true"></i>
+        </a>
+        <a class="sidebar-item clearfix" ng-href="#/skillopedia" ng-class="{'active':highlight('/skillopedia')}">
+            <marquee class="marquee" ng-if="user.agent_level == '1'">I am a skillopedia ,Start your new life from here</marquee>
+            <span class="marquee" ng-if="user.agent_level == '2'">As a coach</span>
+            <i class="fa fa-angle-right pull-right" aria-hidden="true"></i>
+        </a>
+        <a class="sidebar-item clearfix" ng-href="#/messages" ng-class="{'active':highlight('/messages')}">
+            Message
+            <i class="fa fa-angle-right pull-right" aria-hidden="true"></i>
+        </a>
+        <a class="sidebar-item-header clearfix" ng-href="#/show?user_id={{user.user_id}}" target="_blank">
+            My Skillopedia
+            <i class="fa fa-angle-right pull-right" aria-hidden="true"></i>
+        </a>
+        <a class="sidebar-item clearfix" ng-href="#/favourite" ng-class="{'active':highlight('/favourite')}">
+            My Favourite
+            <i class="fa fa-angle-right pull-right" aria-hidden="true"></i>
+        </a>
+        <a class="sidebar-item clearfix" ng-href="#/steps_publish" ng-class="{'active':highlight('/steps_publish')}">
+            Create my steps
+            <i class="fa fa-angle-right pull-right" aria-hidden="true"></i>
+        </a>
+        <a class="sidebar-item clearfix" ng-href="#/coupons" ng-class="{'active':highlight('/coupons')}">
+            Coupon
+            <i class="fa fa-angle-right pull-right" aria-hidden="true"></i>
+        </a>
     </div>
 </div>

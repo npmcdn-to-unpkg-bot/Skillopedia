@@ -15,7 +15,7 @@
         <span class="logout-btn" ng-click="show_menu($event)" ng-if="is_signin()"><img ng-src="{{staticImageUrl + user.image_01}}" alt="" err-src="../images/example_7.png" onload></span>
         <a class="shoppingcart" ng-if="is_signin()" ng-href="#/shoppingcart"><img ng-src="../images/cart.png" alt="" err-src="../images/example_7.png"></a>
         <div class="dropdown-menu" ng-if="is_signin()">
-            <a class="menu-item" ng-href="#/courses">
+            <a class="menu-item" ng-href="#/orders">
                 <i class="fa fa-user" aria-hidden="true"></i>个人中心
             </a>
             <a class="menu-item" ng-href="#/skillopedia" ng-if="user.agent_level == '2'">
@@ -156,6 +156,7 @@
         </a>
     </div>  
 </div>
-<div ng-include="'templates/footer.html'"></div>
 <!-- confirm -->
 <confirm confirm="confirm" class="hide"></confirm>
+<!-- footer -->
+<div ng-include="'templates/footer.html'"></div>

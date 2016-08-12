@@ -3,12 +3,14 @@ angular.module("Skillopedia").factory("googleMapServices", function($http, $q, c
 	return {
 		create_map: function(container, latlng) {
 			var map = new google.maps.Map(container, {
-				zoom: 17,
+				zoom: 15,
+				minZoom: 12,
+				maxZoom: 17,
 				center: latlng,
-				disableDoubleClickZoom: true,
-				draggable: false,
-				scrollwheel: false,
-				zoomControl: false,
+				// disableDoubleClickZoom: true,
+				// draggable: true,
+				// scrollwheel: false,
+				// zoomControl: false,
 				// mapTypeId: google.maps.MapTypeId.TERRAIN
 			});
 			return map;
@@ -26,9 +28,10 @@ angular.module("Skillopedia").factory("googleMapServices", function($http, $q, c
 				position: latlng,
 				map: map,
 				icon: {
-					url: 'images/spotlight-poi.png',
+					url: "../images/spotlight-poi.png",
+					// origin: new google.maps.Point(50, 50)
 				},
-				draggable: true,
+				draggable: false,
 			});
 			return marker;
 		},

@@ -77,6 +77,12 @@ angular.module("Skillopedia").controller("orderCancelController", function($scop
 			}
 		})
 	};
+	$scope.get_from_time = function(t) {
+		return t.split("-")[0]
+	}
+	$scope.get_to_time = function(t) {
+		return t.split("-")[1]
+	};
 
 	function parse_selected() {
 		$scope.calendar.selected = [];

@@ -5,7 +5,7 @@
     <div class="section sm">
         选择支付方式
     </div>
-    <a href="" ng-click="pay('1')" class="alipay"></a>
+    <!-- <a href="" ng-click="pay('1')" class="alipay"></a> -->
     <div class="paypal">
        <!--  <form name="paypalForm" action="https://www.paypal.com/cgibin/webscr" method="post"> -->
        <!-- paypal沙盒支付测试地址 -->
@@ -34,10 +34,10 @@
             <input type="hidden" name="currency_code" value="USD">
             <!--商户邮件-->
             <input type="hidden" name="business" value="admin@skillopedia.cc">
-            <input type="image" src="images/paypal.png" border="0" name="submit" alt="Make payments with PayPal it's st, free and secure!">
+            <input type="image" src="../images/paypal.png" border="0" name="submit" alt="Make payments with PayPal it's st, free and secure!">
         </form>
     </div>
-    <div class="visa">
+    <!-- <div class="visa">
         <form name="visaForm" action="https://www.paypal.com/cgibin/webscr" method="post">
             <input type="hidden" name="cmd" value="_xclick">
             <input type="hidden" name="business" value="admin@skillopedia.cc">
@@ -49,7 +49,7 @@
             <input type="hidden" name="custom" value="order_id#{{id}}">
             <input type="image" src="images/visa.jpg" border="0" name="submit" alt="Make payments with PayPal it's st, free and secure!">
         </form>
-    </div>
+    </div> -->
     <!-- <a class="btn btn-second btn-md" ng-click="pay('1')">pay with alipay</a>
     <a class="btn btn-primary btn-md" ng-click="pay('2')"><i class="fa fa-cc-visa" aria-hidden="true"></i>pay with visa</a>
     <a class="btn btn-success btn-md" ng-click="pay('3')"><i class="fa fa-cc-paypal" aria-hidden="true"></i>pay with paypal</a> -->

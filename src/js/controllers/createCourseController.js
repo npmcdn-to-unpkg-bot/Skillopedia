@@ -6,6 +6,11 @@ angular.module("Skillopedia").controller("createCourseController", function($sco
 		$location.path("authenication").replace();
 		return;
 	}
+	$window.onbeforeunload = function(e) {
+		var dialogText = '确定离开网页吗？';
+		e.returnValue = dialogText;
+		return dialogText;
+	}
 	$scope.input = {};
 	$scope.step = 1;
 	$scope.show_step = function(step) {
@@ -132,6 +137,10 @@ angular.module("Skillopedia").controller("createCourseController", function($sco
 		})
 	};
 	// 封面
+	$scope.$on("upload_poster_success", function(event, args) {
+		$scope.input.poster = args.message;
+	});
+	// 其他图片
 	// mock {id:"",url:""}
 	$scope.input.covers = [];
 	$scope.$on("upload_cover_success", function(event, args) {
@@ -193,6 +202,22 @@ angular.module("Skillopedia").controller("createCourseController", function($sco
 		purchase: 10,
 		off: 0
 	}];
+	// $scope.$watch("input.discounts[0].off", function(n, o) {
+	// 	console.log(n)
+	// 	if (!n) {
+	// 		$scope.input.discounts[0].off = 0;
+	// 	}
+	// });
+	// $scope.$watch("input.discounts[1].off", function(n, o) {
+	// 	if (!n) {
+	// 		$scope.input.discounts[1].off = 0;
+	// 	}
+	// });
+	// $scope.$watch("input.discounts[2].off", function(n, o) {
+	// 	if (!n) {
+	// 		$scope.input.discounts[2].off = 0;
+	// 	}
+	// });
 	// 增加打折输入
 	$scope.add_discount = function() {
 		var discount = {
@@ -477,7 +502,8 @@ angular.module("Skillopedia").controller("createCourseController", function($sco
 				return week.select;
 			}).map(function(w) {
 				return w.value;
-			}).join("#")
+			}).join("#"),
+			user_images_01: $scope.input.poster
 		}).then(function(data) {
 			toastServices.hide()
 			if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
@@ -577,6 +603,53 @@ angular.module("Skillopedia").controller("uploadCoversController", function($sco
 	$scope.$on('flow::fileSuccess', function(file, message, chunk) {
 		$scope.$flow.files = [];
 		$scope.$emit("upload_cover_success", {
+			message: filename
+		});
+		toastServices.hide();
+	});
+});
+// uploadCoversController
+angular.module("Skillopedia").controller("uploadPosterController", function($scope, errorServices, toastServices, localStorageService, config) {
+	var filename, extension;
+	$scope.$on("flow::filesSubmitted", function(event, flow) {
+		if (flow.files.length == 0) return;
+		flow.files[0].name.replace(/.png|.jpg|.jpeg|.gif/g, function(ext) {
+			extension = ext;
+			return ext;
+		})
+		filename = new Date().getTime() + extension;
+		flow.opts.target = config.url + "/app/Experiences/updatePic";
+		flow.opts.testChunks = false;
+		flow.opts.fileParameterName = "image_01";
+		flow.opts.query = {
+			"invoke": "h5",
+			"token": localStorageService.get("token"),
+			"filename": filename
+		};
+		toastServices.show();
+		flow.upload();
+	});
+	$scope.$on('flow::fileAdded', function(event, flowFile, flow) {
+		if (!{
+				png: 1,
+				gif: 1,
+				jpg: 1,
+				jpeg: 1
+			}[flow.getExtension()]) {
+			errorServices.autoHide("必须上传图片")
+			event.preventDefault(); //prevent file from uploading
+			return;
+		}
+		if (parseFloat(flow.size) / 1000 > 500) {
+			errorServices.autoHide("图片太大，保证图片在500kb以内")
+			event.preventDefault(); //prevent file from uploading
+			return;
+		}
+		// $scope.cover.url = "";
+	});
+	$scope.$on('flow::fileSuccess', function(file, message, chunk) {
+		$scope.$flow.files = [];
+		$scope.$emit("upload_poster_success", {
 			message: filename
 		});
 		toastServices.hide();

@@ -56,6 +56,12 @@ angular.module("Skillopedia").controller("orderBookingController", function($sco
 	$scope.get_left = function() {
 		return parseFloat($scope.calendar.size) - parseFloat($scope.calendar.selected.length);
 	};
+	$scope.get_from_time = function(t) {
+		return t.split("-")[0]
+	}
+	$scope.get_to_time = function(t) {
+		return t.split("-")[1]
+	};
 	// confirm booking
 	$scope.booking = function() {
 		toastServices.show();

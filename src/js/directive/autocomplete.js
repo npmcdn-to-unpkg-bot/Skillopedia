@@ -24,15 +24,17 @@ angular.module("Skillopedia").directive('autocomplete', function($window) {
 			function initAutocomplete() {
 				// Create the autocomplete object, restricting the search to geographical
 				// location types.
+				if (!google) return;
 				autocomplete = new google.maps.places.Autocomplete(
 					/** @type {!HTMLInputElement} */
 					(document.getElementById('autocomplete')), {
-						types: ['geocode']
+						// types: ['geocode']
 					});
 
 				// When the user selects an address from the dropdown, populate the address
 				// fields in the form.
 				autocomplete.addListener('place_changed', fillInAddress);
+				// geolocate();
 			}
 
 			// [START region_fillform]
@@ -47,14 +49,14 @@ angular.module("Skillopedia").directive('autocomplete', function($window) {
 				// Get each component of the address from the place details
 				// and fill the corresponding field on the form.
 				// var address = {};
-				for (var i = 0; i < place.address_components.length; i++) {
-					var addressType = place.address_components[i].types[0];
-					if (componentForm[addressType]) {
-						var val = place.address_components[i][componentForm[addressType]];
-						// address[addressType] = val;
-						// document.getElementById(addressType).value = val;
-					}
-				}
+				// for (var i = 0; i < place.address_components.length; i++) {
+				// 	var addressType = place.address_components[i].types[0];
+				// 	if (componentForm[addressType]) {
+				// 		var val = place.address_components[i][componentForm[addressType]];
+				// 		// address[addressType] = val;
+				// 		// document.getElementById(addressType).value = val;
+				// 	}
+				// }
 				// scope.value = address;
 			}
 			// [END region_fillform]
@@ -79,9 +81,12 @@ angular.module("Skillopedia").directive('autocomplete', function($window) {
 			}
 			// [END region_geolocation]
 			scope.autocomplete = function() {
-				geolocate();
-			}
-			$window.initAutocomplete = initAutocomplete;
+				if (!autocomplete) {
+					initAutocomplete();
+				}
+				// geolocate();
+			};
+			// $window.initAutocomplete = initAutocomplete;
 			// google.map.addDomEventlistner("window")
 		}
 	};
