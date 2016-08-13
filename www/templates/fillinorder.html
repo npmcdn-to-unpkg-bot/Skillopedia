@@ -30,18 +30,6 @@
             </div>
             <div class="section sm">
                 <div class="section-title">
-                    Teaching Location
-                </div>
-                <div class="section-content">
-                    <!-- <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod libero impedit dolorum iure. Eos sint autem nostrum culpa quas eius, quidem animi laborum ratione cupiditate. Aspernatur minus vitae sint totam!</p> -->
-                    <p>{{course.street+" , "+course.area+" , "+course.city}}</p>
-                    <!-- <iframe ng-src="{{teaching_location_map}}" class="map" height="300px" frameborder="0" allowfullscreen></iframe> -->
-                    <div style="height:300px;border:1px solid #d2d2d2" id="map"></div>
-                    <a class="btn text-success" ng-if="course.travel_to_session == '1'" ng-click="edit()">the coach offer travel to session ,edit location!</a>
-                </div>
-            </div>
-            <div class="section sm">
-                <div class="section-title">
                     Booking course time
                 </div>
                 <div class="calendar-wrap">
@@ -67,6 +55,19 @@
                             <span class="calender-tip busy">忙</span>
                         </div>
                     </div>
+                </div>
+            </div>
+            <div class="section sm">
+                <div class="section-title">
+                    Teaching Location
+                </div>
+                <div class="section-content">
+                    <!-- <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod libero impedit dolorum iure. Eos sint autem nostrum culpa quas eius, quidem animi laborum ratione cupiditate. Aspernatur minus vitae sint totam!</p> -->
+                    <!-- <p>{{course.street+" , "+course.area+" , "+course.city}}</p> -->
+                    <p>specific location will show up after your payment</p>
+                    <!-- <iframe ng-src="{{teaching_location_map}}" class="map" height="300px" frameborder="0" allowfullscreen></iframe> -->
+                    <div style="height:300px;border:1px solid #d2d2d2" id="map"></div>
+                    <a class="btn text-success" ng-if="course.travel_to_session == '1'" ng-click="edit()">the coach offer travel to session ,edit location!</a>
                 </div>
             </div>
             <!-- <div class="section sm">
@@ -119,7 +120,7 @@
                                     <span>Buy</span>
                                     <span class="block size text-danger">{{discount.purchase}}</span>
                                     <span class="block">courses get</span>
-                                    <span class="size text-danger margin">{{discount.off|currency:"$"}}</span>
+                                    <span class="size text-danger margin">{{discount.off +"%"}}</span>
                                     <span class="block">off</span>
                                 </div>
                             </div>

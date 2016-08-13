@@ -3,9 +3,9 @@ angular.module("Skillopedia").factory("googleMapServices", function($http, $q, c
 	return {
 		create_map: function(container, latlng) {
 			var map = new google.maps.Map(container, {
-				zoom: 15,
-				minZoom: 12,
-				maxZoom: 17,
+				zoom: 11,
+				minZoom: 9,
+				maxZoom: 12,
 				center: latlng,
 				// disableDoubleClickZoom: true,
 				// draggable: true,

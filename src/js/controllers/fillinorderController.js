@@ -229,21 +229,22 @@ angular.module("Skillopedia").controller("fillinorderController", function($scop
 		// 课程费用+小伙伴费用参与打折
 		// 本次仅计算 课程费用+小伙伴费用
 		$scope.input.total_price = parseFloat($scope.course.session_rate) * parseFloat($scope.input.amount) + parseFloat($scope.course.surcharge_for_each) * parseFloat($scope.input.partner) * parseFloat($scope.input.amount);
-		// by total money;
-		if ($scope.course.discount_type == 1) {
-			angular.forEach($scope.discounts, function(discount) {
-				if (parseFloat($scope.input.total_price) > parseFloat(discount.purchase) - 1) {
-					$scope.input.temp_discount_price = discount.off;
-					discount_price = parseFloat($scope.input.total_price) - parseFloat(discount.off);
-				}
-			});
-		}
+		// by total money; discard
+		// if ($scope.course.discount_type == 1) {
+		// 	angular.forEach($scope.discounts, function(discount) {
+		// 		if (parseFloat($scope.input.total_price) > parseFloat(discount.purchase) - 1) {
+		// 			$scope.input.temp_discount_price = discount.off;
+		// 			discount_price = parseFloat($scope.input.total_price) - parseFloat(discount.off);
+		// 		}
+		// 	});
+		// }
 		// by total amount
 		if ($scope.course.discount_type == 2) {
 			angular.forEach($scope.discounts, function(discount) {
 				if (parseFloat($scope.input.amount) > parseFloat(discount.purchase) - 1) {
 					$scope.input.temp_discount_price = discount.off;
-					discount_price = parseFloat($scope.input.total_price) - parseFloat(discount.off);
+					// dscount percentage
+					discount_price = parseFloat($scope.input.total_price) * (1 - parseFloat(discount.off) / 100);
 				}
 			});
 		}
@@ -271,9 +272,9 @@ angular.module("Skillopedia").controller("fillinorderController", function($scop
 		if ($scope.course.travel_to_session == '1' && $scope.travel_place != $scope.course_place) {
 			$scope.input.total_traffic_cost = parseFloat($scope.course.travel_to_session_trafic_surcharge) * parseFloat($scope.input.amount);
 		}
-		// 首次服务费用 百分比,仅仅计算购买课程费用的百分比，不计算小伙伴的费用
+		// 首次服务费用 百分比,仅仅单节课程费用的百分比
 		if ($rootScope.is_signin()) {
-			$scope.input.total_fee = parseFloat($scope.course.session_rate) * parseFloat($scope.input.amount) * parseFloat($scope.course.first_joint_fee) / 100;
+			$scope.input.total_fee = parseFloat($scope.course.session_rate) * parseFloat($scope.course.first_joint_fee) / 100;
 		} else {
 			$scope.input.total_fee = 0;
 		}
