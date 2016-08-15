@@ -62,13 +62,7 @@ angular.module("Skillopedia").controller("createCourseController", function($sco
 		}
 	});
 	// 证书列表
-	$scope.input.certs = [{
-		id: "",
-		title: "",
-		time: "",
-		url: "",
-		institute: ""
-	}];
+	$scope.input.certs = [];
 	// 增加证书输入
 	$scope.add_cert = function() {
 		var cert = {

@@ -38,7 +38,7 @@
                         <div class="course-items pull-left" ng-repeat="cert in input.certs">
                             <div class="course-item" ng-form="certForm">
                                 <div class="imgwrap" flow-init="{singleFile:true}" flow-attrs="{accept:'image/*'}" ng-controller="uploadController">
-                                    <img ng-src="{{staticImageUrl+cert.url}}" flow-btn flow-img="$flow.files[0]" class="full-width full-height" />
+                                    <img ng-src="{{staticImageUrl+cert.url}}" flow-btn flow-img="$flow.files[0]" class="full-width full-height" err-src="../images/about_bg.png" />
                                     <input type="hidden" name="cert_url" ng-model="cert.url" required>
                                 </div>
                                 <div class="course-input">

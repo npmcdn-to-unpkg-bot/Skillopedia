@@ -7,7 +7,9 @@ angular.module("Skillopedia").directive('calendar', function($filter) {
 			calendar: "=",
 		},
 		link: function(scope, element, attrs) {
-			scope.nowaday = $filter("date")(new Date(), "yyyy-MM-dd");
+			var today = new Date();
+			today.setDate(today.getDate() - 1);
+			scope.nowaday = $filter("date")(today, "yyyy-MM-dd");
 			scope.calendar = angular.extend({}, scope.calendar);
 			scope.calendar.day = $filter("date")(new Date());
 			// edit mode
