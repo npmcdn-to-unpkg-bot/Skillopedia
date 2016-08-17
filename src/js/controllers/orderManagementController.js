@@ -1,5 +1,5 @@
 // by dribehance <dribehance.kksdapp.com>
-angular.module("Skillopedia").controller("orderManagementController", function($scope, $sce, $routeParams, orderServices, errorServices, toastServices, localStorageService, config) {
+angular.module("Skillopedia").controller("orderManagementController", function($scope, $sce, $routeParams, googleMapServices, orderServices, errorServices, toastServices, localStorageService, config) {
 	toastServices.show();
 	orderServices.query_manage_order({
 		orders_id: $routeParams.id,
@@ -9,17 +9,24 @@ angular.module("Skillopedia").controller("orderManagementController", function($
 		toastServices.hide()
 		if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
 			$scope.order = data.Orders;
+			$scope.get_map();
 		} else {
 			errorServices.autoHide(data.message);
 		}
 	});
 	// parse iframe map url
 	$scope.get_map = function() {
-		if (!$scope.order) {
-			return;
-		}
-		var map_url = "https://maps.google.com/maps?q=" + $scope.order.Course.city + $scope.order.Course.area + $scope.order.Course.street + $scope.order.Course.address + "&output=embed";
-		return $sce.trustAsResourceUrl(map_url);
+		googleMapServices.geocoding({
+			address: $scope.order.Course.street + "," + $scope.order.Course.address + "," + $scope.order.Course.area + "," + $scope.order.Course.city
+		}).then(function(data) {
+			$scope.lat_lng = data.results[0].geometry.location;
+			$scope.format_address = data.results[0].formatted_address;
+			var map = googleMapServices.create_map(document.getElementById('map'), $scope.lat_lng);
+			// console.log(map)
+			var circle_marker = googleMapServices.create_marker(map, $scope.lat_lng);
+		});
+		// var map_url = "https://maps.google.com/maps?q=" + $scope.order.Course.city + $scope.order.Course.area + $scope.order.Course.street + $scope.order.Course.address + "&output=embed";
+		// return $sce.trustAsResourceUrl(map_url);
 	};
 	$scope.get_total_partner_fee = function() {
 		if (!$scope.order) {

@@ -102,22 +102,33 @@
                 </div>
             </form>
             <!-- 教练认证中 -->
-            <div class="authen-step" ng-show="user.authen_status != '0'">
+            <div class="authen-step" ng-show="user.authen_status == '1'">
                 <div class="authening">
                     <div class="authening-content">
                         <span><img ng-src="../images/notyet.png" alt=""></span>
-                        <span>we have received your application at {{user.authen_time}},
+                        <span>we have received your application at {{user.authen_time}},</span>
                         <span>Skillopedia will review your application and response application within 48 hours</span>
-                        <div></div>
                     </div>
                     <div class="nextbtn-addr">
-                        <div class="authen-number">客服：400-300-3000</div>
-                        <div class="authen-recertification" ng-click="reauthen()" ng-if="user.authen_status == '3' && user.authen_num !='0'">重新认证</div>
+                        <div class="authen-number">customer service：400-300-3000</div>
                     </div>
-                    <div class="anthen-tips">你还有{{user.authen_num}}次机会认证,如有疑问，请电话联系客服</div>
+                    <div class="anthen-tips">you have {{user.authen_num}} times to reapply, if you have any question, please contact us</div>
                 </div>
             </div>
-            <!--  -->
+            <!-- 教练认证失败 -->
+            <div class="authen-step" ng-show="user.authen_status == '3'">
+                <div class="authening">
+                    <div class="authening-content">
+                        <span><img ng-src="../images/notyet.png" alt=""></span>
+                        <span>We are sorry to inform you that your application is not approved</span>
+                    </div>
+                    <div class="nextbtn-addr">
+                        <div class="authen-number">customer service：400-300-3000</div>
+                        <div class="authen-recertification" ng-click="reauthen()" ng-if="user.authen_num !='0'">Reapply</div>
+                    </div>
+                    <div class="anthen-tips">you have {{user.authen_num}} times to reapply, if you have any question, please contact us</div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

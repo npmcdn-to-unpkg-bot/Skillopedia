@@ -14,7 +14,7 @@
                     <div class="account-avatar">
                         <img ng-src="{{staticImageUrl + user.image_01}}" err-src="../images/example_7.png" flow-img="$flow.files[0]" alt="">
                     </div>
-                    <button class="btn btn-second btn-block" flow-btn >Select Image</button>
+                    <button class="btn btn-second btn-block" flow-btn >Upload Image</button>
                 </div>
                 <form ng-submit="ajaxForm()" name="nicknameForm" class="account-center-right">
                     <p class="">
@@ -24,12 +24,12 @@
                         <span ng-if="user.agent_level == 1">身份：普通用户</span><span ng-if="user.agent_level == 2">身份：教练</span>
                     </p>
                     <div class="skill-input">
-                        <input type="text" ng-model="input.nickname" required placeholder="enter your nickname" class="full-width text-transform">
+                        <input type="text" ng-model="input.nickname" required placeholder="enter your nickname" class="full-width text-transform" readonly>
                     </div>
                     <div class="skill-input">
                         <input type="password" ng-model="input.password" required ng-minLength="6" placeholder="enter your password ,at least 6" class="full-width">
                     </div>
-                    <button class="btn btn-second" type="submit" ng-disabled="nicknameForm.$invalid">Submit Change</button>
+                    <button class="btn btn-second" type="submit" ng-disabled="nicknameForm.$invalid">Change Password</button>
                 </form>
             </div>
         </div>
