@@ -30,7 +30,7 @@ angular.module("Skillopedia").controller("showCommentsController", function($sco
 				errorServices.autoHide("服务器错误");
 			}
 			if ($scope.no_more) {
-				$scope.page.message = "加载完成，共加载" + $scope.comments.length + "条记录";
+				$scope.page.message = $scope.comments.length + " records found";
 			}
 			$scope.page.pn++;
 		})

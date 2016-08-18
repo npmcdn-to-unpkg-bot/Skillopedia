@@ -26,7 +26,7 @@ angular.module("Skillopedia").controller("couponsController", function($scope, $
 				errorServices.autoHide("服务器错误");
 			}
 			if ($scope.no_more) {
-				$scope.page.message = "加载完成，共加载" + $scope.coupons.length + "条记录";
+				$scope.page.message = $scope.coupons.length + " records found";
 			}
 			$scope.page.pn++;
 		})

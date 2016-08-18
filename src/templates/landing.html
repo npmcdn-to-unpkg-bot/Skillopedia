@@ -1,18 +1,25 @@
 <div class="signin-body">
     <div class="signin-panel">
         <div class="signin-left">
-            Use third party acount to log in
-            <div class="section">
+            <div class="text-gray">you can also sign in with</div class="text-center">
+            <div class="section" style="margin-top:30px">
                 <span class="full-width social-btn btn-facebook" ng-click="facebook_login()"><i class="fa fa-facebook" aria-hidden="true"></i>facebook</span>
                 <span class="full-width social-btn btn-twitter" ng-click="twitter_login()"><i class="fa fa-twitter" aria-hidden="true"></i>twitter</span>
-                <!-- <span ng-click="go('index')" class="btn">回首页</span> -->
-                If you want to be a private coach, sign up first ->sign in->personal center-> apply
+                <div class="signin-guide text-gray">
+                    <div class="signin-guide-title">Become a private coach</div>
+                    <div class="signin-guide-icon icon-left"><img src="../images/lineSharp.png"></div>
+                    <div class="signin-guide-icon icon-right"><img src="../images/lineSharp.png"></div>
+                    <div class="signin-guide-content">1.Sign up account</div>
+                    <div class="signin-guide-content">2.Sign in</div>
+                    <div class="signin-guide-content">3.Go to personal center</div>
+                    <div class="signin-guide-content">4.Apply for coaching</div>
+                </div>
             </div>
         </div>
         <div class="signin-right" ng-if="sign =='signin'">
             <form name="signinForm" ng-submit="signin_action()">
-                Already have an account ,log in
-                <div class="section">
+                Log in
+                <div class="section" style="margin-top:30px;">
                     <div class="input-group">
                         <input type="email" class="full-width form-control" ng-model="input.signin_email" required placeholder="enter you email/account">
                     </div>
@@ -24,7 +31,7 @@
                     </div>
                 </div>
                 <div class="text-center">
-                    <span ng-click="forget()" class="btn">forget password</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span ng-click="signup()" class="btn">or you can signup</span>
+                    <span ng-click="forget()" class="btn">Forgot your password?</span>&nbsp;&nbsp;|&nbsp;&nbsp;<span ng-click="signup()" class="btn">No account? Sign up here</span>
                 </div>
             </form>
         </div>

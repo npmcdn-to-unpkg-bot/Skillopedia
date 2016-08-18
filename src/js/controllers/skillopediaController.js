@@ -30,7 +30,7 @@ angular.module("Skillopedia").controller("skillopediaController", function($scop
 				errorServices.autoHide("服务器错误");
 			}
 			if ($scope.no_more) {
-				$scope.page.message = "加载完成，共加载" + $scope.courses.length + "条记录";
+				$scope.page.message =  $scope.courses.length + " records found";
 			}
 			$scope.page.pn++;
 		})

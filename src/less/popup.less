@@ -8,7 +8,7 @@
     .box-sizing(border-box);
     background-color: white;
     &.signin-popup {
-        color:black;
+        color: black;
         background-image: url("../images/popup.png");
         background-size: cover;
     }
@@ -38,6 +38,38 @@
         width: 60%;
         padding: 35px;
         .box-sizing(border-box);
+    }
+    .signin-guide {
+        position: relative;
+        .signin-guide-title {
+            display: block;
+            padding: 10px 0;
+            text-align: center;
+            font-size: 18px;
+        }
+        .signin-guide-content {
+            display: block;
+            padding-top: 10px;
+            margin: 0 20px;
+            text-align: left;
+        }
+        .signin-guide-icon {
+            position: absolute;
+            background-size: cover;
+            background-repeat: no-repeat;
+            top: 8px;
+            &.icon-left{
+                left: -25px;
+            }
+            &.icon-right{
+                right: -25px;
+            }
+            img {
+                width: 45px;
+
+            }
+
+        }
     }
 }
 

@@ -22,7 +22,7 @@ angular.module("Skillopedia").controller("shoppingcartController", function($sco
 				errorServices.autoHide("服务器错误");
 			}
 			if ($scope.no_more) {
-				$scope.page.message = "加载完成，共加载" + $scope.courses.length + "条记录";
+				$scope.page.message = $scope.courses.length + " records found";
 			}
 			$scope.courses.map(function(c) {
 				// status 1:正常购物车, status 2:失效购物车;
@@ -37,7 +37,7 @@ angular.module("Skillopedia").controller("shoppingcartController", function($sco
 
 	}
 	$scope.loadMore();
-	// open map
+	// Course location
 	$scope.open_map = function(course, e) {
 		e.preventDefault();
 		e.stopPropagation();

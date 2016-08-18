@@ -32,7 +32,7 @@ angular.module("Skillopedia").controller("showController", function($scope, $rou
 				errorServices.autoHide("服务器错误");
 			}
 			if ($scope.no_more) {
-				$scope.page.message = "加载完成，共加载" + $scope.courses.length + "条数据";
+				$scope.page.message = $scope.courses.length + " records found";
 			}
 			$scope.page.pn++;
 		})

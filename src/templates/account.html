@@ -18,10 +18,10 @@
                 </div>
                 <form ng-submit="ajaxForm()" name="nicknameForm" class="account-center-right">
                     <p class="">
-                        当前登录emial:{{user.email}}
+                        Sign in account:{{user.email}}
                     </p>
                     <p>
-                        <span ng-if="user.agent_level == 1">身份：普通用户</span><span ng-if="user.agent_level == 2">身份：教练</span>
+                        <span ng-if="user.agent_level == 1">Role：normal user</span><span ng-if="user.agent_level == 2">Role:coach</span>
                     </p>
                     <div class="skill-input">
                         <input type="text" ng-model="input.nickname" required placeholder="enter your nickname" class="full-width text-transform" readonly>
