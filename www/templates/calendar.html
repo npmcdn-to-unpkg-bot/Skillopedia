@@ -6,6 +6,7 @@
     <div class="calendar-day">
         <datepicker date-format="MMM dd, yyyy" date-min-limit="{{nowaday}}">
         <input type="text" name="day" ng-model="calendar.day" class="full-width" readonly/>
+    <i class="fa fa-angle-right pull-right"></i>
     </datepicker>
     </div>
     <div class="calendar-times">
@@ -15,7 +16,7 @@
             <i class="fa fa-check-square-o hide" aria-hidden="true"></i>
         </div>
     </div>
-    <div class="calendar-disabled" ng-if="calendar.disabled">
+    <!-- <div class="calendar-disabled" ng-if="calendar.disabled">
         <p>{{calendar.disabled_message}}</p>
-    </div>
+    </div> -->
 </div>

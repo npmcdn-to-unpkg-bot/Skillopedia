@@ -1,14 +1,23 @@
 <div class="signin-panel" ng-controller="signinController">
     <div class="signin-left">
-        Use third party acount to log in
-        <div class="section">
+        <div class="text-gray">you can also sign in with</div class="text-center">
+        <div class="section" style="margin-top:30px">
             <span class="full-width social-btn btn-facebook" ng-click="facebook_login()"><i class="fa fa-facebook" aria-hidden="true"></i>facebook</span>
             <span class="full-width social-btn btn-twitter" ng-click="twitter_login()"><i class="fa fa-twitter" aria-hidden="true"></i>twitter</span>
+            <div class="coach-guide text-gray">
+                <div class="coach-guide-title">Become a private coach</div>
+                <div class="coach-guide-icon icon-left"><img src="../images/lineSharp.png"></div>
+                <div class="coach-guide-icon icon-right"><img src="../images/lineSharp.png"></div>
+                <div class="coach-guide-content">1.Sign up account</div>
+                <div class="coach-guide-content">2.Sign in</div>
+                <div class="coach-guide-content">3.Go to personal center</div>
+                <div class="coach-guide-content">4.Apply for coaching</div>
+            </div>
         </div>
     </div>
     <div class="signin-right" ng-if="sign =='signin'">
         <form name="signinForm" ng-submit="signin_action()">
-            Already have an account ,log in
+            Log in
             <div class="section">
                 <div class="input-group">
                     <input type="email" class="full-width form-control" ng-model="input.signin_email" required placeholder="enter you email/account">
@@ -17,11 +26,11 @@
                     <input type="password" class="full-width form-control " ng-model="input.signin_password" required placeholder="enter your password">
                 </div>
                 <div class="input-group">
-                    <button type="submit" class="btn btn-primary btn-lg full-width" ng-disabled="signinForm.$invalid">sign in</button>
+                    <button type="submit" class="btn btn-primary btn-lg full-width">sign in</button>
                 </div>
             </div>
             <div class="text-center">
-                <span ng-click="forget()" class="btn">forget password</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span ng-click="signup()" class="btn">or you can signup</span>
+                <span ng-click="forget()" class="btn">Forgot your password?</span>&nbsp;&nbsp;|&nbsp;&nbsp;<span ng-click="signup()" class="btn">No account? Sign up here</span>
             </div>
         </form>
     </div>
@@ -35,7 +44,7 @@
                 <input type="email" class="full-width form-control" ng-model="input.signup_email" required placeholder="enter your email/account">
             </div>
             <div class="input-group">
-                <input type="password" class="full-width form-control" ng-model="input.signup_password" required placeholder="enter your password">
+                <input type="password" class="full-width form-control" ng-model="input.signup_password" required placeholder="enter your password,at least 6">
             </div>
             <div class="input-group">
                 <button type="submit" class="btn btn-primary btn-lg full-width" ng-disabled="signupForm.$invalid">sign up</button>
@@ -46,17 +55,20 @@
         </div>
     </div>
     <div class="signin-right" ng-if="sign =='forget'">
-        Forget
+        Forgot your password
         <form class="section" name="forgetForm" ng-submit="forget_action()">
             <div class="input-group">
                 <input type="email" class="full-width form-control" ng-model="input.forget_email" required placeholder="enter your email/account">
             </div>
             <div class="input-group">
-                <button type="submit" class="btn btn-primary btn-lg full-width" ng-disabled="forgetForm.$invalid">send to find password</button>
+                <button type="submit" class="btn btn-primary btn-lg full-width" ng-disabled="forgetForm.$invalid">Find your password</button>
             </div>
         </form>
         <div class="text-center">
             <span ng-click="signin()" class="btn">signin</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span ng-click="signup()" class="btn">signup</span>
         </div>
     </div>
+</div>
+<div class="err-prompt social-btn" ng-if="">
+    Please Enter correct email here
 </div>

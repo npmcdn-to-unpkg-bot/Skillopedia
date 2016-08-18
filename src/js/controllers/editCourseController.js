@@ -15,6 +15,7 @@ angular.module("Skillopedia").controller("editCourseController", function($scope
 	$scope.step = 1;
 	$scope.show_step = function(step) {
 		$scope.step = step;
+		$("body").scrollTop(0);
 	};
 	// // 获取新建课程id
 	// toastServices.show();
@@ -259,68 +260,60 @@ angular.module("Skillopedia").controller("editCourseController", function($scope
 	// 打折方式
 	// unit:["Money","Amount"]
 	// $scope.input.discount = "by_money";
-	$scope.input.discounts = [];
-	// 增加打折输入
-	$scope.add_discount = function() {
-		var discount = {
-			message: "One-time Purchase",
-			unit: "Money",
-			purchase: "",
-			off: ""
-		}
-		if ($scope.input.discounts.length > 3) {
-			return;
-		}
-		if ($scope.input.discount == 'by_amount') {
-			discount.unit = "Amount";
-		}
-		$scope.input.discounts.push(discount);
-	}
-	$scope.remove_discount = function(discount) {
-		$scope.input.discounts = $scope.input.discounts.filter(function(d) {
-			return discount != d;
-		})
-	}
-	$scope.$watch("input.discount", function(n, o) {
-		if (n === o) {
-			return;
-		}
-		if (o === undefined) {
-			return;
-		}
-		var unit = "Money";
-		if (n == "by_amount") {
-			unit = "Amount";
-		}
-		$scope.input.discounts = [{
-			message: "One-time Purchase",
-			unit: unit,
-			purchase: "",
-			off: ""
-		}];
-	});
+	// $scope.input.discounts = [];
+	// // 增加打折输入
+	// $scope.add_discount = function() {
+	// 	var discount = {
+	// 		message: "One-time Purchase",
+	// 		unit: "Money",
+	// 		purchase: "",
+	// 		off: ""
+	// 	}
+	// 	if ($scope.input.discounts.length > 3) {
+	// 		return;
+	// 	}
+	// 	if ($scope.input.discount == 'by_amount') {
+	// 		discount.unit = "Amount";
+	// 	}
+	// 	$scope.input.discounts.push(discount);
+	// }
+	// $scope.remove_discount = function(discount) {
+	// 	$scope.input.discounts = $scope.input.discounts.filter(function(d) {
+	// 		return discount != d;
+	// 	})
+	// }
+	// $scope.$watch("input.discount", function(n, o) {
+	// 	if (n === o) {
+	// 		return;
+	// 	}
+	// 	if (o === undefined) {
+	// 		return;
+	// 	}
+	// 	var unit = "Money";
+	// 	if (n == "by_amount") {
+	// 		unit = "Amount";
+	// 	}
+	// 	$scope.input.discounts = [{
+	// 		message: "One-time Purchase",
+	// 		unit: unit,
+	// 		purchase: "",
+	// 		off: ""
+	// 	}];
+	// });
 
 	function parse_discount() {
-		$scope.input.discounts = [{
-			message: "One-time Purchase",
-			unit: "Money",
+		$scope.input.discount_1 = {
 			purchase: $scope.course.discount_onetion_pur_money_01,
 			off: $scope.course.discount_price_01
-		}, {
-			message: "One-time Purchase",
-			unit: "Money",
+		};
+		$scope.input.discount_2 = {
 			purchase: $scope.course.discount_onetion_pur_money_02,
 			off: $scope.course.discount_price_02
-		}, {
-			message: "One-time Purchase",
-			unit: "Money",
+		};
+		$scope.input.discount_3 = {
 			purchase: $scope.course.discount_onetion_pur_money_03,
 			off: $scope.course.discount_price_03
-		}];
-		$scope.input.discount = $scope.course.discount_type == "1" ? "by_money" : "by_amount";
-		$scope.input.discounts = $scope.input.discounts.filter(function(d) {
-			return d.purchase != 0;
-		})
+		};
 	};
 	// $scope.confirm_discount = function(discount) {
 	//     if ($scope.input.discount == 'by_money' && discount.money != "" && discount.off != "") {
@@ -538,19 +531,19 @@ angular.module("Skillopedia").controller("editCourseController", function($scope
 	};
 	// 提交表单 最终创建课程
 	$scope.ajaxForm = function() {
-		var discount_onetion_pur_money_01, discount_price_01, discount_onetion_pur_money_02, discount_price_02, discount_onetion_pur_money_03, discount_price_03;
-		if ($scope.input.discounts.length > 0) {
-			discount_onetion_pur_money_01 = $scope.input.discounts[0].purchase;
-			discount_price_01 = $scope.input.discounts[0].off;
-		}
-		if ($scope.input.discounts.length > 1) {
-			discount_onetion_pur_money_02 = $scope.input.discounts[1].purchase;
-			discount_price_02 = $scope.input.discounts[1].off;
-		}
-		if ($scope.input.discounts.length > 2) {
-			discount_onetion_pur_money_03 = $scope.input.discounts[2].purchase;
-			discount_price_03 = $scope.input.discounts[2].off;
-		}
+		// var discount_onetion_pur_money_01, discount_price_01, discount_onetion_pur_money_02, discount_price_02, discount_onetion_pur_money_03, discount_price_03;
+		// if ($scope.input.discounts.length > 0) {
+		// 	discount_onetion_pur_money_01 = $scope.input.discounts[0].purchase;
+		// 	discount_price_01 = $scope.input.discounts[0].off;
+		// }
+		// if ($scope.input.discounts.length > 1) {
+		// 	discount_onetion_pur_money_02 = $scope.input.discounts[1].purchase;
+		// 	discount_price_02 = $scope.input.discounts[1].off;
+		// }
+		// if ($scope.input.discounts.length > 2) {
+		// 	discount_onetion_pur_money_03 = $scope.input.discounts[2].purchase;
+		// 	discount_price_03 = $scope.input.discounts[2].off;
+		// }
 		toastServices.show();
 		coursesServices.edit_course({
 			course_id: $routeParams.id,
@@ -581,12 +574,12 @@ angular.module("Skillopedia").controller("editCourseController", function($scope
 			additional_partner: $scope.input.partner,
 			surcharge_for_each: $scope.input.surcharge,
 			discount_type: "2", //$scope.input.discount == "by_money" ? "1" : "2",
-			discount_onetion_pur_money_01: discount_onetion_pur_money_01 || "",
-			discount_price_01: discount_price_01 || "",
-			discount_onetion_pur_money_02: discount_onetion_pur_money_02 || "",
-			discount_price_02: discount_price_02 || "",
-			discount_onetion_pur_money_03: discount_onetion_pur_money_03 || "",
-			discount_price_03: discount_price_03 || "",
+			discount_onetion_pur_money_01: $scope.input.discount_1.purchase || "",
+			discount_price_01: $scope.input.discount_1.off || "",
+			discount_onetion_pur_money_02: $scope.input.discount_2.purchase || "",
+			discount_price_02: $scope.input.discount_2.off || "",
+			discount_onetion_pur_money_03: $scope.input.discount_3.purchase || "",
+			discount_price_03: $scope.input.discount_3.off || "",
 			start_time_slot: $scope.input.start_time,
 			end_time_slot: $scope.input.end_time,
 			weeks: $scope.input.weeks.filter(function(week) {

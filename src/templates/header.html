@@ -11,7 +11,7 @@
                 <a class="shoppingcart" ng-if="is_signin()" ng-href="#/shoppingcart"><img ng-src="../images/cart.png" alt="" err-src="../images/example_7.png"><span class="cart-count" ng-if="amount>0">{{amount}}</span></a>
                 <div class="dropdown-menu" ng-if="is_signin()">
                     <a class="menu-item" ng-href="#/orders">
-                        <i class="fa fa-user" aria-hidden="true"></i>个人中心
+                        <i class="fa fa-user" aria-hidden="true"></i>Orders
                     </a>
                     <a class="menu-item" ng-href="#/skillopedia" ng-if="user.agent_level == '2'">
                         <i class="fa fa-bookmark" aria-hidden="true"></i>我的课程

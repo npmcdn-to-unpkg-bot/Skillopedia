@@ -132,14 +132,14 @@
                 <!-- <div ng-include="'templates/calendar.html'"></div> -->
                 <calendar calendar="calendar" class="small-calendar"></calendar>
                 <!-- <span class="calender-tip unavailable">不可预约</span> -->
-                <span class="calender-tip confirm">已经被人预约</span>
-                <span class="calender-tip busy">忙</span>
+                <span class="calender-tip confirm">booked</span>
+                <span class="calender-tip busy">unavailable</span>
             </div>
             <div class="section sm map-section">
                 <div class="section-title">Teaching location</div>
                 <!-- <iframe ng-src="{{get_map()}}" class="map" height="300px" frameborder="0" allowfullscreen></iframe> -->
                 <div style="height:300px;border:1px solid #d2d2d2" id="map"></div>
-                <p>{{course.street+" , "+course.area+" , "+course.city}}</p>
+                <!-- <p>{{course.street+" , "+course.area+" , "+course.city}}</p> -->
                 <p>travel: 
                     <span ng-if="course.travel_to_session == '1'">yes</span>
                     <span ng-if="course.travel_to_session == '0'">no</span>

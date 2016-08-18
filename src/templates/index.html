@@ -16,16 +16,16 @@
         <a class="shoppingcart" ng-if="is_signin()" ng-href="#/shoppingcart"><img ng-src="../images/cart.png" alt="" err-src="../images/example_7.png"></a>
         <div class="dropdown-menu" ng-if="is_signin()">
             <a class="menu-item" ng-href="#/orders">
-                <i class="fa fa-user" aria-hidden="true"></i>个人中心
+                <i class="fa fa-user" aria-hidden="true"></i>Orders
             </a>
             <a class="menu-item" ng-href="#/skillopedia" ng-if="user.agent_level == '2'">
                 <i class="fa fa-bookmark" aria-hidden="true"></i>我的课程
             </a>
             <a class="menu-item" ng-href="#/skillopedia" ng-if="user.agent_level == '1'">
-                <i class="fa fa-bookmark" aria-hidden="true"></i>成为教练
+                <i class="fa fa-bookmark" aria-hidden="true"></i>As a coach/Teach with Skillopdia
             </a>
             <a class="menu-item" ng-click="logout()">
-                <i class="fa fa-sign-out" aria-hidden="true"></i>退出登录
+                <i class="fa fa-sign-out" aria-hidden="true"></i>Sign out
             </a>
         </div>
     </div>
@@ -76,7 +76,7 @@
 <div class="wrap search-wrap">
     <form class="search-input" ng-submit="ajaxForm()" name="searchForm" ng-controller="searchFormController">
         <i class="fa fa-search" aria-hidden="true"></i>
-        <input type="text" class="full-width" ng-model="input.keyword" required placeholder="find your private coach or lesson">
+        <input type="text" class="full-width" ng-model="input.keyword" required placeholder="Find your coach or lesson">
         <span class="category-suggestion" ng-if="input.keyword && input.categorys.length>0">
             <span class="suggestion-item" ng-repeat="category in input.categorys" ng-click="select_category(category)">{{category.category_02_name}}</span>
         </span>

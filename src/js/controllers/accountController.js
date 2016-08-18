@@ -1,7 +1,8 @@
 // by dribehance <dribehance.kksdapp.com>
 angular.module("Skillopedia").controller("accountController", function($scope, $rootScope, userServices, errorServices, toastServices, localStorageService, config) {
 	$scope.input = {
-		nickname: ""
+		nickname: "",
+		password: ""
 	}
 	toastServices.show();
 	userServices.query_basicinfo().then(function(data) {
@@ -15,16 +16,27 @@ angular.module("Skillopedia").controller("accountController", function($scope, $
 	})
 	$scope.ajaxForm = function() {
 		toastServices.show();
-		userServices.modify_nickname({
-			nickname: $scope.input.nickname
+		userServices.rsa_key().then(function(data) {
+			var crypt = new JSEncrypt(),
+				private_key = data;
+			crypt.setPrivateKey(private_key);
+			var crypted_str = crypt.encrypt($scope.input.password);
+			$scope.input.password = crypted_str;
 		}).then(function(data) {
-			toastServices.hide()
-			if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
-				$rootScope.user.nickname = $scope.input.nickname;
-				errorServices.autoHide(data.message)
-			} else {
-				errorServices.autoHide(data.message);
-			}
+			toastServices.show();
+			userServices.modify_nickname({
+				nickname: $scope.input.nickname,
+				password: $scope.input.password
+			}).then(function(data) {
+				toastServices.hide();
+				if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
+					$rootScope.user.nickname = $scope.input.nickname;
+					errorServices.autoHide(data.message)
+				} else {
+					errorServices.autoHide(data.message);
+				}
+				$scope.input.password = "";
+			})
 		})
 	}
 });
@@ -56,6 +68,5 @@ angular.module("Skillopedia").controller("uploadAvatarController", function($sco
 			event.preventDefault(); //prevent file from uploading
 			return;
 		}
-		$scope.cert.url = "";
 	});
 })

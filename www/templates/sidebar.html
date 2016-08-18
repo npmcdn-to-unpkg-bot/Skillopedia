@@ -3,7 +3,7 @@
         <div class="sidebar-avatar">
             <img ng-src="{{staticImageUrl + user.image_01}}" err-src="../images/example_7.png" alt="">
         </div>
-        <p class="text-center">{{user.nickname}}</p>
+        <p class="text-center text-transform">{{user.nickname}}</p>
     </div>
     <div class="sidebar-list">
         <!-- <a class="sidebar-item sub-item clearfix" ng-href="#/courses" ng-class="{'active':highlight('/courses')}">
@@ -27,7 +27,7 @@
             <i class="fa fa-angle-right pull-right" aria-hidden="true"></i>
         </a>
         <a class="sidebar-item clearfix" ng-href="#/skillopedia" ng-class="{'active':highlight('/skillopedia')}">
-            <marquee class="marquee" ng-if="user.agent_level == '1'">I am a skillopedia ,Start your new life from here</marquee>
+            <marquee class="marquee" ng-if="user.agent_level == '1'">Be a private coach</marquee>
             <span class="marquee" ng-if="user.agent_level == '2'">As a coach</span>
             <i class="fa fa-angle-right pull-right" aria-hidden="true"></i>
         </a>
@@ -35,7 +35,7 @@
             Message
             <i class="fa fa-angle-right pull-right" aria-hidden="true"></i>
         </a>
-        <a class="sidebar-item-header clearfix" ng-href="#/show?user_id={{user.user_id}}" target="_blank">
+        <a class="sidebar-item clearfix" ng-href="#/courses" ng-class="{'active':highlight('/courses')}">
             My Skillopedia
             <i class="fa fa-angle-right pull-right" aria-hidden="true"></i>
         </a>
@@ -49,6 +49,10 @@
         </a>
         <a class="sidebar-item clearfix" ng-href="#/coupons" ng-class="{'active':highlight('/coupons')}">
             Coupon
+            <i class="fa fa-angle-right pull-right" aria-hidden="true"></i>
+        </a>
+        <a class="sidebar-item clearfix" ng-href="#/account" ng-class="{'active':highlight('/account')}">
+            My Account
             <i class="fa fa-angle-right pull-right" aria-hidden="true"></i>
         </a>
     </div>

@@ -1,5 +1,5 @@
 // by dribehance <dribehance.kksdapp.com>
-angular.module("Skillopedia").controller("authenicationController", function($scope, $rootScope, $route, $filter, $timeout, userServices, errorServices, toastServices, localStorageService, config) {
+angular.module("Skillopedia").controller("authenicationController", function($scope, $rootScope, $route, $filter, $timeout, skillopediaServices, userServices, errorServices, toastServices, localStorageService, config) {
 	// it's coach,redirect,agent_level:1 普通用户,2:教练
 	if ($rootScope.user.agent_level == '2') {
 		$rootScope.back();
@@ -7,18 +7,15 @@ angular.module("Skillopedia").controller("authenicationController", function($sc
 	}
 	$scope.input = {};
 	$scope.input.gender = "1";
-	// picker
-	$scope.input.date = $filter("date")(new Date());
-	var date = $(".pickadate").pickadate();
-	var picker = date.pickadate('picker');
-	picker && picker.on({
-		set: function(thingSet) {
-			var select = picker.get();
-			$scope.$apply(function() {
-				$scope.input.date = select || $scope.input.date;
-			})
+	// query category list;
+	skillopediaServices.query_all_second_category().then(function(data) {
+		if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
+			$scope.categorys = data.Result.Categorys;
+		} else {
+			errorServices.autoHide(data.message);
 		}
 	});
+	$scope.telephone = 0;
 	// 身份证
 	$scope.input.idcards = [{
 		id: "",
@@ -33,10 +30,12 @@ angular.module("Skillopedia").controller("authenicationController", function($sc
 		userServices.authenication({
 			nickname: $scope.input.realname,
 			sex: $scope.input.gender,
-			birthday: $(".pickadate").val(),
+			birthday: $("input[name='birthday']").val(),
 			telephone: $scope.input.telephone,
 			cover_ID_01: $scope.input.idcards[0].url,
-			cover_ID_02: $scope.input.idcards[1].url
+			cover_ID_02: $scope.input.idcards[1].url,
+			category_name: $scope.input.category.category_02_name,
+			experiences: $scope.input.experience
 		}).then(function(data) {
 			toastServices.hide()
 			if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {

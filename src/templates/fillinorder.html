@@ -30,19 +30,7 @@
             </div>
             <div class="section sm">
                 <div class="section-title">
-                    Teaching Location
-                </div>
-                <div class="section-content">
-                    <!-- <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod libero impedit dolorum iure. Eos sint autem nostrum culpa quas eius, quidem animi laborum ratione cupiditate. Aspernatur minus vitae sint totam!</p> -->
-                    <p>{{course.street+" , "+course.area+" , "+course.city}}</p>
-                    <!-- <iframe ng-src="{{teaching_location_map}}" class="map" height="300px" frameborder="0" allowfullscreen></iframe> -->
-                    <div style="height:300px;border:1px solid #d2d2d2" id="map"></div>
-                    <a class="btn text-success" ng-if="course.travel_to_session == '1'" ng-click="edit()">the coach offer travel to session ,edit location!</a>
-                </div>
-            </div>
-            <div class="section sm">
-                <div class="section-title">
-                    Booking course time
+                    Booking  your preferred time
                 </div>
                 <div class="calendar-wrap">
                     <calendar calendar="calendar" class="calendar-left"></calendar>
@@ -63,10 +51,23 @@
                         </div>
                         <div class="text-center">
                             <!-- <span class="calender-tip unavailable">不可预约</span> -->
-                            <span class="calender-tip confirm">已经被人预约</span>
-                            <span class="calender-tip busy">忙</span>
+                            <span class="calender-tip confirm">booked</span>
+                            <span class="calender-tip busy">unavailable</span>
                         </div>
                     </div>
+                </div>
+            </div>
+            <div class="section sm">
+                <div class="section-title">
+                    Teaching Location
+                </div>
+                <div class="section-content">
+                    <!-- <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod libero impedit dolorum iure. Eos sint autem nostrum culpa quas eius, quidem animi laborum ratione cupiditate. Aspernatur minus vitae sint totam!</p> -->
+                    <!-- <p>{{course.street+" , "+course.area+" , "+course.city}}</p> -->
+                    <p>specific location will show up after your payment</p>
+                    <!-- <iframe ng-src="{{teaching_location_map}}" class="map" height="300px" frameborder="0" allowfullscreen></iframe> -->
+                    <div style="height:300px;border:1px solid #d2d2d2" id="map"></div>
+                    <a class="btn text-success" ng-if="course.travel_to_session == '1'" ng-click="edit()">the coach offer travel to session ,edit location!</a>
                 </div>
             </div>
             <!-- <div class="section sm">
@@ -80,7 +81,7 @@
         </div>
         <div class="detail-right">
             <div class="settlement">
-                <p class="text-center">课程费用<span ng-if="input.total_fee>0">+服务费用</span><span ng-if="input.total_traffic_cost>0">+交通费用</span></p>
+                <p class="text-center">Session fee<span ng-if="input.total_fee>0">+One times service fee</span><span ng-if="input.total_traffic_cost>0">+Travel cost</span></p>
                 <p class="price text-center">
                     <span ng-class="{'underline':input.discount_price>0}">{{input.total_price|currency:"$"}}</span>
                     <span ng-if="input.discount_price>0">{{input.discount_price|currency:"$"}}</span>
@@ -89,7 +90,7 @@
                 </p>
                 <p class="text-center">per session {{course.session_length||'60'}}min</p>
                 <p class="clearfix settlement-action">
-                    购买数量
+                    Session quantity
                     <span class="pull-right">
                     <span class="settlement-minus" ng-click="minus_amount()">-</span>
                     <span class="settlement-amount">{{input.amount}}</span>
@@ -114,12 +115,12 @@
                     <div class="col-xs-4 pull-right" ng-if="course.discount_type == '2' && discounts.length>0" ng-repeat="discount in discounts">
                         <div class="discount-wrap">
                             <div class="discount">
-                                <div class="title">sessions</div>
+                                <div class="title">Package</div>
                                 <div class="discount-info">
                                     <span>Buy</span>
                                     <span class="block size text-danger">{{discount.purchase}}</span>
                                     <span class="block">courses get</span>
-                                    <span class="size text-danger margin">{{discount.off|currency:"$"}}</span>
+                                    <span class="size text-danger margin">{{discount.off +"%"}}</span>
                                     <span class="block">off</span>
                                 </div>
                             </div>
@@ -141,7 +142,7 @@
                     </div> -->
                 </div>
                 <p class="clearfix settlement-action" ng-if="course.additional_partner>0">
-                    additional
+                    Additional partner
                     <span class="pull-right">
                     <span class="settlement-minus" ng-click="minus_partner()">-</span>
                     <span class="settlement-amount">{{input.partner}}</span>
@@ -150,7 +151,7 @@
                 </p>
                 <p class="clearfix">
                     <span class="col-xs-4">
-                        优惠券
+                        Coupons:
                     </span>
                     <span class="col-xs-8">
                         <dribehance-select options="input.coupons" ng-if="is_signin()"></dribehance-select>
@@ -164,7 +165,7 @@
                 </p>
                 <div class="">
                     <div class="section-title">
-                        Leaving message
+                        Leaving message for coach
                     </div>
                     <div class="input-group">
                         <textarea class="form-control full-width" ng-model="input.message" placeholder="leaving message"></textarea>
@@ -184,16 +185,16 @@
                         </div>
                     </div> -->
                     <div ng-if="course.first_joint_fee>0">
-                        <p><b>First services fee </b></p>
+                        <p><b>One time service fee </b></p>
                         <div class="text-danger">{{course.first_joint_fee}}%</div>
                     </div>
                     <div ng-if="course.travel_to_session=='1'">
-                        <p><b>Traffic Cost </b></p>
+                        <p><b>Travel cost </b></p>
                         <div class="text-danger">{{course.travel_to_session_trafic_surcharge|currency:"$"}}</div>
                     </div>
                     <div ng-if="course.additional_partner>0">
-                        <p><b>Additional </b></p>
-                        <div>each for {{course.surcharge_for_each|currency:"$"}},up to {{course.additional_partner}}</div>
+                        <p><b>Additional partner </b></p>
+                        <div>{{course.surcharge_for_each|currency:"$"}} for each partner, up to {{course.additional_partner}} partner allowed.</div>
                     </div>
                 </div>
             </div>

@@ -28,7 +28,7 @@ angular.module("Skillopedia").controller("ordersManagementController", function(
 				errorServices.autoHide("服务器错误");
 			}
 			if ($scope.no_more) {
-				$scope.page.message = "加载完成，共加载" + $scope.orders.length + "条数据";
+				$scope.page.message = $scope.orders.length + " records found";
 			}
 			$scope.page.pn++;
 		})
