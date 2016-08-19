@@ -1,12 +1,12 @@
 // by dribehance <dribehance.kksdapp.com>
-angular.module("Skillopedia").controller("fillinorderController", function($scope, $rootScope, $window, $timeout, $location, $filter, $routeParams, $sce, googleMapServices, orderServices, scheduleServices, userServices, coursesServices, errorServices, toastServices, localStorageService, config) {
+angular.module("Skillopedia").controller("fillinorderController", function($scope, $rootScope, $window, $timeout, $location, $filter, $routeParams, $sce, skillopediaServices, googleMapServices, orderServices, scheduleServices, userServices, coursesServices, errorServices, toastServices, localStorageService, config) {
 	$scope.input = {};
 	$scope.course = {};
 	toastServices.show();
 	orderServices.query_course({
 		course_id: $routeParams.course_id,
 		latitude: 0,
-		latitude: 0
+		longitude: 0
 	}).then(function(data) {
 		toastServices.hide()
 		if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
@@ -88,14 +88,26 @@ angular.module("Skillopedia").controller("fillinorderController", function($scop
 	};
 	$scope.save_location = function() {
 		$scope.teaching_location_map = $scope.get_map($scope.input.city, $scope.input.area, $scope.input.street, $scope.input.address, 2);
-		$scope.course.city = $scope.input.city;
-		$scope.course.area = $scope.input.area;
-		$scope.course.street = $scope.input.street;
-		$scope.course.address = $scope.input.address;
-		$scope.course.zipcode = $scope.input.zipcode;
-		$scope.input.travel_location = 1;
-		$scope.calculate();
-		$.magnificPopup.close();
+		// valid location
+		skillopediaServices.query_location_in_services({
+			course_id: $routeParams.course_id,
+			latitude: $scope.lat_lng.lat || "0",
+			longitude: $scope.lat_lng.lng || "0"
+		}).then(function(data) {
+			if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
+				$scope.course.city = $scope.input.city;
+				$scope.course.area = $scope.input.area;
+				$scope.course.street = $scope.input.street;
+				$scope.course.address = $scope.input.address;
+				$scope.course.zipcode = $scope.input.zipcode;
+				$scope.input.travel_location = 1;
+				$scope.calculate();
+				$.magnificPopup.close();
+			} else {
+				console.log(data.message)
+				errorServices.autoHide(data.message);
+			}
+		});
 	};
 	$scope.reset_location = function() {
 		$scope.teaching_location_map = $scope.get_map($scope.old_course.city, $scope.old_course.area, $scope.old_course.street, $scope.old_course.address, 1);

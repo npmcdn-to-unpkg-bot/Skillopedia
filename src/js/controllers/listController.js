@@ -89,7 +89,8 @@ angular.module("Skillopedia").controller("listController", function($scope, $roo
 			prioritys: $scope.input.priority,
 			price_type: $scope.input.price,
 			review_type: $scope.input.review,
-			hot_type: $scope.input.hot
+			hot_type: $scope.input.hot,
+			travel_to_session: $scope.input.travel
 		}
 		$scope.no_more = false;
 		$scope.loadMore();
@@ -118,6 +119,11 @@ angular.module("Skillopedia").controller("listController", function($scope, $roo
 		$scope.input.price = sort_1 = 0;
 		$scope.input.review = sort_2 = 0;
 		$scope.input.hot = sort_3++ % 2 + 1;
+		$scope.reload();
+	};
+	var travel = 0;
+	$scope.sort_by_travel = function() {
+		$scope.input.travel = ++travel % 2;
 		$scope.reload();
 	};
 	// $scope.$watch("input.priority", function(n, o) {

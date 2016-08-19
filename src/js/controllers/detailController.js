@@ -5,7 +5,7 @@ angular.module("Skillopedia").controller("detailController", function($scope, $r
 	coursesServices.query_by_id({
 		course_id: $routeParams.course_id,
 		latitude: 0,
-		latitude: 0
+		longitude: 0
 	}).then(function(data) {
 		toastServices.hide()
 		if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
