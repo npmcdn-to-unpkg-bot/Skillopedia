@@ -91,7 +91,7 @@
         </div>
         <div class="detail-right">
             <div class="settlement">
-                <p class="text-center">Session fee<span ng-if="input.total_fee>0">+One times service fee</span><span ng-if="input.total_traffic_cost>0">+Travel cost</span></p>
+                <p class="text-center">Session fee<span ng-if="input.total_fee>0">+One times service fee</span>&nbsp;<i class="fa fa-question-circle-o" aria-hidden="true" title="This fee is used for maintain coach service, you won't be charged in the future when you purchase the same course with this coach" style="color:blue;"></i><span ng-if="input.total_traffic_cost>0">+Travel cost</span></p>
                 <p class="price text-center">
                     <span ng-class="{'underline':input.discount_price>0}">{{input.total_price|currency:"$"}}</span>
                     <span ng-if="input.discount_price>0">{{input.discount_price|currency:"$"}}</span>
@@ -165,7 +165,7 @@
                     </span>
                     <span class="col-xs-8">
                         <dribehance-select options="input.coupons" ng-if="is_signin()"></dribehance-select>
-                        <span class="pull-right hover" ng-click="signin()" ng-if="!is_signin()">Sign in to use cupons</span>
+                        <span class="pull-right hover" ng-click="signin()" ng-if="!is_signin()" style="padding-top:6px">Sign in to use cupons</span>
                     </span>
                 </p>
                 <p class="text-center">

@@ -27,18 +27,28 @@
             </a>
             <div class="section sm">
                 <div class="section-title">Detail</div>
-                <p class="clearfix">
-                    <span class="pull-left">Teaching: since {{course.teaching_since}}</span>
-                    <span class="pull-right">Session Duration: {{course.session_length}}min</span>
+                <p class="clearfix text-ellipsis">
+                    <span class="col-xs-9">
+                        <span class="">Teaching: since {{course.teaching_since}}</span>
+                    </span>
+                    <span class="">
+                        <span class="" >Session Duration: {{course.session_length}}min</span>
+                    </span>
+                    
                 </p>
-                <p class="clearfix">
-                    <span class="pull-left">Group Session: Up to {{course.additional_partner}}</span>
-                    <span class="pull-right">Teaches: Age {{course.teaching_age}} and up</span>
+                <p class="clearfix text-ellipsis">
+                    <span class="col-xs-9"><span class="">Group Session: Up to {{course.additional_partner}}</span></span>
+                    <span class="">Teaches: Age {{course.teaching_age}} and up</span>
+                    
+                    
                 </p>
-                <div class="clearfix">
-                    <span class="pull-left" ng-if="course.travel_to_session == '1'">Travel: Yes</span>
-                    <span class="pull-left" ng-if="course.travel_to_session == '0'">Travel: No</span>
-                    <span class="pull-right" ng-if="course.travel_to_session == '1'">Travel Distance: {{course.travel_to_session_distance}} miles</span>
+                <div class="clearfix text-ellipsis">
+                    <span class="col-xs-9"><span class="pull-left" ng-if="course.travel_to_session == '1'">Travel: Yes</span><span class="pull-left" ng-if="course.travel_to_session == '0'">Travel: No</span></span>
+                   
+                   <span ng-if="course.travel_to_session == '1'">Travel Distance: {{course.travel_to_session_distance}} miles</span>
+                    
+                    
+                    
                 </div>
             </div>
             <div class="line"></div>
