@@ -93,7 +93,7 @@ angular.module("Skillopedia").controller("fillinorderController", function($scop
 		$scope.course.street = $scope.input.street;
 		$scope.course.address = $scope.input.address;
 		$scope.course.zipcode = $scope.input.zipcode;
-		// $scope.input.travel_to_session = 1;
+		$scope.input.travel_location = 1;
 		$scope.calculate();
 		$.magnificPopup.close();
 	};
@@ -104,7 +104,7 @@ angular.module("Skillopedia").controller("fillinorderController", function($scop
 		$scope.course.street = $scope.old_course.street;
 		$scope.course.address = $scope.old_course.address;
 		$scope.course.zipcode = $scope.old_course.zipcode;
-		// $scope.input.travel_to_session = 0;
+		$scope.input.travel_location = 0;
 		$scope.calculate();
 		$.magnificPopup.close();
 	};
@@ -112,10 +112,19 @@ angular.module("Skillopedia").controller("fillinorderController", function($scop
 	$scope.get_map = function(state, city, street, unit, type) {
 		// var map_url = "https://maps.google.com/maps?q=" + state + city + street + "&output=embed";
 		// return $sce.trustAsResourceUrl(map_url);
+		var state = state || "",
+			city = city || "",
+			street = street || "",
+			unit = unit || "",
+			type = type || "1";
+		var address;
+		type == "1" && (address = street + "," + city + "," + state);
+		type == "2" && (address = street + "," + unit + "," + city + "," + state);
 		googleMapServices.geocoding({
-			address: street + "," + city + "," + state
+			address: address
 		}).then(function(data) {
 			$scope.lat_lng = data.results[0].geometry.location;
+			$scope.format_address = data.results[0].formatted_address;
 			var map = googleMapServices.create_map(document.getElementById('map'), $scope.lat_lng);
 			// console.log(map)
 			type == "1" && (googleMapServices.create_circle_marker(map, $scope.lat_lng));
@@ -258,7 +267,7 @@ angular.module("Skillopedia").controller("fillinorderController", function($scop
 		if ($scope.input.coupons.all.length == 0) {
 			$scope.is_watch = false;
 			$scope.input.coupons.selected = {
-				coupon_name: "无可用优惠券",
+				coupon_name: "no coupons available",
 				my_coupon_id: "0"
 			};
 		}

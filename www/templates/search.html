@@ -13,7 +13,7 @@
                 </div>
                 <div class="coach-info">
                     <div class="long-title text-ellipsis">{{course.title}}</div>
-                    <div style="margin-bottom:10px;">{{course.coach_name}}</div>
+                    <div style="margin-bottom:10px;" class="text-transform">{{course.coach_name}}</div>
                     <span class="pull-right text-primary text-big">{{course.session_rate|currency:"$"}}</span>
                     <div class="star text-ellipsis">
                         <i class="fa fa-star" ng-class="{'active':course.total_score >0}" aria-hidden="true"></i>
@@ -21,8 +21,8 @@
                         <i class="fa fa-star" ng-class="{'active':course.total_score >2}" aria-hidden="true"></i>
                         <i class="fa fa-star" ng-class="{'active':course.total_score >3}" aria-hidden="true"></i>
                         <i class="fa fa-star" ng-class="{'active':course.total_score >4}" aria-hidden="true"></i>
-                        <span ng-if="course.total_coment_num >0">共{{course.total_coment_num}}条评价</span>
-                        <span ng-if="course.total_coment_num ==0">暂无评价</span>
+                        <span>{{course.total_coment_num || "0"}} reviews</span>
+                        <!-- <span ng-if="course.total_coment_num ==0">暂无评价</span> -->
                         <span ng-if="course.distance">{{course.distance}}</span>
                     </div>
                     <div class="coach-meta">

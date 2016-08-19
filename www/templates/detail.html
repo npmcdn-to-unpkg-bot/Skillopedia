@@ -12,15 +12,15 @@
                 </div>
                 <div class="coach-info">
                     <div class="auto-title text-ellipsis">{{course.title}}</div>
-                    <div style="margin-bottom:10px;">{{course.nickname}}</div>
+                    <div style="margin-bottom:10px;" class="text-transform">{{course.nickname}}</div>
                     <div class="star text-ellipsis">
                         <i class="fa fa-star" ng-class="{'active':course.total_score >0}" aria-hidden="true"></i>
                         <i class="fa fa-star" ng-class="{'active':course.total_score >1}" aria-hidden="true"></i>
                         <i class="fa fa-star" ng-class="{'active':course.total_score >2}" aria-hidden="true"></i>
                         <i class="fa fa-star" ng-class="{'active':course.total_score >3}" aria-hidden="true"></i>
                         <i class="fa fa-star" ng-class="{'active':course.total_score >4}" aria-hidden="true"></i>
-                        <span ng-if="course.total_coment_num >0">共{{course.total_coment_num}}条评价</span>
-                        <span ng-if="course.total_coment_num ==0">暂无评价</span>
+                        <span>{{course.total_coment_num || "0"}} reviews</span>
+                        <!-- <span ng-if="course.total_coment_num ==0">暂无评价</span> -->
                     </div>
                     <div class="coach-meta"><span><i class="fa fa-bars" aria-hidden="true"></i>{{course.category_02_name}}</span><!-- <span><i class="fa fa-user" aria-hidden="true"></i>by {{course.nickname}}</span> --><span><i class="fa fa-map-marker" aria-hidden="true"></i>{{course.area}}</span></div>
                 </div>
@@ -129,6 +129,9 @@
                 </p>
             </div>
             <div class="section sm">
+                <div class="section-title" ng-if="course.is_stop_course == '1'">
+                    注意：教练已停课
+                </div>
                 <!-- <div ng-include="'templates/calendar.html'"></div> -->
                 <calendar calendar="calendar" class="small-calendar"></calendar>
                 <!-- <span class="calender-tip unavailable">不可预约</span> -->
