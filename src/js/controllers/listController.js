@@ -4,19 +4,6 @@ angular.module("Skillopedia").controller("listController", function($scope, $roo
 		price: 0,
 		review: 0,
 		hot: 0,
-		distances: [
-			"500-1000mile",
-			"1000-1500mile",
-			"1500-2000mile",
-			"2000-2500mile",
-			"2500-3000mile"
-		],
-		priorities: [
-			// "distance",
-			"price",
-			"review",
-			"hot",
-		]
 	};
 	$scope.input.category = {
 		name: $routeParams.type == "2" ? $routeParams.category : "",
@@ -32,7 +19,7 @@ angular.module("Skillopedia").controller("listController", function($scope, $roo
 	});
 	// query course list;
 	$scope.courses = [];
-	$scope.page = {
+	$scope.paging = {
 		pn: 1,
 		page_size: 10,
 		message: "点击加载更多",
@@ -46,24 +33,18 @@ angular.module("Skillopedia").controller("listController", function($scope, $roo
 		prioritys: $scope.input.priority
 	}
 	$scope.loadMore = function() {
-		if ($scope.no_more) {
-			return;
-		}
 		toastServices.show();
-		$scope.page.message = "正在加载...";
-		coursesServices.query($scope.page).then(function(data) {
+		$scope.paging.message = "正在加载...";
+		coursesServices.query($scope.paging).then(function(data) {
 			toastServices.hide();
-			$scope.page.message = "点击加载更多";
+			$scope.paging.message = "点击加载更多";
 			if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
-				$scope.courses = $scope.courses.concat(data.Result.Courses.list);
-				$scope.no_more = $scope.courses.length == data.Result.Courses.totalRow ? true : false;
+				$scope.courses = data.Result.Courses.list;
+				$scope.paging.page_size = $scope.paging.page_size;
+				$scope.paging.total_items = data.Result.Courses.totalRow;
 			} else {
 				errorServices.autoHide("服务器错误");
 			}
-			if ($scope.no_more) {
-				$scope.page.message = $scope.courses.length + " records found";
-			}
-			$scope.page.pn++;
 		})
 
 	}
@@ -73,11 +54,11 @@ angular.module("Skillopedia").controller("listController", function($scope, $roo
 		$location.search({
 			category: null,
 			category_id: null
-		})
-		$scope.courses = [];
-		$scope.page = {
-			pn: 1,
-			page_size: 10,
+		});
+		// $scope.courses = [];
+		$scope.paging = angular.extend({}, $scope.paging, {
+			pn: $scope.paging.pn,
+			page_size: $scope.paging.page_size,
 			message: "点击加载更多",
 			kw: $routeParams.kw,
 			type: "2",
@@ -91,9 +72,11 @@ angular.module("Skillopedia").controller("listController", function($scope, $roo
 			review_type: $scope.input.review,
 			hot_type: $scope.input.hot,
 			travel_to_session: $scope.input.travel
-		}
-		$scope.no_more = false;
+		})
 		$scope.loadMore();
+	};
+	$scope.paging.callback = function() {
+		$scope.reload();
 	};
 	// filter by category;
 	$scope.$watch("input.category", function(n, o) {
@@ -126,22 +109,6 @@ angular.module("Skillopedia").controller("listController", function($scope, $roo
 		$scope.input.travel = ++travel % 2;
 		$scope.reload();
 	};
-	// $scope.$watch("input.priority", function(n, o) {
-	// 	if (n === o) {
-	// 		return;
-	// 	}
-	// 	$scope.reload();
-	// }, true);
-	// filter by priority;
-	// $scope.remove = function(condition) {
-	// 	$scope.input[condition] = "";
-	// };
-	// $scope.sidebar = {
-	// 	title: "recommand"
-	// }
-	// $scope.change_sidebar = function(title) {
-	// 	$scope.sidebar.title = title;
-	// }
 	$scope.open_map = function(course, e) {
 		e.preventDefault();
 		e.stopPropagation();
