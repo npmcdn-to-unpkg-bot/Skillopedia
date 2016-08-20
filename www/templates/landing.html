@@ -18,7 +18,7 @@
         </div>
         <div class="signin-right" ng-if="sign =='signin'">
             <form name="signinForm" ng-submit="signin_action()">
-                Log in
+                Log in <a ng-href="#/index" class="hover pull-right" style="color:black"><i class="fa fa-times" aria-hidden="true"></i></a>
                 <div class="section" style="margin-top:30px;">
                     <div class="input-group">
                         <input type="email" class="full-width form-control" name="email" ng-model="input.signin_email" required placeholder="enter you email/account">
