@@ -7,16 +7,19 @@
         text-align: center;
         clear: both;
         input {
+            position: relative;
             padding: 15px;
             text-align: center;
             border: none;
             .box-sizing(border-box);
+            background-color: transparent;
+            z-index: 2;
         }
         .fa-angle-right {
             position: absolute;
             right: 15px;
             top: 15px;
-            // z-index: 1;
+            z-index: 1;
         }
     }
     .calendar-times {
