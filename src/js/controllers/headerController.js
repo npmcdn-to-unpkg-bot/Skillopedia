@@ -10,6 +10,7 @@ angular.module("Skillopedia").controller("headerController", function($scope, $r
 		})
 	}
 	$rootScope.is_signin() && ($scope.query_shoppingcart_count());
+	
 	$scope.show_menu = function(e) {
 		if ($(".dropdown-menu").hasClass("active")) {
 			$(".dropdown-menu").removeClass("active")
@@ -19,6 +20,7 @@ angular.module("Skillopedia").controller("headerController", function($scope, $r
 		e.preventDefault();
 		e.stopPropagation();
 	}
+
 	$("body").bind("click", function() {
 		$(".dropdown-menu").removeClass("active");
 	});

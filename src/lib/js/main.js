@@ -8,6 +8,7 @@ function close_dropdown() {
 	$(".dropdown").siblings(".dropdown-cover").hide();
 }
 
+
 function open_left_feature(e) {
 	var target = e.currentTarget;
 	$(target).addClass("active");
@@ -36,6 +37,8 @@ function close_right(e) {
 	$(target).parents(".feature-right").removeClass("active");
 	$(target).parents(".feature-section").removeClass("active-right")
 }
+
+
 $(document).ready(function() {
 	$(".nav-btn").bind("click", open_dropdown);
 	$(".dropdown-cover").bind("click", close_dropdown);
