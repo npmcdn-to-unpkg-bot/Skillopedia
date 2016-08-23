@@ -204,7 +204,7 @@
                             <div class="course-item" ng-form="discountForm1">
                                 <div class="course-item-header">
                                     <span>one-time buy {{input.discount_1.purchase||"xxx"}} course</span>
-                                    <span>get {{input.discount_1.off||"xxx"}} off</span>
+                                    <span>get {{input.discount_1.off +"%"||"xxx"}} off</span>
                                     <span><b class="text-danger" ng-if="(discountForm1.purchase.$invalid && discountForm1.purchase.$dirty) || (discountForm1.off.$invalid && discountForm1.off.$dirty)"> (Number Only, below 100) </b></span>
                                 </div>
                                 <div class="course-input">
@@ -221,7 +221,7 @@
                             <div class="course-item" ng-form="discountForm2">
                                 <div class="course-item-header">
                                     <span>one-time buy {{input.discount_2.purchase||"xxx"}} course</span>
-                                    <span>get {{input.discount_2.off||"xxx"}} off</span>
+                                    <span>get {{input.discount_2.off +"%" ||"xxx"}} off</span>
                                     <span><b class="text-danger" ng-if="(discountForm2.purchase.$invalid && discountForm2.purchase.$dirty) || (discountForm2.off.$invalid && discountForm2.off.$dirty)"> (Number Only, {{input.discount_1.off}}-100) </b></span>
                                 </div>
                                 <div class="course-input">
@@ -238,7 +238,7 @@
                             <div class="course-item" ng-form="discountForm3">
                                 <div class="course-item-header">
                                     <span>one-time buy {{input.discount_3.purchase||"xxx"}} course</span>
-                                    <span>get {{input.discount_3.off||"xxx"}} off</span>
+                                    <span>get {{input.discount_3.off +"%"||"xxx"}} off</span>
                                     <span><b class="text-danger" ng-if="(discountForm3.purchase.$invalid && discountForm3.purchase.$dirty) || (discountForm3.off.$invalid && discountForm3.off.$dirty)"> (Number Only, {{input.discount_2.off}}-100)) </b></span>
                                 </div>
                                 <div class="course-input">

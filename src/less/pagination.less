@@ -1,0 +1,23 @@
+.pagination {
+	margin-top:15px;
+	text-align: center;
+	&>span {
+		display: inline-block;
+		padding:15px 20px;
+		margin: 5px;
+		color: #414141;
+		border:1px solid #d9d9d9;
+		text-align: center;
+		cursor: pointer;
+		&:hover {
+			color:white;
+			border:1px solid @brand-primary;
+			background-color: @brand-primary;
+		}
+		&.active {
+			color:white;
+			border:1px solid @brand-primary;
+			background-color: @brand-primary;
+		}
+	}
+}

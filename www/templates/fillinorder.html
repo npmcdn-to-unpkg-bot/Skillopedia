@@ -35,7 +35,7 @@
                 </div>
                 <div ng-if="input.travel_location == '1'"><span class="btn" ng-click="edit()">You want to have you course at : {{format_address}}</span></div>
                 <a class="btn text-success" ng-if="course.travel_to_session == '1'" ng-click="edit()"><span class="text-transform">{{course.nickname}}</span> offer travel to session ,edit location!</a>
-                <a class="btn text-success" ng-if="course.travel_to_session != '1'"><span class="text-transform">{{course.nickname}}</span> does not offer travel service</a>
+                <a class="btn text-danger" ng-if="course.travel_to_session != '1'"><span class="text-transform">{{course.nickname}}</span> does not offer travel service</a>
             </div>
             <div class="section sm">
                 <div class="section-title" ng-if="course.is_stop_course == '1'">
@@ -91,16 +91,18 @@
             </div> -->
         </div>
         <div class="detail-right">
-            <div class="settlement">
+            <div class="settlement" style="position: relative">
                 <p class="text-center">Session fee<span ng-if="input.total_fee>0">+One times service fee</span>&nbsp;
-                    <span >
-                        <i class="fa fa-question-circle-o" aria-hidden="true" title="" style="color:blue;"  ng-mouseover="show()">
+                    <span>
+                        <i class="fa fa-question-circle-o" aria-hidden="true" title="" style="color:blue;"  ng-mouseover="show()" ng-mouseleave="hide()">
                 </i>
                     </span>
                     <div class="hovertips" ng-show="show">This fee is used for maintain coach service, you won't be charged in the future when you purchase the same course with this coach</div>
 
                     <span ng-if="input.total_traffic_cost>0">+Travel cost</span>
                 </p>
+
+                
                 <p class="price text-center">
                     <span ng-class="{'underline':input.discount_price>0}">{{input.total_price|currency:"$"}}</span>
                     <span ng-if="input.discount_price>0">{{input.discount_price|currency:"$"}}</span>
@@ -174,7 +176,7 @@
                     </span>
                     <span class="col-xs-8">
                         <dribehance-select options="input.coupons" ng-if="is_signin()"></dribehance-select>
-                        <span class="pull-right hover" ng-click="signin()" ng-if="!is_signin()" style="padding-top:6px">Sign in to use cupons</span>
+                        <span class="pull-right hover text-success" ng-click="signin()" ng-if="!is_signin()" style="padding-top:6px">Sign in to use cupons</span>
                     </span>
                 </p>
                 <p class="text-center">

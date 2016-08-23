@@ -60,9 +60,10 @@ angular.module("Skillopedia").controller("authenicationController", function($sc
 });
 // by dribehance <dribehance.kksdapp.com>
 angular.module("Skillopedia").controller("uploadIdcardController", function($scope, errorServices, toastServices, localStorageService, config) {
-	var filename, extension;
+	var filename, extension, is_big = false;
 	$scope.$on("flow::filesSubmitted", function(event, flow) {
 		if (flow.files.length == 0) return;
+		if (is_big) return;
 		flow.files[0].name.replace(/.png|.jpg|.jpeg|.gif/g, function(ext) {
 			extension = ext;
 			return ext;
@@ -86,15 +87,19 @@ angular.module("Skillopedia").controller("uploadIdcardController", function($sco
 				jpg: 1,
 				jpeg: 1
 			}[flow.getExtension()]) {
+			toastServices.hide();
 			errorServices.autoHide("必须上传图片")
 			event.preventDefault(); //prevent file from uploading
 			return;
 		}
 		if (parseFloat(flow.size) / 1000 > 500) {
+			is_big = true;
+			toastServices.hide();
 			errorServices.autoHide("图片太大，保证图片在500kb以内")
 			event.preventDefault(); //prevent file from uploading
 			return;
 		}
+		is_big = false;
 		$scope.card.url = "";
 	});
 	$scope.$on('flow::fileSuccess', function(file, message, chunk) {

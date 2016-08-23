@@ -24,6 +24,9 @@
             <a class="menu-item" ng-href="#/skillopedia" ng-if="user.agent_level == '1'">
                 <i class="fa fa-bookmark" aria-hidden="true"></i>Teach with Skillopdia
             </a>
+            <a class="menu-item" ng-href="#/messages">
+                        <i class="fa fa-user" aria-hidden="true"></i>Messages
+                    </a>
             <a class="menu-item" ng-click="logout()">
                 <i class="fa fa-sign-out" aria-hidden="true"></i>Sign out
             </a>
@@ -151,7 +154,7 @@
             <img ng-src="{{staticImageUrl + single.big_coach_image}}" class="hvr-bounce-in" alt="" err-src="../images/error.jpg" onload>
             <div class="category-caption">
                 <h3 class="text-ellipsis">{{single.title}}</h3>
-                <span class="block">{{single.coach_name}}</span>
+                <span class="block text-transform">{{single.coach_name}}</span>
             </div>
         </a>
     </div>  

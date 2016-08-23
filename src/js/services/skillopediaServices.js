@@ -98,5 +98,16 @@ angular.module("Skillopedia").factory("skillopediaServices", function($http, loc
 				return data.data;
 			});
 		},
+		// 判断用户输入的地址是否在教练提供的travel distance范围内
+		query_location_in_services: function(input) {
+			return $http({
+				// by dribehance <dribehance.kksdapp.com>
+				url: config.url + "/app/CourseManage/isFulfilTravelDistance",
+				method: "GET",
+				params: angular.extend({}, config.common_params, input)
+			}).then(function(data) {
+				return data.data;
+			});
+		},
 	}
 });

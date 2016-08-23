@@ -397,77 +397,101 @@ angular.module("Skillopedia").controller("editCourseController", function($scope
 	};
 	// 第四步;
 	$scope.time_slots = [{
-		time: "09:00",
+		time: "06:00",
 		slot: "1"
 	}, {
-		time: "09:30",
+		time: "06:30",
 		slot: "2"
 	}, {
-		time: "10:00",
+		time: "7:00",
 		slot: "3"
 	}, {
-		time: "10:30",
+		time: "7:30",
 		slot: "4"
 	}, {
-		time: "11:00",
+		time: "8:00",
 		slot: "5"
 	}, {
-		time: "11:30",
+		time: "8:30",
 		slot: "6"
 	}, {
-		time: "12:00",
+		time: "9:00",
 		slot: "7"
 	}, {
-		time: "12:30",
+		time: "9:30",
 		slot: "8"
 	}, {
-		time: "13:00",
+		time: "10:00",
 		slot: "9"
 	}, {
-		time: "13:30",
+		time: "10:30",
 		slot: "10"
 	}, {
-		time: "14:00",
+		time: "11:00",
 		slot: "11"
 	}, {
-		time: "14:30",
+		time: "11:30",
 		slot: "12"
 	}, {
-		time: "15:00",
+		time: "12:00",
 		slot: "13"
 	}, {
-		time: "15:30",
+		time: "12:30",
 		slot: "14"
 	}, {
-		time: "16:00",
+		time: "13:00",
 		slot: "15"
 	}, {
-		time: "16:30",
+		time: "13:30",
 		slot: "16"
 	}, {
-		time: "17:00",
+		time: "14:00",
 		slot: "17"
 	}, {
-		time: "17:30",
+		time: "14:30",
 		slot: "18"
 	}, {
-		time: "18:00",
+		time: "15:00",
 		slot: "19"
 	}, {
-		time: "18:30",
+		time: "15:30",
 		slot: "20"
 	}, {
-		time: "19:00",
+		time: "16:00",
 		slot: "21"
 	}, {
-		time: "19:30",
+		time: "16:30",
 		slot: "22"
 	}, {
-		time: "20:00",
+		time: "17:00",
 		slot: "23"
 	}, {
-		time: "20:30",
+		time: "17:30",
 		slot: "24"
+	}, {
+		time: "18:00",
+		slot: "25"
+	}, {
+		time: "18:30",
+		slot: "26"
+	}, {
+		time: "19:00",
+		slot: "27"
+	}, {
+		time: "19:30",
+		slot: "28"
+	}, {
+		time: "20:00",
+		slot: "29"
+	}, {
+		time: "20:30",
+		slot: "30"
+	}, {
+		time: "21:00",
+		slot: "31"
+	}, {
+		time: "21:30",
+		slot: "32"
 	}];
 	$scope.$watch("input.start_time", function(n, o) {
 		$scope.get_time_slots(n);

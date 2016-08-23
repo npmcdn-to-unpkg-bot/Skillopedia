@@ -88,18 +88,22 @@
 
 .hovertips {
     position: absolute;
+    display: none;
     padding: 5px;
-    right: 30px;
-    width: 200px;
+    top: -55px;
+    right: 25px;
+    width: 250px;
     border-radius: 5px;
     background-color: rgba(255, 255, 255, .8);
     z-index: 100;
     -webkit-transition: opacity .3s;
     -o-transition: opacity .3s;
     transition: opacity .3s;
-    color: #a9a4a4;
+    color: #777171;
+    font-size: 14px;
+    font-weight: 100;
     &.active {
-        visibility: collapse;
+        display: block;
         opacity: 1;
     }
     .transition(opacity 0.3s);
