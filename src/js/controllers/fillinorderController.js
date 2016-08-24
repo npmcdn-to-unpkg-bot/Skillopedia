@@ -16,19 +16,19 @@ angular.module("Skillopedia").controller("fillinorderController", function($scop
             $scope.input.total_price = $scope.course.session_rate;
             // discount handle
             $scope.discounts = [];
-            if ($scope.course.discount_onetion_pur_money_01 > 0) {
+            if ($scope.course.discount_price_01 > 0) {
                 $scope.discounts.push({
                     purchase: $scope.course.discount_onetion_pur_money_01,
                     off: $scope.course.discount_price_01
                 })
             }
-            if ($scope.course.discount_onetion_pur_money_02 > 0) {
+            if ($scope.course.discount_price_02 > 0) {
                 $scope.discounts.push({
                     purchase: $scope.course.discount_onetion_pur_money_02,
                     off: $scope.course.discount_price_02
                 })
             }
-            if ($scope.course.discount_onetion_pur_money_03 > 0) {
+            if ($scope.course.discount_price_03 > 0) {
                 $scope.discounts.push({
                     purchase: $scope.course.discount_onetion_pur_money_03,
                     off: $scope.course.discount_price_03
@@ -254,11 +254,11 @@ angular.module("Skillopedia").controller("fillinorderController", function($scop
         }
 
     }
-     $scope.hide = function() {
+    $scope.hide = function() {
         if ($(".hovertips").hasClass("active")) {
             $(".hovertips").removeClass("active")
-        } 
-        
+        }
+
     }
 
     $scope.calculate = function() {
