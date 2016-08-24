@@ -22,7 +22,7 @@
                 <div class="section" style="margin-top:30px;">
                     <div class="input-group">
                         <input type="email" class="full-width form-control" name="email" ng-model="input.signin_email" required placeholder="enter you email/account">
-                        <small class="text-danger" style="position:absolute" ng-if="signinForm.email.$invalid && signinForm.email.$dirty">Please Enter correct email here</small>
+                        <small class="text-danger" style="position:absolute;left:0;bottom:-15px" ng-if="signinForm.email.$invalid && signinForm.email.$dirty">Please Enter correct email here</small>
                     </div>
                     <div class="input-group">
                         <input type="password" class="full-width form-control " ng-model="input.signin_password" required placeholder="enter your password">
@@ -44,7 +44,7 @@
                 </div>
                 <div class="input-group">
                     <input type="email" class="full-width form-control" name="email" ng-model="input.signup_email" required placeholder="enter your email/account">
-                    <small class="text-danger" style="position:absolute" ng-if="signupForm.email.$invalid && signupForm.email.$dirty">Please Enter correct email here</small>
+                    <small class="text-danger" style="position:absolute;left:0;bottom:-15px" ng-if="signupForm.email.$invalid && signupForm.email.$dirty">Please Enter correct email here</small>
                 </div>
                 <div class="input-group">
                     <input type="password" class="full-width form-control" ng-model="input.signup_password" required placeholder="enter your password">

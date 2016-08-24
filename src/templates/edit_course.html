@@ -78,10 +78,10 @@
                     </div>
                 </div>
                 <div class="title-input">
-                    <span>Picture</span>
+                    <span><b class="text-danger"> * </b>Picture</span>
                     <div class="open-img" ng-repeat="cover in input.covers track by $index" ng-form="coverForm">
                         <img ng-src="{{staticImageUrl + cover}}" class="full-width full-height" err-src="../images/error.jpg" alt="">
-                        <input type="hidden" name="cover" ng-model="cover">
+                        <input type="hidden" name="cover" required ng-model="cover">
                         <a ng-click="remove_cover(cover)" class="remove"><i class="fa fa-times"></i></a>
                     </div>
                     <div class="open-img" flow-init="{singleFile:true}" ng-controller="uploadCoversController" flow-btn>
@@ -105,6 +105,7 @@
                 <div class="section text-center text-danger">
                     <div ng-if="stepForm1.title.$invalid &&stepForm1.$dirty">* 课程必填</div>
                     <div ng-if="stepForm1.certForm.$invalid &&stepForm1.$dirty">* 证书必须上传</div>
+                    <div ng-if="stepForm1.coverForm.$invalid &&stepForm1.$dirty">* 封面图必须上传</div>
                     <div ng-if="stepForm1.videoForm.$invalid &&stepForm1.$dirty">* 如果选择上传视频，视频链接必填</div>
                     <div ng-if="stepForm1.overview.$invalid &&stepForm1.$dirty">* 简介必填,至少200字</div>
                 </div>
