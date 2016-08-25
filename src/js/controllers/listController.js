@@ -51,10 +51,10 @@ angular.module("Skillopedia").controller("listController", function($scope, $roo
 	$scope.loadMore();
 	// reload course;
 	$scope.reload = function() {
-		$location.search({
-			category: null,
-			category_id: null
-		});
+		// $location.search({
+		// 	category: null,
+		// 	category_id: null
+		// });
 		// $scope.courses = [];
 		$scope.paging = angular.extend({}, $scope.paging, {
 			pn: $scope.paging.pn,

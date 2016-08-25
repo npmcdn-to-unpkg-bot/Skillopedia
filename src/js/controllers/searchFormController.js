@@ -8,15 +8,15 @@ angular.module("Skillopedia").controller("searchFormController", function($scope
 	var suggestions = [],
 		categorys = [];
 	// query zipcode
-	toastServices.show();
-	skillopediaServices.query_zipcode().then(function(data) {
-		toastServices.hide()
-		if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
-			suggestions = data.Result.CityBeans;
-		} else {
-			errorServices.autoHide(data.message);
-		}
-	});
+	// toastServices.show();
+	// skillopediaServices.query_zipcode().then(function(data) {
+	// 	toastServices.hide()
+	// 	if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
+	// 		suggestions = data.Result.CityBeans;
+	// 	} else {
+	// 		errorServices.autoHide(data.message);
+	// 	}
+	// });
 	// query category list;
 	skillopediaServices.query_all_second_category().then(function(data) {
 		if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
@@ -36,6 +36,9 @@ angular.module("Skillopedia").controller("searchFormController", function($scope
 	}
 	$scope.$watch("input.keyword", function(n, o) {
 		$scope.input.categorys = filterFilter(categorys, n);
+		if ($scope.input.categorys.length == 0) {
+			$scope.input.categorys = categorys;
+		}
 	})
 	$scope.select_category = function(c) {
 		$scope.input.keyword = c.category_02_name;
@@ -46,8 +49,10 @@ angular.module("Skillopedia").controller("searchFormController", function($scope
 	$scope.ajaxForm = function() {
 		var address = $("#autocomplete").val()
 		if (!address) {
-			$scope.confirm.content = "输入地址可以让我们更好的搜索结果？";
-			$scope.confirm.ok_text = "输入地址";
+			$scope.confirm.title = "输入地址可以让我们更好的搜索结果？";
+			$scope.confirm.content = "";
+			$scope.confirm.content_type = "input";
+			$scope.confirm.ok_text = "使用该地址搜索";
 			$scope.confirm.cancel_text = "跳过，继续搜索";
 			$scope.confirm.open();
 			$scope.confirm.cancle_callback = function() {
@@ -57,10 +62,13 @@ angular.module("Skillopedia").controller("searchFormController", function($scope
 				});
 			}
 			$scope.confirm.ok_callback = function() {
-				// $scope.confirm.close();
+				$scope.search($scope.confirm.content)
 			}
 			return;
 		}
+		$scope.search(address);
+	}
+	$scope.search = function(address) {
 		toastServices.show();
 		googleMapServices.code_address(address).then(function(data) {
 			toastServices.hide();

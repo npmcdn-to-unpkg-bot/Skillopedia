@@ -8,11 +8,12 @@
             {{confirm.content}}
         </div>
         <div class="confirm-content" ng-if="confirm.content_type =='input'">
-            <input type="text" class="form-control full-width" ng-model="confirm.content" placeholder="....">
+            <autocomplete value="input.zipcode"></autocomplete>
         </div>
         <div class="confirm-footer">
             <span class="btn btn-default" ng-click="confirm.cancel()">{{confirm.cancel_text}}</span>
-            <span class="btn btn-primary" ng-click="confirm.ok()">{{confirm.ok_text}}</span>
+            <span class="btn btn-primary" ng-if="confirm.content_type !='input'" ng-click="confirm.ok()">{{confirm.ok_text}}</span>
+            <span class="btn btn-primary" ng-if="confirm.content_type =='input'" ng-click="confirm.ok_submit()">{{confirm.ok_text}}</span>
         </div>
     </div>
 </div>

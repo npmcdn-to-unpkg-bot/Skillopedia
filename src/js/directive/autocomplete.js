@@ -27,7 +27,7 @@ angular.module("Skillopedia").directive('autocomplete', function($window) {
 				if (!google) return;
 				autocomplete = new google.maps.places.Autocomplete(
 					/** @type {!HTMLInputElement} */
-					(document.getElementById('autocomplete')), {
+					($(element).find("input")[0]), {
 						// types: ['geocode']
 					});
 
