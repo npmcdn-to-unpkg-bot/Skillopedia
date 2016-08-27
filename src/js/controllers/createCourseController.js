@@ -188,90 +188,21 @@ angular.module("Skillopedia").controller("createCourseController", function($sco
 		purchase: 10,
 		off: 0
 	};
-	// unit:["Money","Amount"]
-	// $scope.input.discount = "by_amount";
-	// $scope.input.discounts = [{
-	// 	message: "One-time Purchase",
-	// 	unit: "Money",
-	// 	purchase: 3,
-	// 	off: 0
-	// }, {
-	// 	message: "One-time Purchase",
-	// 	unit: "Money",
-	// 	purchase: 5,
-	// 	off: 0
-	// }, {
-	// 	message: "One-time Purchase",
-	// 	unit: "Money",
-	// 	purchase: 10,
-	// 	off: 0
-	// }];
-	// $scope.$watch("input.discounts[0].off", function(n, o) {
-	// 	console.log(n)
-	// 	if (!n) {
-	// 		$scope.input.discounts[0].off = 0;
-	// 	}
-	// });
-	// $scope.$watch("input.discounts[1].off", function(n, o) {
-	// 	if (!n) {
-	// 		$scope.input.discounts[1].off = 0;
-	// 	}
-	// });
-	// $scope.$watch("input.discounts[2].off", function(n, o) {
-	// 	if (!n) {
-	// 		$scope.input.discounts[2].off = 0;
-	// 	}
-	// });
-	// 增加打折输入
-	// $scope.add_discount = function() {
-	// 	var discount = {
-	// 		message: "One-time Purchase",
-	// 		unit: "Money",
-	// 		purchase: "",
-	// 		off: ""
-	// 	}
-	// 	if ($scope.input.discounts.length > 3) {
-	// 		return;
-	// 	}
-	// 	if ($scope.input.discount == 'by_amount') {
-	// 		discount.unit = "Amount";
-	// 	}
-	// 	$scope.input.discounts.push(discount);
-	// }
-	// $scope.remove_discount = function(discount) {
-	// 	$scope.input.discounts = $scope.input.discounts.filter(function(d) {
-	// 		return discount != d;
-	// 	})
-	// }
-	// $scope.$watch("input.discount", function(n, o) {
-	// 	if (n === o) {
-	// 		return;
-	// 	}
-	// 	var unit = "Money";
-	// 	if (n == "by_amount") {
-	// 		unit = "Amount";
-	// 	}
-	// 	$scope.input.discounts = [{
-	// 		message: "One-time Purchase",
-	// 		unit: unit,
-	// 		purchase: "",
-	// 		off: ""
-	// 	}];
-	// })
-	// $scope.confirm_discount = function(discount) {
-	// 	if ($scope.input.discount == 'by_money' && discount.money != "" && discount.off != "") {
-	// 		discount.mode = "preview";
-	// 		return;
-	// 	}
-	// 	if ($scope.input.discount == 'by_amount' && discount.amount != "" && discount.off != "") {
-	// 		discount.mode = "preview";
-	// 		return;
-	// 	}
-	// 	errorServices.autoHide("请填写");
-	// }
-	// $scope.edit_discount = function(discount) {
-	// 	discount.mode = "edit";
-	// };
+	$scope.$watch("input.discount_1", function(n, o) {
+		if (!n) return;
+		if ($scope.input.discount_2.off < n.off) {
+			$scope.input.discount_2.off = n.off;
+		}
+		if ($scope.input.discount_3.off < $scope.input.discount_2.off) {
+			$scope.input.discount_3.off = $scope.input.discount_2.off;
+		}
+	}, true);
+	$scope.$watch("input.discount_2", function(n, o) {
+		if (!n) return;
+		if ($scope.input.discount_3.off < n.off) {
+			$scope.input.discount_3.off = n.off;
+		}
+	}, true);
 	// 第三步
 	$scope.input.travel_to_session = "1";
 	$scope.input.distance = "";
@@ -281,39 +212,47 @@ angular.module("Skillopedia").controller("createCourseController", function($sco
 	$scope.input.city = "";
 	$scope.input.state = "";
 	// zipcode
-	$scope.input.zipcode = "";
-	var suggestions = [];
-	toastServices.show();
-	skillopediaServices.query_zipcode().then(function(data) {
-		toastServices.hide()
-		if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
-			suggestions = data.Result.CityBeans;
-		} else {
-			errorServices.autoHide(data.message);
-		}
-	})
-	$scope.$watch("input.zipcode", function(n, o) {
-		$scope.input.suggestions = filterFilter(suggestions, n);
-	})
-	$scope.select = function(s) {
-		$scope.input.zipcode = s.zipcode;
-		$timeout(function() {
-			$scope.input.suggestions = [];
-		}, 100)
-	};
+	// $scope.input.zipcode = "";
+	// var suggestions = [];
+	// toastServices.show();
+	// skillopediaServices.query_zipcode().then(function(data) {
+	// 	toastServices.hide()
+	// 	if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
+	// 		suggestions = data.Result.CityBeans;
+	// 	} else {
+	// 		errorServices.autoHide(data.message);
+	// 	}
+	// })
+	// $scope.$watch("input.zipcode", function(n, o) {
+	// 	$scope.input.suggestions = filterFilter(suggestions, n);
+	// })
+	// $scope.select = function(s) {
+	// 	$scope.input.zipcode = s.zipcode;
+	// 	$timeout(function() {
+	// 		$scope.input.suggestions = [];
+	// 	}, 100)
+	// };
 	$scope.location_mode = "edit";
 	$scope.lat_lng = {
 		lng: 0,
 		lat: 0
 	}
 	$scope.save_location = function() {
-		$scope.location_mode = "preview";
 		// $scope.map_url = $scope.get_map($scope.input.state, $scope.input.city, $scope.input.street, $scope.input.apt);
 		googleMapServices.geocoding({
 			address: $scope.input.street + "," + $scope.input.apt + "," + $scope.input.city + "," + $scope.input.state + "," + $scope.input.zipcode
 		}).then(function(data) {
-			$scope.lat_lng = data.results[0].geometry.location;
-			$scope.format_address = data.results[0].formatted_address;
+			var result = data.results.filter(function(r) {
+				return !r.partial_match;
+			});
+			if (result.length == 0) {
+				$scope.street_error = "the street name or number appears to be invalid";
+				return;
+			}
+			$scope.street_error = "";
+			$scope.location_mode = "preview";
+			$scope.lat_lng = result[0].geometry.location;
+			$scope.format_address = result[0].formatted_address;
 			var map = googleMapServices.create_map(document.getElementById('map'), $scope.lat_lng);
 			// console.log(map)
 			var marker = googleMapServices.create_marker(map, $scope.lat_lng);
@@ -333,160 +272,87 @@ angular.module("Skillopedia").controller("createCourseController", function($sco
 		return $sce.trustAsResourceUrl(map_url);
 	};
 	// 第四步;
-	$scope.time_slots = [{
-		time: "06:00",
-		slot: "1"
-	}, {
-		time: "06:30",
-		slot: "2"
-	}, {
-		time: "7:00",
-		slot: "3"
-	}, {
-		time: "7:30",
-		slot: "4"
-	}, {
-		time: "8:00",
-		slot: "5"
-	}, {
-		time: "8:30",
-		slot: "6"
-	}, {
-		time: "9:00",
-		slot: "7"
-	}, {
-		time: "9:30",
-		slot: "8"
-	}, {
-		time: "10:00",
-		slot: "9"
-	}, {
-		time: "10:30",
-		slot: "10"
-	}, {
-		time: "11:00",
-		slot: "11"
-	}, {
-		time: "11:30",
-		slot: "12"
-	}, {
-		time: "12:00",
-		slot: "13"
-	}, {
-		time: "12:30",
-		slot: "14"
-	}, {
-		time: "13:00",
-		slot: "15"
-	}, {
-		time: "13:30",
-		slot: "16"
-	}, {
-		time: "14:00",
-		slot: "17"
-	}, {
-		time: "14:30",
-		slot: "18"
-	}, {
-		time: "15:00",
-		slot: "19"
-	}, {
-		time: "15:30",
-		slot: "20"
-	}, {
-		time: "16:00",
-		slot: "21"
-	}, {
-		time: "16:30",
-		slot: "22"
-	}, {
-		time: "17:00",
-		slot: "23"
-	}, {
-		time: "17:30",
-		slot: "24"
-	}, {
-		time: "18:00",
-		slot: "25"
-	}, {
-		time: "18:30",
-		slot: "26"
-	}, {
-		time: "19:00",
-		slot: "27"
-	}, {
-		time: "19:30",
-		slot: "28"
-	}, {
-		time: "20:00",
-		slot: "29"
-	}, {
-		time: "20:30",
-		slot: "30"
-	}, {
-		time: "21:00",
-		slot: "31"
-	}, {
-		time: "21:30",
-		slot: "32"
-	}];
-	$scope.$watch("input.start_time", function(n, o) {
-		$scope.get_time_slots(n);
-	});
-	$scope.input.weeks = [{
-		day: "Sunday",
-		value: "1",
-		select: true,
-	}, {
-		day: "Monday",
-		value: "2",
-		select: true,
-	}, {
-		day: "Tuesday",
-		value: "3",
-		select: true,
-	}, {
-		day: "Wensday",
-		value: "4",
-		select: true,
-	}, {
-		day: "Thursday",
-		value: "5",
-		select: true,
-	}, {
-		day: "Friday",
-		value: "6",
-		select: true,
-	}, {
-		day: "Saturday",
-		value: "7",
-		select: true,
-	}];
-	$scope.select_week = function(week) {
-		week.select = !week.select;
+	var weeks = [],
+		week_name = ["", "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+	for (var i = 0; i < 17; i++) {
+		for (var j = 0; j < 8; j++) {
+			// first
+			if (i == 0 && j == 0) {
+				weeks.push({
+					week: "",
+					time: "",
+					check: false,
+					text: "",
+					type: "blank"
+				});
+				continue;
+			}
+			// first line
+			if (i == 0) {
+				weeks.push({
+					week: "",
+					time: "",
+					check: false,
+					text: week_name[j],
+					type: "header"
+				});
+				continue;
+			}
+			// first col 
+			if (j == 0) {
+				var time = i + 5;
+				weeks.push({
+					week: "",
+					time: "",
+					check: false,
+					text: time + ":00",
+					type: "index"
+				});
+				continue;
+			}
+			weeks.push({
+				week: j,
+				time: 2 * i - 1,
+				check: false,
+				text: "",
+				type: "content"
+			});
+		}
 	}
-	$scope.get_time_slots = function(slot) {
-		$scope.end_time_slots = $scope.time_slots.filter(function(s) {
-			return parseFloat(s.slot) > parseFloat(slot);
+	$scope.weeks = weeks;
+	$scope.content_weeks = $scope.weeks.filter(function(w) {
+		return w.type == 'content';
+	});
+	$scope.select_weeks = $scope.weeks.filter(function(w) {
+		return w.type == "content" && w.check == true;
+	});
+	$scope.select_week = function(week) {
+		if (week.type != 'content') {
+			return;
+		}
+		week.check = !week.check;
+		$scope.select_weeks = $scope.weeks.filter(function(w) {
+			return w.type == "content" && w.check == true;
 		});
 	};
-	$scope.input.start_time = $scope.time_slots[0].slot;
-	$scope.input.end_time = $scope.time_slots[23].slot;
+	$scope.check_all = function() {
+		if ($scope.select_weeks.length == $scope.content_weeks.length) {
+			$scope.weeks.map(function(w) {
+				w.type == "content" && (w.check = false);
+				return w;
+			});
+		} else {
+			$scope.weeks.map(function(w) {
+				w.type == "content" && (w.check = true);
+				return w;
+			});
+		}
+		$scope.select_weeks = $scope.weeks.filter(function(w) {
+			return w.type == "content" && w.check == true;
+		});
+	};
 	// 提交表单 最终创建课程
 	$scope.ajaxForm = function() {
-		// var discount_onetion_pur_money_01, discount_price_01, discount_onetion_pur_money_02, discount_price_02, discount_onetion_pur_money_03, discount_price_03;
-		// if ($scope.input.discounts.length > 0) {
-		// 	discount_onetion_pur_money_01 = $scope.input.discounts[0].purchase;
-		// 	discount_price_01 = $scope.input.discounts[0].off;
-		// }
-		// if ($scope.input.discounts.length > 1) {
-		// 	discount_onetion_pur_money_02 = $scope.input.discounts[1].purchase;
-		// 	discount_price_02 = $scope.input.discounts[1].off;
-		// }
-		// if ($scope.input.discounts.length > 2) {
-		// 	discount_onetion_pur_money_03 = $scope.input.discounts[2].purchase;
-		// 	discount_price_03 = $scope.input.discounts[2].off;
-		// }
 		toastServices.show();
 		coursesServices.create_course({
 			course_id: $scope.course_id,
@@ -523,12 +389,10 @@ angular.module("Skillopedia").controller("createCourseController", function($sco
 			discount_price_02: $scope.input.discount_2.off || "",
 			discount_onetion_pur_money_03: $scope.input.discount_3.purchase || "",
 			discount_price_03: $scope.input.discount_3.off || "",
-			start_time_slot: $scope.input.start_time,
-			end_time_slot: $scope.input.end_time,
-			weeks: $scope.input.weeks.filter(function(week) {
-				return week.select;
+			hours: $scope.weeks.filter(function(w) {
+				return w.type == "content" && w.check == true;
 			}).map(function(w) {
-				return w.value;
+				return w.time + "@" + w.week;
 			}).join("#"),
 			user_images_01: $scope.input.poster
 		}).then(function(data) {

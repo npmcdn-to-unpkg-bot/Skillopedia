@@ -25,8 +25,9 @@ angular.module("Skillopedia").controller("detailController", function($scope, $r
 		// var map_url = "https://maps.google.com/maps?q=" + $scope.course.city + " " + $scope.course.area + " " + $scope.course.street + "&output=embed";
 		// return $sce.trustAsResourceUrl(map_url);
 		googleMapServices.geocoding({
-			address: $scope.course.street + "," + $scope.course.city + "," + $scope.course.state
+			address: $scope.course.street + "," + $scope.course.area + "," + $scope.course.city
 		}).then(function(data) {
+			console.log(data)
 			$scope.lat_lng = data.results[0].geometry.location;
 			var map = googleMapServices.create_map(document.getElementById('map'), $scope.lat_lng);
 			// console.log(map)
@@ -42,17 +43,40 @@ angular.module("Skillopedia").controller("detailController", function($scope, $r
 		}
 	};
 	// 加入收藏
-	$scope.like = function() {
+	$scope.toggle_like = function() {
 		if (!$rootScope.is_signin()) {
 			$rootScope.signin();
 			return;
 		}
+		if ($scope.course.is_collection == 0) {
+			$scope.like();
+		} else {
+			$scope.unlike();
+		}
+	};
+	$scope.like = function() {
 		toastServices.show();
 		userServices.like({
 			course_id: $scope.course.course_id
 		}).then(function(data) {
 			toastServices.hide()
 			if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
+				$scope.course.is_collection = 1;
+				$scope.course.collection_id = data.collection_id
+				errorServices.autoHide(data.message);
+			} else {
+				errorServices.autoHide(data.message);
+			}
+		})
+	};
+	$scope.unlike = function() {
+		toastServices.show();
+		userServices.unlike({
+			collection_id: $scope.course.collection_id
+		}).then(function(data) {
+			toastServices.hide()
+			if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
+				$scope.course.is_collection = 0;
 				errorServices.autoHide(data.message);
 			} else {
 				errorServices.autoHide(data.message);

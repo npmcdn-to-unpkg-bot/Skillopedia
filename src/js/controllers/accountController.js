@@ -20,13 +20,16 @@ angular.module("Skillopedia").controller("accountController", function($scope, $
 			var crypt = new JSEncrypt(),
 				private_key = data;
 			crypt.setPrivateKey(private_key);
-			var crypted_str = crypt.encrypt($scope.input.password);
-			$scope.input.password = crypted_str;
+			var old_password = crypt.encrypt($scope.input.password),
+				new_password = crypt.encrypt($scope.input.password_1);
+			$scope.input.password = old_password;
+			$scope.input.password_1 = new_password;
 		}).then(function(data) {
 			toastServices.show();
 			userServices.modify_nickname({
 				nickname: $scope.input.nickname,
-				password: $scope.input.password
+				old_password: $scope.input.password,
+				password: $scope.input.password_1
 			}).then(function(data) {
 				toastServices.hide();
 				if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
@@ -36,6 +39,7 @@ angular.module("Skillopedia").controller("accountController", function($scope, $
 					errorServices.autoHide(data.message);
 				}
 				$scope.input.password = "";
+				$scope.input.password_1 = "";
 			})
 		})
 	}

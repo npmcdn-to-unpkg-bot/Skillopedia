@@ -8,12 +8,14 @@
         <sidebar active="" class="sidebar-wrap"></sidebar>
         <div class="content-wrap">
         	<div class="tabs clearfix">
-                <label class="tab-item pull-left" ng-class="{'active':input.step_status == '1'}">
+                <!-- <label class="tab-item pull-left" ng-class="{'active':input.step_status == '1'}">
                     <input type="radio" class="hide" name="published" ng-model="input.step_status" value="1">Published
                 </label>
                 <label class="tab-item pull-left" ng-class="{'active':input.step_status == '2'}">
                     <input type="radio" class="hide" name="draft" ng-model="input.step_status" value="2">Draft
-                </label>
+                </label> -->
+                <a class="tab-item pull-left" ng-href="#/comments">Comments</a>
+                <a class="tab-item pull-left active">Steps</a>
                 <div class="btn-group pull-right clearfix">
                     <a class="btn btn-success" ng-href="#/create_step" target="_blank"><i class="fa fa-paper-plane-o " style="margin-right:8px"></i>Create my step</a>
                 </div>
@@ -24,7 +26,7 @@
                 </div> -->
                 <div class="coach-info">
                     <div class="step-info">
-                        <span class="step-title">{{step.title}}</span>
+                        <span class="step-title"><span class="text-danger" ng-if="step.status=='2'"> [ draft ] </span>{{step.title}}</span>
                         <div ng-bind-html="step.content" class="step-content"></div>
                         {{step.post_time}}
                         <div class="btn-group pull-right">

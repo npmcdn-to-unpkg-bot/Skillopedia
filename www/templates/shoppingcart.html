@@ -9,14 +9,14 @@
         <div class="content-wrap">
             <div class="tabs clearfix">
                 <a class="tab-item pull-left active">Cart</a>
-                <div class="btn-group pull-right clearfix" ng-if="courses.length>0">
-                    <a class="btn" ng-click="check_all()" ng-class="{'text-primary':shoppingcart_size==courses.length}"><i class="fa" ng-class="{'fa-check-square-o':shoppingcart_size==courses.length,'fa-square-o':shoppingcart_size!=courses.length}"></i>全选</a>
+                <div class="btn-group pull-right clearfix" ng-if="normal_courses.length>0">
+                    <a class="btn" ng-click="check_all()" ng-class="{'text-primary':shoppingcart_size==normal_courses.length}"><i class="fa" ng-class="{'fa-check-square-o':shoppingcart_size==normal_courses.length,'fa-square-o':shoppingcart_size!=normal_courses.length}"></i> 全选</a>
                     <a class="btn text-primary">${{get_total()}}</a>
                     <a class="btn btn-success" ng-click="pay()">pay now</a>
                 </div>
             </div>
             <!-- 正常订单 -->
-            <div class="coach-item with-action-bar shopping-cart" ng-repeat="course in courses|filter:{status:1}">
+            <div class="coach-item with-action-bar shopping-cart" ng-repeat="course in normal_courses">
                 <span class="btn radio-btn" ng-click="toggle(course)"><i class="fa webfont" ng-class="{'text-primary':course.selected,'fa-check-square-o':course.selected,'fa-square-o':!course.selected}"></i></span>
                 <div class="coach-avatar">
                     <imageview data-rate="1" center-only src="staticImageUrl + course.coach_image"></imageview>
@@ -58,8 +58,8 @@
                 </div>
             </div>
             <!-- 失效订单 -->
-            <p class="text-center" ng-if="has_expired_cart" ng-click="remove_expired()">失效购物车，点击清空失效购物车</p>
-            <div class="coach-item with-action-bar shopping-cart" style="opacity:0.5" ng-repeat="course in courses|filter:{status:2}">
+            <p class="text-center hover" ng-if="expired_courses.length>0" ng-click="remove_expired()">失效购物车，点击清空失效购物车</p>
+            <div class="coach-item with-action-bar shopping-cart" style="opacity:0.5" ng-repeat="course in expired_courses">
                 <!-- <span class="btn radio-btn" ng-click="toggle(course)"><i class="fa webfont" ng-class="{'text-primary':course.selected,'fa-check-square-o':course.selected,'fa-square-o':!course.selected}"></i></span> -->
                 <div class="coach-avatar">
                     <imageview data-rate="1" center-only src="staticImageUrl + course.coach_image"></imageview>

@@ -103,7 +103,7 @@ angular.module("Skillopedia").controller("landingController", function($scope, $
 					$rootScope.close_popup_signin();
 					$route.reload();
 				} else {
-					$window.location.href = $location.protocol() + "://" + $location.host() + ":" + $location.port() + "/landing_facebook.html";
+					$window.location.href = "http://www.skillopedia.cc/landFacebook"
 				}
 			})
 		});

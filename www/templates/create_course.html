@@ -91,6 +91,7 @@
                     <div class="open-img" flow-init="{singleFile:true}" ng-controller="uploadPosterController" flow-btn>
                         <img ng-src="../images/upload.png" flow-img="$flow.files[0]" class="full-width full-height" alt="">
                     </div>
+                    <input type="hidden" name="poster" required ng-model="input.poster">
                 </div>
                 <div class="title-input">
                     <span><b class="text-danger"> * </b>Picture</span>
@@ -120,7 +121,8 @@
                 <div class="section text-center text-danger">
                     <div ng-if="stepForm1.title.$invalid &&stepForm1.$dirty">* 课程名称必填</div>
                     <div ng-if="stepForm1.certForm.$invalid &&stepForm1.$dirty">* 证书必须上传</div>
-                    <div ng-if="stepForm1.coverForm.$invalid &&stepForm1.$dirty">* 封面图必须上传</div>
+                    <div ng-if="stepForm1.poster.$invalid &&stepForm1.$dirty">* 课程缩略图必须上传</div>
+                    <div ng-if="(stepForm1.coverForm.$invalid || input.covers.length == 0)&&stepForm1.$dirty">* 封面图必须上传</div>
                     <div ng-if="stepForm1.videoForm.$invalid &&stepForm1.$dirty">* 如果选择上传视频，视频链接必填</div>
                     <div ng-if="stepForm1.overview.$invalid &&stepForm1.$dirty">* 简介必填,至少200字</div>
                 </div>
@@ -338,10 +340,15 @@
                         <button type="button" class="btn btn-default col-xs-3 btn-md col-xs-offset-2" ng-click="show_step(2)">Last step</button>
                         <button class="btn btn-success col-xs-3 btn-md col-xs-offset-1" type="button" ng-disabled="stepForm3.$invalid" ng-click="show_step(4)">Next</button>
                     </div>
+                    <div class="section text-center text-danger">
+                        <div ng-if="stepForm3.distance.$invalid &&stepForm3.$dirty">* Travel distance is number required</div>
+                        <div ng-if="stepForm3.traffic_cost.$invalid &&stepForm3.$dirty">* traffic_cost number is required</div>
+                        <div ng-if="stepForm3.locationForm.$invalid &&stepForm3.$dirty">* street,city,state is required</div>
+                    </div>
                 </div>
                 <div ng-show="location_mode == 'edit'" ng-form="locationForm">
                     <div class="title-input">
-                        <span><b class="text-danger"> * </b>Location</span>
+                        <span><b class="text-danger"> * </b>Location - <b class="text-danger" ng-if="street_error">{{street_error}}</b></span>
                         <div class="course-input">
                             <input type="text" name="street" ng-model="input.street" ng-required="true" class="full-width" placeholder="Street Address e.g 123 Main St" />
                         </div>
@@ -363,7 +370,7 @@
                     </div>
                     <div class="m-session z-margin">
                         <div class="u-input" style="position:relative">
-                            <input type="text" autocomplete="off" name="zipcode" ng-pattern="/[0-9]/" ng-model="input.zipcode" ng-required="true" class="full-width" placeholder="Zip code e.g. 94103" />
+                            <input type="text" autocomplete="off" name="zipcode" ng-pattern="/[0-9]/" ng-model="input.zipcode" ng-required="true" class="full-width" placeholder="Zip code e.g. 94105" />
                             <!-- <div class="zipcode-suggestion" ng-if="input.zipcode && input.suggestions.length>0">
                                 <span class="suggestion-item" ng-repeat="suggestion in input.suggestions | filter:input.zipcode" ng-click="select(suggestion)">{{suggestion.zipcode}}</span>
                             </div>
@@ -389,32 +396,12 @@
             <!-- 新建课程 第四步 -->
             <div class="step" ng-show="step == 4" ng-form="stepForm4">
                 <img ng-src="../images/step_4.png" class="full-width" alt="">
-                <div class="title-input">
-                    <div class="clearfix">
-                        <div class="m-session pull-left">
-                            <span><b class="text-danger"> * </b>Start Time</span>
-                            <div class="input-select">
-                                <select name="start_time" ng-model="input.start_time" ng-options="time_slot.slot as time_slot.time for time_slot in time_slots">
-                                </select>
-                                <i class="fa fa-caret-down" aria-hidden="true"></i>
-                            </div>
-                        </div>
-                        <div class="m-session pull-right">
-                            <span><b class="text-danger"> * </b>End time</span>
-                            <div class="input-select">
-                                <select name="end_time" ng-model="input.end_time" ng-options="time_slot.slot as time_slot.time for time_slot in end_time_slots">
-                                </select>
-                                <i class="fa fa-caret-down" aria-hidden="true"></i>
-                            </div>
-                        </div>
+                <div class="weekly row">
+                    <div class="weekly-item" ng-repeat="week in weeks" ng-click="select_week(week)" ng-class="{'active':week.check}">
+                        <span ng-if="week.type !='content'">{{week.text}}</span>
                     </div>
                 </div>
-                <div class="title-input">
-                    <span>Weekly,You could deselect the day your want you course off</span>
-                    <div class="btn-group">
-                        <a class="btn btn-default btn-lg" ng-repeat="week in input.weeks" ng-click="select_week(week)" ng-class="{'btn-primary':week.select}">{{week.day}}</a>
-                    </div>
-                </div>
+                <a class="btn" ng-click="check_all()" ng-class="{'text-primary':select_weeks.length==content_weeks.length}"><i class="fa" ng-class="{'fa-check-square-o':select_weeks.length==content_weeks.length,'fa-square-o':select_weeks.length!=content_weeks.length}"></i> 全选</a>
                 <div class="section text-center">
                     <button type="button" class="btn btn-default col-xs-3 btn-md" ng-click="show_step(3)">Last step</button>
                     <button class="btn btn-danger col-xs-3 btn-md col-xs-offset-1" type="submit" ng-disabled="createCourseForm.$invalid">Finsh</button>
