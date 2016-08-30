@@ -39,7 +39,16 @@ angular.module("Skillopedia").controller("searchFormController", function($scope
 		if ($scope.input.categorys.length == 0) {
 			$scope.input.categorys = categorys;
 		}
-	})
+	});
+	$scope.focus = function() {
+		$scope.input.categorys = categorys;
+		$scope.input.focus = true;
+	};
+	$scope.blur = function() {
+		$timeout(function() {
+			$scope.input.focus = false;
+		}, 350)
+	};
 	$scope.select_category = function(c) {
 		$scope.input.keyword = c.category_02_name;
 		$timeout(function() {

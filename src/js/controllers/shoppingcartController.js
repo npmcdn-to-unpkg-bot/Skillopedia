@@ -70,11 +70,15 @@ angular.module("Skillopedia").controller("shoppingcartController", function($sco
 	};
 	// 支付
 	$scope.pay = function() {
-		var ids = $scope.courses.filter(function(c) {
+		var ids = $scope.normal_courses.filter(function(c) {
 			return c.selected
 		}).map(function(course) {
 			return course.orders_id;
 		}).join("A");
+		if (!ids) {
+			errorServices.autoHide("No selected course")
+			return;
+		}
 		var url = $location.protocol() + "://" + $location.host() + ":" + $location.port() + "/#/payment?id=" + ids;
 		$window.location.href = url;
 	};
