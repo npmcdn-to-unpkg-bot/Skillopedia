@@ -53,7 +53,7 @@
                         <!-- refund disabled -->
                         <span class="btn btn-danger" disabled ng-if="order.status == '22'">refund</span>
                         <!-- buy again when course is finish -->
-                        <a class="btn btn-default" ng-if="order.status == '30'" ng-href="#/detail?course_id={{order.Course.course_id}}">buy again</a>
+                        <a class="btn btn-default" ng-if="order.status == '30' || order.status == '40'" ng-href="#/detail?course_id={{order.Course.course_id}}">buy again</a>
                         <!-- comment when course is finish #/order_comment-->
                         <a class="btn btn-second" ng-if="order.status == '30'" ng-href="#/order_comment?id={{order.orders_id}}">comment</a>
                         <a class="btn btn-second" ng-if="order.status == '40'" ng-href="#/order_comment?id={{order.orders_id}}">追加评论</a>
