@@ -86,28 +86,48 @@ angular.module("Skillopedia").controller("fillinorderController", function($scop
             type: 'inline'
         }, 0);
     };
+    $scope.input.street = "";
+    $scope.input.address = "";
+    $scope.input.area = "";
+    $scope.input.city = "";
+    // 默认不上门服务
+    $scope.input.travel_to_session = 0;
     $scope.save_location = function() {
-        $scope.teaching_location_map = $scope.get_map($scope.input.city, $scope.input.area, $scope.input.street, $scope.input.address, 2);
-        // valid location
-        skillopediaServices.query_location_in_services({
-            course_id: $routeParams.course_id,
-            latitude: $scope.lat_lng.lat || "0",
-            longitude: $scope.lat_lng.lng || "0"
+
+        // $scope.map_url = $scope.get_map($scope.input.state, $scope.input.city, $scope.input.street, $scope.input.apt);
+        toastServices.show();
+        googleMapServices.geocoding({
+            address: $scope.input.street + "," + $scope.input.address + "," + $scope.input.area + "," + $scope.input.city + "," + $scope.input.zipcode
         }).then(function(data) {
-            if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
-                $scope.course.city = $scope.input.city;
-                $scope.course.area = $scope.input.area;
-                $scope.course.street = $scope.input.street;
-                $scope.course.address = $scope.input.address;
-                $scope.course.zipcode = $scope.input.zipcode;
-                $scope.input.travel_location = 1;
-                $scope.calculate();
-                $.magnificPopup.close();
-            } else {
-                console.log(data.message)
-                errorServices.autoHide(data.message);
+            toastServices.hide();
+            // valid address is legal
+            var result = data.results.filter(function(r) {
+                return !r.partial_match;
+            });
+            if (result.length == 0) {
+                $scope.street_error = "the street name or number appears to be invalid";
+                return;
             }
-        });
+            $scope.street_error = "";
+            $scope.lat_lng = result[0].geometry.location;
+            $scope.format_address = result[0].formatted_address;
+            // valid address is in services
+            toastServices.show();
+            skillopediaServices.query_location_in_services({
+                course_id: $routeParams.course_id,
+                latitude: $scope.lat_lng.lat || "0",
+                longitude: $scope.lat_lng.lng || "0"
+            }).then(function(data) {
+                toastServices.hide();
+                if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
+                    $scope.input.travel_to_session = 1;
+                    $scope.calculate();
+                    $.magnificPopup.close();
+                } else {
+                    errorServices.autoHide(data.message);
+                }
+            });
+        })
     };
     $scope.reset_location = function() {
         $scope.teaching_location_map = $scope.get_map($scope.old_course.city, $scope.old_course.area, $scope.old_course.street, $scope.old_course.address, 1);
@@ -116,7 +136,7 @@ angular.module("Skillopedia").controller("fillinorderController", function($scop
         $scope.course.street = $scope.old_course.street;
         $scope.course.address = $scope.old_course.address;
         $scope.course.zipcode = $scope.old_course.zipcode;
-        $scope.input.travel_location = 0;
+        $scope.input.travel_to_session = 0;
         $scope.calculate();
         $.magnificPopup.close();
     };
@@ -306,9 +326,10 @@ angular.module("Skillopedia").controller("fillinorderController", function($scop
         }
         // 交通费用，如果选择上门
         $scope.input.total_traffic_cost = 0;
-        $scope.travel_place = $scope.course.city + $scope.course.area + $scope.course.street;
-        $scope.course_place = $scope.old_course.city + $scope.old_course.area + $scope.old_course.street;
-        if ($scope.course.travel_to_session == '1' && $scope.travel_place != $scope.course_place) {
+        // $scope.travel_place = $scope.course.city + $scope.course.area + $scope.course.street;
+        // $scope.course_place = $scope.old_course.city + $scope.old_course.area + $scope.old_course.street;
+        // if ($scope.course.travel_to_session == '1' && $scope.travel_place != $scope.course_place) {
+        if ($scope.course.travel_to_session == '1' && $scope.input.travel_to_session) {
             $scope.input.total_traffic_cost = parseFloat($scope.course.travel_to_session_trafic_surcharge) * parseFloat($scope.input.amount);
         }
         // 首次服务费用 百分比,仅仅单节课程费用的百分比
@@ -359,18 +380,18 @@ angular.module("Skillopedia").controller("fillinorderController", function($scop
             order_type: type,
             course_id: $scope.course.course_id,
             title: $scope.course.title,
-            address: $scope.course.city + $scope.course.area + $scope.course.street + $scope.course.address,
+            address: $scope.course.street + " " + $scope.course.address + ", " + $scope.course.area + ", " + $scope.course.city,
             course_user_id: $scope.course.user_id,
             buy_amount: $scope.input.amount,
             session_rate: $scope.course.session_rate,
             go_door_status: $scope.input.travel_to_session,
-            go_door_city: $scope.course.city,
-            go_door_area: $scope.course.area,
-            go_door_street: $scope.course.street,
-            go_door_address: $scope.course.address,
+            go_door_city: $scope.input.city,
+            go_door_area: $scope.input.area,
+            go_door_street: $scope.input.street,
+            go_door_address: $scope.format_address,
             go_door_latitude: ($scope.lat_lng && $scope.lat_lng.lat) || "0",
             go_door_longitude: ($scope.lat_lng && $scope.lat_lng.lng) || "0",
-            go_door_zipcode: $scope.course.zipcode,
+            go_door_zipcode: $scope.input.zipcode,
             go_door_traffic_cost: $scope.course.travel_to_session_trafic_surcharge,
             my_coupon_id: $scope.input.coupons.selected.my_coupon_id,
             my_coupon_money: $scope.input.coupons.selected.coupon_money,

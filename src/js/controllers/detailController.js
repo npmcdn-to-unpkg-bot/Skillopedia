@@ -27,7 +27,6 @@ angular.module("Skillopedia").controller("detailController", function($scope, $r
 		googleMapServices.geocoding({
 			address: $scope.course.street + "," + $scope.course.area + "," + $scope.course.city
 		}).then(function(data) {
-			console.log(data)
 			$scope.lat_lng = data.results[0].geometry.location;
 			var map = googleMapServices.create_map(document.getElementById('map'), $scope.lat_lng);
 			// console.log(map)

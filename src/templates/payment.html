@@ -13,7 +13,7 @@
             <!-- 支付金额-->
             <input type="hidden" name="amount" value="{{payment.total_total_session_rate}}">
             <!-- 自己的参数 商品条目-->
-            <input type="hidden" name="item_number" id="item_number" value="xiu90 coins:50">
+            <input type="hidden" name="item_number" id="item_number" value="{{payment.course_titles}}">
             <!-- 表示立即支付-->
             <input type="hidden" name="cmd" value="_xclick">
             <!-- 商品名称-->
@@ -25,12 +25,12 @@
              -->
             <input type="hidden" name="invoice" value="{{id}}">
              <!--支付成功后台通知地址-->
-            <input type="hidden" name="notify_url" id="notify_url" value="http://skillopedia.cc/PaypalNotify">
+            <input type="hidden" name="notify_url" id="notify_url" value="http://www.skillopedia.cc/PaypalNotify">
             <!--支付成功返回地址-->
-            <input type="hidden" name="return" id="return" value="http://skillopedia.cc/">
+            <input type="hidden" name="return" id="return" value="http://www.skillopedia.cc/">
             <input type="hidden" name="lc" value="US">
             <!--支付取消返回地址-->
-            <input type="hidden" name="cancel_return" id="cancel_return" value="http://skillopedia.cc/">
+            <input type="hidden" name="cancel_return" id="cancel_return" value="http://www.skillopedia.cc/">
             <input type="hidden" name="currency_code" value="USD">
             <!--商户邮件-->
             <input type="hidden" name="business" value="admin@skillopedia.cc">

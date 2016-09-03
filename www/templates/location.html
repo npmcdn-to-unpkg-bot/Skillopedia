@@ -1,5 +1,5 @@
 <form class="location-wrap step" name="locationForm" ng-submit="save_location()">
-    <p>Enter the loaction you want the coach to travel</p>
+    <p>Enter the loaction you want the coach to travel <b class="text-danger" ng-if="street_error">{{street_error}}</b></p>
     <div class="course-input">
         <input type="text" ng-model="input.street" required class="full-width" placeholder="Street Address e.g 123 Main St" />
     </div>
@@ -19,7 +19,7 @@
         </div>
         <div class="m-session pull-left z-margin">
             <div class="u-input">
-                <input type="text" ng-model="input.zipcode" class="full-width" placeholder="Zip code e.g. 94103" />
+                <input type="text" ng-model="input.zipcode" class="full-width" placeholder="Zip code e.g. 94105" />
             </div>
         </div>
     </div>
