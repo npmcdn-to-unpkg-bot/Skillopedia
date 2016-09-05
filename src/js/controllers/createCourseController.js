@@ -238,10 +238,12 @@ angular.module("Skillopedia").controller("createCourseController", function($sco
 		lat: 0
 	}
 	$scope.save_location = function() {
+		toastServices.show();
 		// $scope.map_url = $scope.get_map($scope.input.state, $scope.input.city, $scope.input.street, $scope.input.apt);
 		googleMapServices.geocoding({
 			address: $scope.input.street + "," + $scope.input.apt + "," + $scope.input.city + "," + $scope.input.state + "," + $scope.input.zipcode
 		}).then(function(data) {
+			toastServices.hide();
 			var result = data.results.filter(function(r) {
 				return !r.partial_match;
 			});

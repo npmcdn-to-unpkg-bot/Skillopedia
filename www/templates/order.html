@@ -46,9 +46,10 @@
             <div class="tit">
                 Teaching location
             </div>
-            <iframe ng-src="{{get_map()}}" class="map" height="300px" frameborder="0" allowfullscreen></iframe>
+            <!-- <iframe ng-src="{{get_map()}}" class="map" height="300px" frameborder="0" allowfullscreen></iframe> -->
+            <div style="height:300px;border:1px solid #d2d2d2" id="map"></div>
             <div class="tit">
-                {{order.Course.city+order.Course.area+order.Course.street+order.Course.address}}
+                {{format_address}}
             </div>
             <div class="list-group">
                 <div class="list-group-item clearfix" ng-class="{'text-success':schedule.status == '1','text-primary':schedule.status=='20' && schedule.refund_status=='10','text-danger':schedule.status=='3' && schedule.refund_status=='10'}" ng-repeat="schedule in order.OrdersSchedules track by $index">

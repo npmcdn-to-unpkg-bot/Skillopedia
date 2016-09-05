@@ -1,5 +1,5 @@
 // by dribehance <dribehance.kksdapp.com>
-angular.module("Skillopedia").controller("orderController", function($scope, $sce, $rootScope, $timeout, $routeParams, $location, $window, orderServices, errorServices, toastServices, localStorageService, config) {
+angular.module("Skillopedia").controller("orderController", function($scope, $sce, $rootScope, $timeout, $routeParams, $location, $window, googleMapServices, orderServices, errorServices, toastServices, localStorageService, config) {
 	if (!$routeParams.id) {
 		$rootScope.back();
 		return;
@@ -13,18 +13,35 @@ angular.module("Skillopedia").controller("orderController", function($scope, $sc
 		toastServices.hide()
 		if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
 			$scope.order = data.Orders;
+			$scope.get_map();
 		} else {
 			errorServices.autoHide(data.message);
 		}
 	});
 	// parse iframe map url
 	$scope.get_map = function() {
-		if (!$scope.order) {
-			return;
-		}
-		var map_url = "https://maps.google.com/maps?q=" + $scope.order.Course.city + $scope.order.Course.area + $scope.order.Course.street + $scope.order.Course.address + "&output=embed";
-		return $sce.trustAsResourceUrl(map_url);
+		// if (!$scope.course.city) {
+		// 	return;
+		// }
+		// var map_url = "https://maps.google.com/maps?q=" + $scope.course.city + " " + $scope.course.area + " " + $scope.course.street + "&output=embed";
+		// return $sce.trustAsResourceUrl(map_url);
+		googleMapServices.geocoding({
+			address: $scope.order.Course.street + " " + $scope.order.Course.address + "," + $scope.order.Course.area + "," + $scope.order.Course.city
+		}).then(function(data) {
+			$scope.format_address = result[0].formatted_address;
+			$scope.lat_lng = data.results[0].geometry.location;
+			var map = googleMapServices.create_map(document.getElementById('map'), $scope.lat_lng);
+			// console.log(map)
+			var circle_marker = googleMapServices.create_marker(map, $scope.lat_lng);
+		})
 	};
+	// $scope.get_map = function() {
+	// 	if (!$scope.order) {
+	// 		return;
+	// 	}
+	// 	var map_url = "https://maps.google.com/maps?q=" + $scope.order.Course.city + $scope.order.Course.area + $scope.order.Course.street + $scope.order.Course.address + "&output=embed";
+	// 	return $sce.trustAsResourceUrl(map_url);
+	// };
 	$scope.get_total_partner_fee = function() {
 		if (!$scope.order) {
 			return;

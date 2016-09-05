@@ -323,9 +323,11 @@ angular.module("Skillopedia").controller("editCourseController", function($scope
 		lat: 0
 	}
 	$scope.save_location = function() {
+		toastServices.show();
 		googleMapServices.geocoding({
 			address: $scope.input.street + "," + $scope.input.apt + "," + $scope.input.city + "," + $scope.input.state + "," + $scope.input.zipcode
 		}).then(function(data) {
+			toastServices.hide();
 			var result = data.results.filter(function(r) {
 				return !r.partial_match;
 			});
