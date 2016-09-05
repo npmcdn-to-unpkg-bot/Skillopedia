@@ -124,7 +124,7 @@ angular.module("Skillopedia").controller("detailController", function($scope, $r
 	$scope.page = {
 		pn: 1,
 		page_size: 10,
-		message: "点击加载更多",
+		message: "Load More",
 		course_id: $routeParams.course_id
 	}
 	$scope.loadMore = function() {
@@ -132,10 +132,10 @@ angular.module("Skillopedia").controller("detailController", function($scope, $r
 			return;
 		}
 		toastServices.show();
-		$scope.page.message = "正在加载...";
+		$scope.page.message = "loading...";
 		coursesServices.query_comment_by_course($scope.page).then(function(data) {
 			toastServices.hide();
-			$scope.page.message = "点击加载更多";
+			$scope.page.message = "Load More";
 			if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
 				$scope.comments = $scope.comments.concat(data.Result.Comments.list);
 				$scope.total_comments = data.Result.Comments.totalRow;

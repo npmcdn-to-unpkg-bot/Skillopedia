@@ -54,48 +54,33 @@
     <div ng-cloak class="signin-body" ng-controller="landingController">
         <div class="signin-panel">
             <div class="signin-left">
-                账号绑定
-                <div class="section">
-                    <span class="full-width social-btn btn-facebook" ng-click="signin()"><!-- <i class="fa fa-facebook" aria-hidden="true"></i> -->已有账号，登录并绑定</span>
-                    <span class="full-width social-btn btn-twitter" ng-click="signup()"><!-- <i class="fa fa-twitter" aria-hidden="true"></i> -->没有账号，注册并绑定</span>
-                    <span ng-click="go('index')" class="btn">回首页</span>
-                </div>
+                <imageview src="facebook_entry.picture.data.url" data-rate="1"></imageview>
+                <p class="text-center">{{facebook_entry.name}}</p>
             </div>
-            <div class="signin-right" ng-if="sign =='signin'">
-                <form name="signinForm" ng-submit="signin_action()">
-                    登录并绑定
+            <div class="signin-right">
+                <span>我们检测到facebook对应的邮箱已经被使用，如需使用，请绑定！</span>
+                <form name="signinForm" ng-submit="bind_action()">
                     <div class="section">
                         <div class="input-group">
-                            <input type="email" class="full-width form-control" ng-model="input.signin_email" required placeholder="enter you email/account">
+                            <input type="email" class="full-width form-control" ng-model="facebook_entry.email" required placeholder="enter you email/account" readonly>
                         </div>
                         <div class="input-group">
-                            <input type="password" class="full-width form-control " ng-model="input.signin_password" required placeholder="enter your password">
+                            <input type="password" class="full-width form-control " ng-model="input.binding_password" required placeholder="enter your password">
                         </div>
                         <div class="input-group">
-                            <button type="submit" class="btn btn-primary btn-lg full-width" ng-disabled="signinForm.$invalid">sign in</button>
+                            <button type="submit" class="btn btn-primary btn-lg full-width" ng-disabled="signinForm.$invalid">Bingding</button>
                         </div>
-                    </div>
-                </form>
-            </div>
-            <div class="signin-right" ng-if="sign =='signup'">
-                注册并绑定
-                <form class="section" name="signupForm" ng-submit="signup_action()">
-                    <div class="input-group">
-                        <input type="text" class="full-width form-control" ng-model="input.username" required placeholder="fullname">
-                    </div>
-                    <div class="input-group">
-                        <input type="email" class="full-width form-control" ng-model="input.signup_email" required placeholder="enter your email/account">
-                    </div>
-                    <div class="input-group">
-                        <input type="password" class="full-width form-control" ng-model="input.signup_password" required placeholder="enter your password">
-                    </div>
-                    <div class="input-group">
-                        <button type="submit" class="btn btn-primary btn-lg full-width" ng-disabled="signupForm.$invalid">sign up</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
+    <!-- toast -->
+    <div class="toast">
+        <div class="loader"></div>
+    </div>
+    <!-- error msg-->
+    <div class="error-msg hide">{{error_msg}}</div>
     <script type="text/javascript">
     $(document).ready(function() {
         angular.bootstrap($("html"), ['Skillopedia']);

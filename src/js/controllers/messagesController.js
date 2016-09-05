@@ -4,7 +4,7 @@ angular.module("Skillopedia").controller("messagesController", function($scope, 
 	$scope.page = {
 		pn: 1,
 		page_size: 10,
-		message: "点击加载更多",
+		message: "Load More",
 		type: $rootScope.user.agent_level
 	}
 	$scope.loadMore = function() {
@@ -12,10 +12,10 @@ angular.module("Skillopedia").controller("messagesController", function($scope, 
 			return;
 		}
 		toastServices.show();
-		$scope.page.message = "正在加载...";
+		$scope.page.message = "loading...";
 		userServices.query_messages($scope.page).then(function(data) {
 			toastServices.hide();
-			$scope.page.message = "点击加载更多";
+			$scope.page.message = "Load More";
 			if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
 				$scope.messages = $scope.messages.concat(data.Result.Comments.list);
 				$scope.no_more = $scope.messages.length == data.Result.Comments.totalRow ? true : false;

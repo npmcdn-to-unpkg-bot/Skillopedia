@@ -71,21 +71,32 @@ angular.module("Skillopedia").controller("signinController", function($scope, $r
 	};
 	// oauth
 	$scope.facebook_login = function() {
+		if (!$window.FB) return;
+		toastServices.show()
 		$window.FB && facebookServices.login().then(function(data) {
-			localStorageService.set("f_uid", data.id)
+			toastServices.hide();
+			if (!data.email) {
+				toastServices.hide();
+				errorServices.autoHide("Sorry facebook email address not found, Login failed");
+				facebookServices.logout();
+				return;
+			}
+			localStorageService.set("facebook_entry", data);
 			toastServices.show();
 			userServices.login_by_oauth({
-				u_type: "1",
-				uid: localStorageService.get("f_uid"),
+				email: data.email,
+				icon_url: data.picture.data.url,
+				nickname: data.name
 			}).then(function(data) {
 				toastServices.hide()
-				if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
+				if (data.code == config.request.SUCCESS && data.status != 4) {
 					localStorageService.set("token", data.token);
 					userServices.sync();
 					$rootScope.close_popup_signin();
 					$route.reload();
-				} else {
-					$window.location.href = "http://www.skillopedia.cc/landFacebook";
+				}
+				if (data.code == config.request.SUCCESS && data.status == 4) {
+					$window.location.href = "http://www.skillopedia.cc/landingFacebook";
 				}
 			})
 		});

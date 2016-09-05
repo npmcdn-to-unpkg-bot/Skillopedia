@@ -4,17 +4,17 @@ angular.module("Skillopedia").controller("shoppingcartController", function($sco
 	$scope.page = {
 		pn: 1,
 		page_size: 1000,
-		message: "点击加载更多"
+		message: "Load More"
 	}
 	$scope.loadMore = function() {
 		if ($scope.no_more) {
 			return;
 		}
 		toastServices.show();
-		$scope.page.message = "正在加载...";
+		$scope.page.message = "loading...";
 		shoppingcartServices.query($scope.page).then(function(data) {
 			toastServices.hide();
-			$scope.page.message = "点击加载更多";
+			$scope.page.message = "Load More";
 			if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
 				$scope.courses = $scope.courses.concat(data.Result.Carts.list);
 				// status 1:正常购物车, status 2:失效购物车;

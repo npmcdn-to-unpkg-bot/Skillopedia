@@ -7,7 +7,7 @@ angular.module("Skillopedia").controller("couponsController", function($scope, $
 	$scope.page = {
 		pn: 1,
 		page_size: 1000,
-		message: "点击加载更多",
+		message: "Load More",
 		type: $scope.input.coupon_type
 	}
 	$scope.loadMore = function() {
@@ -15,10 +15,10 @@ angular.module("Skillopedia").controller("couponsController", function($scope, $
 			return;
 		}
 		toastServices.show();
-		$scope.page.message = "正在加载...";
+		$scope.page.message = "loading...";
 		userServices.query_coupons($scope.page).then(function(data) {
 			toastServices.hide();
-			$scope.page.message = "点击加载更多";
+			$scope.page.message = "Load More";
 			if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
 				$scope.coupons = $scope.coupons.concat(data.Result.MyCoupons.list);
 				$scope.no_more = $scope.coupons.length == data.Result.MyCoupons.totalRow ? true : false;
@@ -59,7 +59,7 @@ angular.module("Skillopedia").controller("couponsController", function($scope, $
 		$scope.page = {
 			pn: 1,
 			page_size: 1000,
-			message: "点击加载更多",
+			message: "Load More",
 			latitude: "0",
 			longitude: "0",
 			type: $scope.input.coupon_type

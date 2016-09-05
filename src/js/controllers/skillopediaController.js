@@ -10,7 +10,7 @@ angular.module("Skillopedia").controller("skillopediaController", function($scop
 	$scope.page = {
 		pn: 1,
 		page_size: 10,
-		message: "点击加载更多",
+		message: "Load More",
 		latitude: "0",
 		longitude: "0"
 	}
@@ -19,10 +19,10 @@ angular.module("Skillopedia").controller("skillopediaController", function($scop
 			return;
 		}
 		toastServices.show();
-		$scope.page.message = "正在加载...";
+		$scope.page.message = "loading...";
 		coursesServices.query_courses_by_user($scope.page).then(function(data) {
 			toastServices.hide();
-			$scope.page.message = "点击加载更多";
+			$scope.page.message = "Load More";
 			if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
 				$scope.courses = $scope.courses.concat(data.Result.Courses.list);
 				$scope.no_more = $scope.courses.length == data.Result.Courses.totalRow ? true : false;
@@ -30,7 +30,7 @@ angular.module("Skillopedia").controller("skillopediaController", function($scop
 				errorServices.autoHide("服务器错误");
 			}
 			if ($scope.no_more) {
-				$scope.page.message =  $scope.courses.length + " records found";
+				$scope.page.message = $scope.courses.length + " records found";
 			}
 			$scope.page.pn++;
 		})

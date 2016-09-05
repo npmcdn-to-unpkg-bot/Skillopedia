@@ -103,7 +103,7 @@
         </div>
         <button class="btn btn-primary btn-lg full-width" type="submit" ng-disabled="searchForm.$invalid">Search</button>
         </form>
-        <div class="category-tab">
+        <div class="category-tab" ng-if="recommands.length>0">
             <!-- <div class="tab-header clearfix">
                 <span ng-class="{'active':sidebar.title=='recommand'}" ng-click="change_sidebar('recommand')">Recommand</span>
                 <span ng-class="{'active':sidebar.title=='hot'}" ng-click="change_sidebar('hot')">Hot</span>

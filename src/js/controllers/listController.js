@@ -22,7 +22,7 @@ angular.module("Skillopedia").controller("listController", function($scope, $roo
 	$scope.paging = {
 		pn: 1,
 		page_size: 10,
-		message: "点击加载更多",
+		message: "Load More",
 		kw: $routeParams.kw,
 		type: $routeParams.type,
 		latitude: "0",
@@ -34,10 +34,10 @@ angular.module("Skillopedia").controller("listController", function($scope, $roo
 	}
 	$scope.loadMore = function() {
 		toastServices.show();
-		$scope.paging.message = "正在加载...";
+		$scope.paging.message = "loading...";
 		coursesServices.query($scope.paging).then(function(data) {
 			toastServices.hide();
-			$scope.paging.message = "点击加载更多";
+			$scope.paging.message = "Load More";
 			if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
 				$scope.courses = data.Result.Courses.list;
 				$scope.paging.page_size = $scope.paging.page_size;
@@ -59,7 +59,7 @@ angular.module("Skillopedia").controller("listController", function($scope, $roo
 		$scope.paging = angular.extend({}, $scope.paging, {
 			pn: $scope.paging.pn,
 			page_size: $scope.paging.page_size,
-			message: "点击加载更多",
+			message: "Load More",
 			kw: $routeParams.kw,
 			type: "2",
 			latitude: "0",

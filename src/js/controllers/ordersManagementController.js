@@ -7,7 +7,7 @@ angular.module("Skillopedia").controller("ordersManagementController", function(
 	$scope.page = {
 		pn: 1,
 		page_size: 10,
-		message: "点击加载更多",
+		message: "Load More",
 		latitude: "0",
 		longitude: "0",
 		order_type: $scope.input.order_type
@@ -17,10 +17,10 @@ angular.module("Skillopedia").controller("ordersManagementController", function(
 			return;
 		}
 		toastServices.show();
-		$scope.page.message = "正在加载...";
+		$scope.page.message = "loading...";
 		orderServices.query_manage_orders($scope.page).then(function(data) {
 			toastServices.hide();
-			$scope.page.message = "点击加载更多";
+			$scope.page.message = "Load More";
 			if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
 				$scope.orders = $scope.orders.concat(data.Result.CoachOrderList.list);
 				$scope.no_more = $scope.orders.length == data.Result.CoachOrderList.totalRow ? true : false;
@@ -44,7 +44,7 @@ angular.module("Skillopedia").controller("ordersManagementController", function(
 		$scope.page = {
 			pn: 1,
 			page_size: 10,
-			message: "点击加载更多",
+			message: "Load More",
 			latitude: "0",
 			longitude: "0",
 			order_type: $scope.input.order_type

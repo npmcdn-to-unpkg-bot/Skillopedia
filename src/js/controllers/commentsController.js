@@ -4,18 +4,18 @@ angular.module("Skillopedia").controller("commentsController", function($scope, 
 	$scope.page = {
 		pn: 1,
 		page_size: 10,
-		message: "点击加载更多"
+		message: "Load More"
 	}
 	$scope.loadMore = function() {
 		if ($scope.no_more) {
 			return;
 		}
 		toastServices.show();
-		$scope.page.message = "正在加载...";
+		$scope.page.message = "loading...";
 		$scope.page.user_id = $rootScope.user.user_id;
 		userServices.query_comments_by_user_id($scope.page).then(function(data) {
 			toastServices.hide();
-			$scope.page.message = "点击加载更多";
+			$scope.page.message = "Load More";
 			if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
 				$scope.comments = $scope.comments.concat(data.Result.Comments.list);
 				$scope.no_more = $scope.comments.length == data.Result.Comments.totalRow ? true : false;
@@ -23,7 +23,7 @@ angular.module("Skillopedia").controller("commentsController", function($scope, 
 				errorServices.autoHide("服务器错误");
 			}
 			if ($scope.no_more) {
-				$scope.page.message =  $scope.comments.length + " records found";
+				$scope.page.message = $scope.comments.length + " records found";
 			}
 			$scope.page.pn++;
 		})

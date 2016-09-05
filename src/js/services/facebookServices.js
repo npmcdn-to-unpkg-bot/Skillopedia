@@ -48,12 +48,11 @@ angular.module("Skillopedia").factory("facebookServices", function($rootScope, $
             var deferred = $q.defer();
             var FB = $window.FB || undefined;
             if (!FB) return;
-            toastServices.show();
             FB.login(function(response) {
-                toastServices.hide();
                 if (response.status == "connected") {
                     deferred.resolve(response);
                 } else {
+                    toastServices.hide();
                     deferred.reject('_facebook_connected occured');
                 }
             }, {

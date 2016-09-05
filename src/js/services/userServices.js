@@ -61,6 +61,16 @@ angular.module("Skillopedia").factory("userServices", function($rootScope, $http
 				return data.data;
 			});
 		},
+		binding_account: function(input) {
+			return $http({
+				// by dribehance <dribehance.kksdapp.com>
+				url: config.url + "/app/UserCenter/thirdLogin",
+				method: "GET",
+				params: angular.extend({}, config.common_params, input)
+			}).then(function(data) {
+				return data.data;
+			});
+		},
 		query_basicinfo: function(input) {
 			return $http({
 				// by dribehance <dribehance.kksdapp.com>

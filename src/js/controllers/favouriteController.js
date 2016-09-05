@@ -4,7 +4,7 @@ angular.module("Skillopedia").controller("favouriteController", function($scope,
 	$scope.page = {
 		pn: 1,
 		page_size: 10,
-		message: "点击加载更多",
+		message: "Load More",
 		latitude: "0",
 		longitude: "0"
 	}
@@ -13,10 +13,10 @@ angular.module("Skillopedia").controller("favouriteController", function($scope,
 			return;
 		}
 		toastServices.show();
-		$scope.page.message = "正在加载...";
+		$scope.page.message = "loading...";
 		userServices.favourite($scope.page).then(function(data) {
 			toastServices.hide();
-			$scope.page.message = "点击加载更多";
+			$scope.page.message = "Load More";
 			if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
 				$scope.courses = $scope.courses.concat(data.Result.Collections.list);
 				$scope.no_more = $scope.courses.length == data.Result.Collections.totalRow ? true : false;

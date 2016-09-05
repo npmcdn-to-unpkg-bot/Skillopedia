@@ -3,6 +3,9 @@ angular.module("Skillopedia").controller("landingController", function($scope, $
 	if ($rootScope.is_signin()) {
 		$rootScope.back();
 	}
+	if (localStorageService.get("facebook_entry")) {
+		$scope.facebook_entry = localStorageService.get("facebook_entry");
+	}
 	$scope.input = {
 		signin_email: "",
 		signin_password: "",
@@ -31,9 +34,10 @@ angular.module("Skillopedia").controller("landingController", function($scope, $
 				if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
 					localStorageService.set("token", data.token);
 					userServices.sync();
-					// $rootScope.back();
 					errorServices.autoHide(data.message);
+					// try to index
 					$location.path("index").replace();
+					// jump only when index is the current page
 					$timeout(function() {
 						$window.location.href = $location.protocol() + "://" + $location.host() + ":" + $location.port();
 					}, 2000)
@@ -58,7 +62,9 @@ angular.module("Skillopedia").controller("landingController", function($scope, $
 				localStorageService.set("token", data.user.token);
 				$rootScope.user = data.user;
 				errorServices.autoHide(data.message);
+				// try to index
 				$location.path("index").replace();
+				// jump only when index is the current page
 				$timeout(function() {
 					$window.location.href = $location.protocol() + "://" + $location.host() + ":" + $location.port();
 				}, 2000)
@@ -79,31 +85,76 @@ angular.module("Skillopedia").controller("landingController", function($scope, $
 				errorServices.autoHide(data.message);
 			}
 		})
+	};
+	// 绑定关联账号
+	$scope.bind_action = function() {
+		toastServices.show();
+		userServices.rsa_key().then(function(data) {
+			toastServices.hide();
+			var crypt = new JSEncrypt(),
+				private_key = data;
+			crypt.setPrivateKey(private_key);
+			var crypted_str = crypt.encrypt($scope.input.binding_password);
+			$scope.input.binding_password = crypted_str;
+		}).then(function(data) {
+			toastServices.show();
+			userServices.binding_account({
+				email: $scope.facebook_entry.email,
+				password: $scope.input.binding_password,
+			}).then(function(data) {
+				toastServices.hide()
+				if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
+					localStorageService.remove("binding_account");
+					localStorageService.set("token", data.token);
+					userServices.sync();
+					// try to index
+					$location.path("index").replace();
+					// jump only when index is the current page
+					$timeout(function() {
+						$window.location.href = $location.protocol() + "://" + $location.host() + ":" + $location.port();
+					}, 2000)
+				} else {
+					errorServices.autoHide(data.message);
+				}
+				$scope.input.binding_password = "";
+			})
+		})
 	}
 	$scope.sign = "signin";
 	$scope.signin = function() {
 		$scope.sign = "signin";
 	}
 	$scope.signup = function() {
-			$scope.sign = "signup";
-		}
-		// oauth
+		$scope.sign = "signup";
+	};
+	// oauth
 	$scope.facebook_login = function() {
+		if (!$window.FB) return;
+		toastServices.show()
 		$window.FB && facebookServices.login().then(function(data) {
-			localStorageService.set("f_uid", data.id)
+			toastServices.hide();
+			if (!data.email) {
+				toastServices.hide();
+				errorServices.autoHide("Sorry facebook email address not found, Login failed");
+				facebookServices.logout();
+				return;
+			}
+			localStorageService.set("facebook_entry", data);
 			toastServices.show();
 			userServices.login_by_oauth({
-				u_type: "1",
-				uid: localStorageService.get("f_uid"),
+				email: data.email,
+				icon_url: data.picture.data.url,
+				nickname: data.name
 			}).then(function(data) {
 				toastServices.hide()
-				if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
+				if (data.code == config.request.SUCCESS && data.status != 4) {
 					localStorageService.set("token", data.token);
 					userServices.sync();
 					$rootScope.close_popup_signin();
 					$route.reload();
-				} else {
-					$window.location.href = "http://www.skillopedia.cc/landFacebook"
+				}
+				if (data.code == config.request.SUCCESS && data.status == 4) {
+					$window.location.href = "http://www.skillopedia.cc/landingFacebook";
 				}
 			})
 		});
