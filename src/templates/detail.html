@@ -73,8 +73,8 @@
                     </div>
                 </div>
             </div>
-            <div class="line"></div>
-            <div class="section sm">
+            <div class="line" ng-if="course.CourseCertifications.length>0"></div>
+            <div class="section sm" ng-if="course.CourseCertifications.length>0">
                 <div class="section-title">Certification</div>
                 <div class="image-gallaxy clearfix">
                     <a class="image" href="{{staticImageUrl + certification.image_01}}" ng-repeat="certification in course.CourseCertifications">
@@ -82,8 +82,8 @@
                     </a>
                 </div>
             </div>
-            <div class="line"></div>
-            <div class="section sm">
+            <div class="line" ng-if="comments.length>0"></div>
+            <div class="section sm" ng-if="comments.length>0">
                 <div class="section-title">{{total_comments}} Comments</div>
                 <div class="comments">
                     <div class="comment-item" ng-repeat="comment in comments">

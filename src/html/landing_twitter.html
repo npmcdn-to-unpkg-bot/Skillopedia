@@ -67,7 +67,7 @@
     <div ng-cloak class="signin-body" ng-controller="landingController">
         <div class="signin-panel">
             <div class="signin-left">
-                <imageview src="${(image_01)!''}" data-rate="1"></imageview>
+                <imageview src="'${(image_01)!''}'" data-rate="1"></imageview>
                 <p class="text-center">${(nickname)!''}</p>
             </div>
             <div class="signin-right">
@@ -75,7 +75,7 @@
                 <form name="signinForm" ng-submit="bind_twitter()">
                     <div class="section">
                         <div class="input-group">
-                            <input type="email" class="full-width form-control" ng-model="twitter_email" ng-init="twitter_email=${(email)!''}" required placeholder="enter you email/account" readonly>
+                            <input type="email" class="full-width form-control" ng-model="twitter_email" ng-init="twitter_email='${(email)!''}'" required placeholder="enter you email/account" readonly>
                         </div>
                         <div class="input-group">
                             <input type="password" class="full-width form-control " ng-model="input.binding_password" required placeholder="enter your password">
