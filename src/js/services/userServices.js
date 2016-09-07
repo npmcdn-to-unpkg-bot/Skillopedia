@@ -1,5 +1,5 @@
 // by dribehance <dribehance.kksdapp.com>
-angular.module("Skillopedia").factory("userServices", function($rootScope, $http, localStorageService, config) {
+angular.module("Skillopedia").factory("userServices", function($rootScope, $http, facebookServices, localStorageService, config) {
 	return {
 		rsa_key: function(input) {
 			return $http({
@@ -134,6 +134,7 @@ angular.module("Skillopedia").factory("userServices", function($rootScope, $http
 			localStorageService.remove("user");
 			localStorageService.remove("t_uid");
 			localStorageService.remove("f_uid");
+			facebookServices.logout();
 		},
 		// 个人主页 
 		// 基本信息，课程列表，评论列表，经历列表

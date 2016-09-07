@@ -89,14 +89,18 @@ angular.module("Skillopedia").controller("signinController", function($scope, $r
 				nickname: data.name
 			}).then(function(data) {
 				toastServices.hide()
-				if (data.code == config.request.SUCCESS && data.status != 4) {
+				if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
 					localStorageService.set("token", data.token);
 					userServices.sync();
 					$rootScope.close_popup_signin();
 					$route.reload();
 				}
+				if (data.code == config.request.SUCCESS && (data.status == 2 || data.status == 3)) {
+					errorServices.autoHide(data.message)
+				}
 				if (data.code == config.request.SUCCESS && data.status == 4) {
 					$window.location.href = "http://www.skillopedia.cc/landingFacebook";
+					// $window.location.href = "http://localhost:9000/landing_facebook.html";
 				}
 			})
 		});

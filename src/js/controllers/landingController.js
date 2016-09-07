@@ -6,6 +6,9 @@ angular.module("Skillopedia").controller("landingController", function($scope, $
 	if (localStorageService.get("facebook_entry")) {
 		$scope.facebook_entry = localStorageService.get("facebook_entry");
 	}
+	if (localStorageService.get("twitter_entry")) {
+		$scope.twitter_entry = localStorageService.get("twitter_entry");
+	}
 	$scope.input = {
 		signin_email: "",
 		signin_password: "",
@@ -86,8 +89,42 @@ angular.module("Skillopedia").controller("landingController", function($scope, $
 			}
 		})
 	};
-	// 绑定关联账号
-	$scope.bind_action = function() {
+	// 绑定facebook关联账号
+	$scope.bind_facebook = function() {
+			toastServices.show();
+			userServices.rsa_key().then(function(data) {
+				toastServices.hide();
+				var crypt = new JSEncrypt(),
+					private_key = data;
+				crypt.setPrivateKey(private_key);
+				var crypted_str = crypt.encrypt($scope.input.binding_password);
+				$scope.input.binding_password = crypted_str;
+			}).then(function(data) {
+				toastServices.show();
+				userServices.binding_account({
+					email: $scope.facebook_entry.email,
+					password: $scope.input.binding_password,
+				}).then(function(data) {
+					toastServices.hide()
+					if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
+						localStorageService.remove("binding_account");
+						localStorageService.set("token", data.token);
+						userServices.sync();
+						// try to index
+						$location.path("index").replace();
+						// jump only when index is the current page
+						$timeout(function() {
+							$window.location.href = $location.protocol() + "://" + $location.host() + ":" + $location.port();
+						}, 2000)
+					} else {
+						errorServices.autoHide(data.message);
+					}
+					$scope.input.binding_password = "";
+				})
+			})
+		}
+		// 绑定twitter关联账号
+	$scope.bind_twitter = function() {
 		toastServices.show();
 		userServices.rsa_key().then(function(data) {
 			toastServices.hide();
@@ -99,7 +136,7 @@ angular.module("Skillopedia").controller("landingController", function($scope, $
 		}).then(function(data) {
 			toastServices.show();
 			userServices.binding_account({
-				email: $scope.facebook_entry.email,
+				email: $scope.twitter_email,
 				password: $scope.input.binding_password,
 			}).then(function(data) {
 				toastServices.hide()
@@ -147,11 +184,14 @@ angular.module("Skillopedia").controller("landingController", function($scope, $
 				nickname: data.name
 			}).then(function(data) {
 				toastServices.hide()
-				if (data.code == config.request.SUCCESS && data.status != 4) {
+				if (data.code == config.request.SUCCESS && data.status == config.response.SUCCESS) {
 					localStorageService.set("token", data.token);
 					userServices.sync();
 					$rootScope.close_popup_signin();
 					$route.reload();
+				}
+				if (data.code == config.request.SUCCESS && (data.status == 2 || data.status == 3)) {
+					errorServices.autoHide(data.message)
 				}
 				if (data.code == config.request.SUCCESS && data.status == 4) {
 					$window.location.href = "http://www.skillopedia.cc/landingFacebook";

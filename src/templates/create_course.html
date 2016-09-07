@@ -144,7 +144,7 @@
                         <span><b class="text-danger"> * </b>Experienced Year</span>
                         <div class="course-select">
                             <select name="teaching_since" ng-model="input.teaching_since" required>
-                                <option value="">请选择</option>
+                                <option value="">Select Option</option>
                                 <option value="1+">1+</option>
                                 <option value="3+">3+</option>
                                 <option value="5+">5+</option>
@@ -170,7 +170,7 @@
                             <span><b class="text-danger"> * </b>Teaching age<b class="text-danger" ng-if="stepForm2.teaching_age.$invalid && stepForm2.teaching_age.$dirty"> (Number Only) </b></span>
                             <div class="course-select">
                                 <select name="teaching_age" ng-model="input.teaching_age" required>
-                                    <option value="">请选择</option>
+                                    <option value="">Select Option</option>
                                     <option value="4+">4+</option>
                                     <option value="7+">7+</option>
                                     <option value="15+">15+</option>
@@ -301,7 +301,7 @@
                             </div> -->
                             <div class="course-select">
                                 <select name="distance" ng-model="input.distance" required>
-                                    <option value="">请选择</option>
+                                    <option value="">Select Option</option>
                                     <option value="3">3</option>
                                     <option value="5">5</option>
                                     <option value="10">10</option>
@@ -401,7 +401,7 @@
                         <span ng-if="week.type !='content'">{{week.text}}</span>
                     </div>
                 </div>
-                <a class="hover" style="margin-left:12.5%;margin-top:15px;display:inline-block" ng-click="check_all()" ng-class="{'text-primary':select_weeks.length==content_weeks.length}"><i class="fa" ng-class="{'fa-check-square-o':select_weeks.length==content_weeks.length,'fa-square-o':select_weeks.length!=content_weeks.length}"></i> 全选</a>
+                <a class="hover" style="margin-left:12.5%;margin-top:15px;display:inline-block" ng-click="check_all()" ng-class="{'text-primary':select_weeks.length==content_weeks.length}"><i class="fa" ng-class="{'fa-check-square-o':select_weeks.length==content_weeks.length,'fa-square-o':select_weeks.length!=content_weeks.length}"></i> All</a>
                 <div class="section text-center">
                     <button type="button" class="btn btn-default col-xs-3 btn-md" ng-click="show_step(3)">Last step</button>
                     <button class="btn btn-danger col-xs-3 btn-md col-xs-offset-1" type="submit" ng-disabled="createCourseForm.$invalid">Finsh</button>

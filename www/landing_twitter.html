@@ -2,7 +2,7 @@
 <html class="no-js">
 
 <head>
-     <!-- <base href="/skillopedia"></base> -->
+    <!-- <base href="/skillopedia"></base> -->
     <meta charset="utf-8" />
     <title>skillopedia</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -11,7 +11,9 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="yes" />
     <meta name="renderer" content="webkit">
     <link href="images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-    <link href="//cdn.bootcss.com/normalize/4.1.1/normalize.min.css" rel="stylesheet">
+    <#if flag=0 >
+    <#else>
+	<link href="//cdn.bootcss.com/normalize/4.1.1/normalize.min.css" rel="stylesheet">
     <!-- <link href="//cdn.bootcss.com/hover.css/2.0.2/css/hover-min.css" rel="stylesheet"> -->
     <link href="//cdn.bootcss.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet">
     <!-- <link href="//cdn.bootcss.com/loaders.css/0.1.2/loaders.min.css" rel="stylesheet"> -->
@@ -48,60 +50,56 @@
     <script src="//cdn.bootcss.com/animations/2.1/js/appear.min.js"></script> -->
     <script src="lib/js/jsencrypt.js"></script>
     <script src="js/app.min.js"></script>
+    </#if>
 </head>
 
 <body>
+	<#if flag=0 >
+		<#if message??>:${(message)!''}
+		<script type="text/javascript">
+			setTimeout(function(){
+				window.location.href="http://www.skillopedia.cc";
+			},3000)
+		</script>
+	</#if>
+	<#else>
+	<!-- bing twitter with skillopedia account -->
     <div ng-cloak class="signin-body" ng-controller="landingController">
         <div class="signin-panel">
             <div class="signin-left">
-                账号绑定<#if message??>:${(message)!''}</#if>
-                <div class="section">
-                    <span class="full-width social-btn btn-facebook" ng-click="signin()"><!-- <i class="fa fa-facebook" aria-hidden="true"></i> -->已有账号，登录并绑定</span>
-                    <span class="full-width social-btn btn-twitter" ng-click="signup()"><!-- <i class="fa fa-twitter" aria-hidden="true"></i> -->没有账号，注册并绑定</span>
-                    <span ng-click="go('index')" class="btn">回首页</span>
-                </div>
+                <imageview src="${(image_01)!''}" data-rate="1"></imageview>
+                <p class="text-center">${(nickname)!''}</p>
             </div>
-            <div class="signin-right" ng-if="sign =='signin'">
-                <form name="signinForm" ng-submit="signin_action()">
-                    登录并绑定
+            <div class="signin-right">
+                <span>We detect the email address from your twitter is already in use, please binding your twitter with skillopedia account.</span>
+                <form name="signinForm" ng-submit="bind_twitter()">
                     <div class="section">
                         <div class="input-group">
-                            <input type="email" class="full-width form-control" ng-model="input.signin_email" required placeholder="enter you email/account">
+                            <input type="email" class="full-width form-control" ng-model="twitter_email" ng-init="twitter_email=${(email)!''}" required placeholder="enter you email/account" readonly>
                         </div>
                         <div class="input-group">
-                            <input type="password" class="full-width form-control " ng-model="input.signin_password" required placeholder="enter your password">
+                            <input type="password" class="full-width form-control " ng-model="input.binding_password" required placeholder="enter your password">
                         </div>
                         <div class="input-group">
-                            <button type="submit" class="btn btn-primary btn-lg full-width" ng-disabled="signinForm.$invalid">sign in</button>
+                            <button type="submit" class="btn btn-primary btn-lg full-width" ng-disabled="signinForm.$invalid">Bingding</button>
                         </div>
-                    </div>
-                </form>
-            </div>
-            <div class="signin-right" ng-if="sign =='signup'">
-                注册并绑定
-                <form class="section" name="signupForm" ng-submit="signup_action()">
-                    <div class="input-group">
-                        <input type="text" class="full-width form-control" ng-model="input.username" required placeholder="fullname">
-                    </div>
-                    <div class="input-group">
-                        <input type="email" class="full-width form-control" ng-model="input.signup_email" required placeholder="enter your email/account">
-                    </div>
-                    <div class="input-group">
-                        <input type="password" class="full-width form-control" ng-model="input.signup_password" required placeholder="enter your password">
-                    </div>
-                    <div class="input-group">
-                        <button type="submit" class="btn btn-primary btn-lg full-width" ng-disabled="signupForm.$invalid">sign up</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
+    <!-- toast -->
+    <div class="toast">
+        <div class="loader"></div>
+    </div>
+    <!-- error msg-->
+    <div class="error-msg hide">{{error_msg}}</div>
     <script type="text/javascript">
-    localStorage.setItem("ls.t_uid","\"${t_uid}\"");
     $(document).ready(function() {
         angular.bootstrap($("html"), ['Skillopedia']);
     })
     </script>
+	</#if>
 </body>
 
 </html>

@@ -1,5 +1,5 @@
 // by dribehance <dribehance.kksdapp.com>
-angular.module("Skillopedia").factory("facebookServices", function($rootScope, $route, $http, $window, $location, $q, userServices, toastServices, errorServices, localStorageService, config) {
+angular.module("Skillopedia").factory("facebookServices", function($rootScope, $route, $http, $window, $location, $q, toastServices, errorServices, localStorageService, config) {
     $window.fbAsyncInit = function() {
         var FB = $window.FB || undefined;
         if (!FB) return;
@@ -40,9 +40,13 @@ angular.module("Skillopedia").factory("facebookServices", function($rootScope, $
             return deferred.promise;
         },
         logout: function() {
+            var deferred = $q.defer();
             var FB = $window.FB || undefined;
             if (!FB) return;
-            FB.logout(function(response) {})
+            FB.logout(function(response) {
+                deferred.resolve(response);
+            })
+            return deferred.promise;
         },
         _facebook_connected: function() {
             var deferred = $q.defer();

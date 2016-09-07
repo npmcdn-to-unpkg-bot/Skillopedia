@@ -58,8 +58,8 @@
                 <p class="text-center">{{facebook_entry.name}}</p>
             </div>
             <div class="signin-right">
-                <span>我们检测到facebook对应的邮箱已经被使用，如需使用，请绑定！</span>
-                <form name="signinForm" ng-submit="bind_action()">
+                <span>We detect the email address from your facebook is already in use, please binding your facebook with skillopedia account.</span>
+                <form name="signinForm" ng-submit="bind_facebook()">
                     <div class="section">
                         <div class="input-group">
                             <input type="email" class="full-width form-control" ng-model="facebook_entry.email" required placeholder="enter you email/account" readonly>
