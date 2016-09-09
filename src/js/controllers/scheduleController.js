@@ -74,7 +74,7 @@ angular.module("Skillopedia").controller("scheduleController", function($scope, 
 		});
 	}
 	$scope.busy_one_day = function() {
-		$scope.confirm.content = $scope.calendar.is_busy_24 == "0" ? "全天没有课？" : "全天有课？";
+		$scope.confirm.content = $scope.calendar.is_busy_24 == "0" ? "Mark busy today?" : "Cancel mark busy today?";
 		$scope.confirm.open();
 		$scope.confirm.cancle_callback = function() {}
 		$scope.confirm.ok_callback = function() {
@@ -95,7 +95,7 @@ angular.module("Skillopedia").controller("scheduleController", function($scope, 
 		}
 	}
 	$scope.busy_all_day = function() {
-		$scope.confirm.content = $scope.calendar.is_stop_course == "0" ? "暂停课程" : "启动课程";
+		$scope.confirm.content = $scope.calendar.is_stop_course == "0" ? "Suspend all courses" : "Start up courses";
 		$scope.confirm.open();
 		$scope.confirm.cancle_callback = function() {}
 		$scope.confirm.ok_callback = function() {

@@ -60,7 +60,7 @@ angular.module("Skillopedia").controller("searchFormController", function($scope
 		if (!address) {
 			$scope.confirm.title = "输入地址可以让我们更好的搜索结果？";
 			$scope.confirm.content = "";
-			$scope.confirm.content_type = "input";
+			$scope.confirm.content_type = "autocomplete";
 			$scope.confirm.ok_text = "使用该地址搜索";
 			$scope.confirm.cancel_text = "跳过，继续搜索";
 			$scope.confirm.open();

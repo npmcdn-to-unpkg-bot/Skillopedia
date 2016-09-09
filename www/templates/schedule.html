@@ -28,19 +28,21 @@
                             </div>
                             <div class="clearfix" ng-if="calendar.selected.length>0">
                                 <p class="btn-group text-center">
-                                    <button type="button" class="btn btn-success" ng-click="free_hour()">Mark as Free</button>
-                                    <button type="button" class="btn btn-danger" ng-click="busy_hour()">Mark as Busy</button>
+                                    <button type="button" class="btn btn-success" style="margin-left:0" ng-click="free_hour()">Mark as Free</button>
+                                    <button type="button" class="btn btn-danger" style="margin-left:0" ng-click="busy_hour()">Mark as Busy</button>
                                 </p>
                             </div>
-                            <div class="clearfix">
-                                <span class="btn pull-right" ng-class="{'text-primary':calendar.is_stop_course=='1'}" ng-click="busy_all_day()">
+                            <div class="clearfix text-ellipsis">
+                                <span class="hover col-xs-12" ng-class="{'text-primary':calendar.is_stop_course=='1'}" ng-click="busy_all_day()">
                                     <i class="fa" ng-class="{'fa-check-square-o':calendar.is_stop_course=='1','fa-square-o':calendar.is_stop_course!='1'}" aria-hidden="true"></i>
-                                暂停课程
+                                suspend all courses
                                 </span>
-                                <span class="btn pull-left" ng-class="{'text-primary':calendar.is_busy_24=='1'}" ng-click="busy_one_day()">
+                                <span class="hover col-xs-12" ng-class="{'text-primary':calendar.is_busy_24=='1'}" ng-click="busy_one_day()">
                                     <i class="fa" ng-class="{'fa-check-square-o':calendar.is_busy_24=='1','fa-square-o':calendar.is_busy_24!='1'}" aria-hidden="true"></i>
-                                全天没有空
+                                mark busy today
                                 </span>
+                            </div>
+                            <div class="clearfix text-ellipsis">
                                 <!-- <span class="calender-tip unavailable">不可预约</span> -->
                                 <span class="calender-tip confirm">booked</span>
                                 <span class="calender-tip busy">unavailable</span>

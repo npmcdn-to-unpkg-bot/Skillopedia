@@ -4,16 +4,20 @@
             {{confirm.title}}
             <i class="pull-right fa fa-times close" ng-click="confirm.cancel()"></i>
         </div>
-        <div class="confirm-content" ng-if="confirm.content_type !='input'">
+        <div class="confirm-content" ng-if="confirm.content_type =='content'">
             {{confirm.content}}
         </div>
-        <div class="confirm-content" ng-if="confirm.content_type =='input'">
+        <div class="confirm-content" ng-if="confirm.content_type =='autocomplete'">
             <autocomplete value="input.zipcode"></autocomplete>
+        </div>
+        <div class="confirm-content" ng-if="confirm.content_type =='input'">
+            <input type="text" class="full-width" ng-model="confirm.content" placeholder="enter your plan">
         </div>
         <div class="confirm-footer">
             <span class="btn btn-default" ng-click="confirm.cancel()">{{confirm.cancel_text}}</span>
-            <span class="btn btn-primary" ng-if="confirm.content_type !='input'" ng-click="confirm.ok()">{{confirm.ok_text}}</span>
-            <span class="btn btn-primary" ng-if="confirm.content_type =='input'" ng-click="confirm.ok_submit()">{{confirm.ok_text}}</span>
+            <span class="btn btn-primary" ng-if="confirm.content_type =='content'" ng-click="confirm.ok()">{{confirm.ok_text}}</span>
+            <span class="btn btn-primary" ng-if="confirm.content_type =='input'" ng-click="confirm.ok()">{{confirm.ok_text}}</span>
+            <span class="btn btn-primary" ng-if="confirm.content_type =='autocomplete'" ng-click="confirm.ok_submit()">{{confirm.ok_text}}</span>
         </div>
     </div>
 </div>

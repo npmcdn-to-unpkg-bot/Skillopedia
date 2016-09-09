@@ -28,17 +28,17 @@
             <div class="section sm">
                 <div class="section-title">Detail</div>
                 <p class="clearfix text-ellipsis">
-                    <span class="col-xs-9">
-                        <span class="">Teaching: since {{course.teaching_since}}</span>
+                    <span class="col-xs-6">
+                        <span class="">Experience: {{course.teaching_since}} years</span>
                     </span>
-                    <span class="">
+                    <span class="col-xs-6 text-right">
                         <span class="" >Session Duration: {{course.session_length}}min</span>
                     </span>
                     
                 </p>
                 <p class="clearfix text-ellipsis">
-                    <span class="col-xs-9"><span class="">Group Session: Up to {{course.additional_partner}}</span></span>
-                    <span class="">Teaches: Age {{course.teaching_age}} and up</span>
+                    <span class="col-xs-6"><span class="">Group Session: Up to {{course.additional_partner}}</span></span>
+                    <span class="col-xs-6 text-right">Ages: at least {{course.teaching_age}} years old</span>
                     
                     
                 </p>
@@ -73,8 +73,8 @@
                     </div>
                 </div>
             </div>
-            <div class="line" ng-if="course.CourseCertifications.length>0"></div>
-            <div class="section sm" ng-if="course.CourseCertifications.length>0">
+            <div class="line" ng-show="course.CourseCertifications.length>0"></div>
+            <div class="section sm" ng-show="course.CourseCertifications.length>0">
                 <div class="section-title">Certification</div>
                 <div class="image-gallaxy clearfix">
                     <a class="image" href="{{staticImageUrl + certification.image_01}}" ng-repeat="certification in course.CourseCertifications">

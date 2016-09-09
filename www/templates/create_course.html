@@ -61,11 +61,11 @@
                                 </div>
                                 <div class="course-input">
                                     <datepicker date-format="MMM dd, yyyy">
-                                        <input type="text" name="cert_time" ng-model="cert.time" class="full-width" placeholder="Effective Time Certification, eg: May 12,2000" readonly/>
+                                        <input type="text" name="cert_time" ng-model="cert.time" class="full-width" placeholder="Award time" readonly/>
                                     </datepicker>
                                 </div>
                                 <div class="course-input">
-                                    <input type="text" name="cert_institute" ng-model="cert.institute" class="full-width" placeholder="Institute" />
+                                    <input type="text" name="cert_institute" ng-model="cert.institute" class="full-width" placeholder="Licensed by" />
                                 </div>
                                 <a class="btn btn-danger" ng-click="remove_cert(cert,certForm)">remove</a>
                                 <a class="btn btn-success pull-right" ng-if="cert.id==''" ng-click="ajaxCert(cert,certForm)" ng-disabled="certForm.$invalid">upload</a>
@@ -112,7 +112,7 @@
                     </div>
                 </div>
                 <div class="title-input">
-                    <span class="clearfix"><b class="text-danger"> * </b>Overview <b class="text-danger" ng-if="stepForm1.$dirty && stepForm1.overview.$invalid">at least 200 letter</b></span>
+                    <span class="clearfix"><b class="text-danger"> * </b>About myself<b class="text-danger" ng-if="stepForm1.$dirty && stepForm1.overview.$invalid">at least 200 letter</b></span>
                     <textarea class="full-width" rows="8" name="overview" minlength="200" ng-model="input.overview" ng-required="true" placeholder="你的经历及教学特长，不少于200字（at least 200 letter）"></textarea>
                 </div>
                 <div class="section text-center">
@@ -396,6 +396,7 @@
             <!-- 新建课程 第四步 -->
             <div class="step" ng-show="step == 4" ng-form="stepForm4">
                 <img ng-src="../images/step_4.png" class="full-width" alt="">
+                <p>Select time frame for your course</p>
                 <div class="weekly row">
                     <div class="weekly-item" ng-repeat="week in weeks" ng-click="select_week(week)" ng-class="{'active':week.check}">
                         <span ng-if="week.type !='content'">{{week.text}}</span>
